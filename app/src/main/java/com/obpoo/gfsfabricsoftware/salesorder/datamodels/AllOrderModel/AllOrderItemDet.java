@@ -25,6 +25,9 @@ public class AllOrderItemDet implements Parcelable {
     @SerializedName("discount_for_user")
     @Expose
     private String discountForUser;
+
+
+
     @SerializedName("subtotal")
     @Expose
     private String subtotal;
@@ -34,6 +37,13 @@ public class AllOrderItemDet implements Parcelable {
     @SerializedName("fab_img")
     @Expose
     private String fabImg;
+
+    public AllOrderItemDet(String quantity, String actualPrice, String fabName, String fabImg) {
+        this.quantity = quantity;
+        this.actualPrice = actualPrice;
+        this.fabName = fabName;
+        this.fabImg = fabImg;
+    }
 
     protected AllOrderItemDet(Parcel in) {
         id = in.readString();
