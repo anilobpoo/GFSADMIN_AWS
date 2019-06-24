@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_margin="5dp"
+    android:background="@color/editaddgrnd">
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardBackgroundColor="@color/white"
+        app:cardElevation="2dp"
+        >
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="10dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="horizontal"
+        android:layout_weight="1">
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:layout_width="0dp"
+            android:layout_height="70dp"
+            android:src="@drawable/fabric_master"
+            app:civ_border_width="2dp"
+            app:civ_border_color="@color/white"
+            android:id="@+id/sa_img"
+            android:layout_weight="0.5"
+            />
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_weight="1"
+            android:layout_gravity="center">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="sa_name"
+                android:id="@+id/sa_name"
+                android:textSize="15sp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="sa_composition"
+                android:id="@+id/sa_composition"
+                android:background="@color/colorPrimary"
+                android:textColor="@color/white"
+                android:padding="2dp"
+                android:layout_marginTop="5dp"
+                android:textStyle="bold"/>
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:src="@drawable/ic_right_arrow"
+            android:layout_gravity="center"
+            android:id="@+id/gtg"
+            android:clickable="true"/>
+
+
+    </LinearLayout>
+
+    <View
+        android:layout_height="1dp"
+        android:layout_width="match_parent"
+        android:background="@color/colorPrimary"
+        android:layout_margin="8dp">
+
+    </View>
+
+    <GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:columnCount="3">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Min Stock(Store)"
+            android:textSize="12sp"
+            android:layout_columnWeight="1"
+            android:gravity="center"
+            />
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Min Stock(User)"
+            android:textSize="12sp"
+            android:layout_columnWeight="1"
+            android:gravity="center"/>
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Remain"
+            android:textSize="12sp"
+            android:layout_columnWeight="1"
+            android:gravity="center"
+            />
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textSize="12sp"
+            android:layout_columnWeight="1"
+            android:gravity="center"
+            android:layout_marginTop="5dp"
+            android:textColor="@color/orange_500"
+            android:id="@+id/mss"
+            android:textStyle="bold"/>
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textSize="12sp"
+            android:layout_columnWeight="1"
+            android:gravity="center"
+            android:layout_marginTop="5dp"
+            android:textColor="@color/orange_500"
+            android:id="@+id/msu"
+            android:textStyle="bold"/>
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textSize="12sp"
+            android:layout_columnWeight="1"
+            android:gravity="center"
+            android:layout_marginTop="5dp"
+            android:textColor="@color/orange_500"
+            android:id="@+id/sa_remain"
+            android:textStyle="bold"/>
+
+    </GridLayout>
+</LinearLayout>
+    </android.support.v7.widget.CardView>
+
+</android.support.constraint.ConstraintLayout>

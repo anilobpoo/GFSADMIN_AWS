@@ -1,0 +1,545 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:background="@color/colorPrimary">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_height="wrap_content">
+
+        <include
+            android:id="@+id/layout"
+            layout="@layout/layout_action_bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:layout_margin="10dp"
+            android:layout_height="wrap_content">
+
+
+
+
+
+
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:text="Price before Discount"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:padding="2dp"
+                android:textColor="@color/white"
+
+                android:layout_height="wrap_content" />
+            <android.support.v7.widget.CardView
+                card_view:cardElevation="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="5dp"
+                card_view:cardPreventCornerOverlap="false"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:clipChildren="false"
+                card_view:cardCornerRadius="3dp"
+                android:clipToPadding="false"
+                android:divider="@android:color/transparent"
+                android:elevation="5dp"
+                tools:ignore="RtlCompat">
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/winv"
+                    android:padding="@dimen/padd_10"
+                    android:inputType="numberDecimal"
+                    android:id="@+id/actualPrice"
+                    android:minLines="1"
+                    android:enabled="false"
+
+                    android:editable="false"
+                    android:layout_marginRight="5dp"
+                    android:layout_height="wrap_content" />
+
+            </android.support.v7.widget.CardView>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:text="Price after discount"
+                android:textColor="@color/white"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:padding="2dp"
+                android:layout_height="wrap_content" />
+            <android.support.v7.widget.CardView
+                card_view:cardElevation="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="5dp"
+                card_view:cardPreventCornerOverlap="false"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:clipChildren="false"
+                card_view:cardCornerRadius="3dp"
+                android:clipToPadding="false"
+                android:divider="@android:color/transparent"
+                android:elevation="5dp"
+                tools:ignore="RtlCompat">
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/winv"
+                    android:padding="@dimen/padd_10"
+                    android:id="@+id/subtotal"
+                    android:minLines="1"
+                    android:editable="false"
+                    android:enabled="false"
+                    android:inputType="number"
+                    android:layout_marginRight="5dp"
+                    android:layout_height="wrap_content" />
+
+            </android.support.v7.widget.CardView>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:gravity="left"
+                android:orientation="horizontal"
+                android:layout_margin="5dp"
+                android:layout_height="match_parent">
+
+
+                <TextView
+                    android:layout_width="90dp"
+                    android:text="Choose"
+                    android:padding="7dp"
+                    android:textColor="@color/white"
+                    android:textSize="16dp"
+                    android:fontFamily="@font/calibri"
+                    android:layout_height="wrap_content" />
+
+
+                <RadioGroup
+                    android:gravity="center"
+                    android:id="@+id/radioStatus"
+                    android:layout_width="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_height="match_parent" >
+
+                    <RadioButton
+                        android:id="@+id/radioCash"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Cash"
+                        android:textColor="@color/white"
+                        android:textSize="15dp"
+                        android:fontFamily="@font/calibri"
+                        android:padding="5dp"
+                        android:buttonTint="@color/white"
+                        />
+
+                    <RadioButton
+                        android:id="@+id/radioCredit"
+                        android:fontFamily="@font/calibri"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="5dp"
+                        android:textSize="15dp"
+                        android:textColor="@color/white"
+                        android:buttonTint="@color/white"
+                        android:text="Credit" />
+
+                </RadioGroup>
+
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="vertical"
+                android:id="@+id/monthlayout"
+                android:visibility="gone"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:text="Months"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:padding="2dp"
+                    android:textColor="@color/white"
+
+                    android:layout_height="wrap_content" />
+                <android.support.v7.widget.CardView
+                    card_view:cardElevation="5dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginTop="5dp"
+                    card_view:cardPreventCornerOverlap="false"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:clipChildren="false"
+                    card_view:cardCornerRadius="3dp"
+                    android:clipToPadding="false"
+                    android:divider="@android:color/transparent"
+                    android:elevation="5dp"
+                    tools:ignore="RtlCompat">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <EditText
+                            android:id="@+id/months"
+                            android:layout_width="299dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="5dp"
+                            android:layout_weight="1"
+                            android:editable="false"
+                            android:background="@drawable/winv"
+                            android:padding="@dimen/padd_10" />
+
+                        <ImageView
+                            android:id="@+id/monthOptions"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:layout_margin="5dp"
+                            android:layout_alignParentTop="true"
+                            android:background="@drawable/ic_keyboard_arrow_down_black_36dp" />
+
+                    </RelativeLayout>
+
+                </android.support.v7.widget.CardView>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="vertical"
+                android:id="@+id/cashlayout"
+                android:visibility="gone"
+                android:layout_height="wrap_content">
+
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
+                    android:text="Coupon"
+                    android:textColor="@color/white"
+                    android:textSize="16sp" />
+
+
+                <android.support.v7.widget.CardView
+                    card_view:cardElevation="5dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginTop="5dp"
+                    card_view:cardPreventCornerOverlap="false"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:clipChildren="false"
+                    card_view:cardCornerRadius="3dp"
+                    android:clipToPadding="false"
+                    android:divider="@android:color/transparent"
+                    android:elevation="5dp"
+                    tools:ignore="RtlCompat">
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <EditText
+                            android:id="@+id/coupon"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="number"
+                            android:padding="10dp"
+                            android:background="@drawable/winv"
+                            android:textColor="@color/black"
+                            android:textColorHint="@color/gray" />
+
+                        <ImageView
+                            android:id="@+id/chooseCoupon"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            app:srcCompat="@drawable/ic_keyboard_arrow_down_black_36dp" />
+
+
+                    </RelativeLayout>
+
+                </android.support.v7.widget.CardView>
+
+
+
+
+                <TextView
+                    android:layout_width="272dp"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
+                    android:text="Advance"
+                    android:textColor="@color/white"
+                    android:textSize="16sp" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+
+                    <android.support.v7.widget.CardView
+                        card_view:cardElevation="5dp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_marginBottom="5dp"
+                        android:layout_marginTop="5dp"
+                        card_view:cardPreventCornerOverlap="false"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentTop="true"
+                        android:clipChildren="false"
+                        card_view:cardCornerRadius="3dp"
+                        android:clipToPadding="false"
+                        android:divider="@android:color/transparent"
+                        android:elevation="5dp"
+                        tools:ignore="RtlCompat">
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <EditText
+                                android:id="@+id/advance"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:inputType="number"
+                                android:padding="10dp"
+                                android:background="@drawable/winv"
+
+                                android:textColor="@color/black"
+                                android:textColorHint="@color/gray" />
+
+                        </RelativeLayout>
+
+                    </android.support.v7.widget.CardView>
+
+
+
+
+
+                </RelativeLayout>
+
+
+                <TextView
+                    android:layout_width="272dp"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
+                    android:text="Due Amount"
+                    android:textColor="@color/white"
+                    android:textSize="16sp" />
+
+
+
+                <android.support.v7.widget.CardView
+                    card_view:cardElevation="5dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginTop="5dp"
+                    card_view:cardPreventCornerOverlap="false"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:clipChildren="false"
+                    card_view:cardCornerRadius="3dp"
+                    android:clipToPadding="false"
+                    android:divider="@android:color/transparent"
+                    android:elevation="5dp"
+                    tools:ignore="RtlCompat">
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <EditText
+                            android:id="@+id/leftover"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="number"
+                            android:padding="10dp"
+                            android:background="@drawable/winv"
+
+                            android:textColor="@color/black"
+                            android:textColorHint="@color/gray" />
+
+                    </RelativeLayout>
+
+                </android.support.v7.widget.CardView>
+
+
+
+            </LinearLayout>
+
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:gravity="left"
+                android:orientation="horizontal"
+                android:layout_margin="5dp"
+                android:layout_height="match_parent">
+
+
+                <TextView
+                    android:layout_width="90dp"
+                    android:text="Delivery"
+                    android:padding="7dp"
+                    android:textColor="@color/white"
+                    android:textSize="16dp"
+                    android:fontFamily="@font/calibri"
+                    android:layout_height="wrap_content" />
+
+
+                <RadioGroup
+                    android:gravity="center"
+                    android:id="@+id/radioDelivery"
+                    android:layout_width="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_height="match_parent" >
+
+                    <RadioButton
+                        android:id="@+id/radioShop"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Collect"
+                        android:textColor="@color/white"
+                        android:textSize="15dp"
+                        android:fontFamily="@font/calibri"
+                        android:padding="5dp"
+                        android:buttonTint="@color/white"
+                        />
+
+                    <RadioButton
+                        android:id="@+id/radioOutside"
+                        android:fontFamily="@font/calibri"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="5dp"
+                        android:textSize="15dp"
+                        android:textColor="@color/white"
+                        android:buttonTint="@color/white"
+                        android:text="Pick up Guy" />
+
+                </RadioGroup>
+
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:text="Delivery Address"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:padding="2dp"
+                android:textColor="@color/white"
+                android:layout_height="wrap_content" />
+            <android.support.v7.widget.CardView
+                card_view:cardElevation="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="5dp"
+                card_view:cardPreventCornerOverlap="false"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:clipChildren="false"
+                card_view:cardCornerRadius="3dp"
+                android:clipToPadding="false"
+                android:divider="@android:color/transparent"
+                android:elevation="5dp"
+                tools:ignore="RtlCompat">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+
+                    <EditText
+                        android:id="@+id/address"
+                        android:layout_width="320dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginRight="5dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/winv"
+                        android:gravity="top"
+                        android:inputType="textMultiLine"
+                        android:lines="2"
+                        android:minLines="2"
+                        android:singleLine="false"
+                        android:padding="@dimen/padd_10" />
+
+                    <ImageView
+                        android:id="@+id/location"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:background="@drawable/ic_add_location_black_36dp" />
+
+
+
+
+                </RelativeLayout>
+
+
+            </android.support.v7.widget.CardView>
+
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/checkout"
+                android:layout_margin="5dp"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:background="@color/bordercolor"
+                android:text="CHECK OUT" />
+
+
+
+        </LinearLayout>
+
+
+
+
+    </LinearLayout>
+
+
+
+</ScrollView>

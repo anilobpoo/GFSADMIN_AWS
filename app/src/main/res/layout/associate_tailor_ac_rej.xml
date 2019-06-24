@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_margin="5dp"
+    android:background="@color/white"
+    android:padding="15dp">
+
+    <TextView
+        android:id="@+id/change_act"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="8dp"
+        android:text="Change Activity"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:textStyle="bold"
+        android:textColor="@color/blue_500"/>
+
+    <RadioGroup
+        android:id="@+id/radioGroup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="15dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="@+id/vat_spin"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/change_act">
+
+        <RadioButton
+            android:id="@+id/accept_rb"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Accept" />
+
+        <RadioButton
+            android:id="@+id/reject_rb"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Reject" />
+
+    </RadioGroup>
+
+    <EditText
+        android:id="@+id/credit_limit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:ems="10"
+        android:hint="Credit Limit"
+        android:inputType="textPersonName"
+        app:layout_constraintStart_toStartOf="@+id/radioGroup"
+        app:layout_constraintTop_toBottomOf="@+id/radioGroup"
+        android:visibility="gone"/>
+
+    <EditText
+        android:id="@+id/days_limit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="3dp"
+        android:ems="10"
+        android:hint="30/60/90 days...."
+        android:inputType="textPersonName"
+        app:layout_constraintStart_toStartOf="@+id/credit_limit"
+        app:layout_constraintTop_toBottomOf="@+id/credit_limit"
+        android:visibility="gone"/>
+
+    <Spinner
+        android:id="@+id/vat_spin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="1dp"
+        android:layout_marginBottom="2dp"
+        app:layout_constraintBottom_toTopOf="@+id/cod_spin"
+        app:layout_constraintStart_toStartOf="@+id/cod_spin"
+        android:entries="@array/vatendi"
+        android:spinnerMode="dialog"
+        android:visibility="gone"/>
+
+    <Spinner
+        android:id="@+id/cod_spin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="9dp"
+        app:layout_constraintBottom_toTopOf="@+id/update_act"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:entries="@array/vatendi"
+        android:spinnerMode="dialog"
+        android:visibility="gone"/>
+
+    <Button
+        android:id="@+id/update_act"
+        android:layout_width="wrap_content"
+        android:layout_height="25dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="15dp"
+        android:background="@color/green_500"
+        android:text="Update"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/cancel_act"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cod_text" />
+
+    <Button
+        android:id="@+id/cancel_act"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginEnd="8dp"
+        android:background="@color/grey_500"
+        android:text="Cancel"
+        app:layout_constraintBottom_toBottomOf="@+id/update_act"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/update_act"
+        app:layout_constraintTop_toTopOf="@+id/update_act" />
+
+    <TextView
+        android:id="@+id/vat_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="7dp"
+        android:layout_marginTop="8dp"
+        android:text="VAT"
+        app:layout_constraintStart_toStartOf="@+id/days_limit"
+        app:layout_constraintTop_toBottomOf="@+id/days_limit"
+        android:visibility="gone"/>
+
+    <TextView
+        android:id="@+id/cod_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="COD"
+        app:layout_constraintStart_toStartOf="@+id/vat_text"
+        app:layout_constraintTop_toBottomOf="@+id/vat_text"
+        android:visibility="gone"/>
+</android.support.constraint.ConstraintLayout>

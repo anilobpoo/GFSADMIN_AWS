@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="300dp"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="10dp"
+    android:background="@color/grey_200">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Select Date"
+        android:padding="10dp"
+        android:gravity="center"
+        android:textColor="@color/colorPrimary"
+        android:textSize="15sp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="date"
+        android:drawableLeft="@drawable/ic_date_range_black_24dp"
+        android:padding="5dp"
+        android:drawablePadding="5dp"
+        android:gravity="center"
+        android:id="@+id/fromdate_bi"
+        android:background="@color/white"
+        android:layout_marginBottom="5dp"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="date"
+        android:drawableLeft="@drawable/ic_date_range_black_24dp"
+        android:padding="5dp"
+        android:drawablePadding="5dp"
+        android:gravity="center"
+        android:id="@+id/todate_bi"
+        android:background="@color/white"
+        android:layout_marginTop="5dp"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@drawable/dashed_line"
+        android:layout_marginTop="5dp"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="5dp">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="CANCEL"
+            android:textColor="@color/red_500"
+            android:gravity="center"
+            android:padding="7dp"
+            android:id="@+id/cancel_bi"/>
+
+        <View
+            android:layout_width="2dp"
+            android:layout_height="match_parent"
+            android:background="@color/black"
+            />
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="ADD"
+            android:textColor="@color/colorPrimary"
+            android:gravity="center"
+            android:padding="7dp"
+            android:id="@+id/add_bi"/>
+
+    </LinearLayout>
+
+</LinearLayout>

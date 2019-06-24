@@ -1,0 +1,1226 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:background="@color/colorPrimary"
+    tools:context=".vendors.ui.AddVendor">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_height="wrap_content">
+
+        <include
+            android:id="@+id/layout"
+            layout="@layout/layout_action_bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_margin="10dp"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:id="@+id/photoLayout"
+                android:visibility="gone"
+                android:orientation="horizontal"
+                android:layout_height="wrap_content">
+
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_height="wrap_content">
+
+                    <RelativeLayout
+                        android:layout_width="120dp"
+                        android:layout_height="120dp"
+                        android:layout_below="@+id/fd"
+                        android:layout_centerHorizontal="true"
+                        android:layout_margin="5dp"
+                        android:background="@drawable/imageborder">
+
+                        <ImageView
+                            android:id="@+id/copic1"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_centerHorizontal="true"
+                            android:layout_centerVertical="true"
+                            android:layout_margin="2dp"
+                            android:scaleType="centerCrop" />
+
+
+                        <TextView
+                            android:id="@+id/cup1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:layout_centerVertical="true"
+                            android:layout_margin="2dp"
+                            android:gravity="center"
+                            android:text="Upload Image"
+                            android:textColor="@color/black"
+                            android:textSize="12sp"
+                            android:textStyle="bold" />
+
+                    </RelativeLayout>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:textColor="@color/white"
+                        android:text="Preview"
+                        android:padding="5dp"
+                        android:gravity="center"
+                        android:layout_height="wrap_content" />
+
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_height="wrap_content">
+
+                    <RelativeLayout
+                        android:layout_width="120dp"
+                        android:layout_height="120dp"
+                        android:layout_below="@+id/fd"
+                        android:layout_centerHorizontal="true"
+                        android:layout_margin="5dp"
+                        android:background="@drawable/imageborder">
+
+                        <ImageView
+                            android:id="@+id/copic2"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_centerHorizontal="true"
+                            android:layout_centerVertical="true"
+                            android:layout_margin="2dp"
+                            android:scaleType="centerCrop" />
+
+
+                        <TextView
+                            android:id="@+id/cup2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:layout_centerVertical="true"
+                            android:layout_margin="2dp"
+                            android:gravity="center"
+                            android:text="Upload Image"
+                            android:textColor="@color/black"
+                            android:textSize="12sp"
+                            android:textStyle="bold" />
+
+                    </RelativeLayout>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:textColor="@color/white"
+                        android:text="Thumbnail"
+                        android:padding="5dp"
+                        android:gravity="center"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_height="wrap_content">
+
+                    <RelativeLayout
+                        android:id="@+id/relativeLayout3"
+                        android:layout_width="120dp"
+                        android:layout_height="120dp"
+                        android:layout_below="@+id/fd"
+                        android:layout_centerHorizontal="true"
+                        android:layout_margin="5dp"
+                        android:background="@drawable/imageborder">
+
+                        <ImageView
+                            android:id="@+id/copic3"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_centerHorizontal="true"
+                            android:layout_centerVertical="true"
+                            android:layout_margin="2dp"
+                            android:scaleType="centerCrop" />
+
+
+                        <TextView
+                            android:id="@+id/cup3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:layout_centerVertical="true"
+                            android:layout_margin="2dp"
+                            android:gravity="center"
+                            android:text="Upload Image"
+                            android:textColor="@color/black"
+                            android:textSize="12sp"
+                            android:textStyle="bold" />
+
+                    </RelativeLayout>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:textColor="@color/white"
+                        android:text="Texture"
+                        android:padding="5dp"
+                        android:gravity="center"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:text="Fabric Name"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:padding="2dp"
+                android:layout_marginTop="5dp"
+                android:textColor="@color/white"
+                android:layout_height="wrap_content" />
+            <android.support.v7.widget.CardView
+                card_view:cardElevation="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="5dp"
+                card_view:cardPreventCornerOverlap="false"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:clipChildren="false"
+                card_view:cardCornerRadius="3dp"
+                android:clipToPadding="false"
+                android:divider="@android:color/transparent"
+                android:elevation="5dp"
+                tools:ignore="RtlCompat">
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/winv"
+                    android:padding="@dimen/padd_10"
+                    android:id="@+id/name"
+                    android:layout_marginRight="5dp"
+                    android:layout_height="wrap_content" />
+
+            </android.support.v7.widget.CardView>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:text="Article Number"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:padding="2dp"
+                android:textColor="@color/white"
+
+                android:layout_height="wrap_content" />
+            <android.support.v7.widget.CardView
+                card_view:cardElevation="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="5dp"
+                card_view:cardPreventCornerOverlap="false"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:clipChildren="false"
+                card_view:cardCornerRadius="3dp"
+                android:clipToPadding="false"
+                android:divider="@android:color/transparent"
+                android:elevation="5dp"
+                tools:ignore="RtlCompat">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <EditText
+                        android:id="@+id/article"
+                        android:layout_width="299dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="5dp"
+                        android:layout_weight="1"
+                        android:editable="false"
+                        android:background="@drawable/winv"
+                        android:padding="@dimen/padd_10" />
+
+                    <ImageView
+                        android:id="@+id/articleOptions"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_margin="5dp"
+                        android:layout_alignParentTop="true"
+                        android:background="@drawable/ic_keyboard_arrow_down_black_36dp" />
+
+                </RelativeLayout>
+
+            </android.support.v7.widget.CardView>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:text="Composition Code"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:padding="2dp"
+                android:visibility="gone"
+                android:textColor="@color/white"
+
+                android:layout_height="wrap_content" />
+            <android.support.v7.widget.CardView
+                card_view:cardElevation="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="5dp"
+                android:visibility="gone"
+
+                card_view:cardPreventCornerOverlap="false"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:clipChildren="false"
+                card_view:cardCornerRadius="3dp"
+                android:clipToPadding="false"
+                android:divider="@android:color/transparent"
+                android:elevation="5dp"
+                tools:ignore="RtlCompat">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <EditText
+                        android:id="@+id/comp"
+                        android:layout_width="299dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="5dp"
+                        android:layout_weight="1"
+                        android:editable="false"
+                        android:background="@drawable/winv"
+                        android:padding="@dimen/padd_10" />
+
+                    <ImageView
+                        android:id="@+id/compOptions"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_margin="5dp"
+                        android:layout_alignParentTop="true"
+                        android:background="@drawable/ic_keyboard_arrow_down_black_36dp" />
+
+                </RelativeLayout>
+
+            </android.support.v7.widget.CardView>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:text="Color Code"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:padding="2dp"
+                android:textColor="@color/white"
+
+                android:layout_height="wrap_content" />
+            <android.support.v7.widget.CardView
+                card_view:cardElevation="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="5dp"
+                card_view:cardPreventCornerOverlap="false"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:clipChildren="false"
+                card_view:cardCornerRadius="3dp"
+                android:clipToPadding="false"
+                android:divider="@android:color/transparent"
+                android:elevation="5dp"
+                tools:ignore="RtlCompat">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <EditText
+                        android:id="@+id/color"
+                        android:layout_width="299dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="5dp"
+                        android:layout_weight="1"
+                        android:editable="false"
+                        android:background="@drawable/winv"
+                        android:padding="@dimen/padd_10" />
+
+                    <ImageView
+                        android:id="@+id/colorOptions"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_margin="5dp"
+                        android:layout_alignParentTop="true"
+                        android:background="@drawable/ic_keyboard_arrow_down_black_36dp" />
+
+                </RelativeLayout>
+
+            </android.support.v7.widget.CardView>
+
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:text="Full role price(per/mtrs)"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:padding="2dp"
+                android:textColor="@color/white"
+                android:layout_height="wrap_content" />
+
+            <android.support.v7.widget.CardView
+                card_view:cardElevation="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="5dp"
+                card_view:cardPreventCornerOverlap="false"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:clipChildren="false"
+                card_view:cardCornerRadius="3dp"
+                android:clipToPadding="false"
+                android:divider="@android:color/transparent"
+                android:elevation="5dp"
+                tools:ignore="RtlCompat">
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/winv"
+                    android:padding="@dimen/padd_10"
+                    android:inputType="numberDecimal"
+                    android:id="@+id/mfullroleprice"
+                    android:minLines="1"
+                    android:layout_marginRight="5dp"
+                    android:layout_height="wrap_content" />
+
+            </android.support.v7.widget.CardView>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:text="Full role price(per/yrds)"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:padding="2dp"
+                android:textColor="@color/white"
+                android:layout_height="wrap_content" />
+
+            <android.support.v7.widget.CardView
+                card_view:cardElevation="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="5dp"
+                card_view:cardPreventCornerOverlap="false"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:clipChildren="false"
+                card_view:cardCornerRadius="3dp"
+                android:clipToPadding="false"
+                android:divider="@android:color/transparent"
+                android:elevation="5dp"
+                tools:ignore="RtlCompat">
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/winv"
+                    android:padding="@dimen/padd_10"
+                    android:inputType="numberDecimal"
+                    android:id="@+id/yfullroleprice"
+                    android:minLines="1"
+                    android:layout_marginRight="5dp"
+                    android:layout_height="wrap_content" />
+
+            </android.support.v7.widget.CardView>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:text="1-9.99 Price(per/mtrs)"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:padding="2dp"
+                android:textColor="@color/white"
+                android:layout_height="wrap_content" />
+
+            <android.support.v7.widget.CardView
+                card_view:cardElevation="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="5dp"
+                card_view:cardPreventCornerOverlap="false"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:clipChildren="false"
+                card_view:cardCornerRadius="3dp"
+                android:clipToPadding="false"
+                android:divider="@android:color/transparent"
+                android:elevation="5dp"
+                tools:ignore="RtlCompat">
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/winv"
+                    android:padding="@dimen/padd_10"
+                    android:inputType="numberDecimal"
+                    android:id="@+id/monetonine"
+                    android:minLines="1"
+                    android:layout_marginRight="5dp"
+                    android:layout_height="wrap_content" />
+
+            </android.support.v7.widget.CardView>
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:text="1-9.99 Price(per/yrds)"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:padding="2dp"
+                android:textColor="@color/white"
+                android:layout_height="wrap_content" />
+
+            <android.support.v7.widget.CardView
+                card_view:cardElevation="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="5dp"
+                card_view:cardPreventCornerOverlap="false"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:clipChildren="false"
+                card_view:cardCornerRadius="3dp"
+                android:clipToPadding="false"
+                android:divider="@android:color/transparent"
+                android:elevation="5dp"
+                tools:ignore="RtlCompat">
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/winv"
+                    android:padding="@dimen/padd_10"
+                    android:inputType="numberDecimal"
+                    android:id="@+id/yonetonine"
+                    android:minLines="1"
+                    android:layout_marginRight="5dp"
+                    android:layout_height="wrap_content" />
+
+            </android.support.v7.widget.CardView>
+
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:text="Price 10 and above(per/mtrs):"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:padding="2dp"
+                android:textColor="@color/white"
+                android:layout_height="wrap_content" />
+
+            <android.support.v7.widget.CardView
+                card_view:cardElevation="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="5dp"
+                card_view:cardPreventCornerOverlap="false"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:clipChildren="false"
+                card_view:cardCornerRadius="3dp"
+                android:clipToPadding="false"
+                android:divider="@android:color/transparent"
+                android:elevation="5dp"
+                tools:ignore="RtlCompat">
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/winv"
+                    android:padding="@dimen/padd_10"
+                    android:inputType="numberDecimal"
+                    android:id="@+id/mtenandabove"
+                    android:layout_marginRight="5dp"
+                    android:layout_height="wrap_content" />
+
+            </android.support.v7.widget.CardView>
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:text="Price 10 and above(per/yrds):"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:padding="2dp"
+                android:textColor="@color/white"
+                android:layout_height="wrap_content" />
+
+            <android.support.v7.widget.CardView
+                card_view:cardElevation="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="5dp"
+                card_view:cardPreventCornerOverlap="false"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:clipChildren="false"
+                card_view:cardCornerRadius="3dp"
+                android:clipToPadding="false"
+                android:divider="@android:color/transparent"
+                android:elevation="5dp"
+                tools:ignore="RtlCompat">
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/winv"
+                    android:padding="@dimen/padd_10"
+                    android:inputType="numberDecimal"
+                    android:id="@+id/ytenandabove"
+                    android:layout_marginRight="5dp"
+                    android:layout_height="wrap_content" />
+
+            </android.support.v7.widget.CardView>
+
+
+
+
+
+
+
+
+
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:text="Width"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:padding="2dp"
+                android:textColor="@color/white"
+
+                android:layout_height="wrap_content" />
+            <android.support.v7.widget.CardView
+                card_view:cardElevation="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="5dp"
+                card_view:cardPreventCornerOverlap="false"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:clipChildren="false"
+                card_view:cardCornerRadius="3dp"
+                android:clipToPadding="false"
+                android:divider="@android:color/transparent"
+                android:elevation="5dp"
+                tools:ignore="RtlCompat">
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/winv"
+                    android:padding="@dimen/padd_10"
+                    android:inputType="numberDecimal"
+                    android:id="@+id/width"
+                    android:minLines="1"
+                    android:layout_marginRight="5dp"
+                    android:layout_height="wrap_content" />
+
+            </android.support.v7.widget.CardView>
+
+
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:text="Cost Per Meter"
+                android:textColor="@color/white"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:padding="2dp"
+                android:layout_height="wrap_content" />
+            <android.support.v7.widget.CardView
+                card_view:cardElevation="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="5dp"
+                card_view:cardPreventCornerOverlap="false"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:clipChildren="false"
+                card_view:cardCornerRadius="3dp"
+                android:clipToPadding="false"
+                android:divider="@android:color/transparent"
+                android:elevation="5dp"
+                tools:ignore="RtlCompat">
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:background="@drawable/winv"
+                    android:padding="@dimen/padd_10"
+                    android:id="@+id/costpermeter"
+                    android:minLines="1"
+                    android:inputType="numberDecimal"
+                    android:layout_marginRight="5dp"
+                    android:layout_height="wrap_content" />
+
+            </android.support.v7.widget.CardView>
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:text="Cost Per Yard"
+                android:textColor="@color/white"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:padding="2dp"
+                android:layout_height="wrap_content" />
+            <android.support.v7.widget.CardView
+                card_view:cardElevation="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="5dp"
+                card_view:cardPreventCornerOverlap="false"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:clipChildren="false"
+                card_view:cardCornerRadius="3dp"
+                android:clipToPadding="false"
+                android:divider="@android:color/transparent"
+                android:elevation="5dp"
+                tools:ignore="RtlCompat">
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/winv"
+                    android:padding="@dimen/padd_10"
+                    android:id="@+id/costperyard"
+                    android:inputType="numberDecimal"
+                    android:layout_marginRight="5dp"
+                    android:layout_height="wrap_content" />
+
+            </android.support.v7.widget.CardView>
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:text="Sell Per Meter"
+                android:textColor="@color/white"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:padding="2dp"
+                android:layout_height="wrap_content" />
+            <android.support.v7.widget.CardView
+                card_view:cardElevation="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="5dp"
+                card_view:cardPreventCornerOverlap="false"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:clipChildren="false"
+                card_view:cardCornerRadius="3dp"
+                android:clipToPadding="false"
+                android:divider="@android:color/transparent"
+                android:elevation="5dp"
+                tools:ignore="RtlCompat">
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/winv"
+                    android:padding="@dimen/padd_10"
+                    android:id="@+id/sellpermeter"
+                    android:minLines="1"
+                    android:inputType="numberDecimal"
+                    android:layout_marginRight="5dp"
+                    android:layout_height="wrap_content" />
+
+            </android.support.v7.widget.CardView>
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:text="Sell Per Yard"
+                android:textColor="@color/white"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:padding="2dp"
+                android:layout_height="wrap_content" />
+            <android.support.v7.widget.CardView
+                card_view:cardElevation="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="5dp"
+                card_view:cardPreventCornerOverlap="false"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:clipChildren="false"
+                card_view:cardCornerRadius="3dp"
+                android:clipToPadding="false"
+                android:divider="@android:color/transparent"
+                android:elevation="5dp"
+                tools:ignore="RtlCompat">
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/winv"
+                    android:padding="@dimen/padd_10"
+                    android:id="@+id/sellperyard"
+                    android:minLines="1"
+                    android:inputType="numberDecimal"
+                    android:layout_marginRight="5dp"
+                    android:layout_height="wrap_content" />
+
+            </android.support.v7.widget.CardView>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:text="Min Stock(mtr)"
+                android:textColor="@color/white"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:padding="2dp"
+                android:layout_height="wrap_content" />
+            <android.support.v7.widget.CardView
+                card_view:cardElevation="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="5dp"
+                card_view:cardPreventCornerOverlap="false"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:clipChildren="false"
+                card_view:cardCornerRadius="3dp"
+                android:clipToPadding="false"
+                android:divider="@android:color/transparent"
+                android:elevation="5dp"
+                tools:ignore="RtlCompat">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <EditText
+                        android:id="@+id/minstockmtr"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="5dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/winv"
+                        android:inputType="numberDecimal"
+                        android:padding="@dimen/padd_10" />
+
+
+                </RelativeLayout>
+
+            </android.support.v7.widget.CardView>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:text="Min Stock(yrd)"
+                android:textColor="@color/white"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:padding="2dp"
+                android:layout_height="wrap_content" />
+            <android.support.v7.widget.CardView
+                card_view:cardElevation="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="5dp"
+                card_view:cardPreventCornerOverlap="false"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:clipChildren="false"
+                card_view:cardCornerRadius="3dp"
+                android:clipToPadding="false"
+                android:divider="@android:color/transparent"
+                android:elevation="5dp"
+                tools:ignore="RtlCompat">
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/winv"
+                    android:padding="@dimen/padd_10"
+                    android:id="@+id/minstockyard"
+                    android:minLines="1"
+                    android:inputType="numberDecimal"
+                    android:layout_marginRight="5dp"
+                    android:layout_height="wrap_content" />
+
+            </android.support.v7.widget.CardView>
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:text="Max Stock(mtr)"
+                android:textColor="@color/white"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:padding="2dp"
+                android:layout_height="wrap_content" />
+            <android.support.v7.widget.CardView
+                card_view:cardElevation="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="5dp"
+                card_view:cardPreventCornerOverlap="false"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:clipChildren="false"
+                card_view:cardCornerRadius="3dp"
+                android:clipToPadding="false"
+                android:divider="@android:color/transparent"
+                android:elevation="5dp"
+                tools:ignore="RtlCompat">
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/winv"
+                    android:padding="@dimen/padd_10"
+                    android:id="@+id/maxstockmtr"
+                    android:inputType="numberDecimal"
+                    android:minLines="1"
+                    android:layout_marginRight="5dp"
+                    android:layout_height="wrap_content" />
+
+            </android.support.v7.widget.CardView>
+
+
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:text="Max Stock(yrd):"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:padding="2dp"
+                android:textColor="@color/white"
+
+                android:layout_height="wrap_content" />
+            <android.support.v7.widget.CardView
+                card_view:cardElevation="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="5dp"
+                card_view:cardPreventCornerOverlap="false"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:clipChildren="false"
+                card_view:cardCornerRadius="3dp"
+                android:clipToPadding="false"
+                android:divider="@android:color/transparent"
+                android:elevation="5dp"
+                tools:ignore="RtlCompat">
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/winv"
+                    android:padding="@dimen/padd_10"
+                    android:id="@+id/maxstockyrd"
+                    android:inputType="numberDecimal"
+                    android:minLines="2"
+                    android:layout_marginRight="5dp"
+                    android:layout_height="wrap_content" />
+
+            </android.support.v7.widget.CardView>
+
+
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:text=" User Min Stock(mtr):"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:padding="2dp"
+                android:textColor="@color/white"
+
+                android:layout_height="wrap_content" />
+            <android.support.v7.widget.CardView
+                card_view:cardElevation="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="5dp"
+                card_view:cardPreventCornerOverlap="false"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:clipChildren="false"
+                card_view:cardCornerRadius="3dp"
+                android:clipToPadding="false"
+                android:divider="@android:color/transparent"
+                android:elevation="5dp"
+                tools:ignore="RtlCompat">
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/winv"
+                    android:padding="@dimen/padd_10"
+                    android:id="@+id/userminmeter"
+                    android:inputType="numberDecimal"
+                    android:minLines="2"
+                    android:layout_marginRight="5dp"
+                    android:layout_height="wrap_content" />
+
+            </android.support.v7.widget.CardView>
+
+
+
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:text="User Min Stock(yrds):"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:padding="2dp"
+                android:textColor="@color/white"
+
+                android:layout_height="wrap_content" />
+            <android.support.v7.widget.CardView
+                card_view:cardElevation="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="5dp"
+                card_view:cardPreventCornerOverlap="false"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:clipChildren="false"
+                card_view:cardCornerRadius="3dp"
+                android:clipToPadding="false"
+                android:divider="@android:color/transparent"
+                android:elevation="5dp"
+                tools:ignore="RtlCompat">
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/winv"
+                    android:padding="@dimen/padd_10"
+                    android:id="@+id/userminyard"
+                    android:inputType="numberDecimal"
+                    android:minLines="2"
+                    android:layout_marginRight="5dp"
+                    android:layout_height="wrap_content" />
+
+            </android.support.v7.widget.CardView>
+
+
+
+
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:text="Description"
+                android:textColor="@color/white"
+
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:padding="2dp"
+                android:layout_height="wrap_content" />
+            <android.support.v7.widget.CardView
+                card_view:cardElevation="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="5dp"
+                card_view:cardPreventCornerOverlap="false"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:clipChildren="false"
+                card_view:cardCornerRadius="3dp"
+                android:clipToPadding="false"
+                android:divider="@android:color/transparent"
+                android:elevation="5dp"
+                tools:ignore="RtlCompat">
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/winv"
+                    android:padding="@dimen/padd_10"
+                    android:id="@+id/desc"
+                    android:minLines="1"
+                    android:layout_marginRight="5dp"
+                    android:layout_height="wrap_content" />
+
+            </android.support.v7.widget.CardView>
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:text="Color Description"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:padding="2dp"
+                android:layout_marginTop="5dp"
+                android:textColor="@color/white"
+                android:layout_height="wrap_content" />
+            <android.support.v7.widget.CardView
+                card_view:cardElevation="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="5dp"
+                card_view:cardPreventCornerOverlap="false"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:clipChildren="false"
+                card_view:cardCornerRadius="3dp"
+                android:clipToPadding="false"
+                android:divider="@android:color/transparent"
+                android:elevation="5dp"
+                tools:ignore="RtlCompat">
+
+
+
+                <HorizontalScrollView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:orientation="horizontal"
+                        android:id="@+id/colorLayout"
+                        android:layout_height="wrap_content">
+
+
+
+                    </LinearLayout>
+
+
+
+
+                </HorizontalScrollView>
+
+
+
+
+
+            </android.support.v7.widget.CardView>
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/submit"
+                android:layout_margin="5dp"
+                android:background="@drawable/button_bg_pink"
+                android:textColor="@color/white"
+                android:text="Add Fabric" />
+
+
+
+        </LinearLayout>
+
+
+
+
+    </LinearLayout>
+
+
+
+</ScrollView>

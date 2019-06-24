@@ -1,0 +1,32 @@
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.obpoo.gfsfabricsoftware.PUG.UI.ListPUG">
+
+    <!-- TODO: Update blank fragment layout -->
+
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/pug_recycle"
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/pbatPUGlist"
+        app:layout_constraintStart_toStartOf="@+id/pbatPUGlist"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ProgressBar
+        android:id="@+id/pbatPUGlist"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="23dp"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/pug_recycle" />
+
+
+</android.support.constraint.ConstraintLayout>

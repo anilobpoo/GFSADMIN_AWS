@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    tools:context="com.obpoo.gfsfabricsoftware.Stock.Activity.ViewStock"
+    android:orientation="vertical">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:padding="2dp"
+        android:text="Search Fabric"
+        android:textColor="@color/colorPrimary"
+        android:layout_marginTop="10dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+    <android.support.v7.widget.CardView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginBottom="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/winv"
+        android:clipChildren="false"
+        android:clipToPadding="false"
+        android:divider="@android:color/transparent"
+        android:elevation="5dp"
+        card_view:cardCornerRadius="3dp"
+        card_view:cardElevation="5dp"
+        card_view:cardPreventCornerOverlap="false"
+        tools:ignore="RtlCompat"
+        android:layout_weight="1">
+
+
+
+        <EditText
+            android:id="@+id/fabric_s"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/winv"
+            android:padding="2dp" />
+    </android.support.v7.widget.CardView>
+        <android.support.v7.widget.CardView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/winv"
+            android:clipChildren="false"
+            android:clipToPadding="false"
+            android:divider="@android:color/transparent"
+            android:elevation="5dp"
+            card_view:cardCornerRadius="3dp"
+            card_view:cardElevation="5dp"
+            card_view:cardPreventCornerOverlap="false"
+            tools:ignore="RtlCompat"
+            android:layout_weight="0.1">
+
+
+
+            <ImageView
+                android:id="@+id/search_fabric"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:src="@drawable/places_ic_search"
+                android:background="@drawable/winv"
+                android:padding="2dp"
+                />
+        </android.support.v7.widget.CardView>
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="OR"
+        android:gravity="center"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:padding="2dp"
+        android:text="Warehouse"
+        android:textColor="@color/colorPrimary"
+        android:layout_marginTop="10dp"/>
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginBottom="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/winv"
+        android:clipChildren="false"
+        android:clipToPadding="false"
+        android:divider="@android:color/transparent"
+        android:elevation="5dp"
+        card_view:cardCornerRadius="3dp"
+        card_view:cardElevation="5dp"
+        card_view:cardPreventCornerOverlap="false"
+        tools:ignore="RtlCompat">
+
+
+
+        <Spinner
+            android:id="@+id/ware_fabric"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/winv"
+            android:padding="2dp"
+            android:entries="@array/selectWare"
+            android:visibility="visible"
+            />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/winv"
+            android:padding="2dp"
+            android:text="Select WareHouse"
+            android:id="@+id/ware_fabric_text"
+            android:visibility="gone"/>
+
+    </android.support.v7.widget.CardView>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:padding="2dp"
+        android:text="Zone"
+        android:textColor="@color/colorPrimary"
+        android:layout_marginTop="10dp"/>
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginBottom="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/winv"
+        android:clipChildren="false"
+        android:clipToPadding="false"
+        android:divider="@android:color/transparent"
+        android:elevation="5dp"
+        card_view:cardCornerRadius="3dp"
+        card_view:cardElevation="5dp"
+        card_view:cardPreventCornerOverlap="false"
+        tools:ignore="RtlCompat">
+
+
+
+        <Spinner
+            android:id="@+id/zone_fabric"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/winv"
+            android:padding="2dp"
+            android:entries="@array/selectZone"/>
+
+    </android.support.v7.widget.CardView>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:padding="2dp"
+        android:text="Shelve"
+        android:textColor="@color/colorPrimary"
+        android:layout_marginTop="10dp"/>
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginBottom="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/winv"
+        android:clipChildren="false"
+        android:clipToPadding="false"
+        android:divider="@android:color/transparent"
+        android:elevation="5dp"
+        card_view:cardCornerRadius="3dp"
+        card_view:cardElevation="5dp"
+        card_view:cardPreventCornerOverlap="false"
+        tools:ignore="RtlCompat">
+
+
+
+        <Spinner
+            android:id="@+id/shelve_fabric"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/winv"
+            android:padding="2dp"
+            android:entries="@array/selectShelf"/>
+
+    </android.support.v7.widget.CardView>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:text="View Stock"
+        android:layout_marginTop="20dp"
+        android:background="@color/colorPrimary"
+        android:textColor="@color/white"
+        android:layout_gravity="center"
+        android:padding="2dp"
+        android:id="@+id/viewstock"
+
+        />
+
+</LinearLayout>

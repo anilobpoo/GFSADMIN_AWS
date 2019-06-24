@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/card_view_cmn_art"
+    card_view:cardElevation="10dp"
+    android:layout_margin="10dp"
+    card_view:contentPadding="2dp"
+    card_view:cardBackgroundColor="@color/white"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <GridLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:columnCount="2">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Group Name:"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:textColor="@color/colorPrimary"
+                android:padding="5dp"
+                />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/groupName"
+            android:text="groupName"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:textColor="@color/colorPrimary"
+            android:padding="5dp"
+            />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Quality:"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:textColor="@color/colorPrimary"
+                android:padding="5dp"
+                />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/qualityName"
+            android:text="quality"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:padding="5dp"
+            android:textColor="@color/colorPrimary"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Quality Description:"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:padding="5dp"
+                android:textColor="@color/colorPrimary"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/qualityDesc"
+                android:text="description"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:padding="5dp"
+                android:textColor="@color/colorPrimary"/>
+        </GridLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/colorPrimary"/>
+
+        <com.cunoraz.tagview.TagView
+            xmlns:tagview="http://schemas.android.com/apk/res-auto"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tagview:lineMargin="5dp"
+            tagview:tagMargin="5dp"
+            android:padding="5dp"
+            android:id="@+id/tagView"
+            >
+
+        </com.cunoraz.tagview.TagView>
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp">
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:text="@string/edit"
+                android:id="@+id/edit_cmnArt"
+                android:background="@android:color/holo_green_dark"
+                android:textColor="@color/white"/>
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:text="@string/delete"
+                android:id="@+id/delete_cmnart"
+                android:background="@android:color/holo_red_dark"
+                android:layout_marginLeft="5dp"
+                android:textColor="@color/white"/>
+
+
+        </LinearLayout>
+
+
+
+    </LinearLayout>
+
+</android.support.v7.widget.CardView>

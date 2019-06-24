@@ -1,0 +1,324 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.ramotion.foldingcell.FoldingCell
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:folding-cell="http://schemas.android.com/apk/res-auto"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/folding_cell_dsr"
+    android:background="@drawable/winv"
+    folding-cell:animationDuration="1300"
+    folding-cell:cameraHeight="30"
+    android:clipChildren="false"
+    android:clipToPadding="false"
+    android:layout_margin="5dp"
+    >
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white"
+        android:id="@+id/checkIn_above_view"
+        android:padding="10dp"
+        android:visibility="gone"
+
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <GridLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:columnCount="2"
+                >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Invoice"
+                    android:layout_gravity="left"
+                    android:textColor="@color/blue_500"
+                    android:id="@+id/invoice_po_in_below"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Invoice"
+                    android:layout_gravity="right"
+                    android:drawableLeft="@drawable/ic_date_range_black_24dp"
+                    android:id="@+id/date_po_in_below"/>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:background="@color/grey_500"
+                    android:layout_columnSpan="2"
+                    android:layout_marginTop="3dp"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Invoice"
+                    android:layout_gravity="left"
+                    android:textColor="@color/blue_500"
+                    android:id="@+id/order_po_in_below"
+                    android:layout_marginTop="10dp"
+                    android:layout_columnSpan="2"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Invoice"
+                    android:layout_gravity="left"
+                    android:id="@+id/bundle_po_in_below"
+                    android:layout_marginTop="10dp"
+                    android:layout_columnSpan="2"
+                    android:textColor="@color/orange_500"/>
+
+
+            </GridLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="@drawable/dashed_line"
+                android:layout_columnSpan="2"
+                android:layout_marginTop="3dp"/>
+            <GridLayout
+                android:id="@+id/grid_report"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:columnCount="3"
+                android:padding="5dp"
+                >
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_columnWeight="1"
+                    android:gravity="center"
+                    android:text="Payment From" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_columnWeight="1"
+                    android:gravity="center"
+                    android:text="Payment Type" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_columnWeight="1"
+                    android:gravity="center"
+                    android:text="Total Pay" />
+
+                <TextView
+                    android:id="@+id/total_po_in_below"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_columnWeight="1"
+                    android:gravity="center"
+                    android:text="Vat"
+                    android:textColor="@color/brown_500"
+                    android:textSize="18sp"
+                    />
+
+                <TextView
+                    android:id="@+id/paid_po_in_below"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_columnWeight="1"
+                    android:gravity="center"
+                    android:text="Vat"
+                    android:textColor="@color/blue_500"
+                    android:textSize="18sp"
+                    />
+
+                <TextView
+                    android:id="@+id/left_po_in_below"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_columnWeight="1"
+                    android:gravity="center"
+                    android:text="Vat"
+                    android:textColor="@color/green_500"
+                    android:textSize="18sp"/>
+
+            </GridLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="@drawable/dashed_line"
+                android:layout_columnSpan="2"
+                android:layout_marginTop="3dp"
+                android:layout_marginBottom="10dp"/>
+            <GridLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:columnCount="2">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Type:"
+
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Invoice"
+                    android:layout_marginLeft="7dp"
+                    android:id="@+id/type_po_in_below"
+                    android:textColor="@color/black"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Term: "
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Invoice"
+                    android:layout_marginLeft="7dp"
+                    android:id="@+id/term_po_in_below"
+                    android:textColor="@color/green_500"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Invoice"
+                    android:id="@+id/due_po_in_below"
+                    />
+
+            </GridLayout>
+
+        </LinearLayout>
+
+    </FrameLayout>
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white"
+        android:id="@+id/checkIn_below_view"
+        android:padding="10dp"
+        android:visibility="visible"
+        >
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            folding-cell:layout_constraintBottom_toTopOf="@+id/textView8"
+            folding-cell:layout_constraintTop_toTopOf="@+id/textView8">
+
+
+            <TextView
+                android:id="@+id/txn_in"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="34dp"
+                android:layout_marginTop="15dp"
+                android:text="TextView"
+                folding-cell:layout_constraintBottom_toBottomOf="parent"
+                folding-cell:layout_constraintStart_toEndOf="@+id/textView7"
+                folding-cell:layout_constraintTop_toBottomOf="@+id/type_in"
+                android:textColor="@color/orange_500"/>
+
+            <TextView
+                android:id="@+id/type_in"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="TextView"
+                folding-cell:layout_constraintBottom_toBottomOf="@+id/amount_in"
+                folding-cell:layout_constraintStart_toStartOf="@+id/txn_in"
+                folding-cell:layout_constraintTop_toTopOf="@+id/amount_in"
+                android:textColor="@color/black"
+                />
+
+            <TextView
+                android:id="@+id/textView7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:text="Txn No:"
+                folding-cell:layout_constraintBottom_toBottomOf="parent"
+                folding-cell:layout_constraintStart_toStartOf="parent" />
+
+            <TextView
+                android:id="@+id/textView8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:text="Type:"
+                folding-cell:layout_constraintBottom_toBottomOf="@+id/type_in"
+                folding-cell:layout_constraintStart_toStartOf="parent"
+                folding-cell:layout_constraintTop_toTopOf="@+id/type_in" />
+
+            <TextView
+                android:id="@+id/cus_in"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="15dp"
+                android:layout_marginStart="4dp"
+                android:layout_marginTop="4dp"
+                android:text="TextView"
+                folding-cell:layout_constraintBottom_toTopOf="@+id/textView8"
+                folding-cell:layout_constraintStart_toStartOf="parent"
+                folding-cell:layout_constraintTop_toTopOf="parent"
+                android:drawableLeft="@drawable/ic_person_black_24dp"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:visibility="gone"
+                />
+            <TextView
+                android:id="@+id/cpo_id_out"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="15dp"
+                android:layout_marginStart="4dp"
+                android:layout_marginTop="4dp"
+                android:text="TextView"
+                folding-cell:layout_constraintBottom_toTopOf="@+id/textView8"
+                folding-cell:layout_constraintStart_toStartOf="parent"
+                folding-cell:layout_constraintTop_toTopOf="parent"
+                android:textColor="@color/blue_500"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:visibility="gone"
+                />
+            <TextView
+                android:id="@+id/order_out"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="15dp"
+                android:layout_marginStart="4dp"
+                android:layout_marginTop="4dp"
+                android:text="TextView"
+                folding-cell:layout_constraintBottom_toTopOf="@+id/textView8"
+                folding-cell:layout_constraintStart_toStartOf="parent"
+                folding-cell:layout_constraintTop_toTopOf="parent"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:visibility="gone"/>
+
+            <TextView
+                android:id="@+id/amount_in"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="9dp"
+                android:layout_marginEnd="4dp"
+                android:text="TextView"
+                folding-cell:layout_constraintBottom_toTopOf="@+id/due_in"
+                folding-cell:layout_constraintEnd_toEndOf="parent"
+                android:textColor="@color/green_500"/>
+
+            <TextView
+                android:id="@+id/due_in"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="4dp"
+                android:text="TextView"
+                folding-cell:layout_constraintBottom_toBottomOf="parent"
+                folding-cell:layout_constraintEnd_toEndOf="parent"
+                android:textColor="@color/black"/>
+        </android.support.constraint.ConstraintLayout>
+    </FrameLayout>
+
+</com.ramotion.foldingcell.FoldingCell>

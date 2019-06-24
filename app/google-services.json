@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "161181143775",
+    "firebase_url": "https://gfss-2f2eb.firebaseio.com",
+    "project_id": "gfss-2f2eb",
+    "storage_bucket": "gfss-2f2eb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:161181143775:android:3bcab186c01bb037",
+        "android_client_info": {
+          "package_name": "com.obpoo.giovanifabricsoftware"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "161181143775-7gcb9jnmacefgqiimn43i63ufq86v2it.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.obpoo.giovanifabricsoftware",
+            "certificate_hash": "79bdfe1848910f734af68ac40d9bcef5374d87c6"
+          }
+        },
+        {
+          "client_id": "161181143775-vpu7mitf8j0td6ikoapv9qsn4bg5p73i.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAmedkqY3XN9GOdKBrWCearPSnBgEJbW0w"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "161181143775-vpu7mitf8j0td6ikoapv9qsn4bg5p73i.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

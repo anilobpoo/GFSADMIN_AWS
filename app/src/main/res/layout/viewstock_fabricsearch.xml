@@ -1,0 +1,637 @@
+<com.ramotion.foldingcell.FoldingCell
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:folding-cell="http://schemas.android.com/apk/res-auto"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/folding_cell_fs"
+    android:background="@drawable/winv"
+    folding-cell:animationDuration="1300"
+    folding-cell:cameraHeight="30"
+    android:clipChildren="false"
+    android:clipToPadding="false"
+    android:layout_margin="5dp"
+
+    >
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white"
+        android:id="@+id/cell_content_view"
+        android:visibility="gone"
+        >
+        <android.support.v7.widget.CardView
+            card_view:cardElevation="5dp"
+            android:layout_margin="5dp"
+            card_view:cardPreventCornerOverlap="false"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:clipChildren="false"
+            card_view:cardCornerRadius="3dp"
+            android:clipToPadding="false"
+            android:divider="@android:color/transparent"
+            android:elevation="5dp"
+            tools:ignore="RtlCompat">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/cell_title_views"
+                android:background="@color/white"
+                >
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:orientation="vertical"
+                    android:layout_margin="5dp"
+                    android:layout_height="wrap_content">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:orientation="horizontal"
+                        android:layout_height="wrap_content">
+
+
+                        <TextView
+                            android:id="@+id/packetnum_fold"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="2dp"
+                            android:layout_weight="1"
+                            android:padding="5dp"
+                            android:textColor="@color/monsoon"
+                            android:textStyle="bold" />
+                        <TextView
+                            android:id="@+id/fabric_fold"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="2dp"
+                            android:layout_weight="1"
+                            android:padding="5dp"
+                            android:textColor="@color/monsoon"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:background="@color/primary_darker"
+                        android:layout_margin="3dp"/>
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:orientation="horizontal"
+                        android:layout_weight="3"
+                        android:layout_height="wrap_content"
+                        >
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:orientation="vertical"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:layout_height="wrap_content">
+
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:padding="5dp"
+                                android:gravity="center"
+                                android:textColor="@color/monsoon"
+                                android:textStyle="bold"
+                                android:id="@+id/artno_fold"
+                                android:visibility="gone"
+                                />
+
+                            <TextView
+                                android:id="@+id/remain_fold"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:padding="5dp"
+                                android:textColor="@color/colorPrimary"
+                                android:textStyle="bold"
+                                />
+
+
+
+
+
+
+                        </LinearLayout>
+
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:orientation="vertical"
+                            android:layout_weight="1"
+                            android:gravity="center"
+
+                            android:layout_height="wrap_content">
+
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:padding="5dp"
+                                android:gravity="center"
+                                android:textColor="@color/monsoon"
+                                android:textStyle="bold"
+                                android:visibility="gone"/>
+
+                            <TextView
+                                android:id="@+id/reserve_fold"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:padding="5dp"
+                                android:textColor="@color/primary_dark"
+                                android:textStyle="bold" />
+
+
+
+
+
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:orientation="vertical"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:layout_height="wrap_content">
+
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:padding="5dp"
+                                android:gravity="center"
+                                android:textColor="@color/monsoon"
+                                android:textStyle="bold"
+                                android:id="@+id/colorcode_fold"
+                                android:visibility="gone"/>
+
+                            <TextView
+                                android:id="@+id/total_fold"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:padding="5dp"
+                                android:textColor="@color/green_500"
+                                android:textStyle="bold" />
+
+                        </LinearLayout>
+
+
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:background="@color/primary_darker"
+                        android:layout_margin="3dp"/>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:orientation="horizontal"
+                        android:layout_height="wrap_content">
+
+                        <ProgressBar
+                            style="?android:attr/progressBarStyleHorizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/progress_fold"
+                            android:max="100"
+                            android:progress="45"/>
+
+
+
+
+                    </LinearLayout>
+
+
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:background="@color/grey_500"
+                        android:padding="5dp"/>
+                    <GridLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:columnCount="2"
+                        android:layout_margin="5dp"
+                        android:background="@color/white">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/monsoon"
+                            android:textStyle="bold"
+                            android:layout_columnSpan="2"
+                            android:text="Shop:"
+                            android:layout_marginLeft="10dp"
+                            android:id="@+id/shop"
+                            />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/orange_500"
+                            android:textStyle="bold"
+                            android:text="Name"
+                            android:layout_marginLeft="10dp"
+                            android:id="@+id/name_fs"
+
+                            />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/orange_500"
+                            android:textStyle="bold"
+                            android:text="No"
+                            android:layout_marginLeft="30dp"
+                            android:id="@+id/no_fs"
+                            />
+
+                    </GridLayout>
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:background="@color/grey_500"
+                        android:padding="5dp"/>
+                    <GridLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:columnCount="2"
+                        android:layout_margin="5dp"
+                        android:background="@color/white">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/monsoon"
+                            android:textStyle="bold"
+                            android:layout_columnSpan="2"
+                            android:text="WareHouse:"
+                            android:layout_marginLeft="10dp"
+                            android:id="@+id/warehouse_fs"
+                            />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/blue_500"
+                            android:textStyle="bold"
+                            android:text="Name"
+                            android:layout_marginLeft="10dp"
+                            android:id="@+id/name_ws_fs"
+                            />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/blue_500"
+                            android:textStyle="bold"
+                            android:text="No"
+                            android:layout_marginLeft="30dp"
+                            android:id="@+id/no_ws_fs"
+                            />
+
+                    </GridLayout>
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:background="@color/grey_500"
+                        android:padding="5dp"/>
+                    <GridLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:columnCount="2"
+                        android:layout_margin="5dp"
+                        android:background="@color/white">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/monsoon"
+                            android:textStyle="bold"
+                            android:layout_columnSpan="2"
+                            android:text="Zone:"
+                            android:layout_marginLeft="10dp"
+                            android:id="@+id/zone_fs"
+                            />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/red_500"
+                            android:textStyle="bold"
+                            android:text="Name"
+                            android:layout_marginLeft="10dp"
+                            android:id="@+id/zone_name_fs"
+                            />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/red_500"
+                            android:textStyle="bold"
+                            android:text="No"
+                            android:layout_marginLeft="30dp"
+                            android:id="@+id/zone_no_fs"
+                            />
+
+                    </GridLayout>
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:background="@color/grey_500"
+                        android:padding="5dp"/>
+                    <GridLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:columnCount="2"
+                        android:layout_margin="5dp"
+                        android:background="@color/white">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/monsoon"
+                            android:textStyle="bold"
+                            android:layout_columnSpan="2"
+                            android:text="Shelve:"
+                            android:layout_marginLeft="10dp"
+                            android:id="@+id/shelve_fs"
+                            />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/green_500"
+                            android:textStyle="bold"
+                            android:text="Name"
+                            android:layout_marginLeft="10dp"
+                            android:id="@+id/shelve_name_fs"
+                            />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/green_500"
+                            android:textStyle="bold"
+                            android:text="No"
+                            android:layout_marginLeft="30dp"
+                            android:id="@+id/shelve_no_fs"
+
+                            />
+
+                    </GridLayout>
+
+
+
+                </LinearLayout>
+
+
+            </FrameLayout>
+
+
+        </LinearLayout>
+        </android.support.v7.widget.CardView>
+
+    </FrameLayout>
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/cell_title_view"
+        android:background="@color/white"
+        >
+
+        <android.support.v7.widget.CardView
+            card_view:cardElevation="5dp"
+            android:layout_margin="5dp"
+            card_view:cardPreventCornerOverlap="false"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:clipChildren="false"
+            card_view:cardCornerRadius="3dp"
+            android:clipToPadding="false"
+            android:divider="@android:color/transparent"
+            android:elevation="5dp"
+            tools:ignore="RtlCompat">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="vertical"
+                android:layout_margin="5dp"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:orientation="horizontal"
+                    android:layout_height="wrap_content">
+
+
+                    <TextView
+                        android:id="@+id/packetnum_fs"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="2dp"
+                        android:layout_weight="1"
+                        android:padding="5dp"
+                        android:textColor="@color/monsoon"
+                        android:textStyle="bold" />
+
+
+                    <TextView
+                        android:id="@+id/fabric_fs"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="2dp"
+                        android:layout_weight="1"
+                        android:padding="5dp"
+                        android:textColor="@color/monsoon"
+                        android:textStyle="bold" />
+
+                    <CheckBox
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.1"
+                        android:backgroundTint="@color/colorPrimary"
+                        android:id="@+id/stock_check"/>
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:background="@color/primary_darker"
+                    android:layout_margin="3dp"/>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:orientation="horizontal"
+                    android:layout_weight="3"
+                    android:layout_height="wrap_content"
+                    >
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:orientation="vertical"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:layout_height="wrap_content">
+
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:padding="5dp"
+                            android:gravity="center"
+                            android:textColor="@color/monsoon"
+                            android:textStyle="bold"
+                            android:id="@+id/artno_fs"
+                            android:visibility="gone"
+
+                            />
+
+                        <TextView
+                            android:id="@+id/remain_fs"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:padding="5dp"
+                            android:textColor="@color/colorPrimary"
+                            android:textStyle="bold"
+                            />
+
+
+
+
+
+
+                    </LinearLayout>
+
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:orientation="vertical"
+                        android:layout_weight="1"
+                        android:gravity="center"
+
+                        android:layout_height="wrap_content">
+
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:padding="5dp"
+                            android:gravity="center"
+                            android:textColor="@color/monsoon"
+                            android:textStyle="bold"
+                            android:visibility="gone"/>
+
+                        <TextView
+                            android:id="@+id/reserve_fs"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:padding="5dp"
+                            android:textColor="@color/primary_dark"
+                            android:textStyle="bold" />
+
+
+
+
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:orientation="vertical"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:layout_height="wrap_content">
+
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:padding="5dp"
+                            android:gravity="center"
+                            android:textColor="@color/monsoon"
+                            android:textStyle="bold"
+                            android:id="@+id/colorcode_fs"
+                            android:visibility="gone"/>
+
+                        <TextView
+                            android:id="@+id/total_fs"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:padding="5dp"
+                            android:textColor="@color/green_500"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:background="@color/primary_darker"
+                    android:layout_margin="3dp"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:orientation="horizontal"
+                    android:layout_height="wrap_content">
+
+                    <ProgressBar
+                        style="?android:attr/progressBarStyleHorizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/progress_fs"
+                        android:max="100"
+                        android:progress="45"/>
+
+
+
+
+                </LinearLayout>
+
+
+
+
+            </LinearLayout>
+
+        </android.support.v7.widget.CardView>
+
+    </FrameLayout>
+</com.ramotion.foldingcell.FoldingCell>

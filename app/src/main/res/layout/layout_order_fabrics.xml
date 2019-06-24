@@ -1,0 +1,567 @@
+<com.ramotion.foldingcell.FoldingCell
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:folding-cell="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/folding_cell"
+    android:layout_width="match_parent"
+    android:background="@drawable/bluewhite"
+    android:layout_margin="5dp"
+    folding-cell:animationDuration="1300"
+    folding-cell:cameraHeight="30"
+    android:clipChildren="false"
+    folding-cell:backSideColor="@color/bgBackSideColor"
+
+    android:clipToPadding="false"
+    android:layout_height="wrap_content">
+
+
+
+
+    ​
+    <FrameLayout
+        android:id="@+id/cell_content_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_width="96dp"
+                    android:id="@+id/imageView2"
+                    android:layout_margin="3dp"
+                    android:scaleType="centerCrop"
+                    android:layout_height="96dp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:orientation="vertical"
+                    android:layout_marginLeft="3dp"
+                    android:layout_marginRight="3dp"
+
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:id="@+id/fabnames"
+                        android:padding="5dp"
+                        android:textColor="@color/colorPrimary"
+                        android:text=""
+                        android:textStyle="bold"
+                        android:layout_height="wrap_content" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:orientation="horizontal"
+                        android:weightSum="2"
+                        android:layout_height="wrap_content">
+
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:padding="5dp"
+                            android:textColor="@color/monsoon"
+                            android:text=""
+                            android:textStyle="bold"
+
+                            android:id="@+id/articles"
+                            android:layout_marginRight="2dp"
+                            android:layout_height="wrap_content" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:padding="5dp"
+                            android:layout_weight="1"
+                            android:textStyle="bold"
+
+                            android:layout_marginLeft="2dp"
+                            android:textColor="@color/primary_dark"
+                            android:text=""
+                            android:id="@+id/colors"
+                            android:layout_height="wrap_content" />
+
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:orientation="horizontal"
+                        android:weightSum="2"
+                        android:layout_height="wrap_content">
+
+
+                        <TextView
+                            android:id="@+id/comps"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="2dp"
+                            android:layout_weight="1"
+                            android:background="@color/gray"
+                            android:gravity="center"
+                            android:textStyle="bold"
+
+                            android:padding="5dp"
+                            android:text=""
+                            android:textColor="@color/white" />
+
+                        <TextView
+                            android:id="@+id/widths"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="2dp"
+                            android:layout_weight="1"
+                            android:background="@color/green_500"
+                            android:gravity="center"
+                            android:padding="5dp"
+                            android:text=""
+                            android:textStyle="bold"
+
+                            android:textColor="@color/white" />
+
+
+
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="3dp"
+                android:background="@color/colorPrimary"
+                android:layout_marginBottom="3dp"
+                android:layout_height="2dp"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:weightSum="3"
+                android:layout_margin="3dp"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:padding="5dp"
+                        android:textStyle="bold"
+
+                        android:textColor="@color/grey_500"
+                        android:text="Price Details"
+                        android:layout_height="wrap_content" />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:padding="5dp"
+                        android:textColor="@color/primary_dark"
+                        android:text="Cost Price"
+                        android:textStyle="bold"
+
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:padding="5dp"
+                        android:textColor="@color/green_500"
+                        android:text="Selling Price"
+                        android:textStyle="bold"
+
+                        android:layout_height="wrap_content" />
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:padding="5dp"
+                        android:text="Per Meter"
+                        android:textStyle="bold"
+
+                        android:textColor="@color/grey_500" />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:padding="5dp"
+                        android:gravity="center"
+                        android:id="@+id/cost_pr_mtr"
+
+                        android:textColor="@color/primary_dark"
+                        android:text="Cost Price"
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:padding="5dp"
+                        android:gravity="center"
+                        android:textColor="@color/green_500"
+                        android:text="Selling Price"
+                        android:id="@+id/sell_pr_mtr"
+                        android:layout_height="wrap_content" />
+
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:padding="5dp"
+                        android:text="Per Yard"
+                        android:textStyle="bold"
+
+                        android:textColor="@color/grey_500" />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:padding="5dp"
+                        android:gravity="center"
+                        android:id="@+id/cost_pr_yrd"
+                        android:textColor="@color/primary_dark"
+                        android:text="Cost Price"
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:padding="5dp"
+                        android:gravity="center"
+                        android:id="@+id/sell_pr_yrd"
+                        android:textColor="@color/green_500"
+                        android:text="Selling Price"
+                        android:layout_height="wrap_content" />
+
+
+                </LinearLayout>
+
+
+
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="3dp"
+                android:background="@color/colorPrimary"
+                android:layout_marginBottom="3dp"
+                android:layout_height="2dp"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:weightSum="3"
+                android:layout_margin="3dp"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="5dp"
+                        android:text="Stock Details"
+                        android:textStyle="bold"
+                        android:textColor="@color/grey_500" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="5dp"
+                        android:text="Min Stock"
+                        android:textStyle="bold"
+
+                        android:textColor="@color/primary_dark" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="5dp"
+                        android:text="Max Stock"
+                        android:textStyle="bold"
+
+                        android:textColor="@color/green_500" />
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:padding="5dp"
+                        android:text="In Meter"
+                        android:textStyle="bold"
+
+                        android:textColor="@color/grey_500" />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:padding="5dp"
+                        android:gravity="center"
+                        android:id="@+id/min_stock_mtr"
+                        android:textColor="@color/primary_dark"
+                        android:text="Cost Price"
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:padding="5dp"
+                        android:gravity="center"
+                        android:id="@+id/max_stock_mtr"
+                        android:textColor="@color/green_500"
+                        android:text="Selling Price"
+                        android:layout_height="wrap_content" />
+
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:padding="5dp"
+                        android:text="In Yard"
+                        android:textStyle="bold"
+
+                        android:textColor="@color/grey_500" />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:padding="5dp"
+                        android:gravity="center"
+                        android:id="@+id/min_stock_yrd"
+                        android:textColor="@color/primary_dark"
+                        android:text="Cost Price"
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:padding="5dp"
+                        android:gravity="center"
+                        android:id="@+id/max_stock_yrd"
+                        android:textColor="@color/green_500"
+                        android:text="Selling Price"
+                        android:layout_height="wrap_content" />
+
+
+                </LinearLayout>
+
+
+
+
+            </LinearLayout>
+
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="3dp"
+                android:background="@color/colorPrimary"
+                android:layout_marginBottom="3dp"
+                android:layout_height="2dp"/>
+
+
+            <TextView
+                android:id="@+id/desc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="3dp"
+                android:textStyle="normal"
+                android:text="No Description Availiable"
+                android:padding="10dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:layout_marginBottom="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginTop="3dp"
+                android:layout_height="wrap_content">
+
+
+                <TextView
+                    android:id="@+id/select"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="2dp"
+                    android:background="@color/orange_500"
+                    android:gravity="center"
+                    android:textStyle="bold"
+                    android:padding="8dp"
+                    android:text="SELECT"
+                    android:textColor="@color/white" />
+
+
+
+
+            </LinearLayout>
+
+
+
+
+
+
+        </LinearLayout>
+
+    </FrameLayout>
+    ​
+    <FrameLayout
+        android:id="@+id/cell_title_view"
+        android:layout_width="match_parent"
+        android:visibility="visible"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:layout_width="96dp"
+                android:layout_margin="3dp"
+                android:scaleType="centerCrop"
+                android:id="@+id/imageView1"
+                android:layout_height="96dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="vertical"
+                android:layout_margin="3dp"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:id="@+id/fabname"
+                    android:padding="5dp"
+                    android:textColor="@color/colorPrimary"
+                    android:text=""
+                    android:textStyle="bold"
+                    android:layout_height="wrap_content" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:orientation="horizontal"
+                    android:weightSum="2"
+                    android:layout_height="wrap_content">
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:padding="5dp"
+                        android:textColor="@color/monsoon"
+                        android:text=""
+                        android:textStyle="bold"
+
+                        android:id="@+id/article"
+                        android:layout_marginRight="2dp"
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:padding="5dp"
+                        android:layout_weight="1"
+                        android:layout_marginLeft="2dp"
+                        android:textColor="@color/primary_dark"
+                        android:text=""
+                        android:textStyle="bold"
+
+                        android:id="@+id/color"
+                        android:layout_height="wrap_content" />
+
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:orientation="horizontal"
+                    android:weightSum="2"
+                    android:layout_height="wrap_content">
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:padding="5dp"
+                        android:background="@color/gray"
+                        android:text=""
+                        android:layout_weight="1"
+                        android:id="@+id/comp"
+                        android:gravity="center"
+                        android:textStyle="bold"
+
+                        android:textColor="@color/white"
+                        android:layout_marginRight="2dp"
+                        android:layout_height="35dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:padding="5dp"
+                        android:textColor="@color/white"
+                        android:gravity="center"
+                        android:layout_weight="1"
+                        android:id="@+id/width"
+                        android:textStyle="bold"
+
+                        android:layout_marginLeft="2dp"
+                        android:background="@color/green_500"
+                        android:text=""
+                        android:layout_height="35dp" />
+
+
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+
+
+
+
+    </FrameLayout>
+    ​
+</com.ramotion.foldingcell.FoldingCell>

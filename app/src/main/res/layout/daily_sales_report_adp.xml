@@ -1,0 +1,346 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.ramotion.foldingcell.FoldingCell
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:folding-cell="http://schemas.android.com/apk/res-auto"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/folding_cell_dsr"
+    android:background="@drawable/winv"
+    folding-cell:animationDuration="1300"
+    folding-cell:cameraHeight="30"
+    android:clipChildren="false"
+    android:clipToPadding="false"
+    android:layout_margin="5dp"
+    >
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white"
+        android:id="@+id/cell_below_view"
+        android:padding="5dp"
+        android:visibility="gone"
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:layout_margin="5dp">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="100dp"
+                android:orientation="vertical"
+                android:gravity="center_vertical"
+                android:layout_marginLeft="10dp">
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Fabname"
+                    android:padding="5dp"
+                    android:id="@+id/cusname_dsr_below"
+                    android:textSize="20sp"
+                    android:textColor="@color/colorPrimary"
+                    android:layout_alignParentLeft="true"
+                    />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Fabname"
+                        android:padding="5dp"
+                        android:id="@+id/status_dsr_below"
+                        android:textSize="15sp"
+                        android:textColor="@color/white"
+                        android:layout_alignParentRight="true"
+                        android:background="@color/orange_500"
+                        android:textStyle="bold"
+
+                        />
+                </RelativeLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:text="Fabname"
+                    android:padding="3dp"
+                    android:id="@+id/slip_dsr_below"
+                    android:textSize="20sp"
+                    />
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Fabname"
+                    android:padding="3dp"
+                    android:id="@+id/total_dsr_below"
+                    android:layout_alignParentLeft="true"
+                    android:textSize="20sp"
+                    android:textColor="@color/blue_500"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Created"
+                    android:layout_gravity="bottom"
+                    android:gravity="right"
+                    android:id="@+id/date_dsr_below"
+                    android:layout_alignParentRight="true"
+                    android:textSize="15sp"
+                    android:layout_marginRight="2dp"
+
+                    />
+                </RelativeLayout>
+            </LinearLayout>
+
+        </LinearLayout>
+            <View
+                android:id="@+id/dashed1"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="@drawable/dashed_line"
+                />
+
+            <GridLayout
+                android:id="@+id/grid_report"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:columnCount="3"
+                android:padding="5dp"
+                >
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_columnWeight="1"
+                    android:gravity="center"
+                    android:text="Warehouse" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_columnWeight="1"
+                    android:gravity="center"
+                    android:text="Zone" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_columnWeight="1"
+                    android:gravity="center"
+                    android:text="Shelf" />
+
+                <TextView
+                    android:id="@+id/vat_dsr_below"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_columnWeight="1"
+                    android:gravity="center"
+                    android:text="Vat"
+                    android:textColor="@color/red_500"
+                    android:textSize="20sp"
+                    />
+
+                <TextView
+                    android:id="@+id/dis_dsr_below"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_columnWeight="1"
+                    android:gravity="center"
+                    android:text="Vat"
+                    android:textColor="@color/green_500"
+                    android:textSize="20sp"/>
+
+                <TextView
+                    android:id="@+id/pay_dsr_below"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_columnWeight="1"
+                    android:gravity="center"
+                    android:text="Vat"
+                    android:textColor="@color/blue_500"
+                    android:textSize="20sp"/>
+
+            </GridLayout>
+
+            <View
+                android:id="@+id/dashed2"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="@drawable/dashed_line"
+                />
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="5dp">
+                <TextView
+                    android:id="@+id/advannce_dsr_below"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Advance"
+                    android:textColor="@color/blue_500"
+                    android:textSize="15sp"
+                    android:layout_alignParentLeft="true"/>
+                <TextView
+                    android:id="@+id/leftover_dsr_below"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Leftover"
+                    android:textColor="@color/blue_500"
+                    android:textSize="15sp"
+                    android:layout_alignParentRight="true"/>
+            </RelativeLayout>
+            <GridLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:columnCount="2">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Order Type"
+                    android:textSize="15sp"
+                    android:layout_alignParentRight="true"
+                    android:paddingLeft="5dp"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Order Type"
+                    android:textSize="15sp"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginLeft="8dp"
+                    android:id="@+id/ordertype_dsr_below"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Order Type"
+                    android:textSize="15sp"
+                    android:layout_alignParentRight="true"
+                    android:paddingLeft="5dp"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Order Type"
+                    android:textSize="15sp"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginLeft="8dp"
+                    android:id="@+id/deliverytype_dsr_below"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Pay Mode"
+                    android:textSize="15sp"
+                    android:layout_alignParentRight="true"
+                    android:paddingLeft="5dp"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Order Type"
+                    android:textSize="15sp"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginLeft="8dp"
+                    android:id="@+id/paymode_dsr_below"/>
+
+
+            </GridLayout>
+        </LinearLayout>
+    </FrameLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white"
+        android:id="@+id/cell_above_view"
+
+
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:layout_margin="5dp">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="100dp"
+                android:orientation="vertical"
+                android:gravity="center_vertical"
+                android:layout_marginLeft="10dp">
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    >
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Fabname"
+                        android:padding="5dp"
+                        android:id="@+id/cusname_dsr_above"
+                        android:textSize="20sp"
+                        android:textColor="@color/colorPrimary"
+                        android:layout_alignParentLeft="true"
+                        />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Fabname"
+                        android:padding="5dp"
+                        android:id="@+id/status_dsr_above"
+                        android:textSize="15sp"
+                        android:textColor="@color/white"
+                        android:layout_alignParentRight="true"
+                        android:background="@color/orange_500"
+                        android:textStyle="bold"
+
+                        />
+                </RelativeLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:text="Fabname"
+                    android:padding="3dp"
+                    android:id="@+id/slip_dsr_above"
+                    android:textSize="20sp"
+                    />
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Fabname"
+                        android:padding="3dp"
+                        android:id="@+id/total_dsr_above"
+                        android:layout_alignParentLeft="true"
+                        android:textSize="20sp"
+                        android:textColor="@color/blue_500"
+                        />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Created"
+                        android:layout_gravity="bottom"
+                        android:gravity="right"
+                        android:id="@+id/created_dsr_above"
+                        android:layout_alignParentRight="true"
+                        android:textSize="15sp"
+                        android:layout_marginRight="2dp"
+
+                        />
+                </RelativeLayout>
+            </LinearLayout>
+
+        </LinearLayout>
+    </FrameLayout>
+
+</com.ramotion.foldingcell.FoldingCell>

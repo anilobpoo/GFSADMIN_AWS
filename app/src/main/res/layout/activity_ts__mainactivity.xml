@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.obpoo.gfsfabricsoftware.TransferStock.Activity.Ts_Mainactivity"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <include
+            android:id="@+id/layout"
+            layout="@layout/layout_action_bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Pendings:"
+            android:layout_margin="3dp"
+            android:textColor="@color/colorPrimary"
+            android:id="@+id/text_pendings"/>
+        <android.support.v7.widget.CardView
+            card_view:cardElevation="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="5dp"
+            card_view:cardPreventCornerOverlap="false"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:clipChildren="false"
+            card_view:cardCornerRadius="3dp"
+            android:clipToPadding="false"
+            android:divider="@android:color/transparent"
+            android:elevation="5dp"
+            tools:ignore="RtlCompat"
+            android:background="@drawable/winv"
+            >
+
+
+            <Spinner
+                android:id="@+id/ts_pending"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+
+                />
+
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/ts_rv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+            android:visibility="gone"
+
+            >
+
+        </android.support.v7.widget.RecyclerView>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="From"
+            android:layout_margin="3dp"
+            android:textColor="@color/colorPrimary"
+            android:id="@+id/text_from"
+            android:visibility="gone"/>
+
+        <android.support.v7.widget.CardView
+            card_view:cardElevation="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="5dp"
+            card_view:cardPreventCornerOverlap="false"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:clipChildren="false"
+            card_view:cardCornerRadius="3dp"
+            android:clipToPadding="false"
+            android:divider="@android:color/transparent"
+            android:elevation="5dp"
+            tools:ignore="RtlCompat"
+            android:background="@drawable/winv"
+
+            android:id="@+id/card_from_ts"
+            >
+
+
+            <Spinner
+                android:id="@+id/ts_from"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:visibility="gone"
+                />
+
+
+
+        </android.support.v7.widget.CardView>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="To"
+            android:layout_margin="3dp"
+            android:textColor="@color/colorPrimary"
+            android:id="@+id/text_to"
+            android:visibility="gone"/>
+        <android.support.v7.widget.CardView
+            card_view:cardElevation="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="5dp"
+            card_view:cardPreventCornerOverlap="false"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:clipChildren="false"
+            card_view:cardCornerRadius="3dp"
+            android:clipToPadding="false"
+            android:divider="@android:color/transparent"
+            android:elevation="5dp"
+            tools:ignore="RtlCompat"
+            android:background="@drawable/winv"
+            android:id="@+id/card_to_ts"
+            >
+
+
+            <Spinner
+                android:id="@+id/ts_to"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:visibility="gone"
+
+                />
+
+        </android.support.v7.widget.CardView>
+      <Button
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="transfer"
+          android:layout_gravity="center"
+          android:id="@+id/ts_transfer"
+          android:layout_marginTop="10dp"
+          android:background="@color/colorPrimary"
+          android:textColor="@color/white"
+          android:textStyle="bold"
+          android:enabled="false"
+          android:visibility="gone"
+          />
+
+    </LinearLayout>
+</android.support.constraint.ConstraintLayout>

@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardBackgroundColor="@color/white"
+    android:layout_margin="5dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginStart="8dp"
+        android:orientation="vertical"
+        android:padding="10dp"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:orientation="horizontal">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/fabimage_podi"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:src="@drawable/fabric_master" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="100dp"
+                android:layout_marginLeft="10dp"
+                android:gravity="center_vertical"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/fabname_podi"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:padding="5dp"
+                    android:text="Fabname"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/mtr_podi"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:padding="5dp"
+                    android:text="Fabname"
+                    android:textSize="15sp"/>
+
+                <TextView
+                    android:id="@+id/price_podi"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:padding="5dp"
+                    android:text="Fabname"
+                    android:textSize="15sp"
+                    android:textColor="@color/green_500"/>
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/status_podi"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="top"
+                android:gravity="right"
+                android:text="Created"
+                android:background="@color/orange_500"
+                android:textColor="@color/white"
+                android:layout_marginLeft="15dp"
+                android:padding="5dp"/>
+        </LinearLayout>
+        <GridLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:columnCount="2"
+            android:layout_margin="0dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="pending"
+                android:layout_gravity="left"
+                android:id="@+id/penqty_podi"
+                android:textSize="15sp"
+
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="pending"
+                android:layout_gravity="right"
+                android:id="@+id/extraqty_podi"
+                android:textSize="15sp"/>
+
+        </GridLayout>
+    </LinearLayout>
+
+</android.support.v7.widget.CardView>

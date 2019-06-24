@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.obpoo.gfsfabricsoftware.Associate_Tailor.UI.AssociateMenu">
+
+    <include
+        android:id="@+id/action_bar_asso_menu"
+        layout="@layout/layout_action_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/cardview_asso_menu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        app:cardBackgroundColor="@color/white"
+        app:layout_constraintBottom_toTopOf="@+id/cardview_asso_menu2"
+        app:layout_constraintEnd_toEndOf="@+id/cardview_asso_menu2"
+        app:layout_constraintStart_toStartOf="@+id/cardview_asso_menu2"
+        app:layout_constraintTop_toBottomOf="@+id/action_bar_asso_menu"
+
+        app:layout_constraintVertical_chainStyle="spread_inside">
+
+        <TextView
+            android:id="@+id/tailor_req"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:drawableRight="@drawable/ic_right_arrow"
+            android:drawablePadding="5dp"
+            android:gravity="left"
+            android:padding="8dp"
+            android:text="Tailor Requests"
+            android:textColor="@color/colorPrimary" />
+
+    </android.support.v7.widget.CardView>
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/cardview_asso_menu2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:textColor="@color/colorPrimary"
+        app:cardBackgroundColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="@+id/cardview_asso_menu"
+        app:layout_constraintStart_toStartOf="@+id/cardview_asso_menu"
+        app:layout_constraintTop_toBottomOf="@+id/cardview_asso_menu">
+
+        <TextView
+            android:id="@+id/fab_req"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:drawableRight="@drawable/ic_right_arrow"
+            android:drawablePadding="5dp"
+            android:gravity="left"
+            android:padding="8dp"
+            android:text="Associate Fabrics"
+            android:textColor="@color/colorPrimaryDark" />
+
+    </android.support.v7.widget.CardView>
+</android.support.constraint.ConstraintLayout>

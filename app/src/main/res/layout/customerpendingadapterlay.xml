@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="7dp"
+    app:cardBackgroundColor="@color/white">
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="7dp"
+        app:layout_constraintBottom_toBottomOf="@+id/dashed2"
+        app:layout_constraintTop_toBottomOf="@+id/dashed2">
+
+        <TextView
+            android:id="@+id/cus_name_bi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="10dp"
+            android:padding="2dp"
+            android:text="TextView"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <TextView
+            android:id="@+id/vat_slip_bi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:padding="2dp"
+            android:text="TextView"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="@+id/cus_name_bi"
+            app:layout_constraintTop_toBottomOf="@+id/cus_name_bi" />
+
+        <View
+            android:id="@+id/dashed1"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_marginBottom="84dp"
+            android:layout_marginTop="70dp"
+            android:background="@drawable/dashed_line"
+            app:layout_constraintBottom_toTopOf="@+id/textView14"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <GridLayout
+            android:id="@+id/grid_report"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:columnCount="3"
+            android:padding="5dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/dashed1">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:gravity="center"
+                android:text="Vat" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:gravity="center"
+                android:text="Discount" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:gravity="center"
+                android:text="Total Payable" />
+
+            <TextView
+                android:id="@+id/vat_val_bi"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:gravity="center"
+                android:text="Vat"
+                android:textColor="@color/red_500" />
+
+            <TextView
+                android:id="@+id/discount_bi"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:gravity="center"
+                android:text="Vat"
+                android:textColor="@color/green_500" />
+
+            <TextView
+                android:id="@+id/total_bi"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:gravity="center"
+                android:text="Vat"
+                android:textColor="@color/blue_500" />
+
+        </GridLayout>
+
+        <View
+            android:id="@+id/dashed2"
+            android:layout_width="0dp"
+            android:layout_height="2dp"
+            android:background="@drawable/dashed_line"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/grid_report" />
+
+        <TextView
+            android:id="@+id/textView12"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:text="Order Type"
+            app:layout_constraintBaseline_toBaselineOf="@+id/orderType_bi"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/orderType_bi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="28dp"
+            android:layout_marginTop="16dp"
+            android:text="TextView"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toEndOf="@+id/textView14"
+            app:layout_constraintTop_toBottomOf="@+id/dashed2" />
+
+        <TextView
+            android:id="@+id/textView14"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="64dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:text="Delivery Type"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView12"
+            app:layout_constraintVertical_bias="0.076" />
+
+        <TextView
+            android:id="@+id/delivery_bi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="TextView"
+            android:textColor="@color/black"
+            app:layout_constraintEnd_toEndOf="@+id/orderType_bi"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/orderType_bi"
+            app:layout_constraintTop_toBottomOf="@+id/orderType_bi" />
+
+        <TextView
+            android:id="@+id/date_bi"
+            android:layout_width="wrap_content"
+            android:layout_height="16dp"
+            android:layout_marginBottom="28dp"
+            android:layout_marginTop="28dp"
+            android:text="Mode Credit"
+            app:layout_constraintBottom_toTopOf="@+id/amount_cp"
+            app:layout_constraintStart_toStartOf="@+id/pay_cp"
+            app:layout_constraintTop_toTopOf="@+id/orderType_bi"
+            app:layout_constraintVertical_bias="1.0" />
+
+        <EditText
+            android:id="@+id/amount_cp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="11dp"
+            android:layout_marginStart="9dp"
+            android:layout_marginTop="16dp"
+            android:backgroundTint="@color/colorPrimary"
+            android:ems="8"
+            android:gravity="center_vertical|center_horizontal"
+            android:hint="Enter Amount"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/pay_cp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView14"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <Button
+            android:id="@+id/pay_cp"
+            android:layout_width="wrap_content"
+            android:layout_height="37dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginTop="16dp"
+            android:text="Pay"
+            app:layout_constraintBottom_toTopOf="@+id/date_cp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/amount_cp"
+            app:layout_constraintTop_toBottomOf="@+id/date_bi"
+            app:layout_constraintVertical_bias="0.4"
+            android:background="@color/green_500"
+            android:textColor="@color/white"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/date_cp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:text="TextView"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/pay_cp"
+            app:layout_constraintTop_toBottomOf="@+id/textView14"
+            app:layout_constraintVertical_bias="0.961" />
+    </android.support.constraint.ConstraintLayout>
+</android.support.v7.widget.CardView>

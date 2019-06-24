@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="2dp">
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/cell_title_view"
+        android:background="@color/white"
+
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="100dp"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:gravity="center"
+                >
+                <ImageView
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:text="@string/stock_article"
+                    android:textColor="@color/white"
+                    android:layout_gravity="center"
+                    android:fontFamily="sans-serif"
+                    android:id="@+id/fab_image"
+                    />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="composition"
+                    android:gravity="center"
+                    android:id="@+id/content_fab"
+                    android:textColor="@color/black"/>
+
+            </LinearLayout>
+
+
+            <View
+                android:layout_width="2dp"
+                android:layout_height="100dp"
+                android:layout_marginLeft="2dp"
+                android:background="@color/white" />
+
+            <GridLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:columnCount="2"
+                android:layout_margin="10dp">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="ArticleNo"
+                    android:gravity="center"
+                    android:id="@+id/article_fab"
+                    android:layout_columnSpan="2"
+                    android:textSize="17sp"
+                    android:textColor="@color/colorPrimary"/>
+
+
+                <TextView
+                    android:id="@+id/customer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
+
+                    android:text="Customer:"
+                    />
+                <TextView
+                    android:id="@+id/customer_v"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
+                    android:text="Customer:"
+                    android:textColor="@color/black"
+                    />
+                <TextView
+                    android:id="@+id/brand_fab_get"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
+
+                    android:text="Brand:"
+                    />
+                <TextView
+                    android:id="@+id/brand_v"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
+                    android:textColor="@color/black"
+                    android:text="Customer:"
+                    />
+
+                <TextView
+                    android:id="@+id/fab_qty_mtr_get"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
+
+                    android:text="Qty(Mtr)"
+                    />
+                <TextView
+                    android:id="@+id/fab_qty_mtr_get_v"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
+                    android:textColor="@color/black"
+                    android:text="Customer:"
+                    />
+                <TextView
+                    android:id="@+id/fab_qty_yard_get"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
+
+                    android:text="Qty(Yard)"
+                    />
+                <TextView
+                    android:id="@+id/fab_qty_yard_get_v"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
+                    android:textColor="@color/black"
+                    android:text="Customer:"
+                    />
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:layout_gravity="center"
+                    android:layout_columnSpan="2"
+                    android:background="@color/red_500"
+                    android:text="DELETE"
+                    android:textColor="@color/white"
+                    android:layout_margin="5dp"
+                    android:id="@+id/add_fabric_item"
+                    />
+
+
+            </GridLayout>
+
+        </LinearLayout>
+
+    </FrameLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:id="@+id/relativelayout"
+        android:padding="5dp"
+        android:visibility="gone"
+        >
+        <ImageView
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:src="@drawable/ic_cloth"
+            android:layout_gravity="center"
+            android:id="@+id/fabImageId"
+            />
+
+        <TextView
+            android:id="@+id/quantity_dyn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/colorPrimary"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black"
+            android:text="Quantity"
+            android:textSize="15dp"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@+id/fabImageId"
+            android:layout_below="@+id/fabNameId"
+            />
+
+        <TextView
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:text="Fabric Name"
+            android:textColor="@color/black"
+            android:id="@+id/fabNameId"
+            android:layout_toRightOf="@+id/fabImageId"
+
+            android:layout_marginLeft="10dp"
+            />
+
+        <TextView
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:text="Brand Name"
+            android:textColor="@color/black"
+            android:id="@+id/brandname"
+            android:layout_toRightOf="@+id/fabImageId"
+            android:layout_below="@+id/quantity_dyn"
+            android:layout_marginLeft="10dp"
+            />
+
+
+
+        <ImageButton
+            android:id="@+id/delete_button_dyn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/ic_delete_black_24dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            />
+
+    </RelativeLayout>
+
+
+
+    <GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:columnCount="3"
+        android:padding="3dp"
+        android:visibility="gone">
+
+
+        <LinearLayout
+            android:id="@+id/textpart"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:layout_marginLeft="10dp"
+
+            >
+
+
+
+
+
+        </LinearLayout>
+
+
+
+
+    </GridLayout>
+
+    <TextView
+        android:id="@+id/article_spin_dyn"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:backgroundTint="@color/colorPrimary"
+        android:layout_weight="2"
+        android:textColor="@color/black"
+        android:text="hello"
+        android:gravity="center"
+        android:visibility="gone"
+        />
+    <TextView
+        android:id="@+id/color_spin_dyn"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:backgroundTint="@color/colorPrimary"
+        android:layout_weight="2"
+        android:textColor="@color/black"
+        android:text="hello"
+        android:gravity="center"
+        android:visibility="gone"
+        />
+</android.support.constraint.ConstraintLayout>

@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="5dp"
+    android:layout_marginTop="5dp"
+    android:layout_marginBottom="5dp"
+    android:layout_marginRight="5dp"
+    app:cardCornerRadius="4dp"
+    app:cardElevation="4dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/border"
+            android:layout_width="5dp"
+            android:layout_height="match_parent"
+            android:src="@color/green_500"
+            />
+
+        <android.support.constraint.ConstraintLayout
+            android:id="@+id/clay"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/border"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/tv1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/padd_10"
+                android:layout_marginTop="5dp"
+                android:text="Pay Mode:"
+                app:layout_constraintBottom_toTopOf="@+id/tv2"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/paymode_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=" offlile"
+                android:textColor="@color/jet"
+                app:layout_constraintBottom_toBottomOf="@+id/tv1"
+                app:layout_constraintStart_toEndOf="@+id/tv1"
+                app:layout_constraintTop_toTopOf="@+id/tv1" />
+
+            <TextView
+                android:id="@+id/tv2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/padd_10"
+                android:text="Pay Type:"
+                app:layout_constraintBottom_toTopOf="@+id/tv3"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv1" />
+
+            <TextView
+                android:id="@+id/paytype_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=" COD"
+                android:textColor="@color/jet"
+                app:layout_constraintBottom_toBottomOf="@+id/tv2"
+                app:layout_constraintStart_toEndOf="@+id/tv2"
+                app:layout_constraintTop_toTopOf="@+id/tv2" />
+
+            <TextView
+                android:id="@+id/tv3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/padd_10"
+                android:layout_marginTop="3dp"
+                android:text="Collections:"
+                android:textColor="@color/purple_500"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv2" />
+
+            <android.support.v7.widget.CardView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                app:cardBackgroundColor="@color/purple_500"
+                app:cardCornerRadius="4dp"
+                app:layout_constraintBottom_toBottomOf="@+id/tv3"
+                app:layout_constraintStart_toEndOf="@+id/tv3"
+                app:layout_constraintTop_toTopOf="@+id/tv3">
+
+                <TextView
+                    android:id="@+id/collection_value"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="8dp"
+                    android:text="256.8"
+                    android:textColor="@color/white" />
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/submit_card"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginBottom="5dp"
+                app:cardBackgroundColor="@color/blue_100"
+                app:cardCornerRadius="4dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toTopOf="@+id/div">
+
+                <TextView
+                    android:id="@+id/submit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="8dp"
+                    android:text="SUBMIT"
+                    android:textColor="@color/white" />
+            </android.support.v7.widget.CardView>
+
+
+            <ImageView
+                android:id="@+id/div"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="10dp"
+                android:src="@color/div"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv3" />
+
+            <ImageView
+                android:id="@+id/go_next"
+                android:layout_width="24dp"
+                android:layout_height="34dp"
+                android:visibility="gone"
+                android:src="@drawable/chevron_right"
+                app:layout_constraintBottom_toTopOf="@+id/div"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+
+            <ImageView
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:layout_marginEnd="8dp"
+                android:src="@drawable/order_img"
+                app:layout_constraintBottom_toBottomOf="@+id/ddate"
+                app:layout_constraintEnd_toStartOf="@+id/ddate"
+                app:layout_constraintTop_toTopOf="@+id/ddate" />
+
+            <TextView
+                android:id="@+id/ddate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:text="2019-01-07"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <LinearLayout
+                android:id="@+id/llay"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:layout_marginBottom="5dp"
+                android:orientation="horizontal"
+                android:weightSum="3"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/div">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="Supervisor" />
+
+                    <android.support.v7.widget.SwitchCompat
+                        android:id="@+id/sup_enable"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"/>
+                    <TextView
+                        android:id="@+id/supervisor"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="Virified"
+                        android:textColor="@color/jet" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="Chashier" />
+                    <android.support.v7.widget.SwitchCompat
+                        android:id="@+id/cha_enable"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"/>
+                    <TextView
+                        android:id="@+id/casheier"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="Virified"
+                        android:textColor="@color/jet" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="Acc Supervisor" />
+                    <android.support.v7.widget.SwitchCompat
+                        android:id="@+id/ass_enable"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center" />
+                    <TextView
+                        android:id="@+id/ass_supervisor"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="Virified"
+                        android:textColor="@color/jet" />
+                </LinearLayout>
+            </LinearLayout>
+
+        </android.support.constraint.ConstraintLayout>
+    </LinearLayout>
+</android.support.v7.widget.CardView>

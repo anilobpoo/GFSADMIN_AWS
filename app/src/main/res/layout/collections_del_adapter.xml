@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="@dimen/padd_10"
+    tools:context="com.obpoo.gfsfabricsoftware.collections.ui.CollectionsDeliveries">
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/card1"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        app:cardBackgroundColor="@color/blue_100"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="8dp"
+        app:cardCornerRadius="4dp">
+        <TextView
+            android:id="@+id/piclup_guy"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/padd_10"
+            android:text="Pickup Guy:Pravash Sahoo"
+            android:textColor="@color/white"
+            android:gravity="center"/>
+    </android.support.v7.widget.CardView>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_below="@+id/card1">
+
+    </android.support.v7.widget.RecyclerView>
+    <android.support.v7.widget.CardView
+        android:id="@+id/card2"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        app:cardBackgroundColor="@color/green_500"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_below="@+id/recycler_view"
+        app:cardCornerRadius="4dp">
+        <TextView
+            android:id="@+id/total_collection"
+            android:layout_width="wrap_content"
+            android:layout_height="35dp"
+            android:layout_marginLeft="@dimen/padd_10"
+            android:text="Total Collection:5000.00"
+            android:textColor="@color/white"
+            android:gravity="center"/>
+    </android.support.v7.widget.CardView>
+
+</RelativeLayout>

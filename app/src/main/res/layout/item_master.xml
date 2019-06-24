@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <android.support.v7.widget.CardView
+        card_view:cardElevation="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginBottom="5dp"
+        android:layout_marginTop="5dp"
+        card_view:cardPreventCornerOverlap="false"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:clipChildren="false"
+        card_view:cardCornerRadius="3dp"
+        android:clipToPadding="false"
+        android:divider="@android:color/transparent"
+        android:elevation="5dp"
+        tools:ignore="RtlCompat">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_margin="2dp"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/winv"
+            android:padding="8dp"
+            android:enabled="false"
+            android:textColor="@drawable/edit_text_selector"
+            android:id="@+id/name"
+            android:layout_marginRight="5dp"
+            android:hint="Shop"
+            android:layout_height="wrap_content" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:orientation="horizontal"
+            android:background="@drawable/redborder"
+            android:backgroundTint="@color/red_200"
+            android:gravity="center"
+            android:layout_height="wrap_content">
+
+           <LinearLayout
+               android:layout_width="wrap_content"
+               android:layout_margin="5dp"
+               android:layout_height="wrap_content">
+
+               <Button
+                   android:layout_width="28dp"
+                   android:id="@+id/edit"
+                   android:textColor="@color/white"
+                   android:backgroundTint="@color/white"
+                   android:layout_marginLeft="5dp"
+                   android:background="@drawable/edit"
+                   android:padding="5dp"
+                   android:layout_marginRight="5dp"
+                   android:layout_height="28dp" />
+
+               <Button
+                   android:layout_width="28dp"
+                   android:id="@+id/delete"
+                   android:background="@drawable/delete"
+                   android:textColor="@color/white"
+                   android:padding="5dp"
+                   android:backgroundTint="@color/white"
+                   android:layout_height="28dp" />
+           </LinearLayout>
+        </LinearLayout>
+
+
+
+
+
+
+    </LinearLayout>
+    </android.support.v7.widget.CardView>
+
+</RelativeLayout>
