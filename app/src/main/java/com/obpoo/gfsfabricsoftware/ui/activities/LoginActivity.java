@@ -94,8 +94,12 @@ public class LoginActivity extends BaseActivity implements LoginView,HttpReqResC
                 WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS
         );
         ButterKnife.bind(this);
+        /*
+            Changed by Anil
+            update new username and password
+         */
         etPassword.setText("password");
-        etUserName.setText("admin");
+        etUserName.setText("admin@giovanico.com");
         presenter = new LoginPresenterImpl(this);
         reportPresenter = new ReportPresenterImpl(this);
 
