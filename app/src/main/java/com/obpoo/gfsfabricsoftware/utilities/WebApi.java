@@ -115,6 +115,8 @@ import com.obpoo.gfsfabricsoftware.cart.datamodels.CartResponse;
 import com.obpoo.gfsfabricsoftware.collections.datamodel.CollectionInvoiceResponse;
 import com.obpoo.gfsfabricsoftware.collections.datamodel.CollectionsDRequest;
 import com.obpoo.gfsfabricsoftware.collections.datamodel.CollectionsDResponse;
+import com.obpoo.gfsfabricsoftware.collections.datamodel.DepositeRequest;
+import com.obpoo.gfsfabricsoftware.collections.datamodel.DepositeResponse;
 import com.obpoo.gfsfabricsoftware.collections.datamodel.InvoiceRequest;
 import com.obpoo.gfsfabricsoftware.collections.datamodel.UpdateInvoRequest;
 import com.obpoo.gfsfabricsoftware.color.datamodels.ColorRequest;
@@ -440,4 +442,6 @@ public interface WebApi {
     Call<CollectionInvoiceResponse> CollectionInvoApi(@Body InvoiceRequest request);
     @POST("pickup_guy/pg_collections.php")
     Call<CollectionInvoiceResponse> updateInvoApi(@Body UpdateInvoRequest request);
+    @POST("pickup_guy/match_deposit_otp.php")
+    Call<DepositeResponse> depositeCollectionsApi(@Body DepositeRequest request);
 }

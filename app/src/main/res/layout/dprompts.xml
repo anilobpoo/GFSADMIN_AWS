@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/layout_root"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:background="#c5c7c5"
+    android:orientation="vertical"
+    android:padding="10dp" >
+
+
+    <Button
+        android:layout_width="match_parent"
+        android:id="@+id/fdate"
+        android:text="FROM"
+        android:textColor="@color/white"
+        android:background="@color/gray"
+        android:layout_margin="15dp"
+        android:padding="5dp"
+        android:drawableLeft="@drawable/ic_date_range_black_24dp"
+        android:layout_height="wrap_content" />
+    <Button
+        android:layout_width="match_parent"
+        android:id="@+id/tdate"
+        android:text="TO"
+        android:textColor="@color/white"
+        android:layout_margin="15dp"
+        android:padding="5dp"
+        android:background="@color/gray"
+        android:drawableLeft="@drawable/ic_date_range_black_24dp"
+        android:layout_height="wrap_content" />
+
+
+</LinearLayout>

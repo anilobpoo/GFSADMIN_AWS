@@ -38,7 +38,7 @@
                 android:id="@+id/admin"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Rajesh Nayak"
+                android:text="Rajesh"
                 android:textColor="@color/item_name"
                 app:layout_constraintBottom_toBottomOf="@+id/ad"
                 app:layout_constraintStart_toStartOf="@+id/deposite"
@@ -56,9 +56,10 @@
                 app:layout_constraintTop_toBottomOf="@+id/ad" />
 
             <TextView
+                android:id="@+id/pg_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Pravash Sahoo"
+                android:text="Pravash "
                 android:textColor="@color/item_name"
                 app:layout_constraintBottom_toBottomOf="@+id/pg"
                 app:layout_constraintStart_toStartOf="@+id/deposite"
@@ -81,7 +82,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/padd_10"
-                android:text="10000"
+                android:text="0.00"
                 android:textColor="@color/pinktext"
                 app:layout_constraintBottom_toBottomOf="@+id/dp"
                 app:layout_constraintStart_toEndOf="@+id/dp"

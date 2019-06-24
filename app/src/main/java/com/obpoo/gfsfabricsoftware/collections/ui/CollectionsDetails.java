@@ -13,6 +13,7 @@ import com.obpoo.gfsfabricsoftware.R;
 import com.obpoo.gfsfabricsoftware.collections.datamodel.CollectionDatum;
 import com.obpoo.gfsfabricsoftware.collections.datamodel.CollectionInvoiceResponse;
 import com.obpoo.gfsfabricsoftware.collections.datamodel.CollectionsDResponse;
+import com.obpoo.gfsfabricsoftware.collections.datamodel.DepositeResponse;
 import com.obpoo.gfsfabricsoftware.collections.mvp.CollectionsPresenterImpl;
 import com.obpoo.gfsfabricsoftware.collections.mvp.CollectionsView;
 
@@ -34,6 +35,8 @@ public class CollectionsDetails extends AppCompatActivity implements Collections
     RelativeLayout deposite;
     @BindView(R.id.trans_bg)
     ImageView trans_bg;
+    @BindView(R.id.back_PO_cmngrp)
+    ImageView back_PO_cmngrp;
     @BindView(R.id.progressbar)
     ProgressBar progressbar;
 
@@ -65,6 +68,11 @@ public class CollectionsDetails extends AppCompatActivity implements Collections
 
     }
 
+    @OnClick(R.id.back_PO_cmngrp)
+    public void backClick() {
+        finish();
+    }
+
     @OnClick(R.id.deposite)
     public void depositeClick() {
         Intent intent = new Intent(CollectionsDetails.this, Deposit.class);
@@ -88,6 +96,11 @@ public class CollectionsDetails extends AppCompatActivity implements Collections
 
     @Override
     public void onInvoiceLoad(CollectionInvoiceResponse response) {
+
+    }
+
+    @Override
+    public void onDepositeLoad(DepositeResponse response) {
 
     }
 

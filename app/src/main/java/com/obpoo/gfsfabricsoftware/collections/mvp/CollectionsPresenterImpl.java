@@ -4,10 +4,12 @@ package com.obpoo.gfsfabricsoftware.collections.mvp;
 import com.obpoo.gfsfabricsoftware.collections.datamodel.CollectionInvoiceResponse;
 import com.obpoo.gfsfabricsoftware.collections.datamodel.CollectionsDRequest;
 import com.obpoo.gfsfabricsoftware.collections.datamodel.CollectionsDResponse;
+import com.obpoo.gfsfabricsoftware.collections.datamodel.DepositeRequest;
+import com.obpoo.gfsfabricsoftware.collections.datamodel.DepositeResponse;
 import com.obpoo.gfsfabricsoftware.collections.datamodel.InvoiceRequest;
 import com.obpoo.gfsfabricsoftware.collections.datamodel.UpdateInvoRequest;
 
-public class CollectionsPresenterImpl implements CollectionsPresenter, CollectionsInteracter.CollectionsListener, CollectionsInteracter.InvoiceListener {
+public class CollectionsPresenterImpl implements CollectionsPresenter, CollectionsInteracter.CollectionsListener, CollectionsInteracter.InvoiceListener,CollectionsInteracter.DepositeListener {
     CollectionsInteracterImpl interacter;
     CollectionsView view;
 
@@ -51,6 +53,12 @@ public class CollectionsPresenterImpl implements CollectionsPresenter, Collectio
     }
 
     @Override
+    public void depositeView(String method, String time, String[] view_diposites) {
+        DepositeRequest request = new DepositeRequest(method,time,view_diposites);
+        interacter.viewDepositeList(request,this);
+    }
+
+    @Override
     public void onInvoiceSuccess(CollectionInvoiceResponse response) {
         if (view != null) {
             view.hideDialog();
@@ -60,6 +68,19 @@ public class CollectionsPresenterImpl implements CollectionsPresenter, Collectio
 
     @Override
     public void onInvoiceError(String message) {
+
+    }
+
+    @Override
+    public void onDepositeSuccess(DepositeResponse response) {
+        if (view != null) {
+            view.hideDialog();
+            view.onDepositeLoad(response);
+        }
+    }
+
+    @Override
+    public void onDepositeError(String message) {
 
     }
 }
