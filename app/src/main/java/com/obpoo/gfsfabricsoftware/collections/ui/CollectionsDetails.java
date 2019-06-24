@@ -67,7 +67,8 @@ public class CollectionsDetails extends AppCompatActivity implements Collections
 
     @OnClick(R.id.deposite)
     public void depositeClick() {
-
+        Intent intent = new Intent(CollectionsDetails.this, Deposit.class);
+        startActivity(intent);
     }
 
     @Override

@@ -41,7 +41,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".salesorder.ui.SOorderDetails"
+        <activity
+            android:name=".collections.ui.Deposit"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
+            android:name=".salesorder.ui.SOorderDetails"
             android:theme="@style/AppTheme.NoActionBar">
 
         </activity>
@@ -541,7 +545,8 @@
             android:name=".TransferStock.Activity.TransferStockIn"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".collections.ui.OrderDetailsInvoice"
+        <activity
+            android:name=".collections.ui.OrderDetailsInvoice"
             android:theme="@style/AppTheme.NoActionBar">
 
         </activity>
