@@ -1,5 +1,8 @@
 package com.obpoo.gfsfabricsoftware.Stock.DataModel;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
@@ -7,7 +10,7 @@ import com.google.gson.annotations.SerializedName;
  * Created by PHD on 2/12/2019.
  */
 
-public class AddReserveDet {
+public class AddReserveDet implements Parcelable {
     @SerializedName("id")
     @Expose
     private String id;
@@ -26,6 +29,27 @@ public class AddReserveDet {
     @SerializedName("composition")
     @Expose
     private String composition;
+
+    protected AddReserveDet(Parcel in) {
+        id = in.readString();
+        fabName = in.readString();
+        fabImg = in.readString();
+        colorCode = in.readString();
+        articleno = in.readString();
+        composition = in.readString();
+    }
+
+    public static final Creator<AddReserveDet> CREATOR = new Creator<AddReserveDet>() {
+        @Override
+        public AddReserveDet createFromParcel(Parcel in) {
+            return new AddReserveDet(in);
+        }
+
+        @Override
+        public AddReserveDet[] newArray(int size) {
+            return new AddReserveDet[size];
+        }
+    };
 
     public String getId() {
         return id;
@@ -73,5 +97,20 @@ public class AddReserveDet {
 
     public void setComposition(String composition) {
         this.composition = composition;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(id);
+        dest.writeString(fabName);
+        dest.writeString(fabImg);
+        dest.writeString(colorCode);
+        dest.writeString(articleno);
+        dest.writeString(composition);
     }
 }

@@ -1,11 +1,14 @@
 package com.obpoo.gfsfabricsoftware.salesorder.ui;
 
+import android.content.Intent;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -13,6 +16,7 @@ import com.obpoo.gfsfabricsoftware.R;
 import com.obpoo.gfsfabricsoftware.Report.DataModel.Bill_Invoice_Report_Model.ItemDetail;
 
 
+import com.obpoo.gfsfabricsoftware.Stock.DataModel.AddReserveDet;
 import com.obpoo.gfsfabricsoftware.salesorder.adapter.SO_order_det_fab_adp;
 import com.obpoo.gfsfabricsoftware.salesorder.datamodels.AllOrderModel.AllOrderItemDet;
 import com.obpoo.gfsfabricsoftware.salesorder.datamodels.MyOrdersDetail;
@@ -23,6 +27,7 @@ import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class SOorderDetails extends BaseActivity {
     MyOrdersDetail item;
@@ -54,6 +59,23 @@ public class SOorderDetails extends BaseActivity {
     Button add_so_det;
     @BindView(R.id.rv_so_det)
     RecyclerView rv_so_det;
+    ArrayList<AllOrderItemDet> itemDetailsses;
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode==AppConstants.addfanricSOorders){
+            AddReserveDet index = data.getParcelableExtra("ORDERFABRIC");
+            String qty_fab = data.getStringExtra("FABSOORDERQTY");
+            itemDetailsses.add( new AllOrderItemDet(qty_fab,"0",index.getFabName(),index.getFabImg()));
+            SO_order_det_fab_adp adapter = new SO_order_det_fab_adp(itemDetailsses,SOorderDetails.this);
+            LinearLayoutManager lm = new LinearLayoutManager(this);
+            rv_so_det.setLayoutManager(lm);
+            rv_so_det.setAdapter(adapter);
+
+        }
+
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,7 +109,7 @@ public class SOorderDetails extends BaseActivity {
 
         total_so_det.setText(String.valueOf( Integer.valueOf(item.getOrderTotal()) -( Integer.valueOf(item.getOrderTotal()) *( Integer.valueOf(item.getDiscount())/100))));
 
-        ArrayList<AllOrderItemDet> itemDetailsses = item.getItemDetails();
+        itemDetailsses = item.getItemDetails();
         SO_order_det_fab_adp adapter = new SO_order_det_fab_adp(itemDetailsses,SOorderDetails.this);
         LinearLayoutManager lm = new LinearLayoutManager(this);
         rv_so_det.setLayoutManager(lm);
@@ -126,5 +148,12 @@ public class SOorderDetails extends BaseActivity {
             default:
                 return "Unknown";
         }
+    }
+
+    @OnClick(R.id.add_so_det)
+    public void onAddFabricSo(View view){
+        Intent in = new Intent(SOorderDetails.this,AddfabricSoOrders.class);
+        startActivityForResult(in,AppConstants.addfanricSOorders);
+
     }
 }
