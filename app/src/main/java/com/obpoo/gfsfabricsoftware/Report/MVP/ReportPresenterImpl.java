@@ -289,6 +289,7 @@ ReportInteractor.PO_Left_Over,ReportInteractor.PO_Check_IN,ReportInteractor.PO_C
 
     @Override
     public void itemSalesSuccess(SoldFabricsResponse response) {
+        reportView.hideDialog();
         reportView.onItemEasyReport(response);
 
     }
