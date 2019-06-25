@@ -23,7 +23,9 @@ import com.obpoo.gfsfabricsoftware.Stock.DataModel.ViewStockNewResponse;
 import com.obpoo.gfsfabricsoftware.Stock.DataModel.ViewStockResponse;
 import com.obpoo.gfsfabricsoftware.Stock.MVP.StockPresenterImpl;
 import com.obpoo.gfsfabricsoftware.Stock.MVP.ViewStock;
+import com.obpoo.gfsfabricsoftware.salesorder.adapter.AddFabOrderBelowADP;
 import com.obpoo.gfsfabricsoftware.salesorder.adapter.AddFabSalesOrder;
+import com.obpoo.gfsfabricsoftware.salesorder.datamodels.AllOrderModel.FabricAddOrderSO;
 import com.obpoo.gfsfabricsoftware.ui.activities.BaseActivity;
 import com.obpoo.gfsfabricsoftware.utilities.AppConstants;
 
@@ -32,7 +34,7 @@ import java.util.ArrayList;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class AddfabricSoOrders extends BaseActivity implements ViewStock {
+public class AddfabricSoOrders extends BaseActivity implements ViewStock, FabricAddOrderSO {
     StockPresenterImpl  presenter;
     @BindView(R.id.etSearch)
     EditText etSearch;
@@ -40,6 +42,11 @@ public class AddfabricSoOrders extends BaseActivity implements ViewStock {
     RecyclerView rv_addfab_soorder;
     @BindView(R.id.progress_so_fab_add)
     ProgressBar progress_so_fab_add;
+    @BindView(R.id.rv_addselectedfab_soorder)
+    RecyclerView rv_addselectedfab_soorder;
+    String getOrderType;
+    ArrayList<AddReserveDet> addReserveDetArrayList;
+    ArrayList<AddReserveDet> addbelowDetArrayList;
 
 
     @Override
@@ -52,7 +59,11 @@ public class AddfabricSoOrders extends BaseActivity implements ViewStock {
         ButterKnife.bind(this);
         enableActionBar(true);
 
+        getOrderType=getIntent().getStringExtra("ORDERTYPE_SOORDER");
+
         presenter = new StockPresenterImpl(this);
+        addReserveDetArrayList= new ArrayList<>();
+        addbelowDetArrayList = new ArrayList<>();
 
         etSearch.addTextChangedListener(new TextWatcher() {
             @Override
@@ -107,7 +118,7 @@ public class AddfabricSoOrders extends BaseActivity implements ViewStock {
         progress_so_fab_add.setVisibility(View.GONE);
         if(response.getStatus().equals("success")){
             ArrayList<AddReserveDet> addReserveDetArrayList = response.getData();
-            AddFabSalesOrder  adapter = new AddFabSalesOrder(addReserveDetArrayList,AddfabricSoOrders.this);
+            AddFabSalesOrder  adapter = new AddFabSalesOrder(addReserveDetArrayList,AddfabricSoOrders.this,this);
             LinearLayoutManager lm = new LinearLayoutManager(this);
             rv_addfab_soorder.setLayoutManager(lm);
             rv_addfab_soorder.setAdapter(adapter);
@@ -118,6 +129,21 @@ public class AddfabricSoOrders extends BaseActivity implements ViewStock {
 
     @Override
     public void onAddCustomerReserve(AddCustomerReserveFinal response) {
+
+    }
+
+    @Override
+    public void AddFabricsBelowI(AddReserveDet index,String qty) {
+       addReserveDetArrayList.add( new AddReserveDet(index.getId(),getOrderType,"",qty));   // to pass data to server
+        addbelowDetArrayList.add(new AddReserveDet(index.getFabName(),index.getComposition(),qty));  // to show data at below
+
+        AddFabOrderBelowADP  addFabOrderBelowADP = new AddFabOrderBelowADP(addbelowDetArrayList,AddfabricSoOrders.this);
+        LinearLayoutManager lm = new LinearLayoutManager(this);
+        rv_addselectedfab_soorder.setLayoutManager(lm);
+        rv_addselectedfab_soorder.setAdapter(addFabOrderBelowADP);
+
+
+        //***********
 
     }
 }

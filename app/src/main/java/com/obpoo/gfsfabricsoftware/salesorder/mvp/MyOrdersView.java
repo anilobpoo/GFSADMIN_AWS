@@ -1,6 +1,7 @@
 package com.obpoo.gfsfabricsoftware.salesorder.mvp;
 
 
+import com.obpoo.gfsfabricsoftware.salesorder.datamodels.AddFabricOrdersSO;
 import com.obpoo.gfsfabricsoftware.salesorder.datamodels.AllOrderModel.AllOrderRes;
 import com.obpoo.gfsfabricsoftware.salesorder.datamodels.AllOrderModel.AllOrderStatusRes;
 import com.obpoo.gfsfabricsoftware.salesorder.datamodels.MyOrdersResponse;
@@ -14,4 +15,7 @@ public interface MyOrdersView extends BaseView {
     void onLoad(MyOrdersResponse response);
     void onAllSO(AllOrderRes response);
     void onAllSoStatus(AllOrderStatusRes response);
+    void onAddFabricsSO(AddFabricOrdersSO response);
+
+
 }

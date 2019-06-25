@@ -7,13 +7,14 @@
     android:layout_height="match_parent"
     tools:context="com.obpoo.gfsfabricsoftware.salesorder.ui.AddfabricSoOrders">
 
-    <android.support.constraint.ConstraintLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
     <include
         android:id="@+id/layout"
         layout="@layout/layout_action_bar"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -21,14 +22,12 @@
 
     <LinearLayout
         android:id="@+id/searchfab"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/white"
         android:gravity="center"
         android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/layout">
+        >
 
         <android.support.v7.widget.CardView
             android:layout_width="match_parent"
@@ -93,10 +92,21 @@
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rv_addfab_soorder"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/searchfab"
-        android:layout_margin="5dp"/>
-    </android.support.constraint.ConstraintLayout>
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_margin="10dp"
+       />
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_addselectedfab_soorder"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+
+           />
+
+
+
+    </LinearLayout>
 
     <ProgressBar
         android:layout_width="wrap_content"

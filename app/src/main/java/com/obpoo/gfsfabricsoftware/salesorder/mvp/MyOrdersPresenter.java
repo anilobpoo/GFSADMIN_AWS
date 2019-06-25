@@ -13,4 +13,5 @@ public interface MyOrdersPresenter {
    void onPassAllSOorderdateFilter(String method,String from,String to,String page_no);
    void onPassAllOrderSoStatus(String method);
    void onPassAllOrderselectedStatus(String method,String status);
+
 }

@@ -27,6 +27,7 @@ import com.obpoo.gfsfabricsoftware.PurchaseOrder.UI.TrackPO;
 import com.obpoo.gfsfabricsoftware.R;
 import com.obpoo.gfsfabricsoftware.Report.UI.Bill_Invoice_Report;
 import com.obpoo.gfsfabricsoftware.salesorder.adapter.AllOrderSoAdp;
+import com.obpoo.gfsfabricsoftware.salesorder.datamodels.AddFabricOrdersSO;
 import com.obpoo.gfsfabricsoftware.salesorder.datamodels.AllOrderModel.AllORderStatusData;
 import com.obpoo.gfsfabricsoftware.salesorder.datamodels.AllOrderModel.AllOrderRes;
 import com.obpoo.gfsfabricsoftware.salesorder.datamodels.AllOrderModel.AllOrderSOData;
@@ -143,6 +144,11 @@ public class AllSO extends BaseActivity implements MyOrdersView {
 
         }
 
+
+    }
+
+    @Override
+    public void onAddFabricsSO(AddFabricOrdersSO response) {
 
     }
 
