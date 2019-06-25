@@ -82,12 +82,38 @@ public class SoldFabricsData {
     @SerializedName("status_text")
     @Expose
     private String statusText;
+
+    public String getReturnQty() {
+        return returnQty;
+    }
+
+    public void setReturnQty(String returnQty) {
+        this.returnQty = returnQty;
+    }
+
+    public String getStockFlag() {
+        return stockFlag;
+    }
+
+    public void setStockFlag(String stockFlag) {
+        this.stockFlag = stockFlag;
+    }
+
+    public String getStatusText() {
+        return statusText;
+    }
+
+    public void setStatusText(String statusText) {
+        this.statusText = statusText;
+    }
+
     @SerializedName("orderdate")
     @Expose
     private String orderdate;
     @SerializedName("pay_mode")
     @Expose
     private String payMode;
+
 
     public String getId() {
         return id;

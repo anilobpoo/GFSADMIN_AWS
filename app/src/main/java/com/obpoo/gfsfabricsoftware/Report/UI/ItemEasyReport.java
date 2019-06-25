@@ -2,11 +2,16 @@ package com.obpoo.gfsfabricsoftware.Report.UI;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
 import android.widget.ProgressBar;
 
 import com.obpoo.gfsfabricsoftware.R;
+import com.obpoo.gfsfabricsoftware.Report.Adapter.ItemEasyAdp;
 import com.obpoo.gfsfabricsoftware.Report.DataModel.Bill_Invoice_Report_Model.Bill_Invoice_Response_data;
 import com.obpoo.gfsfabricsoftware.Report.DataModel.CheckIn.CheckInResponse;
 import com.obpoo.gfsfabricsoftware.Report.DataModel.CheckOUt.CheckOutResponse;
@@ -19,9 +24,13 @@ import com.obpoo.gfsfabricsoftware.Report.DataModel.POLeftOver_Model.POleftOverR
 import com.obpoo.gfsfabricsoftware.Report.DataModel.PO_Fabric_List.PO_Fabric_Response;
 import com.obpoo.gfsfabricsoftware.Report.DataModel.PaymentsReceived.PaymentRecResponse;
 import com.obpoo.gfsfabricsoftware.Report.DataModel.PurchaseOrderDetails.PoDetailsresponse;
+import com.obpoo.gfsfabricsoftware.Report.DataModel.SoldFabrics.SoldFabricsData;
 import com.obpoo.gfsfabricsoftware.Report.DataModel.SoldFabrics.SoldFabricsResponse;
+import com.obpoo.gfsfabricsoftware.Report.MVP.ReportPresenterImpl;
 import com.obpoo.gfsfabricsoftware.Report.MVP.ReportView;
 import com.obpoo.gfsfabricsoftware.ui.activities.BaseActivity;
+
+import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -31,6 +40,7 @@ public class ItemEasyReport extends BaseActivity implements ReportView {
     RecyclerView allSo_rv;
     @BindView(R.id.progress_allso)
     ProgressBar progress_allso;
+    ReportPresenterImpl presenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +51,15 @@ public class ItemEasyReport extends BaseActivity implements ReportView {
         setSupportActionBar(toolbar);
         ButterKnife.bind(this);
         enableActionBar(true);
+
+        presenter = new ReportPresenterImpl(this);
+        presenter.onSend_item_easy_report("ALL","2019-06-18 09:26:44 +0000","filterView_prcs_pagn","2019-06-25","1");
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.soallorder,menu);
+        return true;
     }
 
     @Override
@@ -110,21 +129,37 @@ public class ItemEasyReport extends BaseActivity implements ReportView {
 
     @Override
     public void onItemEasyReport(SoldFabricsResponse response) {
+        if(response.getStatus().equals("success")){
+            ArrayList<SoldFabricsData> soldFabricsDataArrayList = response.getData();
+            ItemEasyAdp  adapter = new ItemEasyAdp(soldFabricsDataArrayList,ItemEasyReport.this);
+            LinearLayoutManager lm = new LinearLayoutManager(this);
+            allSo_rv.setLayoutManager(lm);
+            allSo_rv.setAdapter(adapter);
+
+
+
+        }
 
     }
 
     @Override
     public void showDialog() {
+        progress_allso.setVisibility(View.VISIBLE);
 
     }
 
     @Override
     public void hideDialog() {
-
+        progress_allso.setVisibility(View.GONE);
     }
 
     @Override
     public void showError(String message) {
 
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        return super.onOptionsItemSelected(item);
     }
 }

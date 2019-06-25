@@ -125,6 +125,8 @@ ReportInteractor.PO_Left_Over,ReportInteractor.PO_Check_IN,ReportInteractor.PO_C
 
     @Override
     public void onSend_item_easy_report(String status, String from, String method, String to, String page_no) {
+        reportView.showDialog();
+        interactor.onCallItemSales(status,from,method,to,page_no,this);
 
     }
 
@@ -287,6 +289,7 @@ ReportInteractor.PO_Left_Over,ReportInteractor.PO_Check_IN,ReportInteractor.PO_C
 
     @Override
     public void itemSalesSuccess(SoldFabricsResponse response) {
+        reportView.onItemEasyReport(response);
 
     }
 
