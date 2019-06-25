@@ -65,13 +65,15 @@ public class SOorderDetails extends BaseActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if(requestCode==AppConstants.addfanricSOorders){
-            AddReserveDet index = data.getParcelableExtra("ORDERFABRIC");
-            String qty_fab = data.getStringExtra("FABSOORDERQTY");
-            itemDetailsses.add( new AllOrderItemDet(qty_fab,"0",index.getFabName(),index.getFabImg()));
-            SO_order_det_fab_adp adapter = new SO_order_det_fab_adp(itemDetailsses,SOorderDetails.this);
-            LinearLayoutManager lm = new LinearLayoutManager(this);
-            rv_so_det.setLayoutManager(lm);
-            rv_so_det.setAdapter(adapter);
+            if(data!=null) {
+                AddReserveDet index = data.getParcelableExtra("ORDERFABRIC");
+                String qty_fab = data.getStringExtra("FABSOORDERQTY");
+                itemDetailsses.add(new AllOrderItemDet(qty_fab, "0", index.getFabName(), index.getFabImg()));
+                SO_order_det_fab_adp adapter = new SO_order_det_fab_adp(itemDetailsses, SOorderDetails.this);
+                LinearLayoutManager lm = new LinearLayoutManager(this);
+                rv_so_det.setLayoutManager(lm);
+                rv_so_det.setAdapter(adapter);
+            }
 
         }
 
@@ -152,8 +154,9 @@ public class SOorderDetails extends BaseActivity {
 
     @OnClick(R.id.add_so_det)
     public void onAddFabricSo(View view){
-        Intent in = new Intent(SOorderDetails.this,AddfabricSoOrders.class);
-        startActivityForResult(in,AppConstants.addfanricSOorders);
+       /* Intent in = new Intent(SOorderDetails.this,AddfabricSoOrders.class);
+        in.putExtra("ORDERTYPE_SOORDER",item.getOrderType());
+        startActivityForResult(in,AppConstants.addfanricSOorders);*/  // commented bcoz fabric add is not confirmed
 
     }
 }

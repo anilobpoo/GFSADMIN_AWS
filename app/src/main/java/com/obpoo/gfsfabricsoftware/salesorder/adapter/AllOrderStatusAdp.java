@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.TrackPoModel.TrackPOCusAdp;
 import com.obpoo.gfsfabricsoftware.R;
+import com.obpoo.gfsfabricsoftware.salesorder.datamodels.AddFabricOrdersSO;
 import com.obpoo.gfsfabricsoftware.salesorder.datamodels.AllOrderModel.AllORderStatusData;
 import com.obpoo.gfsfabricsoftware.salesorder.datamodels.AllOrderModel.AllOrderRes;
 import com.obpoo.gfsfabricsoftware.salesorder.datamodels.AllOrderModel.AllOrderSOData;
@@ -89,6 +90,11 @@ public class AllOrderStatusAdp extends RecyclerView.Adapter<AllOrderStatusAdp.Vi
 
     @Override
     public void onAllSoStatus(AllOrderStatusRes response) {
+
+    }
+
+    @Override
+    public void onAddFabricsSO(AddFabricOrdersSO response) {
 
     }
 

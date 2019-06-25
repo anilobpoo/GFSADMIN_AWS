@@ -13,6 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.obpoo.gfsfabricsoftware.R;
+import com.obpoo.gfsfabricsoftware.salesorder.datamodels.AddFabricOrdersSO;
 import com.obpoo.gfsfabricsoftware.salesorder.datamodels.AllOrderModel.AllOrderRes;
 import com.obpoo.gfsfabricsoftware.salesorder.datamodels.AllOrderModel.AllOrderStatusRes;
 import com.obpoo.gfsfabricsoftware.salesorder.datamodels.MyOrdersDetail;
@@ -66,6 +67,11 @@ public class MyOrdersAdapter extends RecyclerView.Adapter<MyOrdersAdapter.MyView
 
     @Override
     public void onAllSoStatus(AllOrderStatusRes response) {
+
+    }
+
+    @Override
+    public void onAddFabricsSO(AddFabricOrdersSO response) {
 
     }
 

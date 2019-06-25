@@ -31,6 +31,7 @@ import com.obpoo.gfsfabricsoftware.customers.mvp.CustomersView;
 import com.obpoo.gfsfabricsoftware.customers.ui.AddCustomers;
 import com.obpoo.gfsfabricsoftware.fabric.ui.OrderFabrics;
 import com.obpoo.gfsfabricsoftware.salesorder.adapter.MyOrdersAdapter;
+import com.obpoo.gfsfabricsoftware.salesorder.datamodels.AddFabricOrdersSO;
 import com.obpoo.gfsfabricsoftware.salesorder.datamodels.AllOrderModel.AllOrderRes;
 import com.obpoo.gfsfabricsoftware.salesorder.datamodels.AllOrderModel.AllOrderStatusRes;
 import com.obpoo.gfsfabricsoftware.salesorder.datamodels.MyOrdersDetail;
@@ -209,6 +210,11 @@ public class MyOrders extends BaseActivity implements MyOrdersView,CustomersView
 
     @Override
     public void onAllSoStatus(AllOrderStatusRes response) {
+
+    }
+
+    @Override
+    public void onAddFabricsSO(AddFabricOrdersSO response) {
 
     }
 

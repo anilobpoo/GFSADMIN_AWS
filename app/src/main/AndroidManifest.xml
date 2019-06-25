@@ -41,16 +41,16 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".salesorder.ui.AddfabricSoOrders"
-            android:theme="@style/AppTheme.NoActionBar" >
-
-        </activity>
+        <activity android:name=".Report.UI.ItemEasyReport"></activity>
+        <activity
+            android:name=".salesorder.ui.AddfabricSoOrders"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity
             android:name=".collections.ui.Deposit"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".salesorder.ui.SOorderDetails"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".salesorder.ui.AllSO"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -550,7 +550,7 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".collections.ui.OrderDetailsInvoice"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".collections.ui.CollectionsDeliveries"
             android:theme="@style/AppTheme.NoActionBar" />

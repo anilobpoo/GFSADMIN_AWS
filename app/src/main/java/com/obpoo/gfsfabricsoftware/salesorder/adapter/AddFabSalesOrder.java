@@ -15,6 +15,7 @@ import android.widget.TextView;
 
 import com.obpoo.gfsfabricsoftware.R;
 import com.obpoo.gfsfabricsoftware.Stock.DataModel.AddReserveDet;
+import com.obpoo.gfsfabricsoftware.salesorder.datamodels.AllOrderModel.FabricAddOrderSO;
 import com.obpoo.gfsfabricsoftware.salesorder.ui.SOorderDetails;
 import com.obpoo.gfsfabricsoftware.utilities.AppConstants;
 
@@ -26,10 +27,12 @@ import butterknife.ButterKnife;
 public class AddFabSalesOrder extends RecyclerView.Adapter<AddFabSalesOrder.ViewHolder> {
     ArrayList<AddReserveDet> addReserveDetArrayList;
     Activity context;
+    FabricAddOrderSO fabI;
 
-    public AddFabSalesOrder(ArrayList<AddReserveDet> addReserveDetArrayList, Activity context) {
+    public AddFabSalesOrder(ArrayList<AddReserveDet> addReserveDetArrayList, Activity context, FabricAddOrderSO fabI) {
         this.addReserveDetArrayList = addReserveDetArrayList;
         this.context = context;
+        this.fabI=fabI;
     }
 
     @NonNull
@@ -71,11 +74,12 @@ public class AddFabSalesOrder extends RecyclerView.Adapter<AddFabSalesOrder.View
             public void onClick(View v) {
                 if(holder.qty_mtr_addFab_so.getText().toString().length()>0){
 
-                Intent in = new Intent(context, SOorderDetails.class);
+                fabI.AddFabricsBelowI(index,holder.qty_mtr_addFab_so.getText().toString());
+              /*  Intent in = new Intent(context, SOorderDetails.class);
                 in.putExtra("ORDERFABRIC",index);
                 in.putExtra("FABSOORDERQTY",holder.qty_mtr_addFab_so.getText().toString());
                 context.setResult(AppConstants.addfanricSOorders,in);
-                context.finish();
+                context.finish();*/
                 }
 
             }
