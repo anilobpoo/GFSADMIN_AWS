@@ -1,14 +1,18 @@
 package com.obpoo.gfsfabricsoftware.PurchaseOrder.UI;
 
+import android.annotation.SuppressLint;
 import android.support.annotation.NonNull;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.View;
 import android.widget.AbsListView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -52,24 +56,31 @@ public class PO_Order extends AppCompatActivity implements poView {
     TextView received_text;
     @BindView(R.id.pending_text)
     TextView pending_text;
+    @BindView(R.id.progressbar)
+    ProgressBar progressbar;
+    @BindView(R.id.tranparent_bg)
+    ImageView transparent_bg;
 
     poPresenterImpl presenter;
     int page_no = 1;
     ConfirmPOAdapter adapter;
     Boolean isScrolling = false;
     int currentItems, totalItems, scrollOutItems;
-    String fromdate,todate;
+    String fromdate, todate;
+    ArrayList<poDatum> data = new ArrayList<>();
+    ArrayList<poDatum> data1 = new ArrayList<>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_po__order);
         ButterKnife.bind(this);
         presenter = new poPresenterImpl(this);
-        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         final LinearLayoutManager linearLayoutManager = new LinearLayoutManager(PO_Order.this);
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         recycler_view.setLayoutManager(linearLayoutManager);
 
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         Date date = new Date();
         todate = dateFormat.format(date);
         Calendar cal = Calendar.getInstance();
@@ -80,7 +91,24 @@ public class PO_Order extends AppCompatActivity implements poView {
         presenter.viewPOOrder("view_received_orders_prcs_pagn", fromdate, todate, String.valueOf(page_no));
 
 
+
+    }
+
+    @OnClick(R.id.back_PO_cmngrp)
+    public void backClick() {
+        finish();
+    }
+
+    @OnClick(R.id.received_ord)
+    public void receivedClick() {
+        data.clear();
+        presenter.viewPOOrder("view_received_orders_prcs_pagn", fromdate, todate, String.valueOf(page_no));
+        received_img.setColorFilter(ContextCompat.getColor(getApplicationContext(), R.color.blue_100), android.graphics.PorterDuff.Mode.SRC_IN);
+        received_text.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.blue_100));
+        pending_img.setColorFilter(ContextCompat.getColor(getApplicationContext(), R.color.iron), android.graphics.PorterDuff.Mode.SRC_IN);
+        pending_text.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.iron));
         recycler_view.addOnScrollListener(new RecyclerView.OnScrollListener() {
+
             @Override
             public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
                 super.onScrollStateChanged(recyclerView, newState);
@@ -92,6 +120,8 @@ public class PO_Order extends AppCompatActivity implements poView {
             @Override
             public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
+                final LinearLayoutManager linearLayoutManager = new LinearLayoutManager(PO_Order.this);
+                linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
                 currentItems = linearLayoutManager.getChildCount();
                 totalItems = linearLayoutManager.getItemCount();
                 scrollOutItems = linearLayoutManager.findFirstVisibleItemPosition();
@@ -106,21 +136,23 @@ public class PO_Order extends AppCompatActivity implements poView {
         });
     }
 
-    @OnClick(R.id.back_PO_cmngrp)
-    public void backClick() {
-        finish();
-    }
- @OnClick(R.id.received_ord)
-    public void receivedClick() {
-     presenter.viewPOOrder("view_received_orders_prcs_pagn", fromdate, todate, String.valueOf(page_no));
+    @OnClick(R.id.pending_ord)
+    public void pendingClick() {
+        data.clear();
+        presenter.viewPOPendingOrder("pending_orders");
+        pending_img.setColorFilter(ContextCompat.getColor(getApplicationContext(), R.color.blue_100), android.graphics.PorterDuff.Mode.SRC_IN);
+        pending_text.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.blue_100));
+        received_img.setColorFilter(ContextCompat.getColor(getApplicationContext(), R.color.iron), android.graphics.PorterDuff.Mode.SRC_IN);
+        received_text.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.iron));
 
- }
+    }
 
     @Override
     public void onShowViewPO(poPOJO response) {
+
         if (response.getStatus().equals("success")) {
-            ArrayList<poDatum> data = new ArrayList<>();
-            data = response.getData();
+            data1 = response.getData();
+            data.addAll(data1);
             adapter = new ConfirmPOAdapter(getApplicationContext(), data, "poorder");
             recycler_view.setAdapter(adapter);
             adapter.notifyDataSetChanged();
@@ -154,11 +186,14 @@ public class PO_Order extends AppCompatActivity implements poView {
 
     @Override
     public void showDialog() {
-
+        progressbar.setVisibility(View.VISIBLE);
+        transparent_bg.setVisibility(View.VISIBLE);
     }
 
     @Override
     public void hideDialog() {
+        progressbar.setVisibility(View.GONE);
+        transparent_bg.setVisibility(View.GONE);
 
     }
 

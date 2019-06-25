@@ -70,7 +70,7 @@
     </android.support.v4.widget.NestedScrollView>
 
     <ImageView
-        android:id="@+id/trans_bg"
+        android:id="@+id/tranparent_bg"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:src="@drawable/tranparent_bg"

@@ -51,6 +51,7 @@ public class ConfirmPOAdapter extends RecyclerView.Adapter<ConfirmPOAdapter.View
 
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder viewHolder, final int i) {
+
         items = data.get(i).getItems();
         int itmsize = items.size();
 
@@ -59,9 +60,30 @@ public class ConfirmPOAdapter extends RecyclerView.Adapter<ConfirmPOAdapter.View
             viewHolder.price_img.setVisibility(View.VISIBLE);
             viewHolder.price.setVisibility(View.VISIBLE);
             viewHolder.go.setVisibility(View.GONE);
+
+            viewHolder.indc.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    Intent in = new Intent(context, ViewDetails.class);
+                    in.putExtra("id", data.get(i).getId());
+                    in.putExtra("tag", tag);
+                    in.putExtra("factory", viewHolder.factoryname.getText());
+                    in.putExtra("status", viewHolder.status.getText());
+                    in.putExtra("date", viewHolder.date.getText());
+                    in.putExtra("deliver_date", viewHolder.deliver_date.getText());
+                    in.putExtra("staf", data.get(i).getStaff());
+                    in.putExtra("cc_mail", data.get(i).getCcEmail());
+//                    in.putExtra("cash", data.get(i).get());
+                    in.putExtra("item", items);
+                    in.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    context.startActivity(in);
+                }
+            });
+
         }
 
-        viewHolder.id.setText("#"+data.get(i).getId());
+        viewHolder.id.setText("#" + data.get(i).getId());
         viewHolder.factoryname.setText(data.get(i).getFactory());
         viewHolder.status.setText(data.get(i).getStatusText());
         viewHolder.item.setText("Item:" + itmsize);
@@ -81,7 +103,8 @@ public class ConfirmPOAdapter extends RecyclerView.Adapter<ConfirmPOAdapter.View
             @Override
             public void onClick(View v) {
                 Intent in = new Intent(context, ViewDetails.class);
-                in.putExtra("id", viewHolder.id.getText());
+                in.putExtra("id", data.get(i).getId());
+                in.putExtra("tag", tag);
                 in.putExtra("factory", viewHolder.factoryname.getText());
                 in.putExtra("status", viewHolder.status.getText());
                 in.putExtra("date", viewHolder.date.getText());
@@ -94,6 +117,7 @@ public class ConfirmPOAdapter extends RecyclerView.Adapter<ConfirmPOAdapter.View
 
             }
         });
+
     }
 
     @Override

@@ -68,7 +68,8 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".PurchaseOrder.UI.ModificationPO"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="stateHidden"/>
         <activity
             android:name=".PurchaseOrder.UI.ViewDetails"
             android:theme="@style/AppTheme.NoActionBar" />

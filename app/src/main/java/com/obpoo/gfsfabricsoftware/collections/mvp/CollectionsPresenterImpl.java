@@ -34,13 +34,15 @@ public class CollectionsPresenterImpl implements CollectionsPresenter, Collectio
 
     @Override
     public void view(String to_date, String from_date, String method, String[] previledges) {
+        if (view != null){
+            view.showDialog();
         CollectionsDRequest request = new CollectionsDRequest(to_date, from_date, method, previledges);
-        interacter.viewList(request, this);
+        interacter.viewList(request, this);}
     }
 
     @Override
     public void viewInvoice(String date, String method, String pg_id) {
-
+        view.showDialog();
         InvoiceRequest request = new InvoiceRequest(date, method, pg_id);
         interacter.viewInvoiceList(request, this);
 
@@ -48,12 +50,14 @@ public class CollectionsPresenterImpl implements CollectionsPresenter, Collectio
 
     @Override
     public void updateInvoice(String method, String id, String supervisor, String cashier, String accsuper) {
+        view.showDialog();
         UpdateInvoRequest request = new UpdateInvoRequest(method, id, supervisor, cashier, accsuper);
         interacter.updateInvoiceList(request, this);
     }
 
     @Override
     public void depositeView(String method, String time, String[] view_diposites) {
+        view.showDialog();
         DepositeRequest request = new DepositeRequest(method,time,view_diposites);
         interacter.viewDepositeList(request,this);
     }

@@ -12,9 +12,9 @@ import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.ViewPOModel.ConfirmPO
 import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.ViewPOModel.ConfirmPoRequest;
 import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.ViewPOModel.ModifyConfirmPoReq;
 import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.ViewPOModel.PoOrderRequest;
+import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.ViewPOModel.PoPendingOrdRequest;
 import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.ViewPOModel.ViewConfirmPoRequest;
 import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.ViewPOModel.ViewPgnRequest;
-import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.ViewPOModel.ViewRequest;
 import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.ViewPOModel.poPOJO;
 import com.obpoo.gfsfabricsoftware.utilities.ApiClient;
 import com.obpoo.gfsfabricsoftware.utilities.WebApi;
@@ -65,8 +65,36 @@ public class poInteractorImpl implements poInteractor {
     public void callPoOrder(String method, String from_date, String to_date, String page_no, final ViewPoResponse ViewPoResponse) {
         Retrofit retrofit = ApiClient.getRetrofit();
         WebApi apis = retrofit.create(WebApi.class);
-        PoOrderRequest request = new PoOrderRequest(method, from_date,to_date,page_no);
+        PoOrderRequest request = new PoOrderRequest(method, from_date, to_date, page_no);
         Call<poPOJO> call = apis.viewPoOrderAPI(request);
+        call.enqueue(new Callback<poPOJO>() {
+            @Override
+            public void onResponse(Call<poPOJO> call, Response<poPOJO> response) {
+                if (response.isSuccessful()) {
+                    ViewPoResponse.onViewSuccess(response.body());
+                    Log.i("responsepo", response.body().getMessage());
+
+                } else {
+                    ViewPoResponse.onViewError("Please Try Again.");
+
+                }
+            }
+
+            @Override
+            public void onFailure(Call<poPOJO> call, Throwable t) {
+                ViewPoResponse.onViewError(t.getMessage());
+                Log.i("failureMSG", t.getMessage());
+
+            }
+        });
+    }
+
+    @Override
+    public void callPoPendingOrder(String method, final ViewPoResponse ViewPoResponse) {
+        Retrofit retrofit = ApiClient.getRetrofit();
+        WebApi apis = retrofit.create(WebApi.class);
+        PoPendingOrdRequest request = new PoPendingOrdRequest(method);
+        Call<poPOJO> call = apis.viewPoPendingOrderAPI(request);
         call.enqueue(new Callback<poPOJO>() {
             @Override
             public void onResponse(Call<poPOJO> call, Response<poPOJO> response) {
@@ -180,11 +208,11 @@ public class poInteractorImpl implements poInteractor {
     }
 
     @Override
-    public void callRetroTrackPO(String user_id, String method, final  TrackPOI trackPOI) {
+    public void callRetroTrackPO(String user_id, String method, final TrackPOI trackPOI) {
         Retrofit retrofit = ApiClient.getRetrofit();
         WebApi apis = retrofit.create(WebApi.class);
 
-        TrackPORequest request = new TrackPORequest(user_id,method);
+        TrackPORequest request = new TrackPORequest(user_id, method);
         Call<TrackPOByCusRes> call = apis.trackPOAPI(request);
         call.enqueue(new Callback<TrackPOByCusRes>() {
             @Override
@@ -212,7 +240,7 @@ public class poInteractorImpl implements poInteractor {
         Retrofit retrofit = ApiClient.getRetrofit();
         WebApi apis = retrofit.create(WebApi.class);
 
-        TrackPODetRequest request = new TrackPODetRequest(cid,method);
+        TrackPODetRequest request = new TrackPODetRequest(cid, method);
         Call<TrackPODetRes> call = apis.trackPODetApi(request);
         call.enqueue(new Callback<TrackPODetRes>() {
             @Override

@@ -5,6 +5,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.obpoo.gfsfabricsoftware.PurchaseOrder.Adapter.ModificationPoAdapter;
@@ -36,7 +39,12 @@ public class ModificationPO extends AppCompatActivity implements poView {
     RecyclerView recycler_view;
     @BindView(R.id.confirm)
     TextView confirm;
-
+    @BindView(R.id.textView42)
+    TextView requested;
+    @BindView(R.id.tranparent_bg)
+    ImageView tranparent_bg;
+    @BindView(R.id.progressbar)
+    ProgressBar progressbar;
     ArrayList<poItem> items;
     String factory, id, staf, cc_mail;
 
@@ -64,6 +72,7 @@ public class ModificationPO extends AppCompatActivity implements poView {
         factory_tv.setText(factory);
         stafname.setText(staf);
         cc_email.setText(cc_mail);
+        requested.setText("Contract Requested To #"+id);
     }
 
     @OnClick(R.id.confirm)
@@ -107,12 +116,14 @@ public class ModificationPO extends AppCompatActivity implements poView {
 
     @Override
     public void showDialog() {
-
+        tranparent_bg.setVisibility(View.VISIBLE);
+        progressbar.setVisibility(View.VISIBLE);
     }
 
     @Override
     public void hideDialog() {
-
+        tranparent_bg.setVisibility(View.GONE);
+        progressbar.setVisibility(View.GONE);
     }
 
     @Override

@@ -17,6 +17,7 @@ import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.ViewPOModel.poPOJO;
 import com.obpoo.gfsfabricsoftware.PurchaseOrder.MVP.poPresenterImpl;
 import com.obpoo.gfsfabricsoftware.PurchaseOrder.MVP.poView;
 import com.obpoo.gfsfabricsoftware.R;
+import com.obpoo.gfsfabricsoftware.ui.activities.HomeActivity;
 import com.obpoo.gfsfabricsoftware.utilities.AppConstants;
 import com.obpoo.gfsfabricsoftware.utilities.PreferenceConnector;
 
@@ -50,9 +51,18 @@ public class PO extends AppCompatActivity implements poView {
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Intent intent = new Intent(PO.this, HomeActivity.class);
+                startActivity(intent);
                 finish();
             }
         });
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent intent = new Intent(PO.this, HomeActivity.class);
+        startActivity(intent);
     }
 
     @OnClick(R.id.request_order)
