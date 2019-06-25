@@ -207,6 +207,11 @@ public class CustomerPending extends BaseActivity implements ReportView,Customer
     }
 
     @Override
+    public void onItemEasyReport(SoldFabricsResponse response) {
+
+    }
+
+    @Override
     public void showDialog() {
         progressBar.setVisibility(View.VISIBLE);
 

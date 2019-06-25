@@ -196,6 +196,11 @@ public class CutStock extends BaseActivity implements ReportView {
     }
 
     @Override
+    public void onItemEasyReport(SoldFabricsResponse response) {
+
+    }
+
+    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.filter, menu);
         return true;

@@ -66,12 +66,22 @@ public class SoldFabricsData {
     @SerializedName("updated_on")
     @Expose
     private String updatedOn;
+
+    @SerializedName("return_qty")
+    @Expose
+    private String returnQty;
+    @SerializedName("stock_flag")
+    @Expose
+    private String stockFlag;
     @SerializedName("fab_name")
     @Expose
     private String fabName;
     @SerializedName("fab_img")
     @Expose
     private String fabImg;
+    @SerializedName("status_text")
+    @Expose
+    private String statusText;
     @SerializedName("orderdate")
     @Expose
     private String orderdate;

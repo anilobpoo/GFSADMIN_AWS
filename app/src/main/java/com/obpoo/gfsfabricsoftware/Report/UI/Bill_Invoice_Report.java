@@ -490,6 +490,11 @@ public class Bill_Invoice_Report extends BaseActivity implements ReportView {
     }
 
     @Override
+    public void onItemEasyReport(SoldFabricsResponse response) {
+
+    }
+
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
         if (item.getItemId() == R.id.action_filterDate) {

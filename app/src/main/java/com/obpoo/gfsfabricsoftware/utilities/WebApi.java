@@ -72,6 +72,7 @@ import com.obpoo.gfsfabricsoftware.Report.DataModel.FabricHistory.FabricGraphRes
 import com.obpoo.gfsfabricsoftware.Report.DataModel.FabricHistory.FabricHistoryRequest;
 import com.obpoo.gfsfabricsoftware.Report.DataModel.FabricHistory.FabricHistoryResponse;
 import com.obpoo.gfsfabricsoftware.Report.DataModel.FabricHistory.FabricNameRequest;
+import com.obpoo.gfsfabricsoftware.Report.DataModel.ItemSalesRe.ItemSalesReq;
 import com.obpoo.gfsfabricsoftware.Report.DataModel.POLeftOver_Model.POleftOverResponse;
 import com.obpoo.gfsfabricsoftware.Report.DataModel.PO_Fabric_List.PO_Fabric_Response;
 import com.obpoo.gfsfabricsoftware.Report.DataModel.PaymentsReceived.PaymentRecResponse;
@@ -444,4 +445,6 @@ public interface WebApi {
     Call<CollectionInvoiceResponse> updateInvoApi(@Body UpdateInvoRequest request);
     @POST("pickup_guy/match_deposit_otp.php")
     Call<DepositeResponse> depositeCollectionsApi(@Body DepositeRequest request);
+    @POST("order/order_Report.php")
+    Call<SoldFabricsResponse> itemSalesApi(@Body ItemSalesReq request);
 }

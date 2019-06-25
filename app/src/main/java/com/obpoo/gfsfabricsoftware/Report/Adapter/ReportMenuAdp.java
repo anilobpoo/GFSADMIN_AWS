@@ -14,6 +14,7 @@ import com.obpoo.gfsfabricsoftware.Report.UI.Bill_Invoice_Report;
 import com.obpoo.gfsfabricsoftware.Report.UI.CustomerPending;
 import com.obpoo.gfsfabricsoftware.Report.UI.CutStock;
 import com.obpoo.gfsfabricsoftware.Report.UI.FabricOrderHistory;
+import com.obpoo.gfsfabricsoftware.Report.UI.ItemEasyReport;
 import com.obpoo.gfsfabricsoftware.Report.UI.PoDeliveryDetails;
 import com.obpoo.gfsfabricsoftware.utilities.AppConstants;
 
@@ -120,6 +121,11 @@ public class ReportMenuAdp extends RecyclerView.Adapter<ReportMenuAdp.ViewHolder
                         Intent insf = new Intent(context,Bill_Invoice_Report.class);
                         insf.putExtra("ReportName", AppConstants.soldfabrics);
                         context.startActivity(insf);
+                        break;
+                    case 14:
+                        Intent inis = new Intent(context, ItemEasyReport.class);
+                        inis.putExtra("ReportName", AppConstants.item_sales_cons);
+                        context.startActivity(inis);
                         break;
 
 

@@ -12,6 +12,7 @@ import com.obpoo.gfsfabricsoftware.Report.DataModel.FabricHistory.FabricGraphRes
 import com.obpoo.gfsfabricsoftware.Report.DataModel.FabricHistory.FabricHistoryRequest;
 import com.obpoo.gfsfabricsoftware.Report.DataModel.FabricHistory.FabricHistoryResponse;
 import com.obpoo.gfsfabricsoftware.Report.DataModel.FabricHistory.FabricNameRequest;
+import com.obpoo.gfsfabricsoftware.Report.DataModel.ItemSalesRe.ItemSalesReq;
 import com.obpoo.gfsfabricsoftware.Report.DataModel.POLeftOver_Model.POleftOverResponse;
 import com.obpoo.gfsfabricsoftware.Report.DataModel.PO_Fabric_List.PO_Fabric_Response;
 import com.obpoo.gfsfabricsoftware.Report.DataModel.PaymentsReceived.PaymentRecResponse;
@@ -369,5 +370,32 @@ public class ReportInteractorImpl implements ReportInteractor {
                 sold_fabric.onSoldfabricError(t.getMessage());
             }
         });
+    }
+
+    @Override
+    public void onCallItemSales(String status, String from, String method, String to, String page_no, final Item_SalesI item_salesI) {
+        Retrofit retrofit = ApiClient.getRetrofit();
+        WebApi apis = retrofit.create(WebApi.class);
+        ItemSalesReq request = new ItemSalesReq(status,from,method,to,page_no);
+        Call<SoldFabricsResponse> call = apis.itemSalesApi(request);
+        call.enqueue(new Callback<SoldFabricsResponse>() {
+            @Override
+            public void onResponse(Call<SoldFabricsResponse> call, Response<SoldFabricsResponse> response) {
+                if(response.isSuccessful()){
+                item_salesI.itemSalesSuccess(response.body());}
+                else{
+                    item_salesI.itemSalesError("Please Try again");
+                }
+
+
+            }
+
+            @Override
+            public void onFailure(Call<SoldFabricsResponse> call, Throwable t) {
+                item_salesI.itemSalesError(t.getMessage());
+
+            }
+        });
+
     }
 }

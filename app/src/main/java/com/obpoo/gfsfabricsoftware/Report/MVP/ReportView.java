@@ -33,4 +33,5 @@ public interface ReportView  extends BaseView {
         void onCheckIn(CheckInResponse response);
         void onCheckOut(CheckOutResponse response);
         void onSoldFabrics(SoldFabricsResponse response);
+        void onItemEasyReport(SoldFabricsResponse response);
 }

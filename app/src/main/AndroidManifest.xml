@@ -41,7 +41,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Report.UI.ItemEasyReport"></activity>
+        <activity android:name=".Report.UI.ItemEasyReport"
+            android:theme="@style/AppTheme.NoActionBar">
+
+        </activity>
         <activity
             android:name=".salesorder.ui.AddfabricSoOrders"
             android:theme="@style/AppTheme.NoActionBar"></activity>

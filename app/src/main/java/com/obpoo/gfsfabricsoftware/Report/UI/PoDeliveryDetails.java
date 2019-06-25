@@ -167,6 +167,11 @@ public class PoDeliveryDetails extends BaseActivity implements ReportView{
     }
 
     @Override
+    public void onItemEasyReport(SoldFabricsResponse response) {
+
+    }
+
+    @Override
     public void showDialog() {
         pbatshowdelivery.setVisibility(View.VISIBLE);
 

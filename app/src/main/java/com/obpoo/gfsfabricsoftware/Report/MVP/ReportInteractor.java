@@ -98,5 +98,11 @@ public interface ReportInteractor {
     }
     void onCallRetroSoldFabric(String method,String from, String to,Sold_Fabric response);
 
+    interface Item_SalesI{
+        void itemSalesSuccess(SoldFabricsResponse response);
+        void itemSalesError(String message);
+    }
+
+    void onCallItemSales(String status,String from,String method,String to,String page_no,Item_SalesI response );
 
 }

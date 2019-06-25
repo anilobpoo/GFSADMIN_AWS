@@ -23,7 +23,7 @@ import com.obpoo.gfsfabricsoftware.Report.DataModel.SoldFabrics.SoldFabricsRespo
 public class ReportPresenterImpl implements ReportPresenter,ReportInteractor.Build_Invoice_Response_Interface,
 ReportInteractor.Customer_Pending_Response_Interface,ReportInteractor.CutStock_Response_Interface,ReportInteractor.FabricAnalytics_Interface,
 ReportInteractor.FabricNames,ReportInteractor.FabricGraphHistory,ReportInteractor.PaymentReceived,ReportInteractor.PoDetails,ReportInteractor.PO_FABRIC_LIST,
-ReportInteractor.PO_Left_Over,ReportInteractor.PO_Check_IN,ReportInteractor.PO_Check_OUT,ReportInteractor.Sold_Fabric{
+ReportInteractor.PO_Left_Over,ReportInteractor.PO_Check_IN,ReportInteractor.PO_Check_OUT,ReportInteractor.Sold_Fabric,ReportInteractor.Item_SalesI{
     ReportInteractorImpl interactor;
     ReportView reportView;
 
@@ -120,6 +120,11 @@ ReportInteractor.PO_Left_Over,ReportInteractor.PO_Check_IN,ReportInteractor.PO_C
     public void onSend_Sold_Fabric(String method, String from, String to) {
         reportView.showDialog();
         interactor.onCallRetroSoldFabric(method,from,to,this);
+
+    }
+
+    @Override
+    public void onSend_item_easy_report(String status, String from, String method, String to, String page_no) {
 
     }
 
@@ -277,6 +282,16 @@ ReportInteractor.PO_Left_Over,ReportInteractor.PO_Check_IN,ReportInteractor.PO_C
 
     @Override
     public void onSoldfabricError(String message) {
+
+    }
+
+    @Override
+    public void itemSalesSuccess(SoldFabricsResponse response) {
+
+    }
+
+    @Override
+    public void itemSalesError(String message) {
 
     }
 }

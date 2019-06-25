@@ -13,6 +13,15 @@ public class SoldFabricsResponse {
     @SerializedName("status")
     @Expose
     private String status;
+
+    public Integer getPageCount() {
+        return pageCount;
+    }
+
+    public void setPageCount(Integer pageCount) {
+        this.pageCount = pageCount;
+    }
+
     @SerializedName("message")
     @Expose
     private String message;
