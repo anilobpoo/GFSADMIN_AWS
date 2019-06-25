@@ -4,6 +4,8 @@ package com.obpoo.gfsfabricsoftware.collections.mvp;
 import com.obpoo.gfsfabricsoftware.collections.datamodel.CollectionInvoiceResponse;
 import com.obpoo.gfsfabricsoftware.collections.datamodel.CollectionsDRequest;
 import com.obpoo.gfsfabricsoftware.collections.datamodel.CollectionsDResponse;
+import com.obpoo.gfsfabricsoftware.collections.datamodel.DepositeRequest;
+import com.obpoo.gfsfabricsoftware.collections.datamodel.DepositeResponse;
 import com.obpoo.gfsfabricsoftware.collections.datamodel.InvoiceRequest;
 import com.obpoo.gfsfabricsoftware.collections.datamodel.UpdateInvoRequest;
 
@@ -23,4 +25,12 @@ public interface CollectionsInteracter {
     }
     void  viewInvoiceList(InvoiceRequest request, InvoiceListener listener);
     void  updateInvoiceList(UpdateInvoRequest request, InvoiceListener listener);
+
+    interface DepositeListener {
+        void onDepositeSuccess(DepositeResponse response);
+
+        void onDepositeError(String message);
+    }
+    void  viewDepositeList(DepositeRequest request, DepositeListener listener);
+
 }

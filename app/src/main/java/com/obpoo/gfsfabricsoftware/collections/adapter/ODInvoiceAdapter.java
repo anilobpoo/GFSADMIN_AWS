@@ -16,6 +16,7 @@ import android.widget.TextView;
 import com.obpoo.gfsfabricsoftware.R;
 import com.obpoo.gfsfabricsoftware.collections.datamodel.CollectionInvoiceResponse;
 import com.obpoo.gfsfabricsoftware.collections.datamodel.CollectionsDResponse;
+import com.obpoo.gfsfabricsoftware.collections.datamodel.DepositeResponse;
 import com.obpoo.gfsfabricsoftware.collections.datamodel.InvoiceDatum;
 import com.obpoo.gfsfabricsoftware.collections.mvp.CollectionsPresenterImpl;
 import com.obpoo.gfsfabricsoftware.collections.mvp.CollectionsView;
@@ -174,6 +175,11 @@ public class ODInvoiceAdapter extends RecyclerView.Adapter<ODInvoiceAdapter.View
     @Override
     public void onInvoiceLoad(CollectionInvoiceResponse response) {
         Log.i("statussupdate", response.getStatus());
+
+    }
+
+    @Override
+    public void onDepositeLoad(DepositeResponse response) {
 
     }
 

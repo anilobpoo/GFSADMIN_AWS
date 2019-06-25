@@ -38,7 +38,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/nav_header_vertical_spacing"
                     android:layout_toRightOf="@+id/back_PO_cmngrp"
-                    android:text="Bank"
+                    android:text="Order Details Of Invoice"
                     android:textColor="@color/white"
                     android:textSize="@dimen/album_title"
                     android:textStyle="bold" />
@@ -54,7 +54,8 @@
         android:id="@+id/recycler_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/appbar">
+        android:layout_below="@+id/appbar"
+        android:layout_above="@+id/card2">
 
     </android.support.v7.widget.RecyclerView>
 
@@ -63,7 +64,6 @@
         android:layout_width="match_parent"
         android:layout_height="35dp"
         android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
         android:layout_marginRight="8dp"
         app:cardBackgroundColor="@color/green_500"

@@ -6,6 +6,8 @@ import android.util.Log;
 import com.obpoo.gfsfabricsoftware.collections.datamodel.CollectionInvoiceResponse;
 import com.obpoo.gfsfabricsoftware.collections.datamodel.CollectionsDRequest;
 import com.obpoo.gfsfabricsoftware.collections.datamodel.CollectionsDResponse;
+import com.obpoo.gfsfabricsoftware.collections.datamodel.DepositeRequest;
+import com.obpoo.gfsfabricsoftware.collections.datamodel.DepositeResponse;
 import com.obpoo.gfsfabricsoftware.collections.datamodel.InvoiceRequest;
 import com.obpoo.gfsfabricsoftware.collections.datamodel.UpdateInvoRequest;
 import com.obpoo.gfsfabricsoftware.utilities.ApiClient;
@@ -94,6 +96,33 @@ public class CollectionsInteracterImpl implements CollectionsInteracter {
             @Override
             public void onFailure(Call<CollectionInvoiceResponse> call, Throwable t) {
                 listener.onInvoiceError(t.getMessage());
+                Log.i("failureMSG", t.getMessage());
+
+            }
+        });
+    }
+
+    @Override
+    public void viewDepositeList(DepositeRequest request, final DepositeListener listener) {
+        Retrofit retrofit = ApiClient.getoldRetrofit();
+        WebApi apis = retrofit.create(WebApi.class);
+        Call<DepositeResponse> call = apis.depositeCollectionsApi(request);
+        call.enqueue(new Callback<DepositeResponse>() {
+            @Override
+            public void onResponse(Call<DepositeResponse> call, Response<DepositeResponse> response) {
+                if (response.isSuccessful()) {
+                    listener.onDepositeSuccess(response.body());
+                    Log.i("responsepo", response.body().getMessage());
+
+                } else {
+                    listener.onDepositeError("Please Try Again.");
+
+                }
+            }
+
+            @Override
+            public void onFailure(Call<DepositeResponse> call, Throwable t) {
+                listener.onDepositeError(t.getMessage());
                 Log.i("failureMSG", t.getMessage());
 
             }

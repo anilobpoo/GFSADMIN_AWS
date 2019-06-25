@@ -17,6 +17,7 @@ import com.obpoo.gfsfabricsoftware.R;
 import com.obpoo.gfsfabricsoftware.collections.datamodel.CollectionDatum;
 import com.obpoo.gfsfabricsoftware.collections.datamodel.CollectionInvoiceResponse;
 import com.obpoo.gfsfabricsoftware.collections.datamodel.CollectionsDResponse;
+import com.obpoo.gfsfabricsoftware.collections.datamodel.DepositeResponse;
 import com.obpoo.gfsfabricsoftware.collections.datamodel.InvoiceDatum;
 import com.obpoo.gfsfabricsoftware.collections.datamodel.Transactions;
 import com.obpoo.gfsfabricsoftware.collections.mvp.CollectionsPresenterImpl;
@@ -126,6 +127,11 @@ public class CollectionINDAdapter extends RecyclerView.Adapter<CollectionINDAdap
             intent.putExtra("data", invoiceData);
             context.startActivity(intent);
         }
+    }
+
+    @Override
+    public void onDepositeLoad(DepositeResponse response) {
+
     }
 
     @Override
