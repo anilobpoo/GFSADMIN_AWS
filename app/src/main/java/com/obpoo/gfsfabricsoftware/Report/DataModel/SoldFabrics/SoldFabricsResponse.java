@@ -19,6 +19,9 @@ public class SoldFabricsResponse {
     @SerializedName("data")
     @Expose
     private ArrayList<SoldFabricsData> data = null;
+    @SerializedName("page_count")
+    @Expose
+    private Integer pageCount;
 
     public String getStatus() {
         return status;
