@@ -14,6 +14,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -21,6 +22,11 @@ import com.obpoo.gfsfabricsoftware.PurchaseOrder.UI.PO_Order;
 import com.obpoo.gfsfabricsoftware.R;
 import com.obpoo.gfsfabricsoftware.collections.adapter.CollectionsDelAdapter;
 import com.obpoo.gfsfabricsoftware.collections.datamodel.CollectionDatum;
+import com.obpoo.gfsfabricsoftware.collections.datamodel.CollectionInvoiceResponse;
+import com.obpoo.gfsfabricsoftware.collections.datamodel.CollectionsDResponse;
+import com.obpoo.gfsfabricsoftware.collections.datamodel.DepositeResponse;
+import com.obpoo.gfsfabricsoftware.collections.mvp.CollectionsPresenterImpl;
+import com.obpoo.gfsfabricsoftware.collections.mvp.CollectionsView;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -33,24 +39,34 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class CollectionsDeliveries extends AppCompatActivity {
+public class CollectionsDeliveries extends AppCompatActivity implements CollectionsView {
     @BindView(R.id.recycler_view)
     RecyclerView recycler_view;
     @BindView(R.id.back_PO_cmngrp)
     ImageView back_PO_cmngrp;
     @BindView(R.id.date_select)
     ImageView date_select;
+     @BindView(R.id.tranparent_bg)
+    ImageView tranparent_bg;
+     @BindView(R.id.progressbar)
+     ProgressBar progressbar;
+
     CollectionsDelAdapter adapter;
     ArrayList<CollectionDatum> data;
-    Button finput, tinput;
+    TextView finput, tinput, cancel, add;
     String d1, d2;
     private int mYear, mMonth, mDay;
+    CollectionsPresenterImpl presenter;
+    String[] previledges = {"Sale Orders", "Purchase Order", "Transfer Stock", "Break Fabric", "Stock", "Master", "Report", "Returns & Deliveries", "Cutter Guy", "Collections", "Associate Tailors"};
+    ArrayList<CollectionDatum> collectionDatadata;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_collections_deliveries);
         ButterKnife.bind(this);
+        presenter = new CollectionsPresenterImpl(this);
+
         Intent intent = getIntent();
         data = intent.getParcelableArrayListExtra("date");
         final LinearLayoutManager linearLayoutManager = new LinearLayoutManager(CollectionsDeliveries.this);
@@ -66,26 +82,33 @@ public class CollectionsDeliveries extends AppCompatActivity {
     public void backClick() {
         finish();
     }
+
     @OnClick(R.id.date_select)
     public void dateSelectClick() {
-        showDialog();
+        showADialog();
     }
 
-    public void showDialog(){
+    public void showADialog() {
         LayoutInflater li = LayoutInflater.from(this);
         View promptsView = li.inflate(R.layout.dprompts, null);
 
-        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this, R.style.MyDialogTheme);
+        final AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this, R.style.MyDialogTheme);
         alertDialogBuilder.setView(promptsView);
 
-        finput = (Button) promptsView.findViewById(R.id.fdate);
+        // create alert dialog
+        final AlertDialog alertDialog = alertDialogBuilder.create();
+
+        cancel = promptsView.findViewById(R.id.cancel);
+        add = promptsView.findViewById(R.id.add);
+
+        finput = promptsView.findViewById(R.id.from);
         finput.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 showDatePicker();
             }
         });
-        tinput = (Button) promptsView.findViewById(R.id.tdate);
+        tinput = promptsView.findViewById(R.id.to);
         tinput.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -93,37 +116,49 @@ public class CollectionsDeliveries extends AppCompatActivity {
             }
         });
 
-        // set dialog message
-        alertDialogBuilder
-                .setCancelable(false)
-                .setPositiveButton("OK",
-                        new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int id) {
+        add.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
-                                String f = finput.getText().toString();
-                                String t = tinput.getText().toString();
+                String f = finput.getText().toString();
+                String t = tinput.getText().toString();
 
-                                if (f.equals("") || t.equals("") || f.equals("FROM") || t.equals("TO")) {
-                                    Toast.makeText(CollectionsDeliveries.this, "Please select to and from dates", Toast.LENGTH_SHORT).show();
+                if (f.equals("") || t.equals("") || f.equals("FROM") || t.equals("TO")) {
+                    Toast.makeText(CollectionsDeliveries.this, "Please select to and from dates", Toast.LENGTH_SHORT).show();
 
-                                } else {
+                } else {
+                    presenter.view(t, f, "new_pg_collection", previledges);
+                    alertDialog.hide();
 
-                                }
+                }
+            }
+        });
 
-                            }
-                        })
-                .setNegativeButton("Cancel",
-                        new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int id) {
-                                dialog.cancel();
-                            }
-                        });
+        cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                alertDialog.hide();
+            }
+        });
 
-        // create alert dialog
-        AlertDialog alertDialog = alertDialogBuilder.create();
-
-        // show it
         alertDialog.show();
+    }
+
+    @Override
+    public void showDialog() {
+        tranparent_bg.setVisibility(View.VISIBLE);
+        progressbar.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void hideDialog() {
+        tranparent_bg.setVisibility(View.GONE);
+        progressbar.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void showError(String message) {
+
     }
 
     private void showDatePicker() {
@@ -142,7 +177,6 @@ public class CollectionsDeliveries extends AppCompatActivity {
         datePickerDialog.show();
     }
 
-
     private void showDatePicker2() {
 
         final Calendar c = Calendar.getInstance();
@@ -160,4 +194,28 @@ public class CollectionsDeliveries extends AppCompatActivity {
         datePickerDialog.show();
     }
 
+    @Override
+    public void onValidationFail(int type) {
+
+    }
+
+    @Override
+    public void onLoad(CollectionsDResponse response) {
+        if (response.getStatus().equals("success")) {
+            data = response.getData();
+            adapter = new CollectionsDelAdapter(CollectionsDeliveries.this, data);
+            recycler_view.setAdapter(adapter);
+            adapter.notifyDataSetChanged();
+        }
+    }
+
+    @Override
+    public void onInvoiceLoad(CollectionInvoiceResponse response) {
+
+    }
+
+    @Override
+    public void onDepositeLoad(DepositeResponse response) {
+
+    }
 }

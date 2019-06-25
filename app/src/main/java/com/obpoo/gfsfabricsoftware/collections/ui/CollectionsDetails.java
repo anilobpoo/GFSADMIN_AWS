@@ -64,7 +64,7 @@ public class CollectionsDetails extends AppCompatActivity implements Collections
 
     @OnClick(R.id.col_deliveries)
     public void deliveriesClick() {
-        presenter.view(todate, "2015-06-21", "new_pg_collection", previledges);
+        presenter.view(todate, fromdate, "new_pg_collection", previledges);
 
     }
 

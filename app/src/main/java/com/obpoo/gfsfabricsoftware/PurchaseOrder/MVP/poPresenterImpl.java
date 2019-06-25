@@ -4,8 +4,6 @@ import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.AddPOModel.AddPoPojo;
 import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.TrackPoModel.TrackPOByCusRes;
 import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.TrackPoModel.TrackPODetRes;
 import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.ViewPOModel.ConfirmPOResponse;
-import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.ViewPOModel.ConfirmPoRequest;
-import com.obpoo.gfsfabricsoftware.PurchaseOrder.UI.ConfirmPO;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -63,6 +61,14 @@ public class poPresenterImpl implements poPresenter,poInteractor.ViewPoResponse,
         if(poView!=null){
             poView.showDialog();
             interactor.callPoOrder(method,from_date,to_date,page_no,this);
+        }
+    }
+
+    @Override
+    public void viewPOPendingOrder(String method) {
+        if(poView!=null){
+            poView.showDialog();
+            interactor.callPoPendingOrder(method,this);
         }
     }
 

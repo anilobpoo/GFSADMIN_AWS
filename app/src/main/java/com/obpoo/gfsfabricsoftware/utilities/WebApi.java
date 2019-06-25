@@ -56,6 +56,7 @@ import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.ViewPOModel.ConfirmPO
 import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.ViewPOModel.ConfirmPoRequest;
 import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.ViewPOModel.ModifyConfirmPoReq;
 import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.ViewPOModel.PoOrderRequest;
+import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.ViewPOModel.PoPendingOrdRequest;
 import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.ViewPOModel.ViewConfirmPoRequest;
 import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.ViewPOModel.ViewPgnRequest;
 import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.ViewPOModel.poPOJO;
@@ -271,8 +272,12 @@ public interface WebApi {
 
     @POST("po_req/po_create_order.php")
     Call<poPOJO> viewPOApi(@Body ViewPgnRequest request);
-  @POST("po_req/po_create_order.php")
+
+    @POST("po_req/po_create_order.php")
     Call<poPOJO> viewPoOrderAPI(@Body PoOrderRequest request);
+
+    @POST("po_req/packaging_list.php")
+    Call<poPOJO> viewPoPendingOrderAPI(@Body PoPendingOrdRequest request);
 
     @POST("po_req/po_create_order.php")
     Call<poPOJO> viewConfirmPOApi(@Body ViewConfirmPoRequest request);
@@ -282,6 +287,7 @@ public interface WebApi {
 
     @POST("po_req/po_create_order.php")
     Call<ConfirmPOResponse> ConfirmPO(@Body ConfirmPoRequest request);
+
     @POST("po_req/po_order_items.php")
     Call<ConfirmPOResponse> ConfirmModifyPO(@Body ModifyConfirmPoReq request);
 
@@ -425,14 +431,19 @@ public interface WebApi {
 
     @POST("customer.php")
     Call<TrackPOByCusRes> trackPOAPI(@Body TrackPORequest request);
+
     @POST("po_req/po_create_order.php")
     Call<TrackPODetRes> trackPODetApi(@Body TrackPODetRequest request);
+
     @POST("order/order.php")
     Call<AllOrderRes> allorderSOAPI(@Body AllORderReq request);
+
     @POST("order/order.php")
     Call<AllOrderRes> allorderSODateFilAPI(@Body AllOrderSoDateFilReq request);
+
     @POST("order/order_status_master.php")
     Call<AllOrderStatusRes> allorderSOstatusAPI(@Body AllORderStatusReq request);
+
     @POST("order/order.php")
     Call<AllOrderRes> allorderSOstatusselectedAPI(@Body AllOrderSelectedStatusReq request);
 
@@ -441,8 +452,10 @@ public interface WebApi {
 
     @POST("pickup_guy/pg_collections.php")
     Call<CollectionInvoiceResponse> CollectionInvoApi(@Body InvoiceRequest request);
+
     @POST("pickup_guy/pg_collections.php")
     Call<CollectionInvoiceResponse> updateInvoApi(@Body UpdateInvoRequest request);
+
     @POST("pickup_guy/match_deposit_otp.php")
     Call<DepositeResponse> depositeCollectionsApi(@Body DepositeRequest request);
     @POST("order/order_Report.php")

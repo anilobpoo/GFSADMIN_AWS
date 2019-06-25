@@ -1,10 +1,14 @@
 package com.obpoo.gfsfabricsoftware.PurchaseOrder.UI;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.ProgressBar;
 
 import com.obpoo.gfsfabricsoftware.PurchaseOrder.Adapter.ConfirmPOAdapter;
 import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.AddPOModel.AddPoPojo;
@@ -26,6 +30,11 @@ import butterknife.OnClick;
 public class ConfirmPO extends AppCompatActivity implements poView {
     @BindView(R.id.recyclerview)
     RecyclerView recyclerView;
+    @BindView(R.id.tranparent_bg)
+    ImageView tranparent_bg;
+    @BindView(R.id.progressbar)
+    ProgressBar progressbar;
+
     ConfirmPOAdapter adapter;
     poPresenterImpl presenter;
 
@@ -43,6 +52,16 @@ public class ConfirmPO extends AppCompatActivity implements poView {
 
     @OnClick(R.id.back_PO_cmngrp)
     public void onClick() {
+        Intent intent = new Intent(ConfirmPO.this,PO.class);
+        startActivity(intent);
+        finish();
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent intent = new Intent(ConfirmPO.this,PO.class);
+        startActivity(intent);
         finish();
     }
 
@@ -84,12 +103,14 @@ public class ConfirmPO extends AppCompatActivity implements poView {
 
     @Override
     public void showDialog() {
-
+        tranparent_bg.setVisibility(View.VISIBLE);
+        progressbar.setVisibility(View.VISIBLE);
     }
 
     @Override
     public void hideDialog() {
-
+        tranparent_bg.setVisibility(View.GONE);
+        progressbar.setVisibility(View.GONE);
     }
 
     @Override

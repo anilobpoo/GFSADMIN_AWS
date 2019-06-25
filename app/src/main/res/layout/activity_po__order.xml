@@ -15,7 +15,6 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="MissingConstraints">
 
-
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
@@ -31,7 +30,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentStart="true"
                     android:layout_alignParentLeft="true"
-                    android:src="@drawable/ic_arrow_back_white_24dp" />
+                    android:src="@drawable/ic_chevron_left_black_40dp" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -39,12 +38,12 @@
                     android:layout_marginLeft="@dimen/nav_header_vertical_spacing"
                     android:layout_toRightOf="@+id/back_PO_cmngrp"
                     android:text="Received Order"
+                    android:layout_centerInParent="true"
                     android:textColor="@color/white"
                     android:textSize="@dimen/album_title"
                     android:textStyle="bold" />
 
             </RelativeLayout>
-
 
         </android.support.v7.widget.Toolbar>
 
@@ -64,7 +63,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="@dimen/padd_10"
         android:orientation="horizontal"
         android:weightSum="1">
 
@@ -78,8 +76,8 @@
 
             <ImageView
                 android:id="@+id/received_img"
-                android:layout_width="32dp"
-                android:layout_height="32dp"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
                 android:src="@drawable/received_order"
                 android:tint="@color/blue_100" />
 
@@ -101,8 +99,8 @@
 
             <ImageView
                 android:id="@+id/pending_img"
-                android:layout_width="32dp"
-                android:layout_height="32dp"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
                 android:src="@drawable/pending_order"
                 android:tint="@color/iron" />
 
@@ -114,4 +112,16 @@
                 android:textColor="@color/iron" />
         </LinearLayout>
     </LinearLayout>
+    <ImageView
+        android:id="@+id/tranparent_bg"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        android:src="@drawable/tranparent_bg"/>
+    <ProgressBar
+        android:id="@+id/progressbar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:layout_centerInParent="true"/>
 </RelativeLayout>

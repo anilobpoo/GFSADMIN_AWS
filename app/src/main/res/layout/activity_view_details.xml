@@ -33,15 +33,6 @@
                     android:layout_alignParentLeft="true"
                     android:src="@drawable/ic_chevron_left_black_40dp" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_toRightOf="@+id/back_PO_cmngrp"
-                    android:text="Back"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/album_title"
-                    android:textStyle="bold" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -165,7 +156,7 @@
                         android:gravity="center"
                         app:layout_constraintBottom_toBottomOf="@id/orderdate"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toEndOf="@id/orderdate"
+                        app:layout_constraintStart_toEndOf="@id/status_tv"
                         app:layout_constraintTop_toTopOf="@id/orderdate">
 
                         <ImageView
@@ -185,6 +176,34 @@
                             app:layout_constraintTop_toTopOf="@+id/imageView7" />
                     </LinearLayout>
 
+                    <LinearLayout
+                        android:id="@+id/laypod"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:visibility="gone"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/status_tv"
+                        app:layout_constraintTop_toTopOf="@+id/imageView4"
+                        app:layout_constraintBottom_toBottomOf="@+id/imageView4"
+                        >
+
+                        <ImageView
+                            android:id="@+id/odate"
+                            android:layout_width="22dp"
+                            android:layout_height="22dp"
+                            android:src="@drawable/order_img" />
+
+                        <TextView
+                            android:id="@+id/odate_tv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/padd_10"
+                            android:text="N/A"
+                            app:layout_constraintBottom_toBottomOf="@+id/imageView7"
+                            app:layout_constraintStart_toEndOf="@+id/imageView7"
+                            app:layout_constraintTop_toTopOf="@+id/imageView7" />
+                    </LinearLayout>
                     <ImageView
                         android:id="@+id/div"
                         android:layout_width="match_parent"
@@ -275,6 +294,7 @@
     </android.support.v4.widget.NestedScrollView>
 
     <LinearLayout
+        android:id="@+id/laymc"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"

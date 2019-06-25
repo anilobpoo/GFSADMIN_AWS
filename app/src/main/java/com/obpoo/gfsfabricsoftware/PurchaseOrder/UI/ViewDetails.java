@@ -6,7 +6,9 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -15,6 +17,7 @@ import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.AddPOModel.AddPoPojo;
 import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.TrackPoModel.TrackPOByCusRes;
 import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.TrackPoModel.TrackPODetRes;
 import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.ViewPOModel.ConfirmPOResponse;
+import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.ViewPOModel.poDatum;
 import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.ViewPOModel.poItem;
 import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.ViewPOModel.poPOJO;
 import com.obpoo.gfsfabricsoftware.PurchaseOrder.MVP.poPresenterImpl;
@@ -48,11 +51,25 @@ public class ViewDetails extends AppCompatActivity implements poView {
     TextView confirm;
     @BindView(R.id.isModification)
     TextView isModification;
+    @BindView(R.id.textView42)
+    TextView orderNo;
+    @BindView(R.id.odate_tv)
+    TextView order_date_pod;
+    @BindView(R.id.laypod)
+    LinearLayout laypod;
+    @BindView(R.id.imageView6)
+    ImageView imageView_odate_viewd;
+ @BindView(R.id.laymc)
+    LinearLayout laymc;
+
 
     ViewDetailsItemAdapter adapter;
     poPresenterImpl poPresenter;
     ArrayList<poItem> items;
+
+
     String factory, date, deliver_date, status, id, staf, cc_mail;
+    String tag = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,6 +85,7 @@ public class ViewDetails extends AppCompatActivity implements poView {
         Intent intent = getIntent();
         items = intent.getParcelableArrayListExtra("item");
         id = intent.getStringExtra("id");
+        tag = intent.getStringExtra("tag");
         factory = intent.getStringExtra("factory");
         status = intent.getStringExtra("status");
         date = intent.getStringExtra("date");
@@ -82,6 +100,22 @@ public class ViewDetails extends AppCompatActivity implements poView {
         deiverdate.setText(deliver_date);
         stafname.setText(staf);
         cc_email.setText(cc_mail);
+        orderNo.setText("Order:#" + id);
+        back_PO_cmngrp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
+        if (tag.equals("poorder")){
+            imageView_odate_viewd.setImageResource(R.drawable.cash_icon);
+            laypod.setVisibility(View.VISIBLE);
+            laymc.setVisibility(View.GONE);
+            order_date_pod.setText(date);
+            orderdate.setText("N/A");
+            orderdate.setTextColor((this.getResources().getColor(R.color.green_500)));
+        }
     }
 
     @OnClick(R.id.back_PO_cmngrp)
@@ -102,7 +136,7 @@ public class ViewDetails extends AppCompatActivity implements poView {
 
     @OnClick(R.id.confirm)
     public void confirmClick() {
-        poPresenter.OnConfirmPO("change_status", id, "1","0");
+        poPresenter.OnConfirmPO("change_status", id, "1", "0");
     }
 
     @Override
@@ -118,7 +152,7 @@ public class ViewDetails extends AppCompatActivity implements poView {
     @Override
     public void onConfirmPO(ConfirmPOResponse response) {
         if (response.getStatus().equals("success")) {
-            Intent intent = new Intent(ViewDetails.this,ConfirmPO.class);
+            Intent intent = new Intent(ViewDetails.this, ConfirmPO.class);
             startActivity(intent);
             finish();
         }

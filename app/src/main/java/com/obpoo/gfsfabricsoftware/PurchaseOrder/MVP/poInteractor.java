@@ -21,7 +21,8 @@ public interface poInteractor {
     }
 
     void callRetroViewPO(String method, String page_no, ViewPoResponse response);
-    void callPoOrder(String method, String from_date, String to_date,String page_no, ViewPoResponse response);
+    void callPoOrder(String method, String from_date, String to_date, String page_no, ViewPoResponse response);
+    void callPoPendingOrder(String method, ViewPoResponse response);
 
 
     interface AddPOResponse {
@@ -49,17 +50,17 @@ public interface poInteractor {
         void onConfirmPOError(String message);
     }
 
-    void callConfirmPO(String method, String id, String status,String tag,ViewConfirmPOResponse response );
+    void callConfirmPO(String method, String id, String status, String tag, ViewConfirmPOResponse response);
 
     interface TrackPOI{
         void onTrackPOSuccess(TrackPOByCusRes response);
         void onTrackPOError(String message);
     }
-    void callRetroTrackPO(String user_id,String method,TrackPOI response);
+    void callRetroTrackPO(String user_id, String method, TrackPOI response);
 
     interface TrackPODetI{
         void onTrackPODetSuccess(TrackPODetRes response);
         void onTrackPODetError(String message);
     }
-    void callRetroTrackPODet(String cid,String method,TrackPODetI response);
+    void callRetroTrackPODet(String cid, String method, TrackPODetI response);
 }
