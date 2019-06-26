@@ -34,7 +34,7 @@ public class VendorsPresenterImpl implements VendorsPresenter, VendorsInteracter
 
     @Override
     public void viewAll(String methodname) {
-
+        view.showDialog();
 
         ViewVendorsRequest request =new ViewVendorsRequest(methodname);
         interacter.viewList(request,this);

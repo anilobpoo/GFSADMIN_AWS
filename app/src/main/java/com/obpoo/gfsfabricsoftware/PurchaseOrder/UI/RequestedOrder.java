@@ -10,6 +10,8 @@ import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AbsListView;
 import android.widget.EditText;
@@ -36,6 +38,7 @@ import com.obpoo.gfsfabricsoftware.color.datamodels.ColorDetail;
 import com.obpoo.gfsfabricsoftware.color.datamodels.ColorResponse;
 import com.obpoo.gfsfabricsoftware.color.mvp.ColorPresenterImpl;
 import com.obpoo.gfsfabricsoftware.color.mvp.ColorView;
+import com.obpoo.gfsfabricsoftware.ui.activities.BaseActivity;
 import com.obpoo.gfsfabricsoftware.user.datamodels.UserDetail;
 import com.obpoo.gfsfabricsoftware.user.datamodels.UserResponse;
 import com.obpoo.gfsfabricsoftware.user.mvp.UserPresenterImpl;
@@ -50,7 +53,7 @@ import java.util.ArrayList;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class RequestedOrder extends AppCompatActivity implements poView,UserView,VendorsView,StockView,ColorView {
+public class RequestedOrder extends BaseActivity implements poView, UserView, VendorsView, StockView, ColorView {
     @BindView(R.id.rv_po)
     RecyclerView rv_po;
     poPresenterImpl presenter;
@@ -61,57 +64,44 @@ public class RequestedOrder extends AppCompatActivity implements poView,UserView
     UserPresenterImpl presenter_user;
     ArrayList<UserDetail> userdetailList;
     VendorsPresenterImpl vendor_presenter;
-    private ArrayList<VendorsDetail> cartList=new ArrayList<>();
+    private ArrayList<VendorsDetail> cartList = new ArrayList<>();
     StockPresenterImpl article_presenter;
     ArrayList<StockDataResponse> stocklist = new ArrayList<>();
     ColorPresenterImpl color_presenter;
-    private ArrayList<ColorDetail> colorlist=new ArrayList<>();
+    private ArrayList<ColorDetail> colorlist = new ArrayList<>();
     ArrayList<poDatum> pOdataList;
     poViewAdapter adapter;
     int page_no = 1;
     Boolean isScrolling = false;
     int currentItems, totalItems, scrollOutItems;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_po);
-        Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar);
-        ImageView back = (ImageView)toolbar.findViewById(R.id.back_PO_cmngrp);
-        back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar.setTitle("Manage/CreatePO");
+        setSupportActionBar(toolbar);
+
+        ButterKnife.bind(this);
+        enableActionBar(true);
+        ButterKnife.bind(this);
+
         final LinearLayoutManager linearLayoutManager = new LinearLayoutManager(RequestedOrder.this);
 
-        ImageView addPO = (ImageView)toolbar.findViewById(R.id.add_stock_cmngrp);
-        addPO.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent in = new Intent(RequestedOrder.this,POAdd.class);
-//                in.putExtra("userSpinner",userdetailList);
-//                in.putExtra("vendorSpinner",cartList);
-//                in.putExtra("articleSpinner",stocklist);
-//                in.putExtra("colorSpinner",colorlist);
-                in.putExtra("mediateVIA","PO_class");
-                in.putExtra("getItemList","addItemList");
-
-                startActivity(in);
-            }
-        });
-        ButterKnife.bind(this);
         presenter = new poPresenterImpl(this);
-        vendor_presenter= new VendorsPresenterImpl(this);
-        article_presenter= new StockPresenterImpl(this);
-        color_presenter=new ColorPresenterImpl(this);
+        vendor_presenter = new VendorsPresenterImpl(this);
+        article_presenter = new StockPresenterImpl(this);
+        color_presenter = new ColorPresenterImpl(this);
         presenter.OnViewPO("view_all_pagn", String.valueOf(page_no));
         // presenter for user......
         presenter_user = new UserPresenterImpl(this);
-        presenter_user.viewAll("view_all");
-        vendor_presenter.viewAll("view_all");
-        article_presenter.showResponse("viewall");
-        color_presenter.viewAll("view_all");
+
+//        presenter_user.viewAll("view_all");
+//        vendor_presenter.viewAll("view_all");
+//        article_presenter.showResponse("viewall");
+//        color_presenter.viewAll("view_all");
 
         etSearch.addTextChangedListener(new TextWatcher() {
             @Override
@@ -157,6 +147,12 @@ public class RequestedOrder extends AppCompatActivity implements poView,UserView
             }
 
         });
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.mcpo, menu);
+        return true;
     }
 
     @Override
@@ -208,9 +204,9 @@ public class RequestedOrder extends AppCompatActivity implements poView,UserView
     }
 
     private void showInRecyclerView(poPOJO response) {
-       pOdataList  = response.getData();
+        pOdataList = response.getData();
 
-         adapter  = new poViewAdapter(getApplicationContext(), pOdataList);
+        adapter = new poViewAdapter(getApplicationContext(), pOdataList);
         final LinearLayoutManager lm = new LinearLayoutManager(RequestedOrder.this);
 
         rv_po.setLayoutManager(lm);
@@ -225,20 +221,20 @@ public class RequestedOrder extends AppCompatActivity implements poView,UserView
 
     @Override
     public void onLoad(ColorResponse response) {
-        colorlist=response.getDetail();
+        colorlist = response.getDetail();
 
     }
 
     @Override
     public void onLoad(VendorsResponse response) {
-        cartList=response.getDetail();
+        cartList = response.getDetail();
 
     }
 
     @Override
     public void viewUserList(UserResponse response) {
-        Log.i("UserPO",response.getMessage());
-        userdetailList=response.getDetail();
+        Log.i("UserPO", response.getMessage());
+        userdetailList = response.getDetail();
 
     }
 
@@ -249,7 +245,7 @@ public class RequestedOrder extends AppCompatActivity implements poView,UserView
 
     @Override
     public void onShowStock(stockPOJO response) {
-        stocklist=response.getData();
+        stocklist = response.getData();
 
     }
 
@@ -262,16 +258,31 @@ public class RequestedOrder extends AppCompatActivity implements poView,UserView
     public void onshowDeleteArticel(deletearticelPOJO response) {
 
     }
+
     void filter(String text) {
         ArrayList<poDatum> temp = new ArrayList();
-        for (poDatum d : pOdataList ) {
-            if (d.getStatusText().toLowerCase().contains(text.toLowerCase()) ) {
+        for (poDatum d : pOdataList) {
+            if (d.getStatusText().toLowerCase().contains(text.toLowerCase())) {
                 temp.add(d);
             }
         }
-        Log.i("TEMP",temp.size()+"");
-         adapter.updateList(temp);
+        Log.i("TEMP", temp.size() + "");
+        adapter.updateList(temp);
 
     }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.so_filter:
+                break;
+            case R.id.so_date_filter:
+                Intent in = new Intent(RequestedOrder.this, POAdd.class);
+                in.putExtra("mediateVIA", "PO_class");
+                in.putExtra("getItemList", "addItemList");
+                startActivity(in);
+                break;
+        }
+        return super.onOptionsItemSelected(item);
+    }
 }

@@ -3,10 +3,13 @@ package com.obpoo.gfsfabricsoftware.PurchaseOrder.Adapter;
 import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.AddPOModel.AddPoPojo;
@@ -20,7 +23,11 @@ import com.obpoo.gfsfabricsoftware.PurchaseOrder.MVP.poView;
 import com.obpoo.gfsfabricsoftware.PurchaseOrder.UI.POView;
 import com.obpoo.gfsfabricsoftware.R;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -51,34 +58,53 @@ public class poViewAdapter extends RecyclerView.Adapter<poViewAdapter.VViewHolde
     @NonNull
     @Override
     public poViewAdapter.VViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int i) {
-        View view = LayoutInflater.from(context).inflate(R.layout.po_folding_view, parent, false);
+        View view = LayoutInflater.from(context).inflate(R.layout.confirm_po_adapter, parent, false);
         poViewAdapter.VViewHolder cmnArtViewHolder = new poViewAdapter.VViewHolder(view);
         return cmnArtViewHolder;
     }
 
     @Override
     public void onBindViewHolder(@NonNull poViewAdapter.VViewHolder holder, final int i) {
-        holder.factory.setText(poListData.get(i).getFactory());
-        holder.bn.setText(poListData.get(i).getBrandName());
-        holder.staff.setText(poListData.get(i).getStaff());
-        holder.staffEmail.setText(poListData.get(i).getCcEmail());
-        holder.status.setText(poListData.get(i).getStatusText());
-        holder.orderId_po.setText("#"+poListData.get(i).getId());
-        holder.item_count_po.setText(String.valueOf(poListData.get(i).getItems().size()));
+        final poDatum index = poListData.get(i);
+        holder.id.setText("#"+index.getId());
+        holder.item.setText("Items: "+String.valueOf(index.getItems().size()));
+        holder.factoryname.setText(index.getFactory());
+        holder.status.setText(index.getStatusText());
+        DateFormat inputFormatter1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Date date1 = null;
+        Date date2 = null;
+        try {
+            date1 = inputFormatter1.parse(index.getCreatedOn());
+
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        DateFormat outputFormatter1 = new SimpleDateFormat("dd-MMM-yyyy");
+        String output1 = outputFormatter1.format(date1);
 
 
-        holder.view.setOnClickListener(new View.OnClickListener() {
+        holder.date.setText(output1);
+        if(index.getDelivery_date().equals("")){
+            holder.deliver_date.setText("N/A");
+        }
+        else{
+        holder.deliver_date.setText(index.getDelivery_date());}
+
+
+        holder.viewPo_arr.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent in = new Intent(context,POView.class);
                 in.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                in.putExtra("POdata",poListData);
+                in.putExtra("POdata",index);
                 in.putExtra("POdataIndex",i);
                 context.startActivity(in);
-
-
             }
         });
+
+
+
 
     }
 
@@ -133,24 +159,20 @@ public class poViewAdapter extends RecyclerView.Adapter<poViewAdapter.VViewHolde
     }
 
     class VViewHolder extends  RecyclerView.ViewHolder{
-        @BindView(R.id.factory)
-        TextView factory;
-        @BindView(R.id.bn)
-        TextView bn;
-        @BindView(R.id.staff)
-        TextView staff;
-        @BindView(R.id.staffEmail)
-        TextView staffEmail;
-        @BindView(R.id.view_poitems)
-        TextView view;
+        @BindView(R.id.id)
+        TextView id;
+        @BindView(R.id.item)
+        TextView item;
+        @BindView(R.id.factoryname)
+        TextView factoryname;
         @BindView(R.id.status)
         TextView status;
-        @BindView(R.id.orderId_po)
-        TextView orderId_po;
-        @BindView(R.id.item_count_po)
-        TextView item_count_po;
-        @BindView(R.id.date_time)
-        TextView date_time;
+        @BindView(R.id.date)
+        TextView date;
+        @BindView(R.id.deliver_date)
+        TextView deliver_date;
+        @BindView(R.id.viewPo_arr)
+        RelativeLayout viewPo_arr;
 
 
         public VViewHolder(@NonNull View itemView) {

@@ -95,7 +95,7 @@
                     android:layout_marginLeft="@dimen/padd_10"
                     android:layout_toRightOf="@+id/icon"
                     android:gravity="center"
-                    android:text="Request Order"
+                    android:text="Manage/Create PO"
                     android:textColor="@color/black"
                     android:textSize="18dp" />
 

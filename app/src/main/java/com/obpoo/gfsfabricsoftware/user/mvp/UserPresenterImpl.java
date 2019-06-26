@@ -41,7 +41,7 @@ public class UserPresenterImpl implements UserPresenter,UserInteractor.UserListe
     @Override
     public void viewAll(String methodname) {
 
-
+   view.showDialog();
         ViewRequest request =new ViewRequest(methodname);
         interacter.viewUserList(request,this);
     }

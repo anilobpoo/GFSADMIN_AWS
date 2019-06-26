@@ -12,6 +12,7 @@ import android.widget.AdapterView;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -108,6 +109,8 @@ public class POAdd extends BaseActivity implements poView, FabricsView, UserView
     PoAddAdapter POAddadapter = null;
     POChangedAdapter poChangedAdapter;
 
+    @BindView(R.id.pbatshowArticle)
+    ProgressBar pbatshowArticle;
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -280,11 +283,13 @@ public class POAdd extends BaseActivity implements poView, FabricsView, UserView
 
     @Override
     public void showDialog() {
+        pbatshowArticle.setVisibility(View.VISIBLE);
 
     }
 
     @Override
     public void hideDialog() {
+        pbatshowArticle.setVisibility(View.GONE);
 
     }
 

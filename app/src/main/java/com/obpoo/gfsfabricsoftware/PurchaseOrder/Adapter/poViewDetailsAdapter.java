@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.ViewPOModel.poDatum;
 import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.ViewPOModel.poItem;
 import com.obpoo.gfsfabricsoftware.R;
 import com.obpoo.gfsfabricsoftware.utilities.AppConstants;
@@ -26,51 +27,60 @@ import butterknife.ButterKnife;
 public class poViewDetailsAdapter  extends RecyclerView.Adapter<poViewDetailsAdapter.VViewHolder> {
 
     Context context;
-    ArrayList<poItem> poListData;
+    ArrayList<poItem> podataList;
 
-    public poViewDetailsAdapter(Context context, ArrayList<poItem> poListData) {
+    public poViewDetailsAdapter(Context context, ArrayList<poItem> podataList) {
         this.context = context;
-        this.poListData = poListData;
+        this.podataList = podataList;
 
     }
 
     @NonNull
     @Override
     public poViewDetailsAdapter.VViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int i) {
-        View view = LayoutInflater.from(context).inflate(R.layout.poviewdetailslist, parent, false);
+        View view = LayoutInflater.from(context).inflate(R.layout.pomc_detail, parent, false);
         poViewDetailsAdapter.VViewHolder cmnArtViewHolder = new poViewDetailsAdapter.VViewHolder(view);
         return cmnArtViewHolder;
     }
 
     @Override
     public void onBindViewHolder(@NonNull VViewHolder holder, int i) {
+        poItem index = podataList.get(i);
+        holder.fab_name_so_order_det.setText(index.getArtNo()+"-"+index.getColorCode());
+        holder.yard_so_order_det.setText(index.getStatusText());
+        holder.price_fab_so_order_det.setText("Brand: "+index.getBrandName());
+        holder.mtr_so_order_det.setText("Price: "+index.getCostPrice());
+        holder.cus_mco.setText("Customer:"+index.getCustomerName());
+        holder.qty_mtr_mco.setText("Qty(Mtr): "+index.getQuantity());
+
+        holder.qtyy_mco.setText("Qty(yard): "+String.format("%.2f",Integer.valueOf(index.getQuantity())*1.09));
 
 
-        holder.ArtNo.setText(poListData.get(i).getArtNo());
-        holder.brandname.setText(poListData.get(i).getBrandName());
-        holder.qty.setText(poListData.get(i).getQuantity());
-        holder.status.setText(poListData.get(i).getStatusText());
-        Picasso.with(context).load(AppConstants.FABRIC_IMAGE+poListData.get(i).getImg()).into(holder.image);
+
 
     }
 
 
     @Override
     public int getItemCount() {
-        return poListData.size();
+        return podataList.size();
     }
 
     class VViewHolder extends RecyclerView.ViewHolder {
-        @BindView(R.id.artNo)
-        TextView ArtNo;
-        @BindView(R.id.brandname)
-        TextView brandname;
-        @BindView(R.id.qty)
-        TextView qty;
-        @BindView(R.id.status)
-        TextView status;
-        @BindView(R.id.image)
-        ImageView image;
+        @BindView(R.id.fab_name_so_order_det)
+        TextView fab_name_so_order_det;
+        @BindView(R.id.yard_so_order_det)
+        TextView yard_so_order_det;
+        @BindView(R.id.price_fab_so_order_det)
+        TextView price_fab_so_order_det;
+        @BindView(R.id.mtr_so_order_det)
+        TextView mtr_so_order_det;
+        @BindView(R.id.cus_mco)
+        TextView cus_mco;
+        @BindView(R.id.qtyy_mco)
+        TextView qtyy_mco;
+        @BindView(R.id.qty_mtr_mco)
+        TextView qty_mtr_mco;
 
 
 

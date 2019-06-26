@@ -78,13 +78,7 @@ public class poDatum implements Parcelable {
     @SerializedName("user_email")
     @Expose
     private String userEmail;
-    @SerializedName("status_text")
-    @Expose
-    private String statusText;
 
-    @SerializedName("items")
-    @Expose
-    private ArrayList<poItem> items = null;
 
     protected poDatum(Parcel in) {
         id = in.readString();
@@ -109,6 +103,17 @@ public class poDatum implements Parcelable {
         staff = in.readString();
         userEmail = in.readString();
         statusText = in.readString();
+        items = in.createTypedArrayList(poItem.CREATOR);
+        notes = in.readString();
+        currency = in.readString();
+    }
+
+    public String getCurrency() {
+        return currency;
+    }
+
+    public void setCurrency(String currency) {
+        this.currency = currency;
     }
 
     public static final Creator<poDatum> CREATOR = new Creator<poDatum>() {
@@ -122,6 +127,36 @@ public class poDatum implements Parcelable {
             return new poDatum[size];
         }
     };
+
+    public String getNotes() {
+        return notes;
+    }
+
+    public void setNotes(String notes) {
+        this.notes = notes;
+    }
+
+    @SerializedName("status_text")
+    @Expose
+    private String statusText;
+
+    @SerializedName("items")
+    @Expose
+    private ArrayList<poItem> items = null;
+
+    public static Creator<poDatum> getCREATOR() {
+        return CREATOR;
+    }
+
+    @SerializedName("notes")
+    @Expose
+    private String notes;
+
+    @SerializedName("currency")
+    @Expose
+    private String currency;
+
+
 
     public String getId() {
         return id;
@@ -305,6 +340,7 @@ public class poDatum implements Parcelable {
         this.items = items;
     }
 
+
     @Override
     public int describeContents() {
         return 0;
@@ -334,6 +370,9 @@ public class poDatum implements Parcelable {
         dest.writeString(staff);
         dest.writeString(userEmail);
         dest.writeString(statusText);
+        dest.writeTypedList(items);
+        dest.writeString(notes);
+        dest.writeString(currency);
     }
 }
 
