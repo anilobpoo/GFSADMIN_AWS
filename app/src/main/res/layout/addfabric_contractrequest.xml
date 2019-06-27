@@ -1,15 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:padding="2dp">
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/cell_title_view"
-        android:background="@color/white"
 
-        >
+    <FrameLayout
+        android:id="@+id/cell_title_view"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="1dp"
+
+        android:layout_marginEnd="1dp"
+        android:layout_marginBottom="1dp"
+        android:background="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -19,24 +26,25 @@
             <LinearLayout
                 android:layout_width="100dp"
                 android:layout_height="match_parent"
-                android:orientation="vertical"
                 android:gravity="center"
-                >
+                android:orientation="vertical">
+
                 <ImageView
+                    android:id="@+id/fab_image"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
-                    android:text="@string/stock_article"
-                    android:textColor="@color/white"
                     android:layout_gravity="center"
                     android:fontFamily="sans-serif"
-                    android:id="@+id/fab_image"
-                    />
+                    android:text="@string/stock_article"
+                    android:textColor="@color/white"
+                    android:src="@drawable/fabric_master"/>
+
                 <TextView
+                    android:id="@+id/content_fab"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="composition"
                     android:gravity="center"
-                    android:id="@+id/content_fab"/>
+                    android:text="composition" />
 
             </LinearLayout>
 
@@ -50,82 +58,80 @@
             <GridLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_margin="10dp"
                 android:layout_marginLeft="10dp"
-                android:columnCount="2"
-                android:layout_margin="10dp">
+                android:columnCount="2">
+
                 <TextView
+                    android:id="@+id/article_fab"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="ArticleNo"
-                    android:gravity="center"
-                    android:id="@+id/article_fab"
                     android:layout_columnSpan="2"
-                    android:textSize="17sp"
-                    android:textColor="@color/colorPrimary"/>
+                    android:gravity="left"
+                    android:text="ArticleNo"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="17sp" />
 
 
                 <Spinner
                     android:id="@+id/customer"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:padding="5dp"
-                    android:layout_margin="5dp"
                     android:layout_columnSpan="2"
+                    android:layout_margin="5dp"
                     android:backgroundTint="@color/colorPrimary"
-
+                    android:padding="5dp"
                     />
 
                 <EditText
                     android:id="@+id/brand_fab"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Brand Name"
-                    android:background="@drawable/winv"
-                    android:padding="5dp"
-                    android:layout_margin="5dp"
-                    android:textSize="15dp"
                     android:layout_columnSpan="2"
-                    />
+                    android:layout_margin="5dp"
+                    android:background="@drawable/winv"
+                    android:hint="Brand Name"
+                    android:padding="5dp"
+                    android:textSize="15dp" />
 
                 <EditText
                     android:id="@+id/fab_qty_mtr"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/black"
-                    android:textStyle="bold"
-                    android:hint="Qty(Mtr)"
-                    android:ems="5"
-                    android:background="@drawable/winv"
-                    android:padding="5dp"
                     android:layout_margin="5dp"
+                    android:background="@drawable/winv"
+                    android:ems="5"
+                    android:hint="Qty(Mtr)"
+                    android:inputType="number"
+                    android:padding="5dp"
+                    android:textColor="@color/black"
                     android:textSize="15dp"
-                    android:inputType="number"/>
+                    android:textStyle="bold" />
+
                 <EditText
                     android:id="@+id/fab_qty_yard"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/black"
-                    android:textStyle="bold"
-                    android:hint="Qty(Yard)"
-                    android:ems="5"
-                    android:background="@drawable/winv"
-                    android:padding="5dp"
                     android:layout_margin="5dp"
-                    android:textSize="15dp"
+                    android:background="@drawable/winv"
+                    android:ems="5"
+                    android:hint="Qty(Yard)"
                     android:inputType="number"
-                    />
+                    android:padding="5dp"
+                    android:textColor="@color/black"
+                    android:textSize="15dp"
+                    android:textStyle="bold" />
 
                 <Button
+                    android:id="@+id/add_fabric_item"
                     android:layout_width="match_parent"
                     android:layout_height="30dp"
-                    android:layout_gravity="center"
                     android:layout_columnSpan="2"
+                    android:layout_gravity="center"
+                    android:layout_margin="5dp"
                     android:background="@color/green_500"
                     android:text="Add Item"
-                    android:textColor="@color/white"
-                    android:layout_margin="5dp"
-                    android:id="@+id/add_fabric_item"
-                    />
+                    android:textColor="@color/white" />
 
 
             </GridLayout>

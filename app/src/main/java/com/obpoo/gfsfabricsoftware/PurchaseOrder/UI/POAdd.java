@@ -38,11 +38,13 @@ import com.obpoo.gfsfabricsoftware.fabric.datamodels.FabricsDetail;
 import com.obpoo.gfsfabricsoftware.fabric.datamodels.FabricsResponse;
 import com.obpoo.gfsfabricsoftware.fabric.mvp.FabricsPresenterImpl;
 import com.obpoo.gfsfabricsoftware.fabric.mvp.FabricsView;
+import com.obpoo.gfsfabricsoftware.salesorder.ui.AddfabricSoOrders;
 import com.obpoo.gfsfabricsoftware.ui.activities.BaseActivity;
 import com.obpoo.gfsfabricsoftware.user.datamodels.UserDetail;
 import com.obpoo.gfsfabricsoftware.user.datamodels.UserResponse;
 import com.obpoo.gfsfabricsoftware.user.mvp.UserPresenterImpl;
 import com.obpoo.gfsfabricsoftware.user.mvp.UserView;
+import com.obpoo.gfsfabricsoftware.utilities.AppConstants;
 import com.obpoo.gfsfabricsoftware.vendors.datamodels.VendorsDetail;
 import com.obpoo.gfsfabricsoftware.vendors.datamodels.VendorsResponse;
 import com.obpoo.gfsfabricsoftware.vendors.mvp.VendorsPresenterImpl;
@@ -166,7 +168,7 @@ public class POAdd extends BaseActivity implements poView, FabricsView, UserView
         vendor_presenter.viewAll("view_all");
 
         fabric_presenter = new FabricsPresenterImpl(this);
-        fabric_presenter.viewAll("view_all_fabric");
+       // fabric_presenter.viewAll("view_all_fabric");
 
         fabric_auto.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -415,9 +417,12 @@ public class POAdd extends BaseActivity implements poView, FabricsView, UserView
 
     @OnClick(R.id.occassion_add)
     public void onAddItems() {
-        Intent in = new Intent(POAdd.this, AddFabricInPoContract.class);
-        in.putExtra("FabricListItems", fabricList);
-        startActivityForResult(in, 2);
+       /* Intent in = new Intent(POAdd.this, AddFabricInPoContract.class);
+       // in.putExtra("FabricListItems", fabricList);
+        startActivityForResult(in, 2);*/
+        Intent in = new Intent(POAdd.this, AddfabricSoOrders.class);
+        in.putExtra("ORDERTYPE_SOORDER","");
+        startActivityForResult(in, AppConstants.addcmFab);
 
     }
 

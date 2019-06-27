@@ -23,18 +23,23 @@ import com.obpoo.gfsfabricsoftware.Stock.DataModel.ViewStockNewResponse;
 import com.obpoo.gfsfabricsoftware.Stock.DataModel.ViewStockResponse;
 import com.obpoo.gfsfabricsoftware.Stock.MVP.StockPresenterImpl;
 import com.obpoo.gfsfabricsoftware.Stock.MVP.ViewStock;
+import com.obpoo.gfsfabricsoftware.customers.datamodels.CustomersDetail;
+import com.obpoo.gfsfabricsoftware.customers.datamodels.CustomersResponse;
+import com.obpoo.gfsfabricsoftware.customers.mvp.CustomersPresenterImpl;
+import com.obpoo.gfsfabricsoftware.customers.mvp.CustomersView;
 import com.obpoo.gfsfabricsoftware.salesorder.adapter.AddFabOrderBelowADP;
 import com.obpoo.gfsfabricsoftware.salesorder.adapter.AddFabSalesOrder;
 import com.obpoo.gfsfabricsoftware.salesorder.datamodels.AllOrderModel.FabricAddOrderSO;
 import com.obpoo.gfsfabricsoftware.ui.activities.BaseActivity;
 import com.obpoo.gfsfabricsoftware.utilities.AppConstants;
+import com.obpoo.gfsfabricsoftware.utilities.PreferenceConnector;
 
 import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class AddfabricSoOrders extends BaseActivity implements ViewStock, FabricAddOrderSO {
+public class AddfabricSoOrders extends BaseActivity implements ViewStock, FabricAddOrderSO, CustomersView {
     StockPresenterImpl  presenter;
     @BindView(R.id.etSearch)
     EditText etSearch;
@@ -47,6 +52,8 @@ public class AddfabricSoOrders extends BaseActivity implements ViewStock, Fabric
     String getOrderType;
     ArrayList<AddReserveDet> addReserveDetArrayList;
     ArrayList<AddReserveDet> addbelowDetArrayList;
+    CustomersPresenterImpl presenter_cus;
+    ArrayList<CustomersDetail> customerList=new ArrayList<>();
 
 
     @Override
@@ -64,6 +71,10 @@ public class AddfabricSoOrders extends BaseActivity implements ViewStock, Fabric
         presenter = new StockPresenterImpl(this);
         addReserveDetArrayList= new ArrayList<>();
         addbelowDetArrayList = new ArrayList<>();
+
+        presenter_cus = new CustomersPresenterImpl(this);
+        String admin_id =  PreferenceConnector.readString(this, getString(R.string.admin_id),"");
+        presenter_cus.viewAll("view_all",admin_id);
 
         etSearch.addTextChangedListener(new TextWatcher() {
             @Override
@@ -118,7 +129,7 @@ public class AddfabricSoOrders extends BaseActivity implements ViewStock, Fabric
         progress_so_fab_add.setVisibility(View.GONE);
         if(response.getStatus().equals("success")){
             ArrayList<AddReserveDet> addReserveDetArrayList = response.getData();
-            AddFabSalesOrder  adapter = new AddFabSalesOrder(addReserveDetArrayList,AddfabricSoOrders.this,this);
+            AddFabSalesOrder  adapter = new AddFabSalesOrder(addReserveDetArrayList,AddfabricSoOrders.this,this,customerList);
             LinearLayoutManager lm = new LinearLayoutManager(this);
             rv_addfab_soorder.setLayoutManager(lm);
             rv_addfab_soorder.setAdapter(adapter);
@@ -144,6 +155,32 @@ public class AddfabricSoOrders extends BaseActivity implements ViewStock, Fabric
 
 
         //***********
+
+    }
+
+    @Override
+    public void onValidationFail(int type) {
+
+    }
+
+    @Override
+    public void onLoad(CustomersResponse response) {
+        customerList=response.getDetail();
+
+    }
+
+    @Override
+    public void showDialog() {
+
+    }
+
+    @Override
+    public void hideDialog() {
+
+    }
+
+    @Override
+    public void showError(String message) {
 
     }
 }

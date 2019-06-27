@@ -53,7 +53,7 @@ public class poViewDetailsAdapter  extends RecyclerView.Adapter<poViewDetailsAda
         holder.cus_mco.setText("Customer:"+index.getCustomerName());
         holder.qty_mtr_mco.setText("Qty(Mtr): "+index.getQuantity());
 
-        holder.qtyy_mco.setText("Qty(yard): "+String.format("%.2f",Integer.valueOf(index.getQuantity())*1.09));
+        holder.qtyy_mco.setText("Qty(yard): "+String.format("%.2f",Double.valueOf(index.getQuantity())*1.09));
 
 
 

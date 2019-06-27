@@ -40,4 +40,5 @@ public class AppConstants {
     public static final String orderSoDetails ="ORDERSODETAILS";
     public static final int addfanricSOorders=2020;
     public static final String item_sales_cons="ITEM EASY";
+    public static final int addcmFab=2021;
 }

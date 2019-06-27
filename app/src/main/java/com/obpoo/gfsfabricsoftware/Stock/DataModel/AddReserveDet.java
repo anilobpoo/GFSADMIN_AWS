@@ -21,6 +21,7 @@ public class AddReserveDet implements Parcelable {
     @Expose
     private String fabImg;
 
+
     protected AddReserveDet(Parcel in) {
         id = in.readString();
         fabName = in.readString();
@@ -30,6 +31,7 @@ public class AddReserveDet implements Parcelable {
         qrcode = in.readString();
         articleno = in.readString();
         composition = in.readString();
+        brand = in.readString();
         qty = in.readString();
     }
 
@@ -80,9 +82,22 @@ public class AddReserveDet implements Parcelable {
     @SerializedName("articleno")
     @Expose
     private String articleno;
+
+    public String getBrand() {
+        return brand;
+    }
+
+    public void setBrand(String brand) {
+        this.brand = brand;
+    }
+
     @SerializedName("composition")
     @Expose
     private String composition;
+
+    @SerializedName("brand")
+    @Expose
+    private String brand;
 
     String qty;
 
@@ -138,10 +153,7 @@ public class AddReserveDet implements Parcelable {
     }
 
 
-    @Override
-    public int describeContents() {
-        return 0;
-    }
+
 
     public AddReserveDet(String fabName, String composition, String qty) {
         this.fabName = fabName;
@@ -156,6 +168,12 @@ public class AddReserveDet implements Parcelable {
         this.qty = qty;
     }
 
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(id);
@@ -166,6 +184,7 @@ public class AddReserveDet implements Parcelable {
         dest.writeString(qrcode);
         dest.writeString(articleno);
         dest.writeString(composition);
+        dest.writeString(brand);
         dest.writeString(qty);
     }
 }
