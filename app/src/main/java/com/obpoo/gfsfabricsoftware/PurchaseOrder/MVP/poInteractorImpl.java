@@ -15,6 +15,7 @@ import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.ViewPOModel.PoOrderRe
 import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.ViewPOModel.PoPendingOrdRequest;
 import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.ViewPOModel.ViewConfirmPoRequest;
 import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.ViewPOModel.ViewPgnRequest;
+import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.ViewPOModel.poItem;
 import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.ViewPOModel.poPOJO;
 import com.obpoo.gfsfabricsoftware.utilities.ApiClient;
 import com.obpoo.gfsfabricsoftware.utilities.WebApi;
@@ -146,7 +147,7 @@ public class poInteractorImpl implements poInteractor {
 
     @Override
     public void callRetroAddPO(String method, String factory_id, String staff_id, String cc_email,
-                               String created_by, String updated_by, ArrayList<HashMap<String, String>> items, final AddPOResponse AddPOResponse) {
+                               String created_by, String updated_by,ArrayList<poItem> items, final AddPOResponse AddPOResponse) {
         Retrofit retrofit = ApiClient.getRetrofit();
         WebApi apis = retrofit.create(WebApi.class);
 

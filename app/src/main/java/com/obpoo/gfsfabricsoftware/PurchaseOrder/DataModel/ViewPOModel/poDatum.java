@@ -17,6 +17,59 @@ public class poDatum implements Parcelable {
     @SerializedName("id")
     @Expose
     private String id;
+
+    protected poDatum(Parcel in) {
+        id = in.readString();
+        po_no = in.readString();
+        factoryId = in.readString();
+        staffId = in.readString();
+        ccEmail = in.readString();
+        brandName = in.readString();
+        contractDoc = in.readString();
+        contractXl = in.readString();
+        delivery_date = in.readString();
+        subContractDoc = in.readString();
+        subContractXl = in.readString();
+        subSubContractDoc = in.readString();
+        subSubContractXl = in.readString();
+        createdBy = in.readString();
+        createdOn = in.readString();
+        updatedBy = in.readString();
+        updatedOn = in.readString();
+        status = in.readString();
+        factory = in.readString();
+        factoryEmail = in.readString();
+        staff = in.readString();
+        userEmail = in.readString();
+        statusText = in.readString();
+        items = in.createTypedArrayList(poItem.CREATOR);
+        notes = in.readString();
+        currency = in.readString();
+    }
+
+    public static final Creator<poDatum> CREATOR = new Creator<poDatum>() {
+        @Override
+        public poDatum createFromParcel(Parcel in) {
+            return new poDatum(in);
+        }
+
+        @Override
+        public poDatum[] newArray(int size) {
+            return new poDatum[size];
+        }
+    };
+
+    public String getPo_no() {
+        return po_no;
+    }
+
+    public void setPo_no(String po_no) {
+        this.po_no = po_no;
+    }
+
+    @SerializedName("po_no")
+    @Expose
+    private String po_no;
     @SerializedName("factory_id")
     @Expose
     private String factoryId;
@@ -80,33 +133,7 @@ public class poDatum implements Parcelable {
     private String userEmail;
 
 
-    protected poDatum(Parcel in) {
-        id = in.readString();
-        factoryId = in.readString();
-        staffId = in.readString();
-        ccEmail = in.readString();
-        brandName = in.readString();
-        contractDoc = in.readString();
-        contractXl = in.readString();
-        delivery_date = in.readString();
-        subContractDoc = in.readString();
-        subContractXl = in.readString();
-        subSubContractDoc = in.readString();
-        subSubContractXl = in.readString();
-        createdBy = in.readString();
-        createdOn = in.readString();
-        updatedBy = in.readString();
-        updatedOn = in.readString();
-        status = in.readString();
-        factory = in.readString();
-        factoryEmail = in.readString();
-        staff = in.readString();
-        userEmail = in.readString();
-        statusText = in.readString();
-        items = in.createTypedArrayList(poItem.CREATOR);
-        notes = in.readString();
-        currency = in.readString();
-    }
+
 
     public String getCurrency() {
         return currency;
@@ -116,17 +143,7 @@ public class poDatum implements Parcelable {
         this.currency = currency;
     }
 
-    public static final Creator<poDatum> CREATOR = new Creator<poDatum>() {
-        @Override
-        public poDatum createFromParcel(Parcel in) {
-            return new poDatum(in);
-        }
 
-        @Override
-        public poDatum[] newArray(int size) {
-            return new poDatum[size];
-        }
-    };
 
     public String getNotes() {
         return notes;
@@ -349,6 +366,7 @@ public class poDatum implements Parcelable {
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(id);
+        dest.writeString(po_no);
         dest.writeString(factoryId);
         dest.writeString(staffId);
         dest.writeString(ccEmail);

@@ -103,6 +103,8 @@ public class poViewAdapter extends RecyclerView.Adapter<poViewAdapter.VViewHolde
             }
         });
 
+        holder.poNumCM.setText(index.getPo_no());
+
 
 
 
@@ -173,6 +175,8 @@ public class poViewAdapter extends RecyclerView.Adapter<poViewAdapter.VViewHolde
         TextView deliver_date;
         @BindView(R.id.viewPo_arr)
         RelativeLayout viewPo_arr;
+        @BindView(R.id.poNumCM)
+        TextView poNumCM;
 
 
         public VViewHolder(@NonNull View itemView) {

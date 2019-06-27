@@ -24,10 +24,12 @@ import com.obpoo.gfsfabricsoftware.PurchaseOrder.Adapter.SpinnerAdapter;
 import com.obpoo.gfsfabricsoftware.PurchaseOrder.Adapter.SpinnerArticleAdapter;
 import com.obpoo.gfsfabricsoftware.PurchaseOrder.Adapter.SpinnerColorAdapter;
 import com.obpoo.gfsfabricsoftware.PurchaseOrder.Adapter.SpinnerVendorAdapter;
+import com.obpoo.gfsfabricsoftware.PurchaseOrder.Adapter.poViewDetailsAdapter;
 import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.AddPOModel.AddPoPojo;
 import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.TrackPoModel.TrackPOByCusRes;
 import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.TrackPoModel.TrackPODetRes;
 import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.ViewPOModel.ConfirmPOResponse;
+import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.ViewPOModel.poItem;
 import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.ViewPOModel.poPOJO;
 import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.dynamicField.dynamicField;
 import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.dynamicField.dynamicField_changeD;
@@ -113,10 +115,11 @@ public class POAdd extends BaseActivity implements poView, FabricsView, UserView
 
     @BindView(R.id.pbatshowArticle)
     ProgressBar pbatshowArticle;
+    ArrayList<poItem> poItemArrayList_adp = new ArrayList<>();
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == 2) {
+        if (requestCode == 2) {  // before class changed.
             addItemList = (ArrayList<dynamicField_changeD>) data.getSerializableExtra("getItemList");
             mergeaddItemList.add(new dynamicField_changeD(addItemList.get(0).getFabImage(),
                     addItemList.get(0).getComposition(), addItemList.get(0).getArticle(), addItemList.get(0).getCustomer(),
@@ -127,6 +130,18 @@ public class POAdd extends BaseActivity implements poView, FabricsView, UserView
             addreViews.setLayoutManager(linearLayoutManager);
             addreViews.setAdapter(poChangedAdapter);
             poChangedAdapter.notifyDataSetChanged();
+        }
+        if(requestCode == AppConstants.addcmFab){
+            if(data!=null){
+                poItemArrayList_adp=data.getParcelableArrayListExtra(AppConstants.fabcmselList);
+
+                Log.i("cmFabList",poItemArrayList_adp.size()+"");
+                poViewDetailsAdapter adapter = new poViewDetailsAdapter(getApplicationContext(), poItemArrayList_adp);
+                LinearLayoutManager linearLayoutManager = new LinearLayoutManager(POAdd.this);
+                addreViews.setLayoutManager(linearLayoutManager);
+                addreViews.setAdapter(adapter);
+                adapter.notifyDataSetChanged();
+            }
         }
     }
 
@@ -252,7 +267,7 @@ public class POAdd extends BaseActivity implements poView, FabricsView, UserView
         }
 
         System.out.println("HashMapItems" + arrayList);
-        ArrayList<HashMap<String, String>> merged_arrayList = new ArrayList<HashMap<String, String>>();
+        ArrayList<HashMap<String,String >> merged_arrayList = new ArrayList<HashMap<String, String>>();
         for (int i = 0; i < mergeaddItemList.size(); i++) {
             HashMap<String, String> hashMap = new HashMap<String, String>();
             hashMap.put("fabImage", mergeaddItemList.get(i).getFabImage());
@@ -264,9 +279,11 @@ public class POAdd extends BaseActivity implements poView, FabricsView, UserView
             hashMap.put("brand", mergeaddItemList.get(i).getBrand());
             merged_arrayList.add(hashMap);
         }
+        HashMap<String,ArrayList<poItem>> hashMapArrayList = new HashMap<>();
+        hashMapArrayList.put("items",poItemArrayList_adp);
 
         presenter.OnAddPO("po_direct_order", getSpinVendor, getSpinUser,
-                cc_email.getText().toString(), brand.getText().toString(), "1", "1", merged_arrayList);
+                cc_email.getText().toString(), brand.getText().toString(), "1", "1", poItemArrayList_adp);
 
     }
 

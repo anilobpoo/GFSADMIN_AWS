@@ -1,5 +1,6 @@
 package com.obpoo.gfsfabricsoftware.salesorder.ui;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -7,11 +8,16 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 
 import com.obpoo.gfsfabricsoftware.Dashboard.DataModel.StockAlert.Response;
+import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.AddPOModel.AddFabCMI;
+import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.ViewPOModel.poItem;
+import com.obpoo.gfsfabricsoftware.PurchaseOrder.UI.POAdd;
 import com.obpoo.gfsfabricsoftware.R;
 import com.obpoo.gfsfabricsoftware.Stock.DataModel.ActivityLog.ActivityLogResponse;
 import com.obpoo.gfsfabricsoftware.Stock.DataModel.AddCustomerReserveFinal;
@@ -39,7 +45,7 @@ import java.util.ArrayList;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class AddfabricSoOrders extends BaseActivity implements ViewStock, FabricAddOrderSO, CustomersView {
+public class AddfabricSoOrders extends AppCompatActivity implements ViewStock, FabricAddOrderSO, CustomersView {
     StockPresenterImpl  presenter;
     @BindView(R.id.etSearch)
     EditText etSearch;
@@ -54,6 +60,8 @@ public class AddfabricSoOrders extends BaseActivity implements ViewStock, Fabric
     ArrayList<AddReserveDet> addbelowDetArrayList;
     CustomersPresenterImpl presenter_cus;
     ArrayList<CustomersDetail> customerList=new ArrayList<>();
+    ArrayList<poItem> poItemArrayList_adp = new ArrayList<>();
+    private Menu menu;
 
 
     @Override
@@ -61,10 +69,12 @@ public class AddfabricSoOrders extends BaseActivity implements ViewStock, Fabric
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_addfabric_so_orders);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setTitle("Orders");
+        toolbar.setTitle("Available fabric");
         setSupportActionBar(toolbar);
         ButterKnife.bind(this);
-        enableActionBar(true);
+        getSupportActionBar().setHomeButtonEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeAsUpIndicator(getResources().getDrawable(R.drawable.ic_back));
 
         getOrderType=getIntent().getStringExtra("ORDERTYPE_SOORDER");
 
@@ -97,6 +107,26 @@ public class AddfabricSoOrders extends BaseActivity implements ViewStock, Fabric
             }
         });
 
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        this.menu=menu;
+        getMenuInflater().inflate(R.menu.addfab,menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case android.R.id.home:
+                Intent in = new Intent(AddfabricSoOrders.this, POAdd.class);
+                in.putParcelableArrayListExtra(AppConstants.fabcmselList,poItemArrayList_adp);
+                setResult(AppConstants.addcmFab,in);
+                finish();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     @Override
@@ -144,14 +174,21 @@ public class AddfabricSoOrders extends BaseActivity implements ViewStock, Fabric
     }
 
     @Override
-    public void AddFabricsBelowI(AddReserveDet index,String qty) {
-       addReserveDetArrayList.add( new AddReserveDet(index.getId(),getOrderType,"",qty));   // to pass data to server
+    public void AddFabricsBelowI(poItem index, String qty) {
+     /*  addReserveDetArrayList.add( new AddReserveDet(index.getId(),getOrderType,"",qty));   // to pass data to server
         addbelowDetArrayList.add(new AddReserveDet(index.getFabName(),index.getComposition(),qty));  // to show data at below
 
         AddFabOrderBelowADP  addFabOrderBelowADP = new AddFabOrderBelowADP(addbelowDetArrayList,AddfabricSoOrders.this);
         LinearLayoutManager lm = new LinearLayoutManager(this);
         rv_addselectedfab_soorder.setLayoutManager(lm);
-        rv_addselectedfab_soorder.setAdapter(addFabOrderBelowADP);
+        rv_addselectedfab_soorder.setAdapter(addFabOrderBelowADP);*/
+        MenuItem menuItem = menu.findItem(R.id.addFab);
+
+        poItemArrayList_adp.add(index);
+        menuItem.setTitle("ADDED "+poItemArrayList_adp.size());
+
+
+
 
 
         //***********
@@ -183,4 +220,6 @@ public class AddfabricSoOrders extends BaseActivity implements ViewStock, Fabric
     public void showError(String message) {
 
     }
+
+
 }

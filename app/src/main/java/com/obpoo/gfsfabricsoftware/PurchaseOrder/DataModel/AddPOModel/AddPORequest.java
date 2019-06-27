@@ -1,5 +1,7 @@
 package com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.AddPOModel;
 
+import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.ViewPOModel.poItem;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -15,10 +17,10 @@ public class AddPORequest {
     String brand_name;
     String created_by;
     String updated_by;
-    ArrayList<HashMap<String,String>> items;
+    ArrayList<poItem> items;
 
     public AddPORequest(String method, String factory_id, String staff_id, String cc_email
-                        , String created_by, String updated_by,  ArrayList<HashMap<String,String>> items) {
+                        , String created_by, String updated_by,  ArrayList<poItem> items) {
         this.method = method;
         this.factory_id = factory_id;
         this.staff_id = staff_id;

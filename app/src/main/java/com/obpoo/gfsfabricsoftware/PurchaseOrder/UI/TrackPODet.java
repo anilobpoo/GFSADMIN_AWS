@@ -7,6 +7,7 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.TrackPoModel.TrackPODetAdap;
 import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.TrackPoModel.TrackPODetData;
@@ -40,15 +41,19 @@ public class TrackPODet extends BaseActivity {
 
         trackPODetDataArrayList=getIntent().getParcelableArrayListExtra(AppConstants.trackPOCusDet);
         ArrayList<TrackPODetItems> trackPODetItems = trackPODetDataArrayList.get(0).getItems();
-        cus_name_track_po_det.setText(trackPODetItems.get(0).getCustomerName());
+        if(trackPODetItems.size()>0) {
+            cus_name_track_po_det.setText(trackPODetItems.get(0).getCustomerName());
 
-       // Log.i("trackPODetDataArrayList",trackPODetDataArrayList.size()+""+trackPODetDataArrayList.get(0).getItems().size()+"");
+            // Log.i("trackPODetDataArrayList",trackPODetDataArrayList.size()+""+trackPODetDataArrayList.get(0).getItems().size()+"");
 
-        Log.i("trackPODetItems",trackPODetItems.size()+"");
-        adapter = new TrackPODetAdap(trackPODetItems,TrackPODet.this);
-        LinearLayoutManager lm = new LinearLayoutManager(this);
-        track_po_det_rv.setLayoutManager(lm);
-        track_po_det_rv.setAdapter(adapter);
-
+            Log.i("trackPODetItems", trackPODetItems.size() + "");
+            adapter = new TrackPODetAdap(trackPODetItems, TrackPODet.this);
+            LinearLayoutManager lm = new LinearLayoutManager(this);
+            track_po_det_rv.setLayoutManager(lm);
+            track_po_det_rv.setAdapter(adapter);
+        }
+        else{
+            Toast.makeText(getApplicationContext(),"No PO Available",Toast.LENGTH_SHORT).show();
+        }
     }
 }

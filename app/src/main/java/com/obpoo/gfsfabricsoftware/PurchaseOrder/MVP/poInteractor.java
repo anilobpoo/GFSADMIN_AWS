@@ -4,6 +4,7 @@ import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.AddPOModel.AddPoPojo;
 import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.TrackPoModel.TrackPOByCusRes;
 import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.TrackPoModel.TrackPODetRes;
 import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.ViewPOModel.ConfirmPOResponse;
+import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.ViewPOModel.poItem;
 import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.ViewPOModel.poPOJO;
 
 import java.util.ArrayList;
@@ -41,8 +42,7 @@ public interface poInteractor {
 
     }
 
-    void callRetroAddPO(String method, String factory_id, String staff_id, String cc_email,
-                        String created_by, String updated_by, ArrayList<HashMap<String, String>> items, AddPOResponse response);
+    void callRetroAddPO(String method, String factory_id, String staff_id, String cc_email, String created_by, String updated_by, ArrayList<poItem> items, AddPOResponse response);
 
     interface ViewConfirmPOResponse {
         void onConfirmPOSuccess(ConfirmPOResponse response);

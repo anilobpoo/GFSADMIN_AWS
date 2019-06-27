@@ -15,6 +15,7 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.ViewPOModel.poItem;
 import com.obpoo.gfsfabricsoftware.R;
 import com.obpoo.gfsfabricsoftware.Stock.DataModel.AddReserveDet;
 import com.obpoo.gfsfabricsoftware.customers.datamodels.CustomersDetail;
@@ -57,6 +58,16 @@ public class AddFabSalesOrder extends RecyclerView.Adapter<AddFabSalesOrder.View
         holder.article_fab.setText(index.getFabName());
         holder.brand_fab.setText(index.getBrand());
         holder.content_fab.setText(index.getComposition());
+
+        holder.add_fabric_item.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(holder.fab_qty_mtr.getText().length()>0){
+                    index.setQty(holder.fab_qty_mtr.getText().toString());
+                    fabI.AddFabricsBelowI(new poItem(index.getBrand(),index.getArticleno(),index.getQty(),index.getColorCode()),"");
+                }
+            }
+        });
 
 
 

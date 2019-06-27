@@ -62,6 +62,14 @@ public class poItem implements Parcelable {
     @SerializedName("pending_qty")
     @Expose
     private String pendingQty;
+
+    public poItem(String brandName, String artNo, String quantity, String colorCode) {
+        this.brandName = brandName;
+        this.artNo = artNo;
+        this.quantity = quantity;
+        this.colorCode = colorCode;
+    }
+
     @SerializedName("extra_qty")
     @Expose
     private String extraQty;
@@ -71,6 +79,10 @@ public class poItem implements Parcelable {
     @SerializedName("status_text")
     @Expose
     private String statusText;
+
+    public poItem() {
+    }
+
     @SerializedName("customer_name")
     @Expose
     private String customerName;

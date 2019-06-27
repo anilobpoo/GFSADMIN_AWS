@@ -1,7 +1,8 @@
 package com.obpoo.gfsfabricsoftware.salesorder.datamodels.AllOrderModel;
 
+import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.ViewPOModel.poItem;
 import com.obpoo.gfsfabricsoftware.Stock.DataModel.AddReserveDet;
 
 public interface FabricAddOrderSO {
-    void AddFabricsBelowI(AddReserveDet index,String qty);
+    void AddFabricsBelowI(poItem index, String qty);
 }

@@ -4,6 +4,7 @@ import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.AddPOModel.AddPoPojo;
 import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.TrackPoModel.TrackPOByCusRes;
 import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.TrackPoModel.TrackPODetRes;
 import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.ViewPOModel.ConfirmPOResponse;
+import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.ViewPOModel.poItem;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -31,7 +32,7 @@ public class poPresenterImpl implements poPresenter,poInteractor.ViewPoResponse,
 
     @Override
     public void OnAddPO(String method, String factory_id, String staff_id, String cc_email, String brand_name,
-                        String created_by, String updated_by,  ArrayList<HashMap<String,String>> items) {
+                        String created_by, String updated_by,  ArrayList<poItem> items) {
         if(poView!=null){
             if(cc_email.length()==0){
                 poView.onValidationfail(1);

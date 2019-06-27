@@ -47,9 +47,17 @@ public class poViewDetailsAdapter  extends RecyclerView.Adapter<poViewDetailsAda
     public void onBindViewHolder(@NonNull VViewHolder holder, int i) {
         poItem index = podataList.get(i);
         holder.fab_name_so_order_det.setText(index.getArtNo()+"-"+index.getColorCode());
-        holder.yard_so_order_det.setText(index.getStatusText());
+        if(index.getStatusText() == null ||index.getStatusText().equals("")){
+            holder.yard_so_order_det.setVisibility(View.GONE);
+        }
+        else{
+        holder.yard_so_order_det.setText(index.getStatusText());}
         holder.price_fab_so_order_det.setText("Brand: "+index.getBrandName());
-        holder.mtr_so_order_det.setText("Price: "+index.getCostPrice());
+        if(index.getCostPrice() == null){
+            holder.mtr_so_order_det.setText("Composition: "+index.getColorCode());
+        }
+        else{
+        holder.mtr_so_order_det.setText("Price: "+index.getCostPrice());}
         holder.cus_mco.setText("Customer:"+index.getCustomerName());
         holder.qty_mtr_mco.setText("Qty(Mtr): "+index.getQuantity());
 
