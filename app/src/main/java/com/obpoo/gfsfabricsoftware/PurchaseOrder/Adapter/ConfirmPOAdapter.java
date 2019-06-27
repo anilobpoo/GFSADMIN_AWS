@@ -1,10 +1,12 @@
 package com.obpoo.gfsfabricsoftware.PurchaseOrder.Adapter;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,17 +27,17 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class ConfirmPOAdapter extends RecyclerView.Adapter<ConfirmPOAdapter.ViewHolder> {
-    Context context;
+    Activity context;
     String tag = "";
     ArrayList<poDatum> data;
-    ArrayList<poItem> items;
 
-    public ConfirmPOAdapter(Context context, ArrayList<poDatum> data) {
+
+    public ConfirmPOAdapter(Activity context, ArrayList<poDatum> data) {
         this.data = data;
         this.context = context;
     }
 
-    public ConfirmPOAdapter(Context applicationContext, ArrayList<poDatum> data, String poorder) {
+    public ConfirmPOAdapter(Activity applicationContext, ArrayList<poDatum> data, String poorder) {
         this.data = data;
         this.context = applicationContext;
         this.tag = poorder;
@@ -52,7 +54,7 @@ public class ConfirmPOAdapter extends RecyclerView.Adapter<ConfirmPOAdapter.View
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder viewHolder, final int i) {
 
-        items = data.get(i).getItems();
+      final  ArrayList<poItem> items = data.get(i).getItems();
         int itmsize = items.size();
 
         if (tag.equals("poorder")) {
@@ -74,9 +76,10 @@ public class ConfirmPOAdapter extends RecyclerView.Adapter<ConfirmPOAdapter.View
                     in.putExtra("deliver_date", viewHolder.deliver_date.getText());
                     in.putExtra("staf", data.get(i).getStaff());
                     in.putExtra("cc_mail", data.get(i).getCcEmail());
+                    in.putExtra("PREVNOTES",data.get(i).getNotes());
 //                    in.putExtra("cash", data.get(i).get());
-                    in.putExtra("item", items);
-                    in.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    in.putParcelableArrayListExtra("item", items);
+
                     context.startActivity(in);
                 }
             });
@@ -99,7 +102,7 @@ public class ConfirmPOAdapter extends RecyclerView.Adapter<ConfirmPOAdapter.View
         }
         viewHolder.item.setText("Item:" + itmsize);
 
-        viewHolder.go.setOnClickListener(new View.OnClickListener() {
+        viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent in = new Intent(context, ViewDetails.class);
@@ -111,8 +114,7 @@ public class ConfirmPOAdapter extends RecyclerView.Adapter<ConfirmPOAdapter.View
                 in.putExtra("deliver_date", viewHolder.deliver_date.getText());
                 in.putExtra("staf", data.get(i).getStaff());
                 in.putExtra("cc_mail", data.get(i).getCcEmail());
-                in.putExtra("item", items);
-                in.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                in.putParcelableArrayListExtra("item", items);
                 context.startActivity(in);
 
             }

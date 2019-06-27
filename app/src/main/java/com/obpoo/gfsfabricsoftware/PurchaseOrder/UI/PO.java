@@ -3,12 +3,14 @@ package com.obpoo.gfsfabricsoftware.PurchaseOrder.UI;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 
 import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.AddPOModel.AddPoPojo;
+import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.AddPOModel.ModifyNotes;
 import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.TrackPoModel.TrackPOByCusRes;
 import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.TrackPoModel.TrackPODetRes;
 import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.TrackPoModel.TrackPObyCusData;
@@ -17,6 +19,7 @@ import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.ViewPOModel.poPOJO;
 import com.obpoo.gfsfabricsoftware.PurchaseOrder.MVP.poPresenterImpl;
 import com.obpoo.gfsfabricsoftware.PurchaseOrder.MVP.poView;
 import com.obpoo.gfsfabricsoftware.R;
+import com.obpoo.gfsfabricsoftware.ui.activities.BaseActivity;
 import com.obpoo.gfsfabricsoftware.ui.activities.HomeActivity;
 import com.obpoo.gfsfabricsoftware.utilities.AppConstants;
 import com.obpoo.gfsfabricsoftware.utilities.PreferenceConnector;
@@ -27,9 +30,8 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class PO extends AppCompatActivity implements poView {
-    @BindView(R.id.back_PO_cmngrp)
-    ImageView back;
+public class PO extends BaseActivity implements poView {
+
     @BindView(R.id.request_order)
     RelativeLayout request_order;
     @BindView(R.id.confirm_po)
@@ -46,16 +48,13 @@ public class PO extends AppCompatActivity implements poView {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pomain);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar.setTitle("Purchase Order");
+        setSupportActionBar(toolbar);
         ButterKnife.bind(this);
+        enableActionBar(true);
         presenter = new poPresenterImpl(this);
-        back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(PO.this, HomeActivity.class);
-                startActivity(intent);
-                finish();
-            }
-        });
+
     }
 
     @Override
@@ -121,6 +120,11 @@ public class PO extends AppCompatActivity implements poView {
 
     @Override
     public void onTrackPOdetails(TrackPODetRes response) {
+
+    }
+
+    @Override
+    public void onModifyNotes(ModifyNotes response) {
 
     }
 

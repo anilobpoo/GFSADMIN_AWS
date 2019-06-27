@@ -48,6 +48,8 @@ import com.obpoo.gfsfabricsoftware.PUG.Model.NLData;
 import com.obpoo.gfsfabricsoftware.PUG.Model.NLRequest;
 import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.AddPOModel.AddPORequest;
 import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.AddPOModel.AddPoPojo;
+import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.AddPOModel.ModifyNoteReq;
+import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.AddPOModel.ModifyNotes;
 import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.TrackPoModel.TrackPOByCusRes;
 import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.TrackPoModel.TrackPODetRequest;
 import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.TrackPoModel.TrackPODetRes;
@@ -460,4 +462,6 @@ public interface WebApi {
     Call<DepositeResponse> depositeCollectionsApi(@Body DepositeRequest request);
     @POST("order/order_Report.php")
     Call<SoldFabricsResponse> itemSalesApi(@Body ItemSalesReq request);
+    @POST("po_req/po_create_order.php")
+    Call<ModifyNotes> modifyNotesApi(@Body ModifyNoteReq request);
 }

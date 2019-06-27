@@ -19,4 +19,5 @@ public interface poPresenter {
     void viewPOPendingOrder(String method);
     void onTrackPO(String user_id, String method);
     void onTrackPODet(String cid, String method);
+    void onPassModifyNotes(String method,String notes,String id);
 }

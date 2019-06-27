@@ -4,6 +4,8 @@ import android.util.Log;
 
 import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.AddPOModel.AddPORequest;
 import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.AddPOModel.AddPoPojo;
+import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.AddPOModel.ModifyNoteReq;
+import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.AddPOModel.ModifyNotes;
 import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.TrackPoModel.TrackPOByCusRes;
 import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.TrackPoModel.TrackPODetRequest;
 import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.TrackPoModel.TrackPODetRes;
@@ -258,6 +260,34 @@ public class poInteractorImpl implements poInteractor {
             @Override
             public void onFailure(Call<TrackPODetRes> call, Throwable t) {
                 trackPODetI.onTrackPODetError(t.getMessage());
+
+            }
+        });
+
+    }
+
+    @Override
+    public void callModifyNotes(String method, String notes, String id, final ModifyNotesI modifyNotesI) {
+        Retrofit retrofit = ApiClient.getRetrofit();
+        WebApi apis = retrofit.create(WebApi.class);
+
+        ModifyNoteReq request = new ModifyNoteReq( method,notes,id);
+        Call<ModifyNotes> call = apis.modifyNotesApi(request);
+        call.enqueue(new Callback<ModifyNotes>() {
+            @Override
+            public void onResponse(Call<ModifyNotes> call, Response<ModifyNotes> response) {
+                if (response.isSuccessful()) {
+                    modifyNotesI.onModifyNotesSuccess(response.body());
+
+                } else {
+                    modifyNotesI.onModifyNotesError("Please Try Again.");
+
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ModifyNotes> call, Throwable t) {
+                modifyNotesI.onModifyNotesError(t.getMessage());
 
             }
         });

@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.AbsListView;
@@ -18,6 +19,7 @@ import android.widget.Toast;
 
 import com.obpoo.gfsfabricsoftware.PurchaseOrder.Adapter.ConfirmPOAdapter;
 import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.AddPOModel.AddPoPojo;
+import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.AddPOModel.ModifyNotes;
 import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.TrackPoModel.TrackPOByCusRes;
 import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.TrackPoModel.TrackPODetRes;
 import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.ViewPOModel.ConfirmPOResponse;
@@ -26,6 +28,7 @@ import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.ViewPOModel.poPOJO;
 import com.obpoo.gfsfabricsoftware.PurchaseOrder.MVP.poPresenterImpl;
 import com.obpoo.gfsfabricsoftware.PurchaseOrder.MVP.poView;
 import com.obpoo.gfsfabricsoftware.R;
+import com.obpoo.gfsfabricsoftware.ui.activities.BaseActivity;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -37,13 +40,12 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class PO_Order extends AppCompatActivity implements poView {
+public class PO_Order extends BaseActivity implements poView {
 
 
     @BindView(R.id.recycler_view)
     RecyclerView recycler_view;
-    @BindView(R.id.back_PO_cmngrp)
-    ImageView back;
+
     @BindView(R.id.received_ord)
     LinearLayout received_ord;
     @BindView(R.id.pending_ord)
@@ -69,12 +71,17 @@ public class PO_Order extends AppCompatActivity implements poView {
     String fromdate, todate;
     ArrayList<poDatum> data = new ArrayList<>();
     ArrayList<poDatum> data1 = new ArrayList<>();
+    Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_po__order);
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar.setTitle("Received Order");
+        setSupportActionBar(toolbar);
         ButterKnife.bind(this);
+        enableActionBar(true);
         presenter = new poPresenterImpl(this);
         final LinearLayoutManager linearLayoutManager = new LinearLayoutManager(PO_Order.this);
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
@@ -91,16 +98,12 @@ public class PO_Order extends AppCompatActivity implements poView {
         presenter.viewPOOrder("view_received_orders_prcs_pagn", fromdate, todate, String.valueOf(page_no));
 
 
-
     }
 
-    @OnClick(R.id.back_PO_cmngrp)
-    public void backClick() {
-        finish();
-    }
 
     @OnClick(R.id.received_ord)
     public void receivedClick() {
+        toolbar.setTitle("Received Order");
         data.clear();
         presenter.viewPOOrder("view_received_orders_prcs_pagn", fromdate, todate, String.valueOf(page_no));
         received_img.setColorFilter(ContextCompat.getColor(getApplicationContext(), R.color.blue_100), android.graphics.PorterDuff.Mode.SRC_IN);
@@ -138,6 +141,7 @@ public class PO_Order extends AppCompatActivity implements poView {
 
     @OnClick(R.id.pending_ord)
     public void pendingClick() {
+        toolbar.setTitle("Pending Order");
         data.clear();
         presenter.viewPOPendingOrder("pending_orders");
         pending_img.setColorFilter(ContextCompat.getColor(getApplicationContext(), R.color.blue_100), android.graphics.PorterDuff.Mode.SRC_IN);
@@ -153,7 +157,7 @@ public class PO_Order extends AppCompatActivity implements poView {
         if (response.getStatus().equals("success")) {
             data1 = response.getData();
             data.addAll(data1);
-            adapter = new ConfirmPOAdapter(getApplicationContext(), data, "poorder");
+            adapter = new ConfirmPOAdapter(PO_Order.this, data, "poorder");
             recycler_view.setAdapter(adapter);
             adapter.notifyDataSetChanged();
         }
@@ -181,6 +185,11 @@ public class PO_Order extends AppCompatActivity implements poView {
 
     @Override
     public void onTrackPOdetails(TrackPODetRes response) {
+
+    }
+
+    @Override
+    public void onModifyNotes(ModifyNotes response) {
 
     }
 

@@ -26,6 +26,7 @@ import com.obpoo.gfsfabricsoftware.PurchaseOrder.Adapter.SpinnerColorAdapter;
 import com.obpoo.gfsfabricsoftware.PurchaseOrder.Adapter.SpinnerVendorAdapter;
 import com.obpoo.gfsfabricsoftware.PurchaseOrder.Adapter.poViewDetailsAdapter;
 import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.AddPOModel.AddPoPojo;
+import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.AddPOModel.ModifyNotes;
 import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.TrackPoModel.TrackPOByCusRes;
 import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.TrackPoModel.TrackPODetRes;
 import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.ViewPOModel.ConfirmPOResponse;
@@ -239,7 +240,7 @@ public class POAdd extends BaseActivity implements poView, FabricsView, UserView
     @OnClick(R.id.onSubmit)
     public void onSubmit() {
         JSONArray jsonArray = new JSONArray();
-        Toast.makeText(getApplicationContext(), "onSubmit", Toast.LENGTH_SHORT).show();
+//        Toast.makeText(getApplicationContext(), "onSubmit", Toast.LENGTH_SHORT).show();
       /* for(int i =0; i<getAllValues.size();i++){
             JSONObject jsonObject= new JSONObject();
             try{
@@ -355,6 +356,11 @@ public class POAdd extends BaseActivity implements poView, FabricsView, UserView
 
     @Override
     public void onTrackPOdetails(TrackPODetRes response) {
+
+    }
+
+    @Override
+    public void onModifyNotes(ModifyNotes response) {
 
     }
 

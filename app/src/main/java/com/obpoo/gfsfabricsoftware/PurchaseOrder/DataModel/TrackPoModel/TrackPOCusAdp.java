@@ -13,6 +13,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.AddPOModel.AddPoPojo;
+import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.AddPOModel.ModifyNotes;
 import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.ViewPOModel.ConfirmPOResponse;
 import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.ViewPOModel.poPOJO;
 import com.obpoo.gfsfabricsoftware.PurchaseOrder.MVP.poPresenterImpl;
@@ -108,6 +109,11 @@ public class TrackPOCusAdp extends RecyclerView.Adapter<TrackPOCusAdp.ViewHolder
             in.putParcelableArrayListExtra(AppConstants.trackPOCusDet,trackPODetDataArrayList);
             context.startActivity(in);
         }
+
+    }
+
+    @Override
+    public void onModifyNotes(ModifyNotes response) {
 
     }
 

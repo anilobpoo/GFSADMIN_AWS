@@ -1,6 +1,7 @@
 package com.obpoo.gfsfabricsoftware.PurchaseOrder.MVP;
 
 import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.AddPOModel.AddPoPojo;
+import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.AddPOModel.ModifyNotes;
 import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.TrackPoModel.TrackPOByCusRes;
 import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.TrackPoModel.TrackPODetRes;
 import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.ViewPOModel.ConfirmPOResponse;
@@ -13,7 +14,8 @@ import java.util.HashMap;
  * Created by PHD on 11/23/2018.
  */
 
-public class poPresenterImpl implements poPresenter,poInteractor.ViewPoResponse,poInteractor.AddPOResponse,poInteractor.ViewConfirmPOResponse,poInteractor.TrackPOI,poInteractor.TrackPODetI {
+public class poPresenterImpl implements poPresenter,poInteractor.ViewPoResponse,poInteractor.AddPOResponse,
+        poInteractor.ViewConfirmPOResponse,poInteractor.TrackPOI,poInteractor.TrackPODetI,poInteractor.ModifyNotesI {
     com.obpoo.gfsfabricsoftware.PurchaseOrder.MVP.poView poView;
     poInteractorImpl interactor;
 
@@ -151,6 +153,24 @@ public class poPresenterImpl implements poPresenter,poInteractor.ViewPoResponse,
     public void onTrackPODet(String cid, String method) {
         poView.showDialog();
         interactor.callRetroTrackPODet(cid,method,this);
+
+    }
+
+    @Override
+    public void onPassModifyNotes(String method, String notes, String id) {
+        poView.showDialog();
+        interactor.callModifyNotes(method,notes,id,this);
+
+    }
+
+    @Override
+    public void onModifyNotesSuccess(ModifyNotes response) {
+        poView.onModifyNotes(response);
+
+    }
+
+    @Override
+    public void onModifyNotesError(String message) {
 
     }
 }

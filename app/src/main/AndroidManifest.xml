@@ -41,13 +41,17 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Report.UI.ItemEasyReport"
-            android:theme="@style/AppTheme.NoActionBar">
+        <activity android:name=".PurchaseOrder.UI.ModificationNotes"
+            android:theme="@style/AppTheme.NoActionBar"
+            >
 
         </activity>
         <activity
-            android:name=".salesorder.ui.AddfabricSoOrders"
+            android:name=".Report.UI.ItemEasyReport"
             android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
+            android:name=".salesorder.ui.AddfabricSoOrders"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".collections.ui.Deposit"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -72,7 +76,7 @@
         <activity
             android:name=".PurchaseOrder.UI.ModificationPO"
             android:theme="@style/AppTheme.NoActionBar"
-            android:windowSoftInputMode="stateHidden"/>
+            android:windowSoftInputMode="stateHidden" />
         <activity
             android:name=".PurchaseOrder.UI.ViewDetails"
             android:theme="@style/AppTheme.NoActionBar" />

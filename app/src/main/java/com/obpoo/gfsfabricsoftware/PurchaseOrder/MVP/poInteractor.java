@@ -1,6 +1,7 @@
 package com.obpoo.gfsfabricsoftware.PurchaseOrder.MVP;
 
 import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.AddPOModel.AddPoPojo;
+import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.AddPOModel.ModifyNotes;
 import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.TrackPoModel.TrackPOByCusRes;
 import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.TrackPoModel.TrackPODetRes;
 import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.ViewPOModel.ConfirmPOResponse;
@@ -63,4 +64,10 @@ public interface poInteractor {
         void onTrackPODetError(String message);
     }
     void callRetroTrackPODet(String cid, String method, TrackPODetI response);
+
+    interface ModifyNotesI{
+        void onModifyNotesSuccess(ModifyNotes response);
+        void onModifyNotesError(String message);
+    }
+    void callModifyNotes(String method,String notes,String id,ModifyNotesI response);
 }

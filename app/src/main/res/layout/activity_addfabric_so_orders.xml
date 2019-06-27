@@ -64,7 +64,7 @@
                     android:background="@drawable/invisibleborder"
                     android:fontFamily="@font/calibri"
 
-                    android:hint="Search"
+                    android:hint="Enter Fabric Number"
                     android:padding="7dp"
                     android:textColorHint="@color/gray"
                     tools:ignore="RtlCompat" />
