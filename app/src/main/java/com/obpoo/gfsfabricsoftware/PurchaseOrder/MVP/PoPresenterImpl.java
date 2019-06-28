@@ -176,6 +176,12 @@ public class PoPresenterImpl implements PoPresenter, PoInteractor.ViewPoResponse
     }
 
     @Override
+    public void onSearchPo(String method, String po_no, String page_no) {
+        poView.showDialog();
+        interactor.callSearchPo(method,po_no,page_no,this);
+    }
+
+    @Override
     public void onModifyNotesSuccess(ModifyNotes response) {
         poView.onModifyNotes(response);
 

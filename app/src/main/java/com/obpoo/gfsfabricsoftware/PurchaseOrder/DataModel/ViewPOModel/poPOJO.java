@@ -16,7 +16,6 @@ public class poPOJO {
     @SerializedName("message")
     @Expose
     private String message;
-    @SerializedName("data")
     @Expose
     private ArrayList<poDatum> data = null;
 

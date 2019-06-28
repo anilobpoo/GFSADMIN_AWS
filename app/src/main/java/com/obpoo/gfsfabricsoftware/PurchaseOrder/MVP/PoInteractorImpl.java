@@ -18,6 +18,7 @@ import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.ViewPOModel.PoFilterR
 import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.ViewPOModel.PoOrderRequest;
 import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.ViewPOModel.PoPendingOrdRequest;
 import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.ViewPOModel.PoSelectFilterRequest;
+import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.ViewPOModel.SearchPoRequest;
 import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.ViewPOModel.ViewConfirmPoRequest;
 import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.ViewPOModel.ViewPgnRequest;
 import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.ViewPOModel.poItem;
@@ -128,6 +129,34 @@ public class PoInteractorImpl implements PoInteractor {
         WebApi apis = retrofit.create(WebApi.class);
         PoSelectFilterRequest request = new PoSelectFilterRequest(method,status,page_no);
         Call<poPOJO> call = apis.viewSelectFilterAPI(request);
+        call.enqueue(new Callback<poPOJO>() {
+            @Override
+            public void onResponse(Call<poPOJO> call, Response<poPOJO> response) {
+                if (response.isSuccessful()) {
+                    viewPoResponse.onViewSuccess(response.body());
+                    Log.i("responsepo", response.body().getMessage());
+
+                } else {
+                    viewPoResponse.onViewError("Please Try Again.");
+
+                }
+            }
+
+            @Override
+            public void onFailure(Call<poPOJO> call, Throwable t) {
+                viewPoResponse.onViewError(t.getMessage());
+                Log.i("failureMSG", t.getMessage());
+
+            }
+        });
+    }
+
+    @Override
+    public void callSearchPo(String method, String po_no, String page_no, final ViewPoResponse viewPoResponse) {
+        Retrofit retrofit = ApiClient.getRetrofit();
+        WebApi apis = retrofit.create(WebApi.class);
+        SearchPoRequest request = new SearchPoRequest(method,po_no,page_no);
+        Call<poPOJO> call = apis.searchPoAPI(request);
         call.enqueue(new Callback<poPOJO>() {
             @Override
             public void onResponse(Call<poPOJO> call, Response<poPOJO> response) {
