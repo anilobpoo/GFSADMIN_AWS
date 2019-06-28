@@ -11,13 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="3dp"
-            android:id="@+id/poNumCM"
-            android:textColor="@color/blue_500"/>
+
 
     <RelativeLayout
         android:layout_width="wrap_content"
@@ -28,10 +22,17 @@
             android:id="@+id/img_border"
             android:layout_width="5dp"
             android:layout_height="wrap_content"
-            android:layout_alignTop="@+id/lay"
+            android:layout_alignParentTop="true"
             android:layout_alignBottom="@+id/lay"
             android:background="@color/green_500" />
-
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentTop="true"
+            android:id="@+id/poNumCM"
+            android:text="po_no"
+            android:textColor="@color/blue_500"/>
         <LinearLayout
             android:id="@+id/lay"
             android:layout_width="match_parent"
@@ -39,6 +40,7 @@
             android:layout_toLeftOf="@+id/go"
             android:layout_toRightOf="@+id/img_border"
             android:orientation="horizontal"
+            android:layout_below="@+id/poNumCM"
             android:weightSum="1">
 
             <LinearLayout
