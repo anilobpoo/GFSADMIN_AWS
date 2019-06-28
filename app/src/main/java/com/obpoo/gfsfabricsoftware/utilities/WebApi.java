@@ -62,6 +62,7 @@ import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.ViewPOModel.PoFilterR
 import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.ViewPOModel.PoOrderRequest;
 import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.ViewPOModel.PoPendingOrdRequest;
 import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.ViewPOModel.PoSelectFilterRequest;
+import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.ViewPOModel.SearchPoRequest;
 import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.ViewPOModel.ViewConfirmPoRequest;
 import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.ViewPOModel.ViewPgnRequest;
 import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.ViewPOModel.poPOJO;
@@ -285,6 +286,9 @@ public interface WebApi {
     Call<poPOJO> viewSelectFilterAPI(@Body PoSelectFilterRequest request);
 
     @POST("po_req/po_create_order.php")
+    Call<poPOJO> searchPoAPI(@Body SearchPoRequest request);
+
+    @POST("po_req/po_create_order.php")
     Call<poPOJO> viewConfirmPOApi(@Body ViewConfirmPoRequest request);
 
     @POST("po_req/po_direct_order.php")
@@ -463,10 +467,13 @@ public interface WebApi {
 
     @POST("pickup_guy/match_deposit_otp.php")
     Call<DepositeResponse> depositeCollectionsApi(@Body DepositeRequest request);
+
     @POST("order/order_Report.php")
     Call<SoldFabricsResponse> itemSalesApi(@Body ItemSalesReq request);
+
     @POST("po_req/po_create_order.php")
     Call<ModifyNotes> modifyNotesApi(@Body ModifyNoteReq request);
+
     @POST("po_req/po_search.php")
     Call<PoFilterResponse> poFilterApi(@Body PoFilterRequest request);
 }

@@ -27,6 +27,7 @@ public interface PoInteractor {
     void callPoOrder(String method, String from_date, String to_date, String page_no, ViewPoResponse response);
     void callPoPendingOrder(String method, ViewPoResponse response);
     void callSelectFilter(String method,String status,String page_no, ViewPoResponse response);
+    void callSearchPo(String method,String po_no,String page_no, ViewPoResponse response);
 
 
     interface AddPOResponse {

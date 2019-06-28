@@ -22,4 +22,5 @@ public interface PoPresenter {
     void onPassModifyNotes(String method,String notes,String id);
     void onVIewFilter(String method);
     void onVIewSelectFilter(String method,String status,String page_no);
+    void onSearchPo(String method,String po_no,String page_no);
 }

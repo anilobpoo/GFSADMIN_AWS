@@ -14,6 +14,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AbsListView;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 
 import com.obpoo.gfsfabricsoftware.Article.DataModel.FabricType.fabricTypePOJO;
@@ -53,6 +54,7 @@ import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class RequestedOrder extends BaseActivity implements PoView, UserView, VendorsView, StockView, ColorView {
     @BindView(R.id.rv_po)
@@ -62,6 +64,8 @@ public class RequestedOrder extends BaseActivity implements PoView, UserView, Ve
     ProgressBar progressBar;
     @BindView(R.id.etSearch)
     EditText etSearch;
+    @BindView(R.id.search)
+    ImageView search_icon;
     UserPresenterImpl presenter_user;
     ArrayList<UserDetail> userdetailList;
     VendorsPresenterImpl vendor_presenter;
@@ -96,6 +100,7 @@ public class RequestedOrder extends BaseActivity implements PoView, UserView, Ve
         vendor_presenter = new VendorsPresenterImpl(this);
         article_presenter = new StockPresenterImpl(this);
         color_presenter = new ColorPresenterImpl(this);
+        etSearch.setHint("Search By PO Number");
         presenter.OnViewPO("view_all_pagn", String.valueOf(page_no));
         // presenter for user......
         presenter_user = new UserPresenterImpl(this);
@@ -105,27 +110,34 @@ public class RequestedOrder extends BaseActivity implements PoView, UserView, Ve
 //        article_presenter.showResponse("viewall");
 //        color_presenter.viewAll("view_all");
 
-        etSearch.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+//        etSearch.addTextChangedListener(new TextWatcher() {
+//            @Override
+//            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+//
+//            }
+//
+//            @Override
+//            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+//
+//            }
+//
+//            @Override
+//            public void afterTextChanged(Editable editable) {
+//                if (cartList != null) {
+//                    filter(editable.toString());
+//                }
+//
+//            }
+//        });
 
-            }
 
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-                if (cartList != null) {
-                    filter(editable.toString());
-                }
-
-            }
-        });
+    }
 
 
+    @OnClick(R.id.search)
+    public void searchClick() {
+        presenter.onSearchPo("view_all_pagn_search", etSearch.getText().toString(), "1");
+        pOdataList.clear();
     }
 
     @Override

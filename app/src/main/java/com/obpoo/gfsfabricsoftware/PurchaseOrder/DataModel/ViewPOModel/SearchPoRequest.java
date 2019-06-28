@@ -1,0 +1,1 @@
+package com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.ViewPOModel;public class SearchPoRequest {    String method,po_no,page_no;    public SearchPoRequest(String method, String po_no, String page_no) {        this.method = method;        this.po_no = po_no;        this.page_no = page_no;    }}
