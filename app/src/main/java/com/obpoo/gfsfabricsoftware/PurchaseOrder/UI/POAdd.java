@@ -30,12 +30,13 @@ import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.AddPOModel.ModifyNote
 import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.TrackPoModel.TrackPOByCusRes;
 import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.TrackPoModel.TrackPODetRes;
 import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.ViewPOModel.ConfirmPOResponse;
+import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.ViewPOModel.PoFilterResponse;
 import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.ViewPOModel.poItem;
 import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.ViewPOModel.poPOJO;
 import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.dynamicField.dynamicField;
 import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.dynamicField.dynamicField_changeD;
-import com.obpoo.gfsfabricsoftware.PurchaseOrder.MVP.poPresenterImpl;
-import com.obpoo.gfsfabricsoftware.PurchaseOrder.MVP.poView;
+import com.obpoo.gfsfabricsoftware.PurchaseOrder.MVP.PoPresenterImpl;
+import com.obpoo.gfsfabricsoftware.PurchaseOrder.MVP.PoView;
 import com.obpoo.gfsfabricsoftware.R;
 import com.obpoo.gfsfabricsoftware.fabric.datamodels.FabricsDetail;
 import com.obpoo.gfsfabricsoftware.fabric.datamodels.FabricsResponse;
@@ -64,7 +65,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.OnItemSelected;
 
-public class POAdd extends BaseActivity implements poView, FabricsView, UserView, VendorsView {
+public class POAdd extends BaseActivity implements PoView, FabricsView, UserView, VendorsView {
     @BindView(R.id.vendor_spin)
     Spinner vendor;
     @BindView(R.id.staff_spin)
@@ -101,7 +102,7 @@ public class POAdd extends BaseActivity implements poView, FabricsView, UserView
 
     //    ArrayList<StockDataResponse> stocklist = new ArrayList<>();
 //    ArrayList<ColorDetail> colorlist=new ArrayList<>();
-    poPresenterImpl presenter;
+    PoPresenterImpl presenter;
 
     FabricsPresenterImpl fabric_presenter;
     private ArrayList<FabricsDetail> fabricList = new ArrayList<>();
@@ -176,7 +177,7 @@ public class POAdd extends BaseActivity implements poView, FabricsView, UserView
            poChangedAdapter.notifyDataSetChanged();
        }*/
 
-        presenter = new poPresenterImpl(this);
+        presenter = new PoPresenterImpl(this);
 
         presenter_user = new UserPresenterImpl(this);
         presenter_user.viewAll("view_all");
@@ -361,6 +362,11 @@ public class POAdd extends BaseActivity implements poView, FabricsView, UserView
 
     @Override
     public void onModifyNotes(ModifyNotes response) {
+
+    }
+
+    @Override
+    public void onShowFilter(PoFilterResponse response) {
 
     }
 

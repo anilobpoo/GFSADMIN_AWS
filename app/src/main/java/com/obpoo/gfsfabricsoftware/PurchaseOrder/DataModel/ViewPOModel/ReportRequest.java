@@ -1,4 +1,4 @@
-package com.obpoo.gfsfabricsoftware.PurchaseOrder.MVP;
+package com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.ViewPOModel;
 
 /**
  * Created by PHD on 1/15/2019.

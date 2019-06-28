@@ -9,7 +9,7 @@ import com.obpoo.gfsfabricsoftware.Dashboard.DataModel.StockAlert.StockAlertRequ
 import com.obpoo.gfsfabricsoftware.Dashboard.DataModel.StockAlert.StockSearchRequest;
 import com.obpoo.gfsfabricsoftware.Dashboard.DataModel.previledges.PreviledgesRequest;
 import com.obpoo.gfsfabricsoftware.Dashboard.DataModel.previledges.PreviledgesResponse;
-import com.obpoo.gfsfabricsoftware.PurchaseOrder.MVP.ReportRequest;
+import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.ViewPOModel.ReportRequest;
 import com.obpoo.gfsfabricsoftware.utilities.ApiClient;
 import com.obpoo.gfsfabricsoftware.utilities.WebApi;
 

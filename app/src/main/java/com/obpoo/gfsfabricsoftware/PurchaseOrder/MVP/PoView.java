@@ -5,6 +5,7 @@ import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.AddPOModel.ModifyNote
 import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.TrackPoModel.TrackPOByCusRes;
 import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.TrackPoModel.TrackPODetRes;
 import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.ViewPOModel.ConfirmPOResponse;
+import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.ViewPOModel.PoFilterResponse;
 import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.ViewPOModel.poPOJO;
 import com.obpoo.gfsfabricsoftware.mvp.BaseView;
 
@@ -12,7 +13,7 @@ import com.obpoo.gfsfabricsoftware.mvp.BaseView;
  * Created by PHD on 11/23/2018.
  */
 
-public interface poView extends BaseView {
+public interface PoView extends BaseView {
     void onShowViewPO(poPOJO response);
     void onShowAddPO(AddPoPojo response);
     void onConfirmPO(ConfirmPOResponse response);
@@ -20,4 +21,5 @@ public interface poView extends BaseView {
     void onTrackPObyCustomer(TrackPOByCusRes response);
     void onTrackPOdetails(TrackPODetRes response);
     void onModifyNotes(ModifyNotes response);
+    void onShowFilter(PoFilterResponse response);
 }

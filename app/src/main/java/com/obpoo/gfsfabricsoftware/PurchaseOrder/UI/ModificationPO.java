@@ -16,10 +16,11 @@ import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.AddPOModel.ModifyNote
 import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.TrackPoModel.TrackPOByCusRes;
 import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.TrackPoModel.TrackPODetRes;
 import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.ViewPOModel.ConfirmPOResponse;
+import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.ViewPOModel.PoFilterResponse;
 import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.ViewPOModel.poItem;
 import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.ViewPOModel.poPOJO;
-import com.obpoo.gfsfabricsoftware.PurchaseOrder.MVP.poPresenterImpl;
-import com.obpoo.gfsfabricsoftware.PurchaseOrder.MVP.poView;
+import com.obpoo.gfsfabricsoftware.PurchaseOrder.MVP.PoPresenterImpl;
+import com.obpoo.gfsfabricsoftware.PurchaseOrder.MVP.PoView;
 import com.obpoo.gfsfabricsoftware.R;
 
 import java.util.ArrayList;
@@ -28,7 +29,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class ModificationPO extends AppCompatActivity implements poView {
+public class ModificationPO extends AppCompatActivity implements PoView {
 
     @BindView(R.id.factory_tv)
     TextView factory_tv;
@@ -50,14 +51,14 @@ public class ModificationPO extends AppCompatActivity implements poView {
     String factory, id, staf, cc_mail;
 
     ModificationPoAdapter adapter;
-    poPresenterImpl presenter;
+    PoPresenterImpl presenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_modification_po);
         ButterKnife.bind(this);
-        presenter = new poPresenterImpl(this);
+        presenter = new PoPresenterImpl(this);
         Intent intent = getIntent();
         items = intent.getParcelableArrayListExtra("item");
         id = intent.getStringExtra("id");
@@ -117,6 +118,11 @@ public class ModificationPO extends AppCompatActivity implements poView {
 
     @Override
     public void onModifyNotes(ModifyNotes response) {
+
+    }
+
+    @Override
+    public void onShowFilter(PoFilterResponse response) {
 
     }
 

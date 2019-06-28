@@ -9,7 +9,7 @@ import java.util.HashMap;
  * Created by PHD on 11/23/2018.
  */
 
-public interface poPresenter {
+public interface PoPresenter {
     void OnViewPO(String method, String page_no);
 
     void OnAddPO(String method, String factory_id, String staff_id, String cc_email, String brand_name, String created_by, String updated_by, ArrayList<poItem> items);
@@ -20,4 +20,6 @@ public interface poPresenter {
     void onTrackPO(String user_id, String method);
     void onTrackPODet(String cid, String method);
     void onPassModifyNotes(String method,String notes,String id);
+    void onVIewFilter(String method);
+    void onVIewSelectFilter(String method,String status,String page_no);
 }

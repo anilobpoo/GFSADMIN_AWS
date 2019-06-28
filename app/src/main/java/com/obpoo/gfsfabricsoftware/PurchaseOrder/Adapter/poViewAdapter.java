@@ -3,12 +3,10 @@ package com.obpoo.gfsfabricsoftware.PurchaseOrder.Adapter;
 import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
-import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -17,10 +15,11 @@ import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.AddPOModel.ModifyNote
 import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.TrackPoModel.TrackPOByCusRes;
 import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.TrackPoModel.TrackPODetRes;
 import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.ViewPOModel.ConfirmPOResponse;
+import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.ViewPOModel.PoFilterResponse;
 import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.ViewPOModel.poDatum;
 import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.ViewPOModel.poPOJO;
-import com.obpoo.gfsfabricsoftware.PurchaseOrder.MVP.poPresenterImpl;
-import com.obpoo.gfsfabricsoftware.PurchaseOrder.MVP.poView;
+import com.obpoo.gfsfabricsoftware.PurchaseOrder.MVP.PoPresenterImpl;
+import com.obpoo.gfsfabricsoftware.PurchaseOrder.MVP.PoView;
 import com.obpoo.gfsfabricsoftware.PurchaseOrder.UI.POView;
 import com.obpoo.gfsfabricsoftware.R;
 
@@ -37,11 +36,11 @@ import butterknife.ButterKnife;
  * Created by PHD on 11/23/2018.
  */
 
-public class poViewAdapter extends RecyclerView.Adapter<poViewAdapter.VViewHolder> implements poView {
+public class poViewAdapter extends RecyclerView.Adapter<poViewAdapter.VViewHolder> implements PoView {
 
     Context context;
     ArrayList<poDatum> poListData;
-    poPresenterImpl presenter;
+    PoPresenterImpl presenter;
 
     public void updateList(ArrayList<poDatum> list){
         poListData = list;
@@ -52,7 +51,7 @@ public class poViewAdapter extends RecyclerView.Adapter<poViewAdapter.VViewHolde
     public poViewAdapter(Context context, ArrayList<poDatum> poListData) {
         this.context = context;
         this.poListData = poListData;
-        presenter = new poPresenterImpl(this);
+        presenter = new PoPresenterImpl(this);
 
     }
 
@@ -163,6 +162,11 @@ public class poViewAdapter extends RecyclerView.Adapter<poViewAdapter.VViewHolde
 
     @Override
     public void onModifyNotes(ModifyNotes response) {
+
+    }
+
+    @Override
+    public void onShowFilter(PoFilterResponse response) {
 
     }
 

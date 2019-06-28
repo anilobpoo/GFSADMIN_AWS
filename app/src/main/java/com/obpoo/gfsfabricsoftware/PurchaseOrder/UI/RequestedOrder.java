@@ -3,7 +3,6 @@ package com.obpoo.gfsfabricsoftware.PurchaseOrder.UI;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -15,7 +14,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AbsListView;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.ProgressBar;
 
 import com.obpoo.gfsfabricsoftware.Article.DataModel.FabricType.fabricTypePOJO;
@@ -30,10 +28,12 @@ import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.AddPOModel.ModifyNote
 import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.TrackPoModel.TrackPOByCusRes;
 import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.TrackPoModel.TrackPODetRes;
 import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.ViewPOModel.ConfirmPOResponse;
+import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.ViewPOModel.FilterDatum;
+import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.ViewPOModel.PoFilterResponse;
 import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.ViewPOModel.poDatum;
 import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.ViewPOModel.poPOJO;
-import com.obpoo.gfsfabricsoftware.PurchaseOrder.MVP.poPresenterImpl;
-import com.obpoo.gfsfabricsoftware.PurchaseOrder.MVP.poView;
+import com.obpoo.gfsfabricsoftware.PurchaseOrder.MVP.PoPresenterImpl;
+import com.obpoo.gfsfabricsoftware.PurchaseOrder.MVP.PoView;
 import com.obpoo.gfsfabricsoftware.R;
 import com.obpoo.gfsfabricsoftware.color.datamodels.ColorDetail;
 import com.obpoo.gfsfabricsoftware.color.datamodels.ColorResponse;
@@ -54,10 +54,10 @@ import java.util.ArrayList;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class RequestedOrder extends BaseActivity implements poView, UserView, VendorsView, StockView, ColorView {
+public class RequestedOrder extends BaseActivity implements PoView, UserView, VendorsView, StockView, ColorView {
     @BindView(R.id.rv_po)
     RecyclerView rv_po;
-    poPresenterImpl presenter;
+    PoPresenterImpl presenter;
     @BindView(R.id.pbatshowPO)
     ProgressBar progressBar;
     @BindView(R.id.etSearch)
@@ -71,6 +71,7 @@ public class RequestedOrder extends BaseActivity implements poView, UserView, Ve
     ColorPresenterImpl color_presenter;
     private ArrayList<ColorDetail> colorlist = new ArrayList<>();
     ArrayList<poDatum> pOdataList = new ArrayList<>();
+    ArrayList<FilterDatum> filterData = new ArrayList<>();
     poViewAdapter adapter;
     int page_no = 1;
     Boolean isScrolling = false;
@@ -91,7 +92,7 @@ public class RequestedOrder extends BaseActivity implements poView, UserView, Ve
 
         final LinearLayoutManager linearLayoutManager = new LinearLayoutManager(RequestedOrder.this);
 
-        presenter = new poPresenterImpl(this);
+        presenter = new PoPresenterImpl(this);
         vendor_presenter = new VendorsPresenterImpl(this);
         article_presenter = new StockPresenterImpl(this);
         color_presenter = new ColorPresenterImpl(this);
@@ -186,10 +187,20 @@ public class RequestedOrder extends BaseActivity implements poView, UserView, Ve
 
     }
 
+    @Override
+    public void onShowFilter(PoFilterResponse response) {
+        if (response.getStatus().equals("success")) {
+            filterData = response.getData();
+            Intent intent = new Intent(RequestedOrder.this, FilterView.class);
+            intent.putExtra("data", filterData);
+            startActivity(intent);
+        }
+    }
+
     private void showInRecyclerView(poPOJO response) {
         ArrayList<poDatum> pOdummydataList = new ArrayList<>();
-        pOdummydataList=response.getData();
-        pOdataList .addAll(pOdummydataList);
+        pOdummydataList = response.getData();
+        pOdataList.addAll(pOdummydataList);
 
         adapter = new poViewAdapter(getApplicationContext(), pOdataList);
         final LinearLayoutManager lm = new LinearLayoutManager(RequestedOrder.this);
@@ -286,6 +297,7 @@ public class RequestedOrder extends BaseActivity implements poView, UserView, Ve
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.so_filter:
+                presenter.onVIewFilter("status_view");
                 break;
             case R.id.so_date_filter:
                 Intent in = new Intent(RequestedOrder.this, POAdd.class);

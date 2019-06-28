@@ -57,12 +57,15 @@ import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.TrackPoModel.TrackPOR
 import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.ViewPOModel.ConfirmPOResponse;
 import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.ViewPOModel.ConfirmPoRequest;
 import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.ViewPOModel.ModifyConfirmPoReq;
+import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.ViewPOModel.PoFilterRequest;
+import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.ViewPOModel.PoFilterResponse;
 import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.ViewPOModel.PoOrderRequest;
 import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.ViewPOModel.PoPendingOrdRequest;
+import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.ViewPOModel.PoSelectFilterRequest;
 import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.ViewPOModel.ViewConfirmPoRequest;
 import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.ViewPOModel.ViewPgnRequest;
 import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.ViewPOModel.poPOJO;
-import com.obpoo.gfsfabricsoftware.PurchaseOrder.MVP.ReportRequest;
+import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.ViewPOModel.ReportRequest;
 import com.obpoo.gfsfabricsoftware.Report.DataModel.Bill_Invoice_Report_Model.Bill_Invoice_Report_request;
 import com.obpoo.gfsfabricsoftware.Report.DataModel.Bill_Invoice_Report_Model.Bill_Invoice_Response_data;
 import com.obpoo.gfsfabricsoftware.Report.DataModel.CheckIn.CheckInResponse;
@@ -166,14 +169,11 @@ import com.obpoo.gfsfabricsoftware.warehouse.datamodels.WarehouseResponse;
 import com.obpoo.gfsfabricsoftware.zone.datamodels.ZoneRequest;
 import com.obpoo.gfsfabricsoftware.zone.datamodels.ZoneResponse;
 
-import java.util.HashMap;
-
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Query;
-import retrofit2.http.QueryMap;
 
 public interface WebApi {
 
@@ -280,6 +280,9 @@ public interface WebApi {
 
     @POST("po_req/packaging_list.php")
     Call<poPOJO> viewPoPendingOrderAPI(@Body PoPendingOrdRequest request);
+
+    @POST("po_req/po_search.php")
+    Call<poPOJO> viewSelectFilterAPI(@Body PoSelectFilterRequest request);
 
     @POST("po_req/po_create_order.php")
     Call<poPOJO> viewConfirmPOApi(@Body ViewConfirmPoRequest request);
@@ -464,4 +467,6 @@ public interface WebApi {
     Call<SoldFabricsResponse> itemSalesApi(@Body ItemSalesReq request);
     @POST("po_req/po_create_order.php")
     Call<ModifyNotes> modifyNotesApi(@Body ModifyNoteReq request);
+    @POST("po_req/po_search.php")
+    Call<PoFilterResponse> poFilterApi(@Body PoFilterRequest request);
 }

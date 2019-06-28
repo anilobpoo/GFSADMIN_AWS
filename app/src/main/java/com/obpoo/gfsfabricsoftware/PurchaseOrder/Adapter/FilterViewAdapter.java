@@ -1,84 +1,73 @@
-package com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.TrackPoModel;
+package com.obpoo.gfsfabricsoftware.PurchaseOrder.Adapter;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.support.annotation.NonNull;
-import android.support.constraint.ConstraintLayout;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.AddPOModel.AddPoPojo;
 import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.AddPOModel.ModifyNotes;
+import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.TrackPoModel.TrackPOByCusRes;
+import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.TrackPoModel.TrackPODetRes;
 import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.ViewPOModel.ConfirmPOResponse;
+import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.ViewPOModel.FilterDatum;
 import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.ViewPOModel.PoFilterResponse;
+import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.ViewPOModel.poDatum;
 import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.ViewPOModel.poPOJO;
 import com.obpoo.gfsfabricsoftware.PurchaseOrder.MVP.PoPresenterImpl;
 import com.obpoo.gfsfabricsoftware.PurchaseOrder.MVP.PoView;
-import com.obpoo.gfsfabricsoftware.PurchaseOrder.UI.TrackPODet;
 import com.obpoo.gfsfabricsoftware.R;
-import com.obpoo.gfsfabricsoftware.utilities.AppConstants;
 
 import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class TrackPOCusAdp extends RecyclerView.Adapter<TrackPOCusAdp.ViewHolder> implements PoView {
-    ArrayList<TrackPObyCusData> trackPObyCusDataArrayList;
+public class FilterViewAdapter extends RecyclerView.Adapter<FilterViewAdapter.ViewHolder> implements PoView {
+    ArrayList<FilterDatum> filterData;
+    ArrayList<poDatum> selectData;
     Activity context;
     PoPresenterImpl presenter;
-    ProgressBar progress_trackPODet;
 
-    public void updateFilterData( ArrayList<TrackPObyCusData> list){
-        this.trackPObyCusDataArrayList=list;
-        notifyDataSetChanged();
-    }
-
-    public TrackPOCusAdp(ArrayList<TrackPObyCusData> trackPObyCusDataArrayList, Activity context,ProgressBar progress_trackPODet) {
-        this.trackPObyCusDataArrayList = trackPObyCusDataArrayList;
+    public FilterViewAdapter(ArrayList<FilterDatum> filterData, Activity context) {
+        this.filterData = filterData;
         this.context = context;
-        this.progress_trackPODet=progress_trackPODet;
         presenter = new PoPresenterImpl(this);
     }
 
     @NonNull
     @Override
-    public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        View view = LayoutInflater.from(context).inflate(R.layout.trackpocuslay,viewGroup,false);
-        ViewHolder viewtrackCuspo = new ViewHolder(view);
-        return viewtrackCuspo;
+    public FilterViewAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
+        View view = LayoutInflater.from(context).inflate(R.layout.trackpocuslay, viewGroup, false);
+        FilterViewAdapter.ViewHolder rootView = new FilterViewAdapter.ViewHolder(view);
+        return rootView;
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder,final  int i) {
-
-
-        holder.cus_name_track_po_.setText(trackPObyCusDataArrayList.get(i).getCustomerName());
-        holder.constr_trackPOCus.setOnClickListener(new View.OnClickListener() {
+    public void onBindViewHolder(@NonNull FilterViewAdapter.ViewHolder viewHolder, final int i) {
+        viewHolder.cus_name_track_po_.setText(filterData.get(i).getName());
+        viewHolder.cus_name_track_po_.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                presenter.onTrackPODet(trackPObyCusDataArrayList.get(i).getId(),"view_by_customer");
-
+                presenter.onVIewSelectFilter("filter",filterData.get(i).getId(),"1");
             }
         });
-
-
-
     }
 
     @Override
     public int getItemCount() {
-        return trackPObyCusDataArrayList.size();
+        return filterData.size();
     }
 
     @Override
     public void onShowViewPO(poPOJO response) {
-
+        if (response.getStatus().equals("success")){
+            selectData = response.getData();
+        }
     }
 
     @Override
@@ -103,13 +92,6 @@ public class TrackPOCusAdp extends RecyclerView.Adapter<TrackPOCusAdp.ViewHolder
 
     @Override
     public void onTrackPOdetails(TrackPODetRes response) {
-        Log.i("TrackPODetRes",response.getMessage());
-        if(response.getStatus().equals("success")){
-            ArrayList<TrackPODetData> trackPODetDataArrayList = response.getData();
-            Intent in = new Intent(context, TrackPODet.class);
-            in.putParcelableArrayListExtra(AppConstants.trackPOCusDet,trackPODetDataArrayList);
-            context.startActivity(in);
-        }
 
     }
 
@@ -125,13 +107,11 @@ public class TrackPOCusAdp extends RecyclerView.Adapter<TrackPOCusAdp.ViewHolder
 
     @Override
     public void showDialog() {
-        progress_trackPODet.setVisibility(View.VISIBLE);
 
     }
 
     @Override
     public void hideDialog() {
-        progress_trackPODet.setVisibility(View.GONE);
 
     }
 
@@ -140,15 +120,14 @@ public class TrackPOCusAdp extends RecyclerView.Adapter<TrackPOCusAdp.ViewHolder
 
     }
 
-    class ViewHolder extends RecyclerView.ViewHolder{
+    class ViewHolder extends RecyclerView.ViewHolder {
+
         @BindView(R.id.cus_name_track_po_)
         TextView cus_name_track_po_;
-        @BindView(R.id.constr_trackPOCus)
-        ConstraintLayout constr_trackPOCus;
-
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             ButterKnife.bind(this,itemView);
         }
     }
 }
+

@@ -15,10 +15,11 @@ import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.AddPOModel.ModifyNote
 import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.TrackPoModel.TrackPOByCusRes;
 import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.TrackPoModel.TrackPODetRes;
 import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.ViewPOModel.ConfirmPOResponse;
+import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.ViewPOModel.PoFilterResponse;
 import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.ViewPOModel.poItem;
 import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.ViewPOModel.poPOJO;
-import com.obpoo.gfsfabricsoftware.PurchaseOrder.MVP.poPresenterImpl;
-import com.obpoo.gfsfabricsoftware.PurchaseOrder.MVP.poView;
+import com.obpoo.gfsfabricsoftware.PurchaseOrder.MVP.PoPresenterImpl;
+import com.obpoo.gfsfabricsoftware.PurchaseOrder.MVP.PoView;
 import com.obpoo.gfsfabricsoftware.R;
 
 import java.util.ArrayList;
@@ -26,10 +27,10 @@ import java.util.ArrayList;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class ModificationPoAdapter extends RecyclerView.Adapter<ModificationPoAdapter.ViewHolder> implements poView {
+public class ModificationPoAdapter extends RecyclerView.Adapter<ModificationPoAdapter.ViewHolder> implements PoView {
     Context context;
     ArrayList<poItem> items;
-    poPresenterImpl presenter;
+    PoPresenterImpl presenter;
     int position;
 
     public ModificationPoAdapter(Context context, ArrayList<poItem> items) {
@@ -42,7 +43,7 @@ public class ModificationPoAdapter extends RecyclerView.Adapter<ModificationPoAd
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         View view = LayoutInflater.from(context).inflate(R.layout.modifcatiopoadapter, viewGroup, false);
         ModificationPoAdapter.ViewHolder rootview = new ModificationPoAdapter.ViewHolder(view);
-        presenter = new poPresenterImpl(this);
+        presenter = new PoPresenterImpl(this);
 
         return rootview;
     }
@@ -104,6 +105,11 @@ public class ModificationPoAdapter extends RecyclerView.Adapter<ModificationPoAd
 
     @Override
     public void onModifyNotes(ModifyNotes response) {
+
+    }
+
+    @Override
+    public void onShowFilter(PoFilterResponse response) {
 
     }
 

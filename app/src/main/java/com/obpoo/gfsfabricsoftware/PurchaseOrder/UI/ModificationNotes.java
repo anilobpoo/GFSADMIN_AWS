@@ -1,7 +1,6 @@
 package com.obpoo.gfsfabricsoftware.PurchaseOrder.UI;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -15,9 +14,10 @@ import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.AddPOModel.ModifyNote
 import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.TrackPoModel.TrackPOByCusRes;
 import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.TrackPoModel.TrackPODetRes;
 import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.ViewPOModel.ConfirmPOResponse;
+import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.ViewPOModel.PoFilterResponse;
 import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.ViewPOModel.poPOJO;
-import com.obpoo.gfsfabricsoftware.PurchaseOrder.MVP.poPresenterImpl;
-import com.obpoo.gfsfabricsoftware.PurchaseOrder.MVP.poView;
+import com.obpoo.gfsfabricsoftware.PurchaseOrder.MVP.PoPresenterImpl;
+import com.obpoo.gfsfabricsoftware.PurchaseOrder.MVP.PoView;
 import com.obpoo.gfsfabricsoftware.R;
 import com.obpoo.gfsfabricsoftware.ui.activities.BaseActivity;
 
@@ -25,7 +25,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class ModificationNotes extends BaseActivity implements poView {
+public class ModificationNotes extends BaseActivity implements PoView {
     @BindView(R.id.add_notes_CPO)
     EditText add_notes_CPO;
     @BindView(R.id.pre_add_notes)
@@ -38,7 +38,7 @@ public class ModificationNotes extends BaseActivity implements poView {
     ProgressBar progress_mn;
 
     String orderID;
-    poPresenterImpl presenter;
+    PoPresenterImpl presenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,7 +53,7 @@ public class ModificationNotes extends BaseActivity implements poView {
         pre_add_notes.setText(getIntent().getStringExtra("PREVNOTES"));
         orderID = getIntent().getStringExtra("ORDERID");
 
-        presenter = new poPresenterImpl(this);
+        presenter = new PoPresenterImpl(this);
 
 
     }
@@ -100,6 +100,11 @@ public class ModificationNotes extends BaseActivity implements poView {
             startActivity(in);
             finish();
         }
+
+    }
+
+    @Override
+    public void onShowFilter(PoFilterResponse response) {
 
     }
 

@@ -13,8 +13,11 @@ import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.TrackPoModel.TrackPOR
 import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.ViewPOModel.ConfirmPOResponse;
 import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.ViewPOModel.ConfirmPoRequest;
 import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.ViewPOModel.ModifyConfirmPoReq;
+import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.ViewPOModel.PoFilterRequest;
+import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.ViewPOModel.PoFilterResponse;
 import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.ViewPOModel.PoOrderRequest;
 import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.ViewPOModel.PoPendingOrdRequest;
+import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.ViewPOModel.PoSelectFilterRequest;
 import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.ViewPOModel.ViewConfirmPoRequest;
 import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.ViewPOModel.ViewPgnRequest;
 import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.ViewPOModel.poItem;
@@ -23,7 +26,6 @@ import com.obpoo.gfsfabricsoftware.utilities.ApiClient;
 import com.obpoo.gfsfabricsoftware.utilities.WebApi;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -34,7 +36,7 @@ import retrofit2.Retrofit;
  * Created by PHD on 11/23/2018.
  */
 
-public class poInteractorImpl implements poInteractor {
+public class PoInteractorImpl implements PoInteractor {
     @Override
     public void callRetroViewPO(String method, String page_no, final ViewPoResponse ViewPoResponse) {
         Retrofit retrofit = ApiClient.getRetrofit();
@@ -114,6 +116,34 @@ public class poInteractorImpl implements poInteractor {
             @Override
             public void onFailure(Call<poPOJO> call, Throwable t) {
                 ViewPoResponse.onViewError(t.getMessage());
+                Log.i("failureMSG", t.getMessage());
+
+            }
+        });
+    }
+
+    @Override
+    public void callSelectFilter(String method, String status, String page_no, final ViewPoResponse viewPoResponse) {
+        Retrofit retrofit = ApiClient.getRetrofit();
+        WebApi apis = retrofit.create(WebApi.class);
+        PoSelectFilterRequest request = new PoSelectFilterRequest(method,status,page_no);
+        Call<poPOJO> call = apis.viewSelectFilterAPI(request);
+        call.enqueue(new Callback<poPOJO>() {
+            @Override
+            public void onResponse(Call<poPOJO> call, Response<poPOJO> response) {
+                if (response.isSuccessful()) {
+                    viewPoResponse.onViewSuccess(response.body());
+                    Log.i("responsepo", response.body().getMessage());
+
+                } else {
+                    viewPoResponse.onViewError("Please Try Again.");
+
+                }
+            }
+
+            @Override
+            public void onFailure(Call<poPOJO> call, Throwable t) {
+                viewPoResponse.onViewError(t.getMessage());
                 Log.i("failureMSG", t.getMessage());
 
             }
@@ -292,5 +322,32 @@ public class poInteractorImpl implements poInteractor {
             }
         });
 
+    }
+
+    @Override
+    public void callFilter(String method, final ViewPOFilter viewPOFilter) {
+        Retrofit retrofit = ApiClient.getRetrofit();
+        WebApi apis = retrofit.create(WebApi.class);
+
+        PoFilterRequest request = new PoFilterRequest(method);
+        Call<PoFilterResponse> call = apis.poFilterApi(request);
+        call.enqueue(new Callback<PoFilterResponse>() {
+            @Override
+            public void onResponse(Call<PoFilterResponse> call, Response<PoFilterResponse> response) {
+                if (response.isSuccessful()) {
+                    viewPOFilter.onFilterPoSuccess(response.body());
+
+                } else {
+                    viewPOFilter.onFilterPoError("Please Try Again.");
+
+                }
+            }
+
+            @Override
+            public void onFailure(Call<PoFilterResponse> call, Throwable t) {
+                viewPOFilter.onFilterPoError(t.getMessage());
+
+            }
+        });
     }
 }

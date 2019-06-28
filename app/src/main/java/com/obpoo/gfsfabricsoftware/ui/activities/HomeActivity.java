@@ -180,7 +180,6 @@ public class HomeActivity extends AppCompatActivity {
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tablayout);
         tabLayout.setTabTextColors(getResources().getColor(R.color.red_500), getResources().getColor(R.color.green_500));
 
-
         TabLayout.Tab homeTab = tabLayout.newTab();
         homeTab.setText("HOME");
         tabLayout.addTab(homeTab);

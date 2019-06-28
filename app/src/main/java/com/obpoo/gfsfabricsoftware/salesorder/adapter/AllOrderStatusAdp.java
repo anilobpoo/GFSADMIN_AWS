@@ -33,7 +33,6 @@ public class AllOrderStatusAdp extends RecyclerView.Adapter<AllOrderStatusAdp.Vi
     Activity context;
     MyOrdersPresenterImpl presenter;
 
-
     public AllOrderStatusAdp(ArrayList<AllORderStatusData> allORderStatusDataArrayList, Activity context) {
         this.allORderStatusDataArrayList = allORderStatusDataArrayList;
         this.context = context;

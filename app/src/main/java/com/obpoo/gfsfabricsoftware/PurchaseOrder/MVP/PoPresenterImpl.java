@@ -5,23 +5,23 @@ import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.AddPOModel.ModifyNote
 import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.TrackPoModel.TrackPOByCusRes;
 import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.TrackPoModel.TrackPODetRes;
 import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.ViewPOModel.ConfirmPOResponse;
+import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.ViewPOModel.PoFilterResponse;
 import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.ViewPOModel.poItem;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 /**
  * Created by PHD on 11/23/2018.
  */
 
-public class poPresenterImpl implements poPresenter,poInteractor.ViewPoResponse,poInteractor.AddPOResponse,
-        poInteractor.ViewConfirmPOResponse,poInteractor.TrackPOI,poInteractor.TrackPODetI,poInteractor.ModifyNotesI {
-    com.obpoo.gfsfabricsoftware.PurchaseOrder.MVP.poView poView;
-    poInteractorImpl interactor;
+public class PoPresenterImpl implements PoPresenter, PoInteractor.ViewPoResponse, PoInteractor.AddPOResponse,
+        PoInteractor.ViewConfirmPOResponse, PoInteractor.TrackPOI, PoInteractor.TrackPODetI, PoInteractor.ModifyNotesI, PoInteractor.ViewPOFilter {
+    PoView poView;
+    PoInteractorImpl interactor;
 
-    public poPresenterImpl(com.obpoo.gfsfabricsoftware.PurchaseOrder.MVP.poView poView) {
+    public PoPresenterImpl(PoView poView) {
         this.poView = poView;
-        interactor = new poInteractorImpl();
+        interactor = new PoInteractorImpl();
     }
 
     @Override
@@ -164,6 +164,18 @@ public class poPresenterImpl implements poPresenter,poInteractor.ViewPoResponse,
     }
 
     @Override
+    public void onVIewFilter(String method) {
+        poView.showDialog();
+        interactor.callFilter(method,this);
+    }
+
+    @Override
+    public void onVIewSelectFilter(String method, String status, String page_no) {
+        poView.showDialog();
+        interactor.callSelectFilter(method,status,page_no,this);
+    }
+
+    @Override
     public void onModifyNotesSuccess(ModifyNotes response) {
         poView.onModifyNotes(response);
 
@@ -171,6 +183,17 @@ public class poPresenterImpl implements poPresenter,poInteractor.ViewPoResponse,
 
     @Override
     public void onModifyNotesError(String message) {
+
+    }
+
+    @Override
+    public void onFilterPoSuccess(PoFilterResponse response) {
+        poView.hideDialog();
+        poView.onShowFilter(response);
+    }
+
+    @Override
+    public void onFilterPoError(String message) {
 
     }
 }

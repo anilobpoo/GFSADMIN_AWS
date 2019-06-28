@@ -1,7 +1,6 @@
 package com.obpoo.gfsfabricsoftware.PurchaseOrder.UI;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -11,7 +10,6 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.obpoo.gfsfabricsoftware.PurchaseOrder.Adapter.ViewDetailsItemAdapter;
 import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.AddPOModel.AddPoPojo;
@@ -19,11 +17,11 @@ import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.AddPOModel.ModifyNote
 import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.TrackPoModel.TrackPOByCusRes;
 import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.TrackPoModel.TrackPODetRes;
 import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.ViewPOModel.ConfirmPOResponse;
-import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.ViewPOModel.poDatum;
+import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.ViewPOModel.PoFilterResponse;
 import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.ViewPOModel.poItem;
 import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.ViewPOModel.poPOJO;
-import com.obpoo.gfsfabricsoftware.PurchaseOrder.MVP.poPresenterImpl;
-import com.obpoo.gfsfabricsoftware.PurchaseOrder.MVP.poView;
+import com.obpoo.gfsfabricsoftware.PurchaseOrder.MVP.PoPresenterImpl;
+import com.obpoo.gfsfabricsoftware.PurchaseOrder.MVP.PoView;
 import com.obpoo.gfsfabricsoftware.R;
 import com.obpoo.gfsfabricsoftware.ui.activities.BaseActivity;
 
@@ -33,7 +31,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class ViewDetails extends BaseActivity implements poView {
+public class ViewDetails extends BaseActivity implements PoView {
     @BindView(R.id.factory_tv)
     TextView factory_tv;
     @BindView(R.id.status_tv)
@@ -66,7 +64,7 @@ public class ViewDetails extends BaseActivity implements poView {
 
 
     ViewDetailsItemAdapter adapter;
-    poPresenterImpl poPresenter;
+    PoPresenterImpl poPresenter;
     ArrayList<poItem> items;
 
 
@@ -82,7 +80,7 @@ public class ViewDetails extends BaseActivity implements poView {
         setSupportActionBar(toolbar);
         ButterKnife.bind(this);
         enableActionBar(true);
-        poPresenter = new poPresenterImpl(this);
+        poPresenter = new PoPresenterImpl(this);
         LinearLayoutManager lm = new LinearLayoutManager(ViewDetails.this);
         lm.setOrientation(LinearLayoutManager.VERTICAL);
         recycler_view.setLayoutManager(lm);
@@ -184,6 +182,11 @@ public class ViewDetails extends BaseActivity implements poView {
 
     @Override
     public void onModifyNotes(ModifyNotes response) {
+
+    }
+
+    @Override
+    public void onShowFilter(PoFilterResponse response) {
 
     }
 

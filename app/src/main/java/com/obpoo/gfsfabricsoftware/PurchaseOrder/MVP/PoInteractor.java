@@ -5,6 +5,7 @@ import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.AddPOModel.ModifyNote
 import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.TrackPoModel.TrackPOByCusRes;
 import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.TrackPoModel.TrackPODetRes;
 import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.ViewPOModel.ConfirmPOResponse;
+import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.ViewPOModel.PoFilterResponse;
 import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.ViewPOModel.poItem;
 import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.ViewPOModel.poPOJO;
 
@@ -15,7 +16,7 @@ import java.util.HashMap;
  * Created by PHD on 11/23/2018.
  */
 
-public interface poInteractor {
+public interface PoInteractor {
     interface ViewPoResponse {
         void onViewSuccess(poPOJO response);
 
@@ -25,6 +26,7 @@ public interface poInteractor {
     void callRetroViewPO(String method, String page_no, ViewPoResponse response);
     void callPoOrder(String method, String from_date, String to_date, String page_no, ViewPoResponse response);
     void callPoPendingOrder(String method, ViewPoResponse response);
+    void callSelectFilter(String method,String status,String page_no, ViewPoResponse response);
 
 
     interface AddPOResponse {
@@ -70,4 +72,10 @@ public interface poInteractor {
         void onModifyNotesError(String message);
     }
     void callModifyNotes(String method,String notes,String id,ModifyNotesI response);
+
+    interface ViewPOFilter{
+        void onFilterPoSuccess(PoFilterResponse response);
+        void onFilterPoError(String message);
+    }
+    void callFilter(String method,ViewPOFilter response);
 }

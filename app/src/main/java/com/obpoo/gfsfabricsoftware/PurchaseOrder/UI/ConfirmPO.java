@@ -1,15 +1,14 @@
 package com.obpoo.gfsfabricsoftware.PurchaseOrder.UI;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.SearchView;
 
 import com.obpoo.gfsfabricsoftware.PurchaseOrder.Adapter.ConfirmPOAdapter;
 import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.AddPOModel.AddPoPojo;
@@ -17,10 +16,11 @@ import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.AddPOModel.ModifyNote
 import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.TrackPoModel.TrackPOByCusRes;
 import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.TrackPoModel.TrackPODetRes;
 import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.ViewPOModel.ConfirmPOResponse;
+import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.ViewPOModel.PoFilterResponse;
 import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.ViewPOModel.poDatum;
 import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.ViewPOModel.poPOJO;
-import com.obpoo.gfsfabricsoftware.PurchaseOrder.MVP.poPresenterImpl;
-import com.obpoo.gfsfabricsoftware.PurchaseOrder.MVP.poView;
+import com.obpoo.gfsfabricsoftware.PurchaseOrder.MVP.PoPresenterImpl;
+import com.obpoo.gfsfabricsoftware.PurchaseOrder.MVP.PoView;
 import com.obpoo.gfsfabricsoftware.R;
 import com.obpoo.gfsfabricsoftware.ui.activities.BaseActivity;
 
@@ -28,18 +28,19 @@ import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 
-public class ConfirmPO extends BaseActivity implements poView {
+public class ConfirmPO extends BaseActivity implements PoView {
     @BindView(R.id.recyclerview)
     RecyclerView recyclerView;
     @BindView(R.id.tranparent_bg)
     ImageView tranparent_bg;
     @BindView(R.id.progressbar)
     ProgressBar progressbar;
+    @BindView(R.id.search)
+    SearchView search;
 
     ConfirmPOAdapter adapter;
-    poPresenterImpl presenter;
+    PoPresenterImpl presenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,19 +51,17 @@ public class ConfirmPO extends BaseActivity implements poView {
         setSupportActionBar(toolbar);
         ButterKnife.bind(this);
         enableActionBar(true);
-        presenter = new poPresenterImpl(this);
+        presenter = new PoPresenterImpl(this);
         presenter.OnViewPO("view_unconfirmed", "1");
         final LinearLayoutManager linearLayoutManager = new LinearLayoutManager(ConfirmPO.this);
         recyclerView.setLayoutManager(linearLayoutManager);
 
     }
 
-
-
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        Intent intent = new Intent(ConfirmPO.this,PO.class);
+        Intent intent = new Intent(ConfirmPO.this, PO.class);
         startActivity(intent);
         finish();
     }
@@ -105,6 +104,11 @@ public class ConfirmPO extends BaseActivity implements poView {
 
     @Override
     public void onModifyNotes(ModifyNotes response) {
+
+    }
+
+    @Override
+    public void onShowFilter(PoFilterResponse response) {
 
     }
 
