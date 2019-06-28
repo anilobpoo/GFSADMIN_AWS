@@ -70,7 +70,7 @@ public class RequestedOrder extends BaseActivity implements poView, UserView, Ve
     ArrayList<StockDataResponse> stocklist = new ArrayList<>();
     ColorPresenterImpl color_presenter;
     private ArrayList<ColorDetail> colorlist = new ArrayList<>();
-    ArrayList<poDatum> pOdataList;
+    ArrayList<poDatum> pOdataList = new ArrayList<>();
     poViewAdapter adapter;
     int page_no = 1;
     Boolean isScrolling = false;
@@ -187,7 +187,9 @@ public class RequestedOrder extends BaseActivity implements poView, UserView, Ve
     }
 
     private void showInRecyclerView(poPOJO response) {
-        pOdataList = response.getData();
+        ArrayList<poDatum> pOdummydataList = new ArrayList<>();
+        pOdummydataList=response.getData();
+        pOdataList .addAll(pOdummydataList);
 
         adapter = new poViewAdapter(getApplicationContext(), pOdataList);
         final LinearLayoutManager lm = new LinearLayoutManager(RequestedOrder.this);
