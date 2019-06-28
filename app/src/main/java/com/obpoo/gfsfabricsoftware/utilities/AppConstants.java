@@ -42,4 +42,6 @@ public class AppConstants {
     public static final String item_sales_cons="ITEM EASY";
     public static final int addcmFab=2021;
     public static final String fabcmselList="FABCMSELLIST";
+    public static final int cm_filter_status=2022;
+    public static final String slected_status_cm="SLECTED_STATUS_CM";
 }

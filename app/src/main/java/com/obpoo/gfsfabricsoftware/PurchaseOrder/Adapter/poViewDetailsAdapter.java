@@ -44,11 +44,12 @@ public class poViewDetailsAdapter  extends RecyclerView.Adapter<poViewDetailsAda
     }
 
     @Override
-    public void onBindViewHolder(@NonNull VViewHolder holder, int i) {
+    public void onBindViewHolder(@NonNull VViewHolder holder, final int i) {
         poItem index = podataList.get(i);
         holder.fab_name_so_order_det.setText(index.getArtNo()+"-"+index.getColorCode());
         if(index.getStatusText() == null ||index.getStatusText().equals("")){
             holder.yard_so_order_det.setVisibility(View.GONE);
+            holder.delete_cmo.setVisibility(View.VISIBLE);
         }
         else{
         holder.yard_so_order_det.setText(index.getStatusText());}
@@ -62,6 +63,14 @@ public class poViewDetailsAdapter  extends RecyclerView.Adapter<poViewDetailsAda
         holder.qty_mtr_mco.setText("Qty(Mtr): "+index.getQuantity());
 
         holder.qtyy_mco.setText("Qty(yard): "+String.format("%.2f",Double.valueOf(index.getQuantity())*1.09));
+
+        holder.delete_cmo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                podataList.remove(i);
+                notifyDataSetChanged();
+            }
+        });
 
 
 
@@ -89,6 +98,8 @@ public class poViewDetailsAdapter  extends RecyclerView.Adapter<poViewDetailsAda
         TextView qtyy_mco;
         @BindView(R.id.qty_mtr_mco)
         TextView qty_mtr_mco;
+        @BindView(R.id.delete_cmo)
+        ImageView delete_cmo;
 
 
 

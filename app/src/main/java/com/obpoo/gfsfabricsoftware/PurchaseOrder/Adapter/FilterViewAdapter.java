@@ -1,6 +1,7 @@
 package com.obpoo.gfsfabricsoftware.PurchaseOrder.Adapter;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -20,7 +21,9 @@ import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.ViewPOModel.poDatum;
 import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.ViewPOModel.poPOJO;
 import com.obpoo.gfsfabricsoftware.PurchaseOrder.MVP.PoPresenterImpl;
 import com.obpoo.gfsfabricsoftware.PurchaseOrder.MVP.PoView;
+import com.obpoo.gfsfabricsoftware.PurchaseOrder.UI.RequestedOrder;
 import com.obpoo.gfsfabricsoftware.R;
+import com.obpoo.gfsfabricsoftware.utilities.AppConstants;
 
 import java.util.ArrayList;
 
@@ -32,6 +35,7 @@ public class FilterViewAdapter extends RecyclerView.Adapter<FilterViewAdapter.Vi
     ArrayList<poDatum> selectData;
     Activity context;
     PoPresenterImpl presenter;
+    String setStatusId;
 
     public FilterViewAdapter(ArrayList<FilterDatum> filterData, Activity context) {
         this.filterData = filterData;
@@ -50,9 +54,10 @@ public class FilterViewAdapter extends RecyclerView.Adapter<FilterViewAdapter.Vi
     @Override
     public void onBindViewHolder(@NonNull FilterViewAdapter.ViewHolder viewHolder, final int i) {
         viewHolder.cus_name_track_po_.setText(filterData.get(i).getName());
-        viewHolder.cus_name_track_po_.setOnClickListener(new View.OnClickListener() {
+        viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                setStatusId=filterData.get(i).getId();
                 presenter.onVIewSelectFilter("filter",filterData.get(i).getId(),"1");
             }
         });
@@ -67,6 +72,11 @@ public class FilterViewAdapter extends RecyclerView.Adapter<FilterViewAdapter.Vi
     public void onShowViewPO(poPOJO response) {
         if (response.getStatus().equals("success")){
             selectData = response.getData();
+            Intent in = new Intent(context, RequestedOrder.class);
+            in.putParcelableArrayListExtra(AppConstants.slected_status_cm,selectData);
+            in.putExtra("CMSTATUSID",setStatusId);
+            context.setResult(AppConstants.cm_filter_status,in);
+            context.finish();
         }
     }
 
