@@ -6,9 +6,11 @@ import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -26,6 +28,8 @@ import com.obpoo.gfsfabricsoftware.utilities.AppConstants;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -41,6 +45,7 @@ public class FabricItemsAdapter extends RecyclerView.Adapter<FabricItemsAdapter.
     ArrayList<CustomersDetail> customerList;
     ArrayList<dynamicField_changeD> addItemList = new ArrayList<>();
     String getSelctedCustomer;
+    Map<Integer, Integer> mSpinnerSelectedItem = new HashMap<Integer, Integer>();
 
     public FabricItemsAdapter(Activity context, ArrayList<FabricsDetail> getFabricList, ArrayList<CustomersDetail> customerList) {
         this.context = context;
@@ -62,9 +67,11 @@ public class FabricItemsAdapter extends RecyclerView.Adapter<FabricItemsAdapter.
         Picasso.with(context).load(AppConstants.FABRIC_IMAGE+getFabricList.get(i).getFab_img()).into(holder.fab_image);
         holder.content_fab.setText(getFabricList.get(i).getComposition());
         holder.article_fab.setText(getFabricList.get(i).getArticleno());
-        ArrayAdapter<CustomersDetail> customer_adapter = new ArrayAdapter<CustomersDetail>(context,android.R.layout.simple_spinner_dropdown_item,customerList);
-        customer_adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        ArrayAdapter<CustomersDetail> customer_adapter = new ArrayAdapter<CustomersDetail>(context,android.R.layout.simple_spinner_item,customerList);
+        customer_adapter.setDropDownViewResource(android.R.layout.simple_list_item_activated_1);
         holder.customer.setAdapter(customer_adapter);
+
+        Log.i("SpinnerSelected",holder.customer.getSelectedItem().toString());
         holder.add_fabric_item.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -82,7 +89,7 @@ public class FabricItemsAdapter extends RecyclerView.Adapter<FabricItemsAdapter.
 
             }
         });
-      /*  holder.fab_qty_mtr.addTextChangedListener(new TextWatcher() {
+       holder.fab_qty_mtr.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
@@ -99,22 +106,7 @@ public class FabricItemsAdapter extends RecyclerView.Adapter<FabricItemsAdapter.
             }
         });
 
-        holder.fab_qty_yard.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                    holder.fab_qty_mtr.setText(String.valueOf(Float.parseFloat(s.toString())/1.1));
-            }
-        });*/
 
 
 
@@ -150,30 +142,9 @@ public class FabricItemsAdapter extends RecyclerView.Adapter<FabricItemsAdapter.
             super(itemView);
             ButterKnife.bind(this,itemView);
         }
-        @OnItemSelected(R.id.customer)
-        public void onCustomer(int position){
-            getSelctedCustomer = customerList.get(position).getCustomerName();
-            Toast.makeText(context,getSelctedCustomer,Toast.LENGTH_SHORT).show();
 
-        }
     }
-    class MeterTextWatcher implements TextWatcher{
 
-        @Override
-        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-        }
-
-        @Override
-        public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-        }
-
-        @Override
-        public void afterTextChanged(Editable s) {
-
-        }
-    }
 
 
 }

@@ -62,11 +62,13 @@ public class AllSO extends BaseActivity implements MyOrdersView {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if(requestCode == AppConstants.salesORderAllActIN){
-            ArrayList<AllOrderSOData> allOrderSODataArrayList = data.getParcelableArrayListExtra(AppConstants.salesAllOrderSelectedStatsuRes);
-            AllOrderSoAdp adapter = new AllOrderSoAdp(allOrderSODataArrayList,AllSO.this);
-            LinearLayoutManager lm = new LinearLayoutManager(this);
-            allSo_rv.setLayoutManager(lm);
-            allSo_rv.setAdapter(adapter);
+            if(data!=null) {
+                ArrayList<AllOrderSOData> allOrderSODataArrayList = data.getParcelableArrayListExtra(AppConstants.salesAllOrderSelectedStatsuRes);
+                AllOrderSoAdp adapter = new AllOrderSoAdp(allOrderSODataArrayList, AllSO.this);
+                LinearLayoutManager lm = new LinearLayoutManager(this);
+                allSo_rv.setLayoutManager(lm);
+                allSo_rv.setAdapter(adapter);
+            }
 
         }
     }
