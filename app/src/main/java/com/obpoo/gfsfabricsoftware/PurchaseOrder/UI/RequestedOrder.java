@@ -124,30 +124,7 @@ public class RequestedOrder extends BaseActivity implements poView, UserView, Ve
             }
         });
 
-        rv_po.addOnScrollListener(new RecyclerView.OnScrollListener() {
-            @Override
-            public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
-                super.onScrollStateChanged(recyclerView, newState);
-                if (newState == AbsListView.OnScrollListener.SCROLL_STATE_TOUCH_SCROLL) {
-                    isScrolling = true;
-                }
-            }
 
-            @Override
-            public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
-                super.onScrolled(recyclerView, dx, dy);
-                currentItems = linearLayoutManager.getChildCount();
-                totalItems = linearLayoutManager.getItemCount();
-                scrollOutItems = linearLayoutManager.findFirstVisibleItemPosition();
-
-                if (isScrolling && (currentItems + scrollOutItems == totalItems)) {
-                    isScrolling = false;
-                    page_no++;
-                    presenter.OnViewPO("view_all_pagn", String.valueOf(page_no));
-                }
-            }
-
-        });
     }
 
     @Override
@@ -218,6 +195,32 @@ public class RequestedOrder extends BaseActivity implements poView, UserView, Ve
         rv_po.setLayoutManager(lm);
         rv_po.setAdapter(adapter);
         adapter.notifyDataSetChanged();
+
+
+        rv_po.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
+                if (newState == AbsListView.OnScrollListener.SCROLL_STATE_TOUCH_SCROLL) {
+                    isScrolling = true;
+                }
+            }
+
+            @Override
+            public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+                currentItems = lm.getChildCount();
+                totalItems = lm.getItemCount();
+                scrollOutItems = lm.findFirstVisibleItemPosition();
+
+                if (isScrolling && (currentItems + scrollOutItems == totalItems)) {
+                    isScrolling = false;
+                    page_no++;
+                    presenter.OnViewPO("view_all_pagn", String.valueOf(page_no));
+                }
+            }
+
+        });
     }
 
     @Override
