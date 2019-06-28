@@ -30,7 +30,6 @@ public class ReportMenus extends BaseActivity {
         setSupportActionBar(toolbar);
         ButterKnife.bind(this);
         enableActionBar(true);
-
         reportMenus.add(AppConstants.billReport);
         reportMenus.add("Customers Pending Report");
         reportMenus.add("Cut Stocks");

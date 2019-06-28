@@ -54,7 +54,7 @@ public class ConfirmPOAdapter extends RecyclerView.Adapter<ConfirmPOAdapter.View
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder viewHolder, final int i) {
 
-      final  ArrayList<poItem> items = data.get(i).getItems();
+        final ArrayList<poItem> items = data.get(i).getItems();
         int itmsize = items.size();
 
         if (tag.equals("poorder")) {
@@ -62,6 +62,7 @@ public class ConfirmPOAdapter extends RecyclerView.Adapter<ConfirmPOAdapter.View
             viewHolder.price_img.setVisibility(View.VISIBLE);
             viewHolder.price.setVisibility(View.VISIBLE);
             viewHolder.go.setVisibility(View.GONE);
+            viewHolder.poNumCM.setVisibility(View.GONE);
 
             viewHolder.indc.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -76,7 +77,7 @@ public class ConfirmPOAdapter extends RecyclerView.Adapter<ConfirmPOAdapter.View
                     in.putExtra("deliver_date", viewHolder.deliver_date.getText());
                     in.putExtra("staf", data.get(i).getStaff());
                     in.putExtra("cc_mail", data.get(i).getCcEmail());
-                    in.putExtra("PREVNOTES",data.get(i).getNotes());
+                    in.putExtra("PREVNOTES", data.get(i).getNotes());
 //                    in.putExtra("cash", data.get(i).get());
                     in.putParcelableArrayListExtra("item", items);
 
@@ -89,6 +90,7 @@ public class ConfirmPOAdapter extends RecyclerView.Adapter<ConfirmPOAdapter.View
         viewHolder.id.setText("#" + data.get(i).getId());
         viewHolder.factoryname.setText(data.get(i).getFactory());
         viewHolder.status.setText(data.get(i).getStatusText());
+        viewHolder.poNumCM.setText(data.get(i).getPo_no());
         viewHolder.item.setText("Item:" + itmsize);
         try {
             viewHolder.date.setText(new SimpleDateFormat("dd-MMM-yyyy").format(new SimpleDateFormat("yyyy-MM-dd").parse(data.get(i).getCreatedOn())));
@@ -148,6 +150,8 @@ public class ConfirmPOAdapter extends RecyclerView.Adapter<ConfirmPOAdapter.View
         ImageView go;
         @BindView(R.id.price)
         TextView price;
+        @BindView(R.id.poNumCM)
+        TextView poNumCM;
 
 
         public ViewHolder(@NonNull View itemView) {
