@@ -13,6 +13,7 @@ import com.obpoo.gfsfabricsoftware.Report.DataModel.PO_Fabric_List.PO_Fabric_Res
 import com.obpoo.gfsfabricsoftware.Report.DataModel.PaymentsReceived.PaymentRecResponse;
 import com.obpoo.gfsfabricsoftware.Report.DataModel.PurchaseOrderDetails.PoDetailsresponse;
 import com.obpoo.gfsfabricsoftware.Report.DataModel.SoldFabrics.SoldFabricsResponse;
+import com.obpoo.gfsfabricsoftware.Report.DataModel.poDetails.PoRDetailRequest;
 
 /**
  * Created by PHD on 2/18/2019.
@@ -66,6 +67,7 @@ public interface ReportInteractor {
         void onPoDetailsError(String message);
     }
     void onCallRetroPoDetails(String method ,PoDetails response);
+    void onCallRetroPoDetailsView(PoRDetailRequest request , PoDetails response);
 
     interface PO_FABRIC_LIST{
         void onPOFabricListSuccess(PO_Fabric_Response response);

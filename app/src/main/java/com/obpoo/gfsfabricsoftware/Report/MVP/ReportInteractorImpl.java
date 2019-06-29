@@ -20,6 +20,7 @@ import com.obpoo.gfsfabricsoftware.Report.DataModel.PaymentsReceived.PaymentRece
 import com.obpoo.gfsfabricsoftware.Report.DataModel.PurchaseOrderDetails.PoDetailsresponse;
 import com.obpoo.gfsfabricsoftware.Report.DataModel.PurchaseOrderDetails.PurchaseOrderDetailsrequest;
 import com.obpoo.gfsfabricsoftware.Report.DataModel.SoldFabrics.SoldFabricsResponse;
+import com.obpoo.gfsfabricsoftware.Report.DataModel.poDetails.PoRDetailRequest;
 import com.obpoo.gfsfabricsoftware.utilities.ApiClient;
 import com.obpoo.gfsfabricsoftware.utilities.WebApi;
 
@@ -246,6 +247,29 @@ public class ReportInteractorImpl implements ReportInteractor {
 
 
 
+    }
+
+    @Override
+    public void onCallRetroPoDetailsView(PoRDetailRequest request, final PoDetails poDetails) {
+        Retrofit retrofit = ApiClient.getRetrofit();
+        WebApi apis = retrofit.create(WebApi.class);
+        Call<PoDetailsresponse> call = apis.podetailApi(request);
+        call.enqueue(new Callback<PoDetailsresponse>() {
+            @Override
+            public void onResponse(Call<PoDetailsresponse> call, Response<PoDetailsresponse> response) {
+                if(response.isSuccessful()){
+                    poDetails.onPoDetailsSuccess(response.body());}
+                else{
+                    poDetails.onPoDetailsError("Please Try Again.");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<PoDetailsresponse> call, Throwable t) {
+
+                poDetails.onPoDetailsError(t.getMessage());
+            }
+        });
     }
 
     @Override

@@ -19,5 +19,6 @@ public interface ReportPresenter {
     void onSend_PO_checkOUT(String method,String from_date,String to_date);
     void onSend_Sold_Fabric(String method,String from, String to);
     void onSend_item_easy_report(String status,String from,String method,String to,String page_no );
+    void onSend_PO_Detail(String method,String status,String to,String from,String page_no );
 
 }

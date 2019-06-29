@@ -87,6 +87,7 @@ import com.obpoo.gfsfabricsoftware.Report.DataModel.PaymentsReceived.PaymentRece
 import com.obpoo.gfsfabricsoftware.Report.DataModel.PurchaseOrderDetails.PoDetailsresponse;
 import com.obpoo.gfsfabricsoftware.Report.DataModel.PurchaseOrderDetails.PurchaseOrderDetailsrequest;
 import com.obpoo.gfsfabricsoftware.Report.DataModel.SoldFabrics.SoldFabricsResponse;
+import com.obpoo.gfsfabricsoftware.Report.DataModel.poDetails.PoRDetailRequest;
 import com.obpoo.gfsfabricsoftware.Stock.DataModel.ActivityLog.ActivityLogResponse;
 import com.obpoo.gfsfabricsoftware.Stock.DataModel.ActivityLogRequest;
 import com.obpoo.gfsfabricsoftware.Stock.DataModel.AddCustomerReserveFinal;
@@ -476,4 +477,7 @@ public interface WebApi {
 
     @POST("po_req/po_search.php")
     Call<PoFilterResponse> poFilterApi(@Body PoFilterRequest request);
+
+    @POST("po_req/po_create_order.php")
+    Call<PoDetailsresponse> podetailApi(@Body PoRDetailRequest request);
 }
