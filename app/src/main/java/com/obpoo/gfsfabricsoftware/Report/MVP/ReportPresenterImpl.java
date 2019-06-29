@@ -15,6 +15,7 @@ import com.obpoo.gfsfabricsoftware.Report.DataModel.PO_Fabric_List.PO_Fabric_Res
 import com.obpoo.gfsfabricsoftware.Report.DataModel.PaymentsReceived.PaymentRecResponse;
 import com.obpoo.gfsfabricsoftware.Report.DataModel.PurchaseOrderDetails.PoDetailsresponse;
 import com.obpoo.gfsfabricsoftware.Report.DataModel.SoldFabrics.SoldFabricsResponse;
+import com.obpoo.gfsfabricsoftware.Report.DataModel.poDetails.PoRDetailRequest;
 
 /**
  * Created by PHD on 2/18/2019.
@@ -128,6 +129,13 @@ ReportInteractor.PO_Left_Over,ReportInteractor.PO_Check_IN,ReportInteractor.PO_C
         reportView.showDialog();
         interactor.onCallItemSales(status,from,method,to,page_no,this);
 
+    }
+
+    @Override
+    public void onSend_PO_Detail(String method, String status, String to, String from, String page_no) {
+        PoRDetailRequest request = new PoRDetailRequest(method,status ,to, from, page_no);
+        reportView.showDialog();
+        interactor.onCallRetroPoDetailsView(request, this);
     }
 
     @Override

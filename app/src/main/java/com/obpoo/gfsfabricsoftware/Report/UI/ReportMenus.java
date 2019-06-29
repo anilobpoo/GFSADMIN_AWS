@@ -45,6 +45,7 @@ public class ReportMenus extends BaseActivity {
         reportMenus.add(AppConstants.pocheckOut);
         reportMenus.add(AppConstants.soldfabrics);
         reportMenus.add(AppConstants.item_sales_cons);
+        reportMenus.add(AppConstants.podetailReport);
 
         int[] report_icon = new int[]{
                 R.drawable.bill_32,
@@ -60,6 +61,7 @@ public class ReportMenus extends BaseActivity {
                 R.drawable.poleftover_32,
                 R.drawable.chequein_32,
                 R.drawable.chequeout_32,
+                R.drawable.saleorder_32,
                 R.drawable.saleorder_32,
                 R.drawable.saleorder_32
         };

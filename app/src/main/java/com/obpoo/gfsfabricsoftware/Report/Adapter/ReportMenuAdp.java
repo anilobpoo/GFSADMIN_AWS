@@ -16,6 +16,7 @@ import com.obpoo.gfsfabricsoftware.Report.UI.CutStock;
 import com.obpoo.gfsfabricsoftware.Report.UI.FabricOrderHistory;
 import com.obpoo.gfsfabricsoftware.Report.UI.ItemEasyReport;
 import com.obpoo.gfsfabricsoftware.Report.UI.PoDeliveryDetails;
+import com.obpoo.gfsfabricsoftware.Report.UI.PoDetailReport;
 import com.obpoo.gfsfabricsoftware.utilities.AppConstants;
 
 import java.util.ArrayList;
@@ -128,7 +129,11 @@ public class ReportMenuAdp extends RecyclerView.Adapter<ReportMenuAdp.ViewHolder
                         context.startActivity(inis);
                         break;
 
-
+                    case 15:
+                        Intent inipd = new Intent(context, PoDetailReport.class);
+                        inipd.putExtra("ReportName", AppConstants.podetailReport);
+                        context.startActivity(inipd);
+                        break;
                 }
             }
         });
