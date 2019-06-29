@@ -1,5 +1,7 @@
 package com.obpoo.gfsfabricsoftware.Report.UI;
 
+import android.content.Intent;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -29,6 +31,7 @@ import com.obpoo.gfsfabricsoftware.Report.DataModel.SoldFabrics.SoldFabricsRespo
 import com.obpoo.gfsfabricsoftware.Report.MVP.ReportPresenterImpl;
 import com.obpoo.gfsfabricsoftware.Report.MVP.ReportView;
 import com.obpoo.gfsfabricsoftware.ui.activities.BaseActivity;
+import com.obpoo.gfsfabricsoftware.utilities.AppConstants;
 
 import java.util.ArrayList;
 
@@ -41,6 +44,21 @@ public class ItemEasyReport extends BaseActivity implements ReportView {
     @BindView(R.id.progress_allso)
     ProgressBar progress_allso;
     ReportPresenterImpl presenter;
+    String getFromIEF,getToIEF,getCusIDIEF;
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode == AppConstants.itemEasyfilter){
+            if(data!=null){
+                getFromIEF= data.getStringExtra("getFromDateIEF");
+                getToIEF=data.getStringExtra("getTodateIEF");
+                getCusIDIEF=data.getStringExtra("statusIEF");
+
+                presenter.onSend_item_easy_report(getCusIDIEF,getFromIEF,"filterView_prcs_pagn",getToIEF,"1");
+            }
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -160,6 +178,12 @@ public class ItemEasyReport extends BaseActivity implements ReportView {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.so_filter:
+                Intent in = new Intent(ItemEasyReport.this,ItemEasyFilter.class);
+                startActivityForResult(in, AppConstants.itemEasyfilter);
+                break;
+        }
         return super.onOptionsItemSelected(item);
     }
 }
