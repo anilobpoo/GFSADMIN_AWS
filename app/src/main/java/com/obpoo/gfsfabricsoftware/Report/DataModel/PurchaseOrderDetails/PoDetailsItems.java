@@ -1,5 +1,8 @@
 package com.obpoo.gfsfabricsoftware.Report.DataModel.PurchaseOrderDetails;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
@@ -9,7 +12,7 @@ import java.io.Serializable;
  * Created by PHD on 2/22/2019.
  */
 
-public class PoDetailsItems implements Serializable{
+public class PoDetailsItems implements Parcelable {
     @SerializedName("id")
     @Expose
     private String id;
@@ -19,6 +22,10 @@ public class PoDetailsItems implements Serializable{
     @SerializedName("customer_id")
     @Expose
     private String customerId;
+
+    @SerializedName("shiping_id")
+    @Expose
+    private String shipingid;
     @SerializedName("fab_id")
     @Expose
     private String fabId;
@@ -86,6 +93,45 @@ public class PoDetailsItems implements Serializable{
     @Expose
     private String img;
 
+    protected PoDetailsItems(Parcel in) {
+        id = in.readString();
+        oid = in.readString();
+        customerId = in.readString();
+        fabId = in.readString();
+        brandName = in.readString();
+        artNoId = in.readString();
+        colorCodeId = in.readString();
+        quantity = in.readString();
+        qtyOnContract = in.readString();
+        qtyModified = in.readString();
+        qtyFinal = in.readString();
+        costPrice = in.readString();
+        priceForCustomer = in.readString();
+        deliveryDate = in.readString();
+        status = in.readString();
+        pendingQty = in.readString();
+        extraQty = in.readString();
+        sortDescription = in.readString();
+        warehouse = in.readString();
+        warehouseTo = in.readString();
+        statusText = in.readString();
+        artNo = in.readString();
+        colorCode = in.readString();
+        img = in.readString();
+    }
+
+    public static final Creator<PoDetailsItems> CREATOR = new Creator<PoDetailsItems>() {
+        @Override
+        public PoDetailsItems createFromParcel(Parcel in) {
+            return new PoDetailsItems(in);
+        }
+
+        @Override
+        public PoDetailsItems[] newArray(int size) {
+            return new PoDetailsItems[size];
+        }
+    };
+
     public String getId() {
         return id;
     }
@@ -109,7 +155,13 @@ public class PoDetailsItems implements Serializable{
     public void setCustomerId(String customerId) {
         this.customerId = customerId;
     }
+    public String getShipingid() {
+        return shipingid;
+    }
 
+    public void setShipingid(String shipingid) {
+        this.shipingid = shipingid;
+    }
     public String getFabId() {
         return fabId;
     }
@@ -284,5 +336,38 @@ public class PoDetailsItems implements Serializable{
 
     public void setImg(String img) {
         this.img = img;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(id);
+        dest.writeString(oid);
+        dest.writeString(customerId);
+        dest.writeString(fabId);
+        dest.writeString(brandName);
+        dest.writeString(artNoId);
+        dest.writeString(colorCodeId);
+        dest.writeString(quantity);
+        dest.writeString(qtyOnContract);
+        dest.writeString(qtyModified);
+        dest.writeString(qtyFinal);
+        dest.writeString(costPrice);
+        dest.writeString(priceForCustomer);
+        dest.writeString(deliveryDate);
+        dest.writeString(status);
+        dest.writeString(pendingQty);
+        dest.writeString(extraQty);
+        dest.writeString(sortDescription);
+        dest.writeString(warehouse);
+        dest.writeString(warehouseTo);
+        dest.writeString(statusText);
+        dest.writeString(artNo);
+        dest.writeString(colorCode);
+        dest.writeString(img);
     }
 }

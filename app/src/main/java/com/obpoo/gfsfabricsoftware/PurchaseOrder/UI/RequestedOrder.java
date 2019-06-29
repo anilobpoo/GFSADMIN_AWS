@@ -136,8 +136,6 @@ public class RequestedOrder extends BaseActivity implements PoView, UserView, Ve
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitle("Manage/CreatePO");
         setSupportActionBar(toolbar);
-
-        ButterKnife.bind(this);
         enableActionBar(true);
         ButterKnife.bind(this);
 

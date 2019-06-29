@@ -125,7 +125,7 @@ public class ViewDetails extends BaseActivity implements PoView {
 
     @OnClick(R.id.isModification)
     public void modifyClick() {
-        /*Intent intent = new Intent(ViewDetails.this, ModificationPO.class);
+        /*Intent intent = new Intent(ViewDetailsReportPO.this, ModificationPO.class);
         intent.putExtra("item", items);
         intent.putExtra("id", id);
         intent.putExtra("staf", staf);

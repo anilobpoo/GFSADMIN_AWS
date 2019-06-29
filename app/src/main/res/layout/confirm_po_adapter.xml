@@ -186,10 +186,11 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:orientation="horizontal"
-                    app:layout_constraintBottom_toBottomOf="@+id/dateimg"
+                    app:layout_constraintBottom_toBottomOf="@+id/date"
                     app:layout_constraintEnd_toEndOf="parent"
+                    android:layout_marginLeft="@dimen/padd_10"
                     app:layout_constraintStart_toEndOf="@+id/date"
-                    app:layout_constraintTop_toTopOf="@+id/dateimg">
+                    app:layout_constraintTop_toTopOf="@+id/date">
 
                     <ImageView
                         android:layout_width="18dp"
@@ -203,6 +204,7 @@
                         android:layout_marginLeft="8dp"
                         android:layout_marginRight="5dp"
                         android:text="N/A"
+                        android:singleLine="true"
                         android:textColor="@color/black"
                         android:textSize="15dp" />
                 </LinearLayout>

@@ -11,6 +11,8 @@ import android.widget.TextView;
 
 import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.ViewPOModel.poItem;
 import com.obpoo.gfsfabricsoftware.R;
+import com.obpoo.gfsfabricsoftware.Report.DataModel.PurchaseOrderDetails.PoDetailsItems;
+import com.obpoo.gfsfabricsoftware.Report.UI.ViewDetailsReportPO;
 
 import java.util.ArrayList;
 
@@ -25,6 +27,7 @@ public class ViewDetailsItemAdapter extends RecyclerView.Adapter<ViewDetailsItem
         this.context = context;
         this.item = item;
     }
+
 
     @NonNull
     @Override
