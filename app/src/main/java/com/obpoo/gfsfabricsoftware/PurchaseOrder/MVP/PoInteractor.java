@@ -46,7 +46,7 @@ public interface PoInteractor {
 
     }
 
-    void callRetroAddPO(String method, String factory_id, String staff_id, String cc_email, String created_by, String updated_by, ArrayList<poItem> items, AddPOResponse response);
+    void callRetroAddPO(String method, String factory_id, String staff_id, String cc_email, String created_by, String updated_by, ArrayList<poItem> items, AddPOResponse response,String notes);
 
     interface ViewConfirmPOResponse {
         void onConfirmPOSuccess(ConfirmPOResponse response);

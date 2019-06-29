@@ -38,6 +38,7 @@ public class AddFabSalesOrder extends RecyclerView.Adapter<AddFabSalesOrder.View
     FabricAddOrderSO fabI;
     ArrayList<CustomersDetail> customerList;
     Map<Integer, Integer> mSpinnerSelectedItem = new HashMap<Integer, Integer>();
+    String getCustomer,getCID;
     public AddFabSalesOrder(ArrayList<AddReserveDet> addReserveDetArrayList, Activity context, FabricAddOrderSO fabI,ArrayList<CustomersDetail> customerList) {
         this.addReserveDetArrayList = addReserveDetArrayList;
         this.context = context;
@@ -64,8 +65,8 @@ public class AddFabSalesOrder extends RecyclerView.Adapter<AddFabSalesOrder.View
         holder.customer.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                String getCustomer=parent.getItemAtPosition(position).toString();
-                Log.i("SpinnerSelected",getCustomer);
+
+//                Log.i("SpinnerSelected",getCustomer);
                 mSpinnerSelectedItem.put(i, position);
             }
 
@@ -75,8 +76,10 @@ public class AddFabSalesOrder extends RecyclerView.Adapter<AddFabSalesOrder.View
             }
         });
         if(mSpinnerSelectedItem.containsKey(i)){
-           int spin_Cus_pos= mSpinnerSelectedItem.get(i);
-           holder.customer.setSelection(spin_Cus_pos);
+            int spin_Cus_pos= mSpinnerSelectedItem.get(i);
+            holder.customer.setSelection(spin_Cus_pos);
+            //getCustomer=parent.getItemAtPosition(position).toString();
+
         }
         holder.article_fab.setText(index.getFabName());
         holder.brand_fab.setText(index.getBrand());
@@ -86,8 +89,17 @@ public class AddFabSalesOrder extends RecyclerView.Adapter<AddFabSalesOrder.View
             @Override
             public void onClick(View v) {
                 if(holder.fab_qty_mtr.getText().length()>0){
+
+                    if(mSpinnerSelectedItem.containsKey(i)){
+                        int spin_Cus_pos= mSpinnerSelectedItem.get(i);
+                        holder.customer.setSelection(spin_Cus_pos);
+                        //getCustomer=parent.getItemAtPosition(position).toString();
+                        getCustomer=customerList.get(spin_Cus_pos).getCustomerName();
+                        getCID=customerList.get(spin_Cus_pos).getId();
+                    }
+
                     index.setQty(holder.fab_qty_mtr.getText().toString());
-                    fabI.AddFabricsBelowI(new poItem(index.getBrand(),index.getArticleno(),index.getQty(),index.getColorCode()),"");
+                    fabI.AddFabricsBelowI(new poItem(index.getBrand(),index.getArticleno(),index.getQty(),index.getColorCode(),getCustomer,getCID,""),"");
                 }
             }
         });

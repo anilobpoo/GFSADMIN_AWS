@@ -18,9 +18,10 @@ public class AddPORequest {
     String created_by;
     String updated_by;
     ArrayList<poItem> items;
+    String notes;
 
     public AddPORequest(String method, String factory_id, String staff_id, String cc_email
-                        , String created_by, String updated_by,  ArrayList<poItem> items) {
+                        , String created_by, String updated_by,  ArrayList<poItem> items,String notes) {
         this.method = method;
         this.factory_id = factory_id;
         this.staff_id = staff_id;
@@ -29,6 +30,7 @@ public class AddPORequest {
         this.created_by = created_by;
         this.updated_by = updated_by;
         this.items = items;
+        this.notes=notes;
     }
 
 
