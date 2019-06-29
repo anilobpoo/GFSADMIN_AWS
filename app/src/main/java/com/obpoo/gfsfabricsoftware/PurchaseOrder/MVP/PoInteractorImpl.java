@@ -208,11 +208,11 @@ public class PoInteractorImpl implements PoInteractor {
 
     @Override
     public void callRetroAddPO(String method, String factory_id, String staff_id, String cc_email,
-                               String created_by, String updated_by,ArrayList<poItem> items, final AddPOResponse AddPOResponse) {
+                               String created_by, String updated_by,ArrayList<poItem> items, final AddPOResponse AddPOResponse,String notes) {
         Retrofit retrofit = ApiClient.getRetrofit();
         WebApi apis = retrofit.create(WebApi.class);
 
-        AddPORequest request = new AddPORequest(method, factory_id, staff_id, cc_email, created_by, updated_by, items);
+        AddPORequest request = new AddPORequest(method, factory_id, staff_id, cc_email, created_by, updated_by, items,notes);
         Call<AddPoPojo> call = apis.AddPO(request);
         call.enqueue(new Callback<AddPoPojo>() {
             @Override

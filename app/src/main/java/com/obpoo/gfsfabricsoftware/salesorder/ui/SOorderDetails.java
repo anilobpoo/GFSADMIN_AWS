@@ -106,16 +106,21 @@ public class SOorderDetails extends BaseActivity {
         desc_so_order_det.setText(getCompl);
         price_so_det.setText(item.getOrderTotal());
         dis_so_det.setText(item.getDiscount()+"%");
-        paid_so_det.setText(String.valueOf((Integer.valueOf(item.getPaybleAmount()))-(Integer.valueOf(item.getLeftover()))));
+        paid_so_det.setText(String.valueOf(Integer.valueOf(item.getPaybleAmount())-Integer.valueOf(item.getLeftover())));
 
-        total_so_det.setText(String.valueOf( (Integer.valueOf(item.getOrderTotal())) -(( Integer.valueOf(item.getOrderTotal()) *( Integer.valueOf(item.getDiscount())/100)))));
+
+        total_so_det.setText(String.valueOf( Integer.valueOf(item.getOrderTotal()) -( Integer.valueOf(item.getOrderTotal()) *( Integer.valueOf(item.getDiscount())/100))));
 
         itemDetailsses = item.getItemDetails();
         SO_order_det_fab_adp adapter = new SO_order_det_fab_adp(itemDetailsses,SOorderDetails.this);
         LinearLayoutManager lm = new LinearLayoutManager(this);
         rv_so_det.setLayoutManager(lm);
         rv_so_det.setAdapter(adapter);
+
+
+
     }
+
     private String callCompleteStatus() {
         switch(item.getCompleteStatus()){
             case "0":

@@ -45,4 +45,5 @@ public class AppConstants {
     public static final String fabcmselList="FABCMSELLIST";
     public static final int cm_filter_status=2022;
     public static final String slected_status_cm="SLECTED_STATUS_CM";
+    public static final int itemEasyfilter =2023;
 }

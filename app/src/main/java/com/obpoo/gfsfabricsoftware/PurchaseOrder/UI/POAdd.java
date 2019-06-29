@@ -44,11 +44,13 @@ import com.obpoo.gfsfabricsoftware.fabric.mvp.FabricsPresenterImpl;
 import com.obpoo.gfsfabricsoftware.fabric.mvp.FabricsView;
 import com.obpoo.gfsfabricsoftware.salesorder.ui.AddfabricSoOrders;
 import com.obpoo.gfsfabricsoftware.ui.activities.BaseActivity;
+import com.obpoo.gfsfabricsoftware.ui.activities.LoginActivity;
 import com.obpoo.gfsfabricsoftware.user.datamodels.UserDetail;
 import com.obpoo.gfsfabricsoftware.user.datamodels.UserResponse;
 import com.obpoo.gfsfabricsoftware.user.mvp.UserPresenterImpl;
 import com.obpoo.gfsfabricsoftware.user.mvp.UserView;
 import com.obpoo.gfsfabricsoftware.utilities.AppConstants;
+import com.obpoo.gfsfabricsoftware.utilities.PreferenceConnector;
 import com.obpoo.gfsfabricsoftware.vendors.datamodels.VendorsDetail;
 import com.obpoo.gfsfabricsoftware.vendors.datamodels.VendorsResponse;
 import com.obpoo.gfsfabricsoftware.vendors.mvp.VendorsPresenterImpl;
@@ -118,6 +120,8 @@ public class POAdd extends BaseActivity implements PoView, FabricsView, UserView
     @BindView(R.id.pbatshowArticle)
     ProgressBar pbatshowArticle;
     ArrayList<poItem> poItemArrayList_adp = new ArrayList<>();
+    @BindView(R.id.add_notes_CPO_bef)
+    TextView add_notes_CPO_bef;
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -156,6 +160,8 @@ public class POAdd extends BaseActivity implements PoView, FabricsView, UserView
         setSupportActionBar(toolbar);
         ButterKnife.bind(this);
         enableActionBar(true);
+        add_notes_CPO_bef.setText("");
+
 //        userList= (ArrayList<UserDetail>) getIntent().getSerializableExtra("userSpinner");
 //        System.out.println(userList.get(0).getName()+"userName");
 //        cartList=(ArrayList<VendorsDetail>)getIntent().getSerializableExtra("vendorSpinner");
@@ -284,8 +290,12 @@ public class POAdd extends BaseActivity implements PoView, FabricsView, UserView
         HashMap<String,ArrayList<poItem>> hashMapArrayList = new HashMap<>();
         hashMapArrayList.put("items",poItemArrayList_adp);
 
+        String admin_id =PreferenceConnector.readString(POAdd.this, getString(R.string.admin_id),"");
+
+
         presenter.OnAddPO("po_direct_order", getSpinVendor, getSpinUser,
-                cc_email.getText().toString(), brand.getText().toString(), "1", "1", poItemArrayList_adp);
+                cc_email.getText().toString(), brand.getText().toString(), admin_id, admin_id, poItemArrayList_adp,add_notes_CPO_bef.getText().toString());
+
 
     }
 

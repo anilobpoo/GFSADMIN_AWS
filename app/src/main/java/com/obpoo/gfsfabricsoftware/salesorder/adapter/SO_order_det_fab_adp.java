@@ -41,7 +41,7 @@ public class SO_order_det_fab_adp extends RecyclerView.Adapter<SO_order_det_fab_
         holder.fab_name_so_order_det.setText(itemDetailsses.get(i).getFabName());
         holder.price_fab_so_order_det.setText(itemDetailsses.get(i).getActualPrice());
         holder.mtr_so_order_det.setText("Qty(Mtr): "+itemDetailsses.get(i).getQuantity());
-        holder.yard_so_order_det.setText("Qty(yard): "+String.valueOf(Integer.valueOf(itemDetailsses.get(i).getQuantity())*1.09));
+        holder.yard_so_order_det.setText("Qty(yard): "+String.format("%2f",Double.valueOf(itemDetailsses.get(i).getQuantity())*1.09));
 
 
     }

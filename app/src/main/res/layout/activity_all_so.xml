@@ -39,7 +39,6 @@
                 android:layout_weight="1"
                 android:background="@drawable/invisibleborder"
                 android:hint="Search by delivery type/customer/discount"
-
                 android:padding="7dp"
                 android:singleLine="true"
                 android:textColorHint="@color/gray"

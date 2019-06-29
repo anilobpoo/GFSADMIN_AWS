@@ -34,7 +34,7 @@ public class PoPresenterImpl implements PoPresenter, PoInteractor.ViewPoResponse
 
     @Override
     public void OnAddPO(String method, String factory_id, String staff_id, String cc_email, String brand_name,
-                        String created_by, String updated_by,  ArrayList<poItem> items) {
+                        String created_by, String updated_by,  ArrayList<poItem> items,String notes) {
         if(poView!=null){
             if(cc_email.length()==0){
                 poView.onValidationfail(1);
@@ -43,7 +43,7 @@ public class PoPresenterImpl implements PoPresenter, PoInteractor.ViewPoResponse
             else {
 
                 poView.showDialog();
-                interactor.callRetroAddPO(method, factory_id, staff_id, cc_email, created_by, updated_by, items, this);
+                interactor.callRetroAddPO(method, factory_id, staff_id, cc_email, created_by, updated_by, items, this,notes);
             } }
     }
 
