@@ -3,6 +3,7 @@ package com.obpoo.gfsfabricsoftware.PurchaseOrder.UI;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -45,6 +46,7 @@ import com.obpoo.gfsfabricsoftware.user.datamodels.UserDetail;
 import com.obpoo.gfsfabricsoftware.user.datamodels.UserResponse;
 import com.obpoo.gfsfabricsoftware.user.mvp.UserPresenterImpl;
 import com.obpoo.gfsfabricsoftware.user.mvp.UserView;
+import com.obpoo.gfsfabricsoftware.utilities.AppConstants;
 import com.obpoo.gfsfabricsoftware.vendors.datamodels.VendorsDetail;
 import com.obpoo.gfsfabricsoftware.vendors.datamodels.VendorsResponse;
 import com.obpoo.gfsfabricsoftware.vendors.mvp.VendorsPresenterImpl;
@@ -80,6 +82,51 @@ public class RequestedOrder extends BaseActivity implements PoView, UserView, Ve
     int page_no = 1;
     Boolean isScrolling = false;
     int currentItems, totalItems, scrollOutItems;
+    int setStatusTag=0;
+     String get_cm_statusId;
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode==AppConstants.cm_filter_status){
+            if(data!=null){
+                setStatusTag =1;
+                ArrayList<poDatum> selectData = data.getParcelableArrayListExtra(AppConstants.slected_status_cm);
+                get_cm_statusId =data.getStringExtra("CMSTATUSID");
+                adapter = new poViewAdapter(getApplicationContext(), selectData);
+                final LinearLayoutManager lm1 = new LinearLayoutManager(RequestedOrder.this);
+
+                rv_po.setLayoutManager(lm1);
+                rv_po.setAdapter(adapter);
+                adapter.notifyDataSetChanged();
+
+                rv_po.addOnScrollListener(new RecyclerView.OnScrollListener() {
+                    @Override
+                    public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
+                        super.onScrollStateChanged(recyclerView, newState);
+                        if (newState == AbsListView.OnScrollListener.SCROLL_STATE_TOUCH_SCROLL) {
+                            isScrolling = true;
+                        }
+                    }
+
+                    @Override
+                    public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
+                        super.onScrolled(recyclerView, dx, dy);
+                        currentItems = lm1.getChildCount();
+                        totalItems = lm1.getItemCount();
+                        scrollOutItems = lm1.findFirstVisibleItemPosition();
+
+                        if (isScrolling && (currentItems + scrollOutItems == totalItems)) {
+                            isScrolling = false;
+                            page_no++;
+                            presenter.onVIewSelectFilter("filter",get_cm_statusId,String.valueOf(page_no));
+                        }
+                    }
+
+                });
+            }
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -205,21 +252,23 @@ public class RequestedOrder extends BaseActivity implements PoView, UserView, Ve
             filterData = response.getData();
             Intent intent = new Intent(RequestedOrder.this, FilterView.class);
             intent.putExtra("data", filterData);
-            startActivity(intent);
+            startActivityForResult(intent, AppConstants.cm_filter_status);
         }
     }
 
     private void showInRecyclerView(poPOJO response) {
         ArrayList<poDatum> pOdummydataList = new ArrayList<>();
+        final LinearLayoutManager lm = new LinearLayoutManager(RequestedOrder.this);
+        if(response.getStatus().equals("success")){
         pOdummydataList = response.getData();
         pOdataList.addAll(pOdummydataList);
 
         adapter = new poViewAdapter(getApplicationContext(), pOdataList);
-        final LinearLayoutManager lm = new LinearLayoutManager(RequestedOrder.this);
+
 
         rv_po.setLayoutManager(lm);
         rv_po.setAdapter(adapter);
-        adapter.notifyDataSetChanged();
+        adapter.notifyDataSetChanged();}
 
 
         rv_po.addOnScrollListener(new RecyclerView.OnScrollListener() {
@@ -241,7 +290,11 @@ public class RequestedOrder extends BaseActivity implements PoView, UserView, Ve
                 if (isScrolling && (currentItems + scrollOutItems == totalItems)) {
                     isScrolling = false;
                     page_no++;
-                    presenter.OnViewPO("view_all_pagn", String.valueOf(page_no));
+                    if(setStatusTag==1){
+                        presenter.onVIewSelectFilter("filter",get_cm_statusId,String.valueOf(page_no));
+                    }
+                    else{
+                    presenter.OnViewPO("view_all_pagn", String.valueOf(page_no));}
                 }
             }
 
@@ -296,7 +349,7 @@ public class RequestedOrder extends BaseActivity implements PoView, UserView, Ve
     void filter(String text) {
         ArrayList<poDatum> temp = new ArrayList();
         for (poDatum d : pOdataList) {
-            if (d.getStatusText().toLowerCase().contains(text.toLowerCase())) {
+            if (d.getPo_no().toLowerCase().contains(text.toLowerCase())) {
                 temp.add(d);
             }
         }
