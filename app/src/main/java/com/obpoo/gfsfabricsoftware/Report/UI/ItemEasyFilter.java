@@ -26,14 +26,14 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class ItemEasyFilter extends BaseActivity {
-    @BindView(R.id.ief_status)
+    @BindView(R.id.status_et)
     TextView ief_status;
-    @BindView(R.id.ief_from)
+    @BindView(R.id.from_date)
     TextView ief_from;
-    @BindView(R.id.ief_to)
+    @BindView(R.id.to_date)
     TextView ief_to;
-    @BindView(R.id.ief_process)
-    Button ief_process;
+    @BindView(R.id.confirm)
+    TextView ief_process;
     String getStatus, getStatusID;
     private DatePickerDialog.OnDateSetListener fromdateSetListener, todateSetListener;
     String getFromDate, getToDate;
@@ -68,7 +68,7 @@ public class ItemEasyFilter extends BaseActivity {
 
     }
 
-    @OnClick(R.id.ief_status)
+    @OnClick(R.id.status_et)
     public void onStatusClick(View view) {
         final String statusList[] = {"cutting_pending", "qc_pending", "qc_done", "ready", "N/A", "cancel", "return_requested", "request accepted", "All"};
 
@@ -114,7 +114,7 @@ public class ItemEasyFilter extends BaseActivity {
 
         }
     }
-    @OnClick(R.id.ief_from)
+    @OnClick(R.id.from_date)
     public void onFrom(View view){
         Calendar cal = Calendar.getInstance();
         int year = cal.get(Calendar.YEAR);
@@ -126,7 +126,7 @@ public class ItemEasyFilter extends BaseActivity {
         dialog.show();
     }
 
-    @OnClick(R.id.ief_to)
+    @OnClick(R.id.to_date)
     public void onTo(View view){
         Calendar cal = Calendar.getInstance();
         int year = cal.get(Calendar.YEAR);
@@ -137,7 +137,7 @@ public class ItemEasyFilter extends BaseActivity {
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         dialog.show();
     }
-    @OnClick(R.id.ief_process)
+    @OnClick(R.id.confirm)
     public void onProcess(View view){
         Intent in = new Intent(ItemEasyFilter.this,ItemEasyReport.class);
         in.putExtra("getFromDateIEF",getFromDate);
@@ -146,6 +146,5 @@ public class ItemEasyFilter extends BaseActivity {
         setResult(AppConstants.itemEasyfilter,in);
         finish();
     }
-
 
 }
