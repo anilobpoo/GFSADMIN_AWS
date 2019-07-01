@@ -54,6 +54,11 @@ public class CustomerForFabAdp extends RecyclerView.Adapter<CustomerForFabAdp.Vi
         return customerList.size();
     }
 
+    public void updateFilterData(ArrayList<CustomersDetail> temp) {
+        this.customerList=customerList;
+        notifyDataSetChanged();
+    }
+
     class ViewHolder extends RecyclerView.ViewHolder{
         @BindView(R.id.cus_name_track_po_)
         TextView customer;

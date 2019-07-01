@@ -7,11 +7,15 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.MotionEvent;
+import android.widget.EditText;
 
 import com.obpoo.gfsfabricsoftware.PurchaseOrder.Adapter.CustomerForFabAdp;
 import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.AddPOModel.CustomerSelForFabMod;
+import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.TrackPoModel.TrackPObyCusData;
 import com.obpoo.gfsfabricsoftware.R;
 import com.obpoo.gfsfabricsoftware.Stock.DataModel.AddReserveDet;
 import com.obpoo.gfsfabricsoftware.customers.datamodels.CustomersDetail;
@@ -29,8 +33,10 @@ public class POCreateAddCustomerinAddFab extends BaseActivity implements Custome
     @BindView(R.id.trackpo_cus_rv)
     RecyclerView customerforFab_rv;
     ArrayList<CustomersDetail> customerList = new ArrayList<>();
+    @BindView(R.id.etSearch)
+    EditText etSearch;
     int index;
-
+    CustomerForFabAdp adapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,14 +48,46 @@ public class POCreateAddCustomerinAddFab extends BaseActivity implements Custome
         enableActionBar(true);
 
         customerList = PreferenceConnector.getArraylistofObjectForFab(AppConstants.selectcustomerforPOinaddfab,this);
+        Log.i("CustomerList",customerList.size()+"");
         index = getIntent().getIntExtra(AppConstants.selctedindexofabric,0);
 
-        CustomerForFabAdp adapter = new CustomerForFabAdp(customerList,POCreateAddCustomerinAddFab.this,this);
+        adapter= new CustomerForFabAdp(customerList,POCreateAddCustomerinAddFab.this,this);
         LinearLayoutManager lm = new LinearLayoutManager(this);
         customerforFab_rv.setLayoutManager(lm);
         customerforFab_rv.setAdapter(adapter);
 
+        etSearch.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if(s.toString().length()>0){
+                    filter(s.toString());
+                }
+            }
+        });
+
+    }
+
+    private void filter(String s) {
+        ArrayList<CustomersDetail> temp = new ArrayList<>();
+
+        for(CustomersDetail d : customerList){
+            if(d.getCustomerName().toLowerCase().contains(s.toLowerCase())){
+                temp.add(d);
+            }
+        }
+
+
+        adapter.updateFilterData(temp);
     }
 
     @Override
