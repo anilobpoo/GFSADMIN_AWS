@@ -23,9 +23,12 @@
         <item name="android:singleLine">true</item>
 
     </style>
+
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
-    <style name ="Dialog" parent="Theme.AppCompat.Dialog">
+
+    <style name="Dialog" parent="Theme.AppCompat.Dialog">
 
         <item name="windowActionBar">false</item>
         <item name="android:windowMinWidthMajor">90%</item>
@@ -33,8 +36,6 @@
 
 
     </style>
-
-
 
 
 </resources>

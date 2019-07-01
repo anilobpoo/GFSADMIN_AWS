@@ -1,9 +1,12 @@
 package com.obpoo.gfsfabricsoftware.customers.datamodels;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class CustomersDetail {
+public class CustomersDetail implements Parcelable {
 
 
     @SerializedName("discount_per")
@@ -108,6 +111,55 @@ public class CustomersDetail {
     @SerializedName("otp")
     @Expose
     private String otp;
+
+    protected CustomersDetail(Parcel in) {
+        discountPer = in.readString();
+        shopName = in.readString();
+        id = in.readString();
+        customerName = in.readString();
+        address = in.readString();
+        country = in.readString();
+        phone = in.readString();
+        email = in.readString();
+        profilePic = in.readString();
+        password = in.readString();
+        zipcode = in.readString();
+        customerGroup = in.readString();
+        userId = in.readString();
+        userName = in.readString();
+        shopId = in.readString();
+        addedDate = in.readString();
+        lastEdited = in.readString();
+        fax = in.readString();
+        vatName = in.readString();
+        customerTypeId = in.readString();
+        customerTypeName = in.readString();
+        customerGroupName = in.readString();
+        status = in.readString();
+        verified = in.readString();
+        cod = in.readString();
+        vat = in.readString();
+        creditLimit = in.readString();
+        creditTime = in.readString();
+        emailCode = in.readString();
+        lastLogin = in.readString();
+        updatedDate = in.readString();
+        api = in.readString();
+        apiToken = in.readString();
+        otp = in.readString();
+    }
+
+    public static final Creator<CustomersDetail> CREATOR = new Creator<CustomersDetail>() {
+        @Override
+        public CustomersDetail createFromParcel(Parcel in) {
+            return new CustomersDetail(in);
+        }
+
+        @Override
+        public CustomersDetail[] newArray(int size) {
+            return new CustomersDetail[size];
+        }
+    };
 
     public String getDiscountPer() {
         return discountPer;
@@ -387,5 +439,46 @@ public class CustomersDetail {
     }
 
 
+    @Override
+    public int describeContents() {
+        return 0;
+    }
 
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(discountPer);
+        dest.writeString(shopName);
+        dest.writeString(id);
+        dest.writeString(customerName);
+        dest.writeString(address);
+        dest.writeString(country);
+        dest.writeString(phone);
+        dest.writeString(email);
+        dest.writeString(profilePic);
+        dest.writeString(password);
+        dest.writeString(zipcode);
+        dest.writeString(customerGroup);
+        dest.writeString(userId);
+        dest.writeString(userName);
+        dest.writeString(shopId);
+        dest.writeString(addedDate);
+        dest.writeString(lastEdited);
+        dest.writeString(fax);
+        dest.writeString(vatName);
+        dest.writeString(customerTypeId);
+        dest.writeString(customerTypeName);
+        dest.writeString(customerGroupName);
+        dest.writeString(status);
+        dest.writeString(verified);
+        dest.writeString(cod);
+        dest.writeString(vat);
+        dest.writeString(creditLimit);
+        dest.writeString(creditTime);
+        dest.writeString(emailCode);
+        dest.writeString(lastLogin);
+        dest.writeString(updatedDate);
+        dest.writeString(api);
+        dest.writeString(apiToken);
+        dest.writeString(otp);
+    }
 }

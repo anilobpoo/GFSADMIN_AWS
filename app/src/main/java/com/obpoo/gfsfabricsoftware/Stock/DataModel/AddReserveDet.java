@@ -17,15 +17,12 @@ public class AddReserveDet implements Parcelable {
     @SerializedName("fab_name")
     @Expose
     private String fabName;
-    @SerializedName("fab_img")
-    @Expose
-    private String fabImg;
-
 
     protected AddReserveDet(Parcel in) {
         id = in.readString();
         fabName = in.readString();
         fabImg = in.readString();
+        customer = in.readString();
         colorCode = in.readString();
         qtyType = in.readString();
         qrcode = in.readString();
@@ -46,6 +43,22 @@ public class AddReserveDet implements Parcelable {
             return new AddReserveDet[size];
         }
     };
+
+    public String getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(String customer) {
+        this.customer = customer;
+    }
+
+    @SerializedName("fab_img")
+    @Expose
+    private String fabImg;
+
+    private String customer="";
+
+
 
     public String getQtyType() {
         return qtyType;
@@ -179,6 +192,7 @@ public class AddReserveDet implements Parcelable {
         dest.writeString(id);
         dest.writeString(fabName);
         dest.writeString(fabImg);
+        dest.writeString(customer);
         dest.writeString(colorCode);
         dest.writeString(qtyType);
         dest.writeString(qrcode);

@@ -81,7 +81,18 @@
                     android:layout_margin="3dp"
                     style="@style/Base.Widget.AppCompat.Spinner.Underlined"
                     android:padding="5dp"
+                    android:visibility="gone"
                     />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_columnSpan="2"
+                    android:layout_margin="5dp"
+                    android:padding="5dp"
+                    android:background="@drawable/winv"
+                    android:hint="Select Customer"
+                    android:id="@+id/text_sel_po_cus"
+                    android:clickable="true"/>
 
                 <EditText
                     android:id="@+id/brand_fab"

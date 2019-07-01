@@ -1,6 +1,7 @@
 package com.obpoo.gfsfabricsoftware.salesorder.ui;
 
 import android.content.Intent;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -8,6 +9,7 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -56,13 +58,29 @@ public class AddfabricSoOrders extends AppCompatActivity implements ViewStock, F
     @BindView(R.id.rv_addselectedfab_soorder)
     RecyclerView rv_addselectedfab_soorder;
     String getOrderType;
-    ArrayList<AddReserveDet> addReserveDetArrayList;
+
     ArrayList<AddReserveDet> addbelowDetArrayList;
     CustomersPresenterImpl presenter_cus;
     ArrayList<CustomersDetail> customerList=new ArrayList<>();
     ArrayList<poItem> poItemArrayList_adp = new ArrayList<>();
     private Menu menu;
+    AddFabSalesOrder  adapter;
+    ArrayList<AddReserveDet> addReserveDetArrayList;
 
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode == AppConstants.passcustomerforfabric){
+            if(data!=null){
+                int index = data.getIntExtra(AppConstants.selctedindexofabric,0);
+                String getCustomer = data.getStringExtra(AppConstants.selectedCusforPOaddinFab);
+                addReserveDetArrayList.get(index).setCustomer(getCustomer);
+                adapter.notifyDataSetChanged();
+
+            }
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -158,8 +176,8 @@ public class AddfabricSoOrders extends AppCompatActivity implements ViewStock, F
     public void onShowSearchFabrics(AddReserveRes response) {
         progress_so_fab_add.setVisibility(View.GONE);
         if(response.getStatus().equals("success")){
-            ArrayList<AddReserveDet> addReserveDetArrayList = response.getData();
-            AddFabSalesOrder  adapter = new AddFabSalesOrder(addReserveDetArrayList,AddfabricSoOrders.this,this,customerList);
+            addReserveDetArrayList  = response.getData();
+            adapter = new AddFabSalesOrder(addReserveDetArrayList,AddfabricSoOrders.this,this,customerList);
             LinearLayoutManager lm = new LinearLayoutManager(this);
             rv_addfab_soorder.setLayoutManager(lm);
             rv_addfab_soorder.setAdapter(adapter);
