@@ -42,6 +42,9 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".PurchaseOrder.UI.Search_Select"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
             android:name=".Report.UI.FilterViewReport"
             android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity

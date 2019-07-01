@@ -155,25 +155,25 @@ public class RequestedOrder extends BaseActivity implements PoView, UserView, Ve
 //        article_presenter.showResponse("viewall");
 //        color_presenter.viewAll("view_all");
 
-//        etSearch.addTextChangedListener(new TextWatcher() {
-//            @Override
-//            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-//
-//            }
-//
-//            @Override
-//            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-//
-//            }
-//
-//            @Override
-//            public void afterTextChanged(Editable editable) {
-//                if (cartList != null) {
-//                    filter(editable.toString());
-//                }
-//
-//            }
-//        });
+        etSearch.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                if (cartList != null) {
+                    filter(editable.toString());
+                }
+
+            }
+        });
 
 
     }

@@ -67,7 +67,6 @@ public class AddfabricSoOrders extends AppCompatActivity implements ViewStock, F
     AddFabSalesOrder  adapter;
     ArrayList<AddReserveDet> addReserveDetArrayList;
 
-
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
