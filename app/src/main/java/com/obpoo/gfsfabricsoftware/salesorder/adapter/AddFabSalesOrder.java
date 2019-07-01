@@ -18,12 +18,14 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.ViewPOModel.poItem;
+import com.obpoo.gfsfabricsoftware.PurchaseOrder.UI.POCreateAddCustomerinAddFab;
 import com.obpoo.gfsfabricsoftware.R;
 import com.obpoo.gfsfabricsoftware.Stock.DataModel.AddReserveDet;
 import com.obpoo.gfsfabricsoftware.customers.datamodels.CustomersDetail;
 import com.obpoo.gfsfabricsoftware.salesorder.datamodels.AllOrderModel.FabricAddOrderSO;
 import com.obpoo.gfsfabricsoftware.salesorder.ui.SOorderDetails;
 import com.obpoo.gfsfabricsoftware.utilities.AppConstants;
+import com.obpoo.gfsfabricsoftware.utilities.PreferenceConnector;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -44,6 +46,8 @@ public class AddFabSalesOrder extends RecyclerView.Adapter<AddFabSalesOrder.View
         this.context = context;
         this.fabI=fabI;
         this.customerList=customerList;
+
+        PreferenceConnector.saveArraylistofObjectsForFab(customerList,AppConstants.selectcustomerforPOinaddfab,context);
     }
 
     @NonNull
@@ -122,6 +126,25 @@ public class AddFabSalesOrder extends RecyclerView.Adapter<AddFabSalesOrder.View
         });
 
 
+        holder.text_sel_po_cus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent in = new Intent(context, POCreateAddCustomerinAddFab.class);
+                //in.putParcelableArrayListExtra(AppConstants.selectcustomerforPOinaddfab,customerList);
+                in.putExtra(AppConstants.selctedindexofabric,i);
+
+                ((Activity) context).startActivityForResult(in,AppConstants.passcustomerforfabric);
+
+            }
+        });
+       // Log.i("Icustomer",index.getCustomer());
+        if(index.getCustomer()!= null &&!index.getCustomer().equals("")){
+            Log.i("Icustomer",index.getCustomer());
+            holder.text_sel_po_cus.setText(index.getCustomer());
+
+        }
+
+
 
     }
 
@@ -145,6 +168,8 @@ public class AddFabSalesOrder extends RecyclerView.Adapter<AddFabSalesOrder.View
         Button add_fabric_item;
         @BindView(R.id.content_fab)
         TextView content_fab;
+        @BindView(R.id.text_sel_po_cus)
+        TextView text_sel_po_cus;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);

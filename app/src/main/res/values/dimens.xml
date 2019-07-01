@@ -17,7 +17,6 @@
     <dimen name="guideline_margin">56dp</dimen>
 
 
-
     <dimen name="custom_progress_width">280dp</dimen>
     <dimen name="custom_progress_height">30dp</dimen>
     <dimen name="custom_progress_margin">10dp</dimen>

@@ -46,7 +46,4 @@ public class AppConstants {
     public static final int cm_filter_status=2022;
     public static final String slected_status_cm="SLECTED_STATUS_CM";
     public static final int itemEasyfilter =2023;
-    public static final int PoDetailfilter =2024;
-    public static final int selectSearchVendor =2025;
-    public static final int selectSearchStaff =2026;
 }

@@ -7,6 +7,7 @@ import android.preference.PreferenceManager;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.TrackPoModel.TrackPObyCusData;
+import com.obpoo.gfsfabricsoftware.customers.datamodels.CustomersDetail;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -142,6 +143,23 @@ public class PreferenceConnector {
         Gson gson = new Gson();
         String json = prefs.getString(key, null);
         Type type = new TypeToken<ArrayList<TrackPObyCusData>>(){}.getType();
+        return gson.fromJson(json, type);
+
+    }
+    public static void saveArraylistofObjectsForFab (ArrayList<CustomersDetail>list , String key, Context context){
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+        SharedPreferences.Editor editor = prefs.edit();
+        Gson gson = new Gson();
+        String json = gson.toJson(list);
+        editor.putString(key, json);
+        editor.apply();
+
+    }
+    public static ArrayList<CustomersDetail> getArraylistofObjectForFab(String key, Context context){
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+        Gson gson = new Gson();
+        String json = prefs.getString(key, null);
+        Type type = new TypeToken<ArrayList<CustomersDetail>>(){}.getType();
         return gson.fromJson(json, type);
 
     }
