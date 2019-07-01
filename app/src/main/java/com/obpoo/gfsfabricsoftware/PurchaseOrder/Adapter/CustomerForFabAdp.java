@@ -55,7 +55,7 @@ public class CustomerForFabAdp extends RecyclerView.Adapter<CustomerForFabAdp.Vi
     }
 
     public void updateFilterData(ArrayList<CustomersDetail> temp) {
-        this.customerList=customerList;
+        this.customerList=temp;
         notifyDataSetChanged();
     }
 
