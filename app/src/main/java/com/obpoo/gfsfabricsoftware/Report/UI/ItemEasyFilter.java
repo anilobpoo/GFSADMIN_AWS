@@ -88,7 +88,6 @@ public class ItemEasyFilter extends BaseActivity {
 
     }
 
-
     public String getStatusID(String getStatus) {
         switch (getStatus) {
             case "cutting_pending":

@@ -42,7 +42,7 @@ public class BaseActivity extends AppCompatActivity {
             if (backIconVisibility) {
                 getSupportActionBar().setHomeButtonEnabled(true);
                 getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-                getSupportActionBar().setHomeAsUpIndicator(getResources().getDrawable(R.drawable.ic_chevron_left_black_40dp));
+                getSupportActionBar().setHomeAsUpIndicator(getResources().getDrawable(R.drawable.ic_arrow_back_white_24dp));
             }
         }
         ButterKnife.bind(this);

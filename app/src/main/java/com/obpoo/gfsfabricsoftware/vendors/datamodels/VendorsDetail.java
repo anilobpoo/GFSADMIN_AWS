@@ -1,11 +1,14 @@
 package com.obpoo.gfsfabricsoftware.vendors.datamodels;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
 
-public class VendorsDetail implements Serializable {
+public class VendorsDetail implements Parcelable {
 
 
 
@@ -31,6 +34,32 @@ public class VendorsDetail implements Serializable {
     @SerializedName("telephone")
     @Expose
     private String telephone;
+
+    protected VendorsDetail(Parcel in) {
+        vendorID = in.readString();
+        vendorno = in.readString();
+        vendor = in.readString();
+        vendortype = in.readString();
+        address = in.readString();
+        telephone = in.readString();
+        fax = in.readString();
+        email = in.readString();
+        zipcode = in.readString();
+        name = in.readString();
+        country = in.readString();
+    }
+
+    public static final Creator<VendorsDetail> CREATOR = new Creator<VendorsDetail>() {
+        @Override
+        public VendorsDetail createFromParcel(Parcel in) {
+            return new VendorsDetail(in);
+        }
+
+        @Override
+        public VendorsDetail[] newArray(int size) {
+            return new VendorsDetail[size];
+        }
+    };
 
     public String getVendorID() {
         return vendorID;
@@ -138,4 +167,23 @@ public class VendorsDetail implements Serializable {
     @Expose
     private String country;
 
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(vendorID);
+        dest.writeString(vendorno);
+        dest.writeString(vendor);
+        dest.writeString(vendortype);
+        dest.writeString(address);
+        dest.writeString(telephone);
+        dest.writeString(fax);
+        dest.writeString(email);
+        dest.writeString(zipcode);
+        dest.writeString(name);
+        dest.writeString(country);
+    }
 }

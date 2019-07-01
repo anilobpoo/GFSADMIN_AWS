@@ -42,18 +42,20 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
         <activity
-            android:name=".Report.UI.FilterViewReport"
+            android:name=".PurchaseOrder.UI.Search_Select"
             android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
+            android:name=".Report.UI.FilterViewReport"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Report.UI.ViewDetailsReportPO"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Report.UI.PoDetailReport"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Report.UI.ItemEasyFilter"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
-
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".PurchaseOrder.UI.FilterView"
             android:theme="@style/AppTheme.NoActionBar" />

@@ -7,6 +7,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AutoCompleteTextView;
@@ -69,9 +70,9 @@ import butterknife.OnItemSelected;
 
 public class POAdd extends BaseActivity implements PoView, FabricsView, UserView, VendorsView {
     @BindView(R.id.vendor_spin)
-    Spinner vendor;
+    TextView vendor;
     @BindView(R.id.staff_spin)
-    Spinner user;
+    TextView user;
     @BindView(R.id.cc_email)
     EditText cc_email;
 
@@ -88,6 +89,9 @@ public class POAdd extends BaseActivity implements PoView, FabricsView, UserView
     AutoCompleteTextView fabric_auto;
     @BindView(R.id.occassion_add)
     TextView occassion_add;
+     @BindView(R.id.fd)
+    TextView fd;
+
     View view;
 
     int i = 1;
@@ -122,9 +126,11 @@ public class POAdd extends BaseActivity implements PoView, FabricsView, UserView
     ArrayList<poItem> poItemArrayList_adp = new ArrayList<>();
     @BindView(R.id.add_notes_CPO_bef)
     TextView add_notes_CPO_bef;
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+
         if (requestCode == 2) {  // before class changed.
             addItemList = (ArrayList<dynamicField_changeD>) data.getSerializableExtra("getItemList");
             mergeaddItemList.add(new dynamicField_changeD(addItemList.get(0).getFabImage(),
@@ -137,16 +143,29 @@ public class POAdd extends BaseActivity implements PoView, FabricsView, UserView
             addreViews.setAdapter(poChangedAdapter);
             poChangedAdapter.notifyDataSetChanged();
         }
-        if(requestCode == AppConstants.addcmFab){
-            if(data!=null){
-                poItemArrayList_adp=data.getParcelableArrayListExtra(AppConstants.fabcmselList);
+        if (requestCode == AppConstants.addcmFab) {
+            if (data != null) {
+                poItemArrayList_adp = data.getParcelableArrayListExtra(AppConstants.fabcmselList);
 
-                Log.i("cmFabList",poItemArrayList_adp.size()+"");
+                Log.i("cmFabList", poItemArrayList_adp.size() + "");
                 poViewDetailsAdapter adapter = new poViewDetailsAdapter(getApplicationContext(), poItemArrayList_adp);
                 LinearLayoutManager linearLayoutManager = new LinearLayoutManager(POAdd.this);
                 addreViews.setLayoutManager(linearLayoutManager);
                 addreViews.setAdapter(adapter);
                 adapter.notifyDataSetChanged();
+            }
+        }
+
+        if (requestCode == AppConstants.selectSearchVendor) {
+            if (data != null) {
+                getSpinVendor = data.getStringExtra("selectVendorid");
+                vendor.setText(data.getStringExtra("selectVendorNo"));
+            }
+        }
+        if (requestCode == AppConstants.selectSearchStaff) {
+            if (data != null) {
+                getSpinUser = data.getStringExtra("selectstaffNo");
+                user.setText(data.getStringExtra("selectstaffName"));
             }
         }
     }
@@ -161,6 +180,10 @@ public class POAdd extends BaseActivity implements PoView, FabricsView, UserView
         ButterKnife.bind(this);
         enableActionBar(true);
         add_notes_CPO_bef.setText("");
+        vendor.setGravity(Gravity.CENTER_VERTICAL);
+        user.setGravity(Gravity.CENTER_VERTICAL);
+        fd.setGravity(Gravity.CENTER_VERTICAL);
+        occassion_add.setGravity(Gravity.CENTER_VERTICAL);
 
 //        userList= (ArrayList<UserDetail>) getIntent().getSerializableExtra("userSpinner");
 //        System.out.println(userList.get(0).getName()+"userName");
@@ -191,7 +214,7 @@ public class POAdd extends BaseActivity implements PoView, FabricsView, UserView
         vendor_presenter.viewAll("view_all");
 
         fabric_presenter = new FabricsPresenterImpl(this);
-       // fabric_presenter.viewAll("view_all_fabric");
+        // fabric_presenter.viewAll("view_all_fabric");
 
         fabric_auto.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -208,6 +231,22 @@ public class POAdd extends BaseActivity implements PoView, FabricsView, UserView
             }
         });
 
+    }
+
+    @OnClick(R.id.vendor_spin)
+    public void venderClick() {
+        Intent intent = new Intent(POAdd.this, Search_Select.class);
+        intent.putParcelableArrayListExtra("vendorlist", cartList);
+        intent.putExtra("tag","vendor");
+        startActivityForResult(intent, AppConstants.selectSearchVendor);
+    }
+
+    @OnClick(R.id.staff_spin)
+    public void staffClick() {
+        Intent intent = new Intent(POAdd.this, Search_Select.class);
+        intent.putParcelableArrayListExtra("userList", userList);
+        intent.putExtra("tag","staff");
+        startActivityForResult(intent, AppConstants.selectSearchStaff);
     }
 
     @OnClick(R.id.add_button)
@@ -275,7 +314,7 @@ public class POAdd extends BaseActivity implements PoView, FabricsView, UserView
         }
 
         System.out.println("HashMapItems" + arrayList);
-        ArrayList<HashMap<String,String >> merged_arrayList = new ArrayList<HashMap<String, String>>();
+        ArrayList<HashMap<String, String>> merged_arrayList = new ArrayList<HashMap<String, String>>();
         for (int i = 0; i < mergeaddItemList.size(); i++) {
             HashMap<String, String> hashMap = new HashMap<String, String>();
             hashMap.put("fabImage", mergeaddItemList.get(i).getFabImage());
@@ -287,29 +326,16 @@ public class POAdd extends BaseActivity implements PoView, FabricsView, UserView
             hashMap.put("brand", mergeaddItemList.get(i).getBrand());
             merged_arrayList.add(hashMap);
         }
-        HashMap<String,ArrayList<poItem>> hashMapArrayList = new HashMap<>();
-        hashMapArrayList.put("items",poItemArrayList_adp);
+        HashMap<String, ArrayList<poItem>> hashMapArrayList = new HashMap<>();
+        hashMapArrayList.put("items", poItemArrayList_adp);
 
-        String admin_id =PreferenceConnector.readString(POAdd.this, getString(R.string.admin_id),"");
+        String admin_id = PreferenceConnector.readString(POAdd.this, getString(R.string.admin_id), "");
 
 
         presenter.OnAddPO("po_direct_order", getSpinVendor, getSpinUser,
-                cc_email.getText().toString(), brand.getText().toString(), admin_id, admin_id, poItemArrayList_adp,add_notes_CPO_bef.getText().toString());
+                cc_email.getText().toString(), brand.getText().toString(), admin_id, admin_id, poItemArrayList_adp, add_notes_CPO_bef.getText().toString());
 
 
-    }
-
-    @OnItemSelected(R.id.vendor_spin)
-    public void onSelectVendor(int position) {
-        getSpinVendor = cartList.get(position).getVendorID();
-        Log.i("getSpinVendor", getSpinVendor);
-
-    }
-
-    @OnItemSelected(R.id.staff_spin)
-    public void onSelectUser(int position) {
-        getSpinUser = userList.get(position).getId();
-        Log.i("getSpinUser", getSpinUser);
     }
 
     @Override
@@ -397,16 +423,11 @@ public class POAdd extends BaseActivity implements PoView, FabricsView, UserView
     public void onLoad(VendorsResponse response) {
         Log.i("Vendor_poADD", response.getMessage());
         cartList = response.getDetail();
-        vendorAdapter_spin = new SpinnerVendorAdapter(cartList, this);
-        vendor.setAdapter(vendorAdapter_spin);
     }
 
     @Override
     public void viewUserList(UserResponse response) {
         userList = response.getDetail();
-        adapter = new SpinnerAdapter(userList, this);
-        user.setAdapter(adapter);
-
     }
 
     @Override
@@ -460,7 +481,7 @@ public class POAdd extends BaseActivity implements PoView, FabricsView, UserView
        // in.putExtra("FabricListItems", fabricList);
         startActivityForResult(in, 2);*/
         Intent in = new Intent(POAdd.this, AddfabricSoOrders.class);
-        in.putExtra("ORDERTYPE_SOORDER","");
+        in.putExtra("ORDERTYPE_SOORDER", "");
         startActivityForResult(in, AppConstants.addcmFab);
 
     }
