@@ -1,11 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/grey_200"
     tools:context="com.obpoo.gfsfabricsoftware.Report.UI.ItemEasyFilter">
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
 
     <include
         android:id="@+id/layout"
@@ -114,4 +119,6 @@
         android:textColor="@color/white"
         app:layout_constraintEnd_toStartOf="@+id/ief_to"
         app:layout_constraintTop_toBottomOf="@+id/ief_from" />
-</android.support.constraint.ConstraintLayout>
+    </android.support.constraint.ConstraintLayout>
+</android.support.v7.widget.CardView>
+
