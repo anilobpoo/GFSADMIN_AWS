@@ -1,5 +1,7 @@
 package com.obpoo.gfsfabricsoftware.PurchaseOrder.UI;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -96,9 +98,8 @@ public class ModificationNotes extends BaseActivity implements PoView {
     @Override
     public void onModifyNotes(ModifyNotes response) {
         if(response.getStatus().equals("success")){
-            Intent in = new Intent(ModificationNotes.this,ConfirmPO.class);
-            startActivity(in);
-            finish();
+            callAlert();
+
         }
 
     }
@@ -127,5 +128,22 @@ public class ModificationNotes extends BaseActivity implements PoView {
     @OnClick(R.id.cancel_mn)
     public void onCancelMN(View view){
         finish();
+    }
+
+    public void callAlert(){
+        progress_mn.setVisibility(View.GONE);
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("Note Added Successfully").setCancelable(false).setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Intent in = new Intent(ModificationNotes.this,ConfirmPO.class);
+                startActivity(in);
+                finish();
+            }
+        });
+        AlertDialog alert = builder.create();
+        alert.show();
+
+
     }
 }

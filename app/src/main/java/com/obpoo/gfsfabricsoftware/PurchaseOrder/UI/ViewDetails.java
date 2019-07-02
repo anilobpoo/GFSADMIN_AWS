@@ -1,5 +1,7 @@
 package com.obpoo.gfsfabricsoftware.PurchaseOrder.UI;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -101,6 +103,7 @@ public class ViewDetails extends BaseActivity implements PoView {
         staf = intent.getStringExtra("staf");
         cc_mail = intent.getStringExtra("cc_mail");
         prev_notes_get=intent.getStringExtra("PREVNOTES");
+
         adapter = new ViewDetailsItemAdapter(this, items);
         recycler_view.setAdapter(adapter);
         factory_tv.setText(factory);
@@ -159,9 +162,8 @@ public class ViewDetails extends BaseActivity implements PoView {
     @Override
     public void onConfirmPO(ConfirmPOResponse response) {
         if (response.getStatus().equals("success")) {
-            Intent intent = new Intent(ViewDetails.this, ConfirmPO.class);
-            startActivity(intent);
-            finish();
+            callAlert();
+
         }
     }
 
@@ -202,6 +204,22 @@ public class ViewDetails extends BaseActivity implements PoView {
 
     @Override
     public void showError(String message) {
+
+    }
+    public void callAlert(){
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("PO Order Confirmed").setCancelable(false).setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Intent intent = new Intent(ViewDetails.this, ConfirmPO.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+        AlertDialog alert = builder.create();
+        alert.show();
+
 
     }
 }
