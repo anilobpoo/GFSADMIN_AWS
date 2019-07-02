@@ -202,7 +202,7 @@ public class AddfabricSoOrders extends AppCompatActivity implements ViewStock, F
         MenuItem menuItem = menu.findItem(R.id.addFab);
 
         poItemArrayList_adp.add(index);
-        menuItem.setTitle("ADDED "+poItemArrayList_adp.size());
+        menuItem.setTitle(String.valueOf(poItemArrayList_adp.size()));
 
 
 

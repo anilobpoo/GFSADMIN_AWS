@@ -103,7 +103,7 @@ public class AddFabSalesOrder extends RecyclerView.Adapter<AddFabSalesOrder.View
                     }
 
                     index.setQty(holder.fab_qty_mtr.getText().toString());
-                    fabI.AddFabricsBelowI(new poItem(index.getBrand(),index.getArticleno(),index.getQty(),index.getColorCode(),getCustomer,getCID,""),"");
+                    fabI.AddFabricsBelowI(new poItem(index.getBrand(),index.getArticleno(),index.getQty(),index.getComposition(),getCustomer,getCID,""),"");
                 }
             }
         });
@@ -121,7 +121,7 @@ public class AddFabSalesOrder extends RecyclerView.Adapter<AddFabSalesOrder.View
 
             @Override
             public void afterTextChanged(Editable s) {
-                holder.fab_qty_yard.setText(String.valueOf(Float.parseFloat(s.toString())*1.1));
+                holder.fab_qty_yard.setText(String.format("%.2f",Double.valueOf(s.toString())*1.09));
             }
         });
 

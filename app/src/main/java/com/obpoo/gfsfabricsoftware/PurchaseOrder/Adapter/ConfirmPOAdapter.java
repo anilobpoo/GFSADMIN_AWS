@@ -63,7 +63,7 @@ public class ConfirmPOAdapter extends RecyclerView.Adapter<ConfirmPOAdapter.View
             viewHolder.price.setVisibility(View.VISIBLE);
             viewHolder.go.setVisibility(View.GONE);
             viewHolder.poNumCM.setVisibility(View.GONE);
-
+            Log.i("PREVNOtes",data.get(i).getNotes());
             viewHolder.indc.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -78,6 +78,7 @@ public class ConfirmPOAdapter extends RecyclerView.Adapter<ConfirmPOAdapter.View
                     in.putExtra("staf", data.get(i).getStaff());
                     in.putExtra("cc_mail", data.get(i).getCcEmail());
                     in.putExtra("PREVNOTES", data.get(i).getNotes());
+
 //                    in.putExtra("cash", data.get(i).get());
                     in.putParcelableArrayListExtra("item", items);
 
@@ -116,6 +117,7 @@ public class ConfirmPOAdapter extends RecyclerView.Adapter<ConfirmPOAdapter.View
                 in.putExtra("deliver_date", viewHolder.deliver_date.getText());
                 in.putExtra("staf", data.get(i).getStaff());
                 in.putExtra("cc_mail", data.get(i).getCcEmail());
+                in.putExtra("PREVNOTES", data.get(i).getNotes());
                 in.putParcelableArrayListExtra("item", items);
                 context.startActivity(in);
 

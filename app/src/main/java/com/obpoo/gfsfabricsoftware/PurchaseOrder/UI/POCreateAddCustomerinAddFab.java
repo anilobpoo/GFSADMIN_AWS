@@ -42,7 +42,7 @@ public class POCreateAddCustomerinAddFab extends BaseActivity implements Custome
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pocreate_add_customerin_add_fab);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setTitle("Available fabric");
+        toolbar.setTitle("Customer");
         setSupportActionBar(toolbar);
         ButterKnife.bind(this);
         enableActionBar(true);
