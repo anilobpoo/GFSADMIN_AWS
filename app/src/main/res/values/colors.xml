@@ -42,12 +42,13 @@
     <color name="color_sign_up">#93303f9f</color>
 
     <color name="red_500">#F44336</color>
+    <color name="red_100">#BB322B</color>
     <color name="red_200">#EF9A9A</color>
     <color name="purple_500">#9C27B0</color>
     <color name="purple_200">#CE93D8</color>
     <color name="blue_500">#2196F3</color>
     <color name="blue_200">#90CAF9</color>
-    <color name="blue_100">#3E4DD5</color>
+    <color name="blue_100">#4558FF</color>
     <color name="green_100">#009433</color>
     <color name="green_500">#43AA47</color>
     <color name="green_200">#A5D6A7</color>

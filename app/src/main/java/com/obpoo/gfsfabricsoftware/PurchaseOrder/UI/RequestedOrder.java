@@ -84,7 +84,7 @@ public class RequestedOrder extends BaseActivity implements PoView, UserView, Ve
     int currentItems, totalItems, scrollOutItems;
     int setStatusTag=0;
      String get_cm_statusId;
-
+    LinearLayoutManager lm;
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -150,30 +150,37 @@ public class RequestedOrder extends BaseActivity implements PoView, UserView, Ve
         // presenter for user......
         presenter_user = new UserPresenterImpl(this);
 
+        adapter = new poViewAdapter(getApplicationContext(), pOdataList);
+
+        lm  = new LinearLayoutManager(RequestedOrder.this);
+
+        rv_po.setLayoutManager(lm);
+        rv_po.setAdapter(adapter);
+        adapter.notifyDataSetChanged();
 //        presenter_user.viewAll("view_all");
 //        vendor_presenter.viewAll("view_all");
 //        article_presenter.showResponse("viewall");
 //        color_presenter.viewAll("view_all");
 
-        etSearch.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-                if (cartList != null) {
-                    filter(editable.toString());
-                }
-
-            }
-        });
+//        etSearch.addTextChangedListener(new TextWatcher() {
+//            @Override
+//            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+//
+//            }
+//
+//            @Override
+//            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+//
+//            }
+//
+//            @Override
+//            public void afterTextChanged(Editable editable) {
+//                if (cartList != null) {
+//                    filter(editable.toString());
+//                }
+//
+//            }
+//        });
 
 
     }
@@ -241,7 +248,6 @@ public class RequestedOrder extends BaseActivity implements PoView, UserView, Ve
 
     @Override
     public void onModifyNotes(ModifyNotes response) {
-
     }
 
     @Override
@@ -256,17 +262,12 @@ public class RequestedOrder extends BaseActivity implements PoView, UserView, Ve
 
     private void showInRecyclerView(poPOJO response) {
         ArrayList<poDatum> pOdummydataList = new ArrayList<>();
-        final LinearLayoutManager lm = new LinearLayoutManager(RequestedOrder.this);
         if(response.getStatus().equals("success")){
         pOdummydataList = response.getData();
         pOdataList.addAll(pOdummydataList);
+        adapter.notifyDataSetChanged();
 
-        adapter = new poViewAdapter(getApplicationContext(), pOdataList);
-
-
-        rv_po.setLayoutManager(lm);
-        rv_po.setAdapter(adapter);
-        adapter.notifyDataSetChanged();}
+       }
 
 
         rv_po.addOnScrollListener(new RecyclerView.OnScrollListener() {

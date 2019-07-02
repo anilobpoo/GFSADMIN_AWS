@@ -55,8 +55,8 @@ public class MyOrders extends BaseActivity implements MyOrdersView,CustomersView
     RecyclerView recyclerView;
     @BindView(R.id.shimmer_view_container)
     ShimmerFrameLayout mShimmerViewContainer;
-    @BindView(R.id.fab)
-    FloatingActionButton fab;
+//    @BindView(R.id.fab)
+//    FloatingActionButton fab;
     private ArrayList<MyOrdersDetail> cartList=new ArrayList<>();
     private MyOrdersAdapter mAdapter;
     @BindView(R.id.etSearch)
@@ -106,16 +106,16 @@ public class MyOrders extends BaseActivity implements MyOrdersView,CustomersView
             }
         });
 
-        fab.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(), R.drawable.ic_add_white_18dp));
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                customer();
-               /* Intent intent=new Intent(MyOrders.this, OrderFabrics.class);
-                startActivity(intent);*/
-
-            }
-        });
+//        fab.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(), R.drawable.ic_add_white_18dp));
+//        fab.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                customer();
+//               /* Intent intent=new Intent(MyOrders.this, OrderFabrics.class);
+//                startActivity(intent);*/
+//
+//            }
+//        });
 
     }
 

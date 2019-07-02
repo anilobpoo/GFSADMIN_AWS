@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import com.obpoo.gfsfabricsoftware.R;
 import com.obpoo.gfsfabricsoftware.salesorder.datamodels.AddFabricOrdersSO;
+import com.obpoo.gfsfabricsoftware.salesorder.datamodels.AllOrderModel.AllOrderItemDet;
 import com.obpoo.gfsfabricsoftware.salesorder.datamodels.AllOrderModel.AllOrderRes;
 import com.obpoo.gfsfabricsoftware.salesorder.datamodels.AllOrderModel.AllOrderStatusRes;
 import com.obpoo.gfsfabricsoftware.salesorder.datamodels.MyOrdersDetail;
@@ -32,6 +33,7 @@ import java.util.ArrayList;
 public class MyOrdersAdapter extends RecyclerView.Adapter<MyOrdersAdapter.MyViewHolder> implements MyOrdersView {
     private Context context;
     private ArrayList<MyOrdersDetail> cartList;
+    private ArrayList<AllOrderItemDet> ilist;
     Activity activity;
     private NetworkDetection networkDetection;
     private Dialog progressDialog;
@@ -93,7 +95,7 @@ public class MyOrdersAdapter extends RecyclerView.Adapter<MyOrdersAdapter.MyView
 
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        public TextView ordernum,advance,date,leftover,total,fabrics,delete, customername, customerphonenum;
+        public TextView ordernum,advance,date,leftover,total, status, customer_name,mode,type,items;
         /*ImageView imageView2;
         FoldingCell fc;*/
 
@@ -104,10 +106,11 @@ public class MyOrdersAdapter extends RecyclerView.Adapter<MyOrdersAdapter.MyView
             date = view.findViewById(R.id.date);
             leftover = view.findViewById(R.id.leftover);
             total = view.findViewById(R.id.total);
-            fabrics = view.findViewById(R.id.fabrics);
-            delete = view.findViewById(R.id.delete);
-            customername = view.findViewById(R.id.customerName);
-            customerphonenum = view.findViewById(R.id.customerPhone);
+            mode = view.findViewById(R.id.mode);
+            type = view.findViewById(R.id.type);
+            items = view.findViewById(R.id.items);
+            status = view.findViewById(R.id.item_status);
+            customer_name = view.findViewById(R.id.customer_name);
             //fc = (FoldingCell) view.findViewById(R.id.folding_cell);
         }
     }
@@ -119,13 +122,11 @@ public class MyOrdersAdapter extends RecyclerView.Adapter<MyOrdersAdapter.MyView
         this.activity = context;
         networkDetection = new NetworkDetection();
         presenter = new MyOrdersPresenterImpl(this);
-
     }
-
     @Override
     public MyOrdersAdapter.MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.layout_myorders, parent, false);
+                .inflate(R.layout.new_salesui, parent, false);
 
         return new MyOrdersAdapter.MyViewHolder(itemView);
     }
@@ -144,24 +145,27 @@ public class MyOrdersAdapter extends RecyclerView.Adapter<MyOrdersAdapter.MyView
 
         String dates=item.getOrderdate();
         String[] splited = dates.split("\\s+");
+        ilist = item.getItemDetails();
 
-        holder.ordernum.setText("#"+item.getOrderQr());
+        holder.ordernum.setText("#"+item.getId());
+        holder.mode.setText("Mode: "+item.getPayMode());
+        holder.type.setText("Type: "+item.getDeliveryType());
+        holder.items.setText("Item: "+ilist.size());
         holder.date.setText(splited[0]);
-        holder.advance.setText("THB "+item.getAdvance());
-        holder.leftover.setText("THB "+item.getLeftover());
-        holder.total.setText("THB "+item.getOrderTotal());
-        holder.fabrics.setText("View");
+        holder.advance.setText("$"+item.getAdvance());
+        holder.leftover.setText("$"+item.getLeftover());
+        holder.total.setText("$"+item.getOrderTotal());
         String customer_status =item.getCustomerDetails().getStatus();
         Log.i("status_adapter",item.getCustomerDetails().getStatus());
         if(customer_status.equals("true")){
-        holder.customerphonenum.setText(item.getCustomerDetails().getData().get(0).getCustomer_name());
+        holder.customer_name.setText(item.getCustomerDetails().getData().get(0).getCustomer_name());
         Log.i("Name_adapter",item.getCustomerDetails().getData().get(0).getCustomer_name());
         }
 
        // holder.customername.setText(item.getCustomer_details().getData().getCustomer_name());
-        holder.customername.setText("Status: "+ item.getStatusText());
+        holder.status.setText(item.getStatusText());
 
-        holder.fabrics.setOnClickListener(new View.OnClickListener() {
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String id=item.getId();
@@ -173,14 +177,6 @@ public class MyOrdersAdapter extends RecyclerView.Adapter<MyOrdersAdapter.MyView
                activity.startActivity(in);
             }
         });
-
-        holder.delete.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String id=item.getId();
-            }
-        });
-
 
     }
 

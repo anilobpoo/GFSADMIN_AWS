@@ -144,8 +144,6 @@ public class AddFabSalesOrder extends RecyclerView.Adapter<AddFabSalesOrder.View
 
         }
 
-
-
     }
 
     @Override
