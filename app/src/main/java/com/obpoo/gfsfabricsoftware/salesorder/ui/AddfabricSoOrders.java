@@ -18,6 +18,7 @@ import android.widget.ProgressBar;
 
 import com.obpoo.gfsfabricsoftware.Dashboard.DataModel.StockAlert.Response;
 import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.AddPOModel.AddFabCMI;
+import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.ViewPOModel.poDatum;
 import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.ViewPOModel.poItem;
 import com.obpoo.gfsfabricsoftware.PurchaseOrder.UI.POAdd;
 import com.obpoo.gfsfabricsoftware.R;
@@ -66,6 +67,7 @@ public class AddfabricSoOrders extends AppCompatActivity implements ViewStock, F
     private Menu menu;
     AddFabSalesOrder  adapter;
     ArrayList<AddReserveDet> addReserveDetArrayList;
+    poDatum podataList ;
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
@@ -94,6 +96,13 @@ public class AddfabricSoOrders extends AppCompatActivity implements ViewStock, F
         getSupportActionBar().setHomeAsUpIndicator(getResources().getDrawable(R.drawable.ic_back));
 
         getOrderType=getIntent().getStringExtra("ORDERTYPE_SOORDER");
+        if(getOrderType.equals("Modify_status")){
+        podataList=getIntent().getParcelableExtra("PODATALIST");
+            poItemArrayList_adp.addAll(podataList.getItems());}
+        customerList = PreferenceConnector.getArraylistofObjectForFab(AppConstants.selectcustomerforPOinaddfab,this);
+
+
+
 
         presenter = new StockPresenterImpl(this);
         addReserveDetArrayList= new ArrayList<>();
@@ -101,7 +110,8 @@ public class AddfabricSoOrders extends AppCompatActivity implements ViewStock, F
 
         presenter_cus = new CustomersPresenterImpl(this);
         String admin_id =  PreferenceConnector.readString(this, getString(R.string.admin_id),"");
-        presenter_cus.viewAll("view_all",admin_id);
+
+        // presenter_cus.viewAll("view_all",admin_id);
 
         etSearch.addTextChangedListener(new TextWatcher() {
             @Override
@@ -130,6 +140,9 @@ public class AddfabricSoOrders extends AppCompatActivity implements ViewStock, F
     public boolean onCreateOptionsMenu(Menu menu) {
         this.menu=menu;
         getMenuInflater().inflate(R.menu.addfab,menu);
+        MenuItem menuItem = menu.findItem(R.id.addFab);
+        if(poItemArrayList_adp.size()>0){
+        menuItem.setTitle(poItemArrayList_adp.size()+"");}
         return super.onCreateOptionsMenu(menu);
     }
 

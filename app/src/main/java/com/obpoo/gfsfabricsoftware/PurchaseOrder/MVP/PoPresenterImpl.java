@@ -15,7 +15,8 @@ import java.util.ArrayList;
  */
 
 public class PoPresenterImpl implements PoPresenter, PoInteractor.ViewPoResponse, PoInteractor.AddPOResponse,
-        PoInteractor.ViewConfirmPOResponse, PoInteractor.TrackPOI, PoInteractor.TrackPODetI, PoInteractor.ModifyNotesI, PoInteractor.ViewPOFilter {
+        PoInteractor.ViewConfirmPOResponse, PoInteractor.TrackPOI, PoInteractor.TrackPODetI,
+        PoInteractor.ModifyNotesI, PoInteractor.ViewPOFilter,PoInteractor.ModifyPOI {
     PoView poView;
     PoInteractorImpl interactor;
 
@@ -182,6 +183,14 @@ public class PoPresenterImpl implements PoPresenter, PoInteractor.ViewPoResponse
     }
 
     @Override
+    public void onModifyPO(String method, String id, String po_no, String factory_id,
+                           String staff_id, String cc_email, String created_by, String updated_by,
+                           String notes, ArrayList<poItem> items) {
+        interactor.callRetroModifyPO(method,id,po_no,factory_id,staff_id,cc_email,created_by,updated_by,notes,items,this);
+
+    }
+
+    @Override
     public void onModifyNotesSuccess(ModifyNotes response) {
         poView.onModifyNotes(response);
 
@@ -200,6 +209,17 @@ public class PoPresenterImpl implements PoPresenter, PoInteractor.ViewPoResponse
 
     @Override
     public void onFilterPoError(String message) {
+
+    }
+
+    @Override
+    public void onModifyPOSuccess(AddPoPojo response) {
+        poView.onShowAddPO(response);
+
+    }
+
+    @Override
+    public void onModifyError(String message) {
 
     }
 }

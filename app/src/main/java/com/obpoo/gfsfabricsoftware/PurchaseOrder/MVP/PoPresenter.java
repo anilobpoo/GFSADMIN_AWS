@@ -23,4 +23,5 @@ public interface PoPresenter {
     void onVIewFilter(String method);
     void onVIewSelectFilter(String method,String status,String page_no);
     void onSearchPo(String method,String po_no,String page_no);
+    void onModifyPO(String method,String id,String po_no,String factory_id,String staff_id,String cc_email,String created_by,String updated_by,String notes,ArrayList<poItem> items);
 }

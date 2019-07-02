@@ -99,6 +99,7 @@ public class poViewAdapter extends RecyclerView.Adapter<poViewAdapter.VViewHolde
                 in.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 in.putExtra("POdata",index);
                 in.putExtra("POdataIndex",i);
+                in.putExtra("ModifyTag",index.getStatus());
                 context.startActivity(in);
             }
         });

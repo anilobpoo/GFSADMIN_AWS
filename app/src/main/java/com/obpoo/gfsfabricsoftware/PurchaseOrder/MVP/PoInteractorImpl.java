@@ -6,6 +6,7 @@ import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.AddPOModel.AddPOReque
 import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.AddPOModel.AddPoPojo;
 import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.AddPOModel.ModifyNoteReq;
 import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.AddPOModel.ModifyNotes;
+import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.AddPOModel.ModifyPOReq;
 import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.TrackPoModel.TrackPOByCusRes;
 import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.TrackPoModel.TrackPODetRequest;
 import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.TrackPoModel.TrackPODetRes;
@@ -375,6 +376,33 @@ public class PoInteractorImpl implements PoInteractor {
             @Override
             public void onFailure(Call<PoFilterResponse> call, Throwable t) {
                 viewPOFilter.onFilterPoError(t.getMessage());
+
+            }
+        });
+    }
+
+    @Override
+    public void callRetroModifyPO(String method, String id, String po_no, String factory_id, String staff_id, String cc_email, String created_by, String updated_by, String notes, ArrayList<poItem> items, final ModifyPOI modifyPOI) {
+        Retrofit retrofit = ApiClient.getRetrofit();
+        WebApi apis = retrofit.create(WebApi.class);
+
+        ModifyPOReq request = new ModifyPOReq(method,id,po_no,factory_id,staff_id,cc_email,created_by,updated_by,notes,items);
+        Call<AddPoPojo> call = apis.modifyPOAPI(request);
+        call.enqueue(new Callback<AddPoPojo>() {
+            @Override
+            public void onResponse(Call<AddPoPojo> call, Response<AddPoPojo> response) {
+                if (response.isSuccessful()) {
+                    modifyPOI.onModifyPOSuccess(response.body());
+
+                } else {
+                    modifyPOI.onModifyError("Please Try Again.");
+
+                }
+            }
+
+            @Override
+            public void onFailure(Call<AddPoPojo> call, Throwable t) {
+                modifyPOI.onModifyError(t.getMessage());
 
             }
         });

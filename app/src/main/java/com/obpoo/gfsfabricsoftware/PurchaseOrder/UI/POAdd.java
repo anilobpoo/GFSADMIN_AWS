@@ -34,6 +34,7 @@ import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.TrackPoModel.TrackPOB
 import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.TrackPoModel.TrackPODetRes;
 import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.ViewPOModel.ConfirmPOResponse;
 import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.ViewPOModel.PoFilterResponse;
+import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.ViewPOModel.poDatum;
 import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.ViewPOModel.poItem;
 import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.ViewPOModel.poPOJO;
 import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.dynamicField.dynamicField;
@@ -41,6 +42,10 @@ import com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.dynamicField.dynamicF
 import com.obpoo.gfsfabricsoftware.PurchaseOrder.MVP.PoPresenterImpl;
 import com.obpoo.gfsfabricsoftware.PurchaseOrder.MVP.PoView;
 import com.obpoo.gfsfabricsoftware.R;
+import com.obpoo.gfsfabricsoftware.customers.datamodels.CustomersDetail;
+import com.obpoo.gfsfabricsoftware.customers.datamodels.CustomersResponse;
+import com.obpoo.gfsfabricsoftware.customers.mvp.CustomersPresenterImpl;
+import com.obpoo.gfsfabricsoftware.customers.mvp.CustomersView;
 import com.obpoo.gfsfabricsoftware.fabric.datamodels.FabricsDetail;
 import com.obpoo.gfsfabricsoftware.fabric.datamodels.FabricsResponse;
 import com.obpoo.gfsfabricsoftware.fabric.mvp.FabricsPresenterImpl;
@@ -70,7 +75,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.OnItemSelected;
 
-public class POAdd extends BaseActivity implements PoView, FabricsView, UserView, VendorsView {
+public class POAdd extends BaseActivity implements PoView, FabricsView, UserView, VendorsView, CustomersView {
     @BindView(R.id.vendor_spin)
     TextView vendor;
     @BindView(R.id.staff_spin)
@@ -91,7 +96,7 @@ public class POAdd extends BaseActivity implements PoView, FabricsView, UserView
     AutoCompleteTextView fabric_auto;
     @BindView(R.id.occassion_add)
     TextView occassion_add;
-     @BindView(R.id.fd)
+    @BindView(R.id.fd)
     TextView fd;
 
     View view;
@@ -128,6 +133,9 @@ public class POAdd extends BaseActivity implements PoView, FabricsView, UserView
     ArrayList<poItem> poItemArrayList_adp = new ArrayList<>();
     @BindView(R.id.add_notes_CPO_bef)
     TextView add_notes_CPO_bef;
+    String modify_add_state;
+    CustomersPresenterImpl presenter_cus;
+    poDatum podataList;
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
@@ -197,7 +205,7 @@ public class POAdd extends BaseActivity implements PoView, FabricsView, UserView
 //        articleAdapter_spin=new SpinnerArticleAdapter(stocklist,this);
 //        color_adapter=new SpinnerColorAdapter(colorlist,this);
 
-        Log.i(getIntent().getStringExtra("mediateVIA"), "mediateVIA");
+        modify_add_state = getIntent().getStringExtra("mediateVIA");
       /*if(getIntent().getStringExtra("mediateVIA").equals("Adapter")){
          addItemList=(ArrayList<dynamicField_changeD>)getIntent().getSerializableExtra("getItemList");
            poChangedAdapter = new POChangedAdapter(getApplicationContext(),addItemList);
@@ -208,8 +216,27 @@ public class POAdd extends BaseActivity implements PoView, FabricsView, UserView
            poChangedAdapter.notifyDataSetChanged();
        }*/
 
-        presenter = new PoPresenterImpl(this);
+      if(modify_add_state.equals("Modify_status")){
+         podataList = getIntent().getParcelableExtra("POdata");
+          vendor.setText(podataList.getFactory());
+          user.setText(podataList.getStaff());
+          cc_email.setText(podataList.getCcEmail());
+          add_notes_CPO_bef.setText(podataList.getNotes());
+          getSpinVendor=podataList.getFactoryId();
+          getSpinUser=podataList.getStaffId();
+          poViewDetailsAdapter adapter = new poViewDetailsAdapter(getApplicationContext(), podataList.getItems());
+          LinearLayoutManager linearLayoutManager = new LinearLayoutManager(POAdd.this);
+          addreViews.setLayoutManager(linearLayoutManager);
+          addreViews.setAdapter(adapter);
+          adapter.notifyDataSetChanged();
 
+      }
+      else{
+
+      }
+
+        presenter = new PoPresenterImpl(this);
+        presenter_cus = new CustomersPresenterImpl(this);
         presenter_user = new UserPresenterImpl(this);
         presenter_user.viewAll("view_all");
         vendor_presenter = new VendorsPresenterImpl(this);
@@ -239,7 +266,7 @@ public class POAdd extends BaseActivity implements PoView, FabricsView, UserView
     public void venderClick() {
         Intent intent = new Intent(POAdd.this, Search_Select.class);
         intent.putParcelableArrayListExtra("vendorlist", cartList);
-        intent.putExtra("tag","vendor");
+        intent.putExtra("tag", "vendor");
         startActivityForResult(intent, AppConstants.selectSearchVendor);
     }
 
@@ -247,7 +274,7 @@ public class POAdd extends BaseActivity implements PoView, FabricsView, UserView
     public void staffClick() {
         Intent intent = new Intent(POAdd.this, Search_Select.class);
         intent.putParcelableArrayListExtra("userList", userList);
-        intent.putExtra("tag","staff");
+        intent.putExtra("tag", "staff");
         startActivityForResult(intent, AppConstants.selectSearchStaff);
     }
 
@@ -333,10 +360,13 @@ public class POAdd extends BaseActivity implements PoView, FabricsView, UserView
 
         String admin_id = PreferenceConnector.readString(POAdd.this, getString(R.string.admin_id), "");
 
-
-        presenter.OnAddPO("po_direct_order", getSpinVendor, getSpinUser,
-                cc_email.getText().toString(), brand.getText().toString(), admin_id, admin_id, poItemArrayList_adp, add_notes_CPO_bef.getText().toString());
-
+        if(modify_add_state.equals("Modify_status")){
+            presenter.onModifyPO("po_direct_order_with_id",podataList.getId(),podataList.getPo_no(),getSpinVendor,getSpinUser,cc_email.getText().toString(),admin_id,admin_id,add_notes_CPO_bef.getText().toString(),poItemArrayList_adp);
+        }
+        else {
+            presenter.OnAddPO("po_direct_order", getSpinVendor, getSpinUser,
+                    cc_email.getText().toString(), brand.getText().toString(), admin_id, admin_id, poItemArrayList_adp, add_notes_CPO_bef.getText().toString());
+        }
 
     }
 
@@ -366,7 +396,7 @@ public class POAdd extends BaseActivity implements PoView, FabricsView, UserView
     public void onShowAddPO(AddPoPojo response) {
         Log.i("AddResponsePO", response.getMessage());
         Log.e("AddResponsePO", response.getMessage());
-        if(response.getStatus().equals("success")){
+        if (response.getStatus().equals("success")) {
             callAlert(response.getLastCoId());
         }
 
@@ -418,6 +448,18 @@ public class POAdd extends BaseActivity implements PoView, FabricsView, UserView
 
     @Override
     public void onValidationFail(int type) {
+
+    }
+
+    @Override
+    public void onLoad(CustomersResponse response) {
+        ArrayList<CustomersDetail> customerList=new ArrayList<>();
+        customerList=response.getDetail();
+        PreferenceConnector.saveArraylistofObjectsForFab(customerList,AppConstants.selectcustomerforPOinaddfab,POAdd.this);
+        Intent in = new Intent(POAdd.this, AddfabricSoOrders.class);
+        in.putExtra("ORDERTYPE_SOORDER", modify_add_state);
+        in.putExtra("PODATALIST",podataList);
+        startActivityForResult(in, AppConstants.addcmFab);
 
     }
 
@@ -482,14 +524,15 @@ public class POAdd extends BaseActivity implements PoView, FabricsView, UserView
        /* Intent in = new Intent(POAdd.this, AddFabricInPoContract.class);
        // in.putExtra("FabricListItems", fabricList);
         startActivityForResult(in, 2);*/
-        Intent in = new Intent(POAdd.this, AddfabricSoOrders.class);
-        in.putExtra("ORDERTYPE_SOORDER", "");
-        startActivityForResult(in, AppConstants.addcmFab);
+        String admin_id =  PreferenceConnector.readString(this, getString(R.string.admin_id),"");
+        presenter_cus.viewAll("view_all",admin_id);
+
 
     }
-    public void callAlert(String lastCOId){
+
+    public void callAlert(String lastCOId) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setMessage("Your PO Id is "+lastCOId).setCancelable(false).setPositiveButton("OK", new DialogInterface.OnClickListener() {
+        builder.setMessage("Your PO Id is " + lastCOId).setCancelable(false).setPositiveButton("OK", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 Intent in = new Intent(POAdd.this, RequestedOrder.class);
