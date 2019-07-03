@@ -2,255 +2,265 @@
 <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    app:cardBackgroundColor="@color/white"
     android:layout_height="wrap_content"
     android:layout_margin="8dp"
+    app:cardBackgroundColor="@color/white"
     app:cardCornerRadius="4dp"
     app:cardElevation="2dp">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
 
-    <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/viewPo_arr">
-
-        <ImageView
-            android:id="@+id/img_border"
-            android:layout_width="5dp"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_alignBottom="@+id/lay"
-            android:background="@color/green_500" />
-        <TextView
+        <RelativeLayout
+            android:id="@+id/viewPo_arr"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_alignParentTop="true"
-            android:id="@+id/poNumCM"
-            android:text="po_no"
-            android:textColor="@color/blue_500"/>
-        <LinearLayout
-            android:id="@+id/lay"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_toLeftOf="@+id/go"
-            android:layout_toRightOf="@+id/img_border"
-            android:orientation="horizontal"
-            android:layout_below="@+id/poNumCM"
-            android:weightSum="1">
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/img_border"
+                android:layout_width="5dp"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/lay"
+                android:layout_alignParentTop="true"
+                android:background="@color/green_500" />
 
             <LinearLayout
-                android:layout_width="0dp"
+                android:id="@+id/lay"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight=".25"
-                android:layout_gravity="center"
-                android:orientation="vertical">
+                android:layout_toLeftOf="@+id/go"
+                android:layout_toRightOf="@+id/img_border"
+                android:orientation="horizontal"
+                android:weightSum="1">
 
-                <TextView
-                    android:id="@+id/id"
-                    android:layout_width="match_parent"
+                <LinearLayout
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="N/A"
-                    android:textColor="@color/pinktext"
-                    android:textSize="16dp" />
+                    android:layout_gravity="center"
+                    android:layout_weight=".25"
+                    android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/item"
-                    android:layout_width="match_parent"
+                    <TextView
+                        android:id="@+id/id"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="N/A"
+                        android:textColor="@color/pinktext"
+                        android:textSize="16dp" />
+
+                    <TextView
+                        android:id="@+id/item"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:gravity="center"
+                        android:text="N/A"
+                        android:textColor="@color/base" />
+                </LinearLayout>
+
+                <ImageView
+                    android:id="@+id/div"
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:background="@color/div" />
+
+                <android.support.constraint.ConstraintLayout
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="2dp"
-                    android:gravity="center"
-                    android:textColor="@color/base"
-                    android:text="N/A" />
+                    android:layout_weight=".74">
+
+                    <TextView
+                        android:id="@+id/poNumCM"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="po_no"
+                        android:textColor="@color/blue_500"
+                        app:layout_constraintBottom_toTopOf="@+id/factoryimg"
+                        android:layout_marginBottom="5dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <ImageView
+                        android:id="@+id/factoryimg"
+                        android:layout_width="18dp"
+                        android:layout_height="18dp"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginTop="8dp"
+                        android:src="@drawable/factory_img"
+                        app:layout_constraintBottom_toTopOf="@+id/confirmimg"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <ImageView
+                        android:id="@+id/confirmimg"
+                        android:layout_width="18dp"
+                        android:layout_height="18dp"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginTop="5dp"
+                        android:src="@drawable/watch_pending"
+                        app:layout_constraintBottom_toTopOf="@+id/price_img"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/factoryimg" />
+
+                    <ImageView
+                        android:id="@+id/price_img"
+                        android:layout_width="18dp"
+                        android:layout_height="18dp"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginTop="5dp"
+                        android:src="@drawable/cash_icon"
+                        android:visibility="gone"
+                        app:layout_constraintBottom_toTopOf="@+id/dateimg"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/confirmimg" />
+
+                    <ImageView
+                        android:id="@+id/dateimg"
+                        android:layout_width="18dp"
+                        android:layout_height="18dp"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginTop="5dp"
+                        android:src="@drawable/order_img"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/price_img" />
+
+                    <TextView
+                        android:id="@+id/factoryname"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:text="N/A"
+                        android:textColor="@color/item_name"
+                        android:textSize="15dp"
+                        app:layout_constraintBottom_toBottomOf="@+id/factoryimg"
+                        app:layout_constraintStart_toEndOf="@+id/factoryimg"
+                        app:layout_constraintTop_toTopOf="@+id/factoryimg">
+
+                    </TextView>
+
+                    <TextView
+                        android:id="@+id/status"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:text="N/A"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="15dp"
+                        app:layout_constraintBottom_toBottomOf="@+id/confirmimg"
+                        app:layout_constraintStart_toEndOf="@+id/confirmimg"
+                        app:layout_constraintTop_toTopOf="@+id/confirmimg">
+
+                    </TextView>
+
+                    <TextView
+                        android:id="@+id/price"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:text="N/A"
+                        android:textColor="@color/green_100"
+                        android:textSize="15dp"
+                        android:visibility="gone"
+                        app:layout_constraintBottom_toBottomOf="@+id/price_img"
+                        app:layout_constraintStart_toEndOf="@+id/price_img"
+                        app:layout_constraintTop_toTopOf="@+id/price_img">
+
+                    </TextView>
+
+                    <TextView
+                        android:id="@+id/date"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:paddingRight="5dp"
+                        android:singleLine="true"
+                        android:text="N/A"
+                        android:textColor="@color/item_name"
+                        android:textSize="15dp"
+                        app:layout_constraintBottom_toBottomOf="@+id/dateimg"
+                        app:layout_constraintStart_toEndOf="@+id/dateimg"
+                        app:layout_constraintTop_toTopOf="@+id/dateimg">
+
+                    </TextView>
+
+                    <android.support.constraint.Guideline
+                        android:id="@+id/center_guid"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        app:layout_constraintGuide_percent="0.5" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/padd_10"
+                        android:gravity="center"
+                        android:orientation="horizontal"
+                        app:layout_constraintBottom_toBottomOf="@+id/date"
+                        app:layout_constraintStart_toEndOf="@+id/center_guid"
+                        app:layout_constraintTop_toTopOf="@+id/date">
+
+                        <ImageView
+                            android:layout_width="18dp"
+                            android:layout_height="18dp"
+                            android:src="@drawable/deliver_img" />
+
+                        <TextView
+                            android:id="@+id/deliver_date"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="8dp"
+                            android:paddingRight="5dp"
+                            android:singleLine="true"
+                            android:text="N/A"
+                            android:textColor="@color/black"
+                            android:textSize="15dp" />
+                    </LinearLayout>
+
+                    <android.support.v7.widget.CardView
+                        android:id="@+id/indc"
+                        android:layout_width="wrap_content"
+                        android:layout_height="25dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginBottom="@dimen/padd_10"
+                        android:visibility="gone"
+                        app:cardBackgroundColor="@color/orange_600"
+                        app:cardCornerRadius="4dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <TextView
+                            android:id="@+id/item_status"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp"
+                            android:gravity="center"
+                            android:text="View Detail"
+                            android:textColor="@color/white"
+                            android:textSize="14dp" />
+                    </android.support.v7.widget.CardView>
+
+                </android.support.constraint.ConstraintLayout>
             </LinearLayout>
 
             <ImageView
-                android:id="@+id/div"
-                android:layout_width="1dp"
-                android:layout_height="match_parent"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="8dp"
-                android:background="@color/div" />
-
-            <android.support.constraint.ConstraintLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight=".74">
-
-                <ImageView
-                    android:id="@+id/factoryimg"
-                    android:layout_width="18dp"
-                    android:layout_height="18dp"
-                    android:layout_marginLeft="8dp"
-                    android:layout_marginTop="8dp"
-                    android:src="@drawable/factory_img"
-                    app:layout_constraintBottom_toTopOf="@+id/confirmimg"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <ImageView
-                    android:id="@+id/confirmimg"
-                    android:layout_width="18dp"
-                    android:layout_height="18dp"
-                    android:layout_marginLeft="8dp"
-                    android:layout_marginTop="5dp"
-                    android:src="@drawable/watch_pending"
-                    app:layout_constraintBottom_toTopOf="@+id/price_img"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/factoryimg" />
-                <ImageView
-                    android:id="@+id/price_img"
-                    android:layout_width="18dp"
-                    android:layout_height="18dp"
-                    android:visibility="gone"
-                    android:layout_marginLeft="8dp"
-                    android:layout_marginTop="5dp"
-                    android:src="@drawable/cash_icon"
-                    app:layout_constraintBottom_toTopOf="@+id/dateimg"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/confirmimg" />
-                <ImageView
-                    android:id="@+id/dateimg"
-                    android:layout_width="18dp"
-                    android:layout_height="18dp"
-                    android:layout_marginLeft="8dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginBottom="8dp"
-                    android:src="@drawable/order_img"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/price_img" />
-
-                <TextView
-                    android:id="@+id/factoryname"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dp"
-                    android:text="N/A"
-                    android:textColor="@color/item_name"
-                    android:textSize="15dp"
-                    app:layout_constraintBottom_toBottomOf="@+id/factoryimg"
-                    app:layout_constraintStart_toEndOf="@+id/factoryimg"
-                    app:layout_constraintTop_toTopOf="@+id/factoryimg">
-
-                </TextView>
-
-                <TextView
-                    android:id="@+id/status"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dp"
-                    android:text="N/A"
-                    android:textColor="@color/colorPrimary"
-                    android:textSize="15dp"
-                    app:layout_constraintBottom_toBottomOf="@+id/confirmimg"
-                    app:layout_constraintStart_toEndOf="@+id/confirmimg"
-                    app:layout_constraintTop_toTopOf="@+id/confirmimg">
-
-                </TextView>
-                <TextView
-                    android:id="@+id/price"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:visibility="gone"
-                    android:layout_marginLeft="5dp"
-                    android:text="N/A"
-                    android:textColor="@color/green_100"
-                    android:textSize="15dp"
-                    app:layout_constraintBottom_toBottomOf="@+id/price_img"
-                    app:layout_constraintStart_toEndOf="@+id/price_img"
-                    app:layout_constraintTop_toTopOf="@+id/price_img">
-
-                </TextView>
-                <TextView
-                    android:id="@+id/date"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingRight="5dp"
-                    android:layout_marginLeft="5dp"
-                    android:text="N/A"
-                    android:textColor="@color/item_name"
-                    android:textSize="15dp"
-                    android:singleLine="true"
-                    app:layout_constraintBottom_toBottomOf="@+id/dateimg"
-                    app:layout_constraintStart_toEndOf="@+id/dateimg"
-                    app:layout_constraintTop_toTopOf="@+id/dateimg">
-
-                </TextView>
-<android.support.constraint.Guideline
-    android:id="@+id/center_guid"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:orientation="vertical"
-    app:layout_constraintGuide_percent="0.5"/>
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:orientation="horizontal"
-                    app:layout_constraintBottom_toBottomOf="@+id/date"
-                    android:layout_marginLeft="@dimen/padd_10"
-                    app:layout_constraintStart_toEndOf="@+id/center_guid"
-                    app:layout_constraintTop_toTopOf="@+id/date">
-
-                    <ImageView
-                        android:layout_width="18dp"
-                        android:layout_height="18dp"
-                        android:src="@drawable/deliver_img" />
-
-                    <TextView
-                        android:id="@+id/deliver_date"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="8dp"
-                        android:paddingRight="5dp"
-                        android:text="N/A"
-                        android:singleLine="true"
-                        android:textColor="@color/black"
-                        android:textSize="15dp" />
-                </LinearLayout>
-
-                <android.support.v7.widget.CardView
-                    android:id="@+id/indc"
-                    android:layout_width="wrap_content"
-                    android:layout_height="25dp"
-                    android:visibility="gone"
-                    android:layout_marginRight="10dp"
-                    android:layout_marginBottom="@dimen/padd_10"
-                    app:cardBackgroundColor="@color/orange_600"
-                    app:cardCornerRadius="4dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent">
-
-                    <TextView
-                        android:id="@+id/item_status"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:gravity="center"
-                        android:layout_marginLeft="5dp"
-                        android:layout_marginRight="5dp"
-                        android:text="View Detail"
-                        android:textColor="@color/white"
-                        android:textSize="14dp" />
-                </android.support.v7.widget.CardView>
-
-            </android.support.constraint.ConstraintLayout>
-        </LinearLayout>
-
-        <ImageView
-            android:id="@+id/go"
-            android:layout_width="23dp"
-            android:layout_height="24dp"
-            android:layout_alignParentEnd="true"
-            android:layout_centerVertical="true"
-            android:layout_marginEnd="5dp"
-            android:src="@drawable/ic_right_arrow" />
-    </RelativeLayout>
+                android:id="@+id/go"
+                android:layout_width="23dp"
+                android:layout_height="24dp"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="5dp"
+                android:src="@drawable/ic_right_arrow" />
+        </RelativeLayout>
     </LinearLayout>
 </android.support.v7.widget.CardView>

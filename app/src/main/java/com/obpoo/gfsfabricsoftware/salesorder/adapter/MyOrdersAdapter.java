@@ -27,6 +27,8 @@ import com.obpoo.gfsfabricsoftware.utilities.AppConstants;
 import com.obpoo.gfsfabricsoftware.utilities.DialogUtils;
 import com.obpoo.gfsfabricsoftware.utilities.NetworkDetection;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 
@@ -131,7 +133,6 @@ public class MyOrdersAdapter extends RecyclerView.Adapter<MyOrdersAdapter.MyView
         return new MyOrdersAdapter.MyViewHolder(itemView);
     }
 
-
     @Override
     public void onBindViewHolder(final MyOrdersAdapter.MyViewHolder holder, final int position) {
         final MyOrdersDetail item = cartList.get(position);
@@ -143,15 +144,17 @@ public class MyOrdersAdapter extends RecyclerView.Adapter<MyOrdersAdapter.MyView
         });*/
 
 
-        String dates=item.getOrderdate();
-        String[] splited = dates.split("\\s+");
-        ilist = item.getItemDetails();
 
+        ilist = item.getItemDetails();
+        try {
+            holder.date.setText(new SimpleDateFormat("yyyy-MMM-dd").format(new SimpleDateFormat("yyyy-MM-dd").parse(item.getOrderdate())));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
         holder.ordernum.setText("#"+item.getId());
         holder.mode.setText("Mode: "+item.getPayMode());
         holder.type.setText("Type: "+item.getDeliveryType());
         holder.items.setText("Item: "+ilist.size());
-        holder.date.setText(splited[0]);
         holder.advance.setText("$"+item.getAdvance());
         holder.leftover.setText("$"+item.getLeftover());
         holder.total.setText("$"+item.getOrderTotal());

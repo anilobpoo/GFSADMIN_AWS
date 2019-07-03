@@ -24,7 +24,7 @@
             android:layout_width="match_parent"
             android:gravity="center"
             android:id="@+id/searchfab"
-            android:background="@color/white"
+            android:background="@color/blue_100"
             android:orientation="horizontal"
             android:layout_height="wrap_content">
 
@@ -59,7 +59,7 @@
                         android:fontFamily="@font/calibri"
                         android:id="@+id/etSearch"
                         android:background="@drawable/invisibleborder"
-                        android:hint="Search"
+                        android:hint="Search By Status/QR Code"
                         android:textColorHint="@color/gray"
 
                         android:layout_weight="1"

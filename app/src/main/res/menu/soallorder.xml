@@ -9,7 +9,7 @@
     <item
         android:id="@+id/so_filter"
         app:showAsAction="ifRoom"
-        android:icon="@drawable/ic_filter"
+        android:icon="@drawable/empty_filter_32"
         android:title="so_filter">
 
     </item>

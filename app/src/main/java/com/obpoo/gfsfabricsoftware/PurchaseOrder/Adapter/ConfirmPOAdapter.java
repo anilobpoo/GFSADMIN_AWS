@@ -62,7 +62,6 @@ public class ConfirmPOAdapter extends RecyclerView.Adapter<ConfirmPOAdapter.View
             viewHolder.price_img.setVisibility(View.VISIBLE);
             viewHolder.price.setVisibility(View.VISIBLE);
             viewHolder.go.setVisibility(View.GONE);
-            viewHolder.poNumCM.setVisibility(View.GONE);
             Log.i("PREVNOtes",data.get(i).getNotes());
             viewHolder.indc.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -129,6 +128,11 @@ public class ConfirmPOAdapter extends RecyclerView.Adapter<ConfirmPOAdapter.View
     @Override
     public int getItemCount() {
         return data.size();
+    }
+
+    public void updateList(ArrayList<poDatum> temp) {
+        this.data = temp;
+        notifyDataSetChanged();
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {

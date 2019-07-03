@@ -23,6 +23,8 @@ import com.obpoo.gfsfabricsoftware.salesorder.datamodels.MyOrdersDetail;
 import com.obpoo.gfsfabricsoftware.ui.activities.BaseActivity;
 import com.obpoo.gfsfabricsoftware.utilities.AppConstants;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 import butterknife.BindView;
@@ -93,7 +95,12 @@ public class SOorderDetails extends BaseActivity {
         Log.i("OrderDetailsCheck",item.getDeliveryType());
 
         so_det_orderId.setText("#"+item.getOrderNo());
-        date_so_det.setText(item.getOrderdate());
+        try {
+            date_so_det.setText(new SimpleDateFormat("yyyy-MMM-dd").format(new SimpleDateFormat("yyyy-MM-dd").parse(item.getOrderdate())));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
         desc_so_order_det.setText("");
         type_so_det.setText(item.getDeliveryType());
         mode_so_det.setText(item.getPayMode());

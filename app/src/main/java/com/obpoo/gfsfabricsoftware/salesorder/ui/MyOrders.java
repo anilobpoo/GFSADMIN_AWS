@@ -3,8 +3,8 @@ package com.obpoo.gfsfabricsoftware.salesorder.ui;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.v4.content.ContextCompat;
+
+import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
@@ -15,6 +15,7 @@ import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
@@ -48,28 +49,31 @@ import java.util.ArrayList;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class MyOrders extends BaseActivity implements MyOrdersView,CustomersView {
+public class MyOrders extends BaseActivity implements MyOrdersView, CustomersView {
 
     NetworkDetection networkDetection;
     @BindView(R.id.recycler_view)
     RecyclerView recyclerView;
     @BindView(R.id.shimmer_view_container)
     ShimmerFrameLayout mShimmerViewContainer;
-//    @BindView(R.id.fab)
+    //    @BindView(R.id.fab)
 //    FloatingActionButton fab;
-    private ArrayList<MyOrdersDetail> cartList=new ArrayList<>();
+    private ArrayList<MyOrdersDetail> cartList = new ArrayList<>();
     private MyOrdersAdapter mAdapter;
     @BindView(R.id.etSearch)
     EditText etSearch;
     MyOrdersPresenterImpl presenter;
     CustomersPresenterImpl customersPresenter;
-    private ArrayList<CustomersDetail> customersDetails=new ArrayList<>();
+    private ArrayList<CustomersDetail> customersDetails = new ArrayList<>();
     String admin_id;
     ArrayAdapter customerAdapter;
-    ArrayList<String> customerList=new ArrayList<>();
+    ArrayList<String> customerList = new ArrayList<>();
     AutoCompleteTextView name;
     String autoname;
-    String customer_id,discount,groupname,groupId;
+    String customer_id, discount, groupname, groupId;
+    Boolean isScrolling = false;
+    int currentItems, totalItems, scrollOutItems;
+    int page_no = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,8 +88,8 @@ public class MyOrders extends BaseActivity implements MyOrdersView,CustomersView
         presenter = new MyOrdersPresenterImpl(this);
         customersPresenter = new CustomersPresenterImpl(this);
 
-        admin_id=  PreferenceConnector.readString(this, getString(R.string.admin_id),"");
-        presenter.view("viewall_pagn",1);
+        admin_id = PreferenceConnector.readString(this, getString(R.string.admin_id), "");
+        presenter.view("viewall_pagn", page_no);
         etSearch.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -106,6 +110,30 @@ public class MyOrders extends BaseActivity implements MyOrdersView,CustomersView
             }
         });
 
+        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
+                if (newState == AbsListView.OnScrollListener.SCROLL_STATE_TOUCH_SCROLL) {
+                    isScrolling = true;
+                }
+            }
+
+            @Override
+            public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+                LinearLayoutManager linearLayoutManager = new LinearLayoutManager(MyOrders.this);
+                currentItems = linearLayoutManager.getChildCount();
+                totalItems = linearLayoutManager.getItemCount();
+                scrollOutItems = linearLayoutManager.findFirstVisibleItemPosition();
+
+                if (isScrolling && (currentItems + scrollOutItems == totalItems)) {
+                    isScrolling = false;
+                    page_no++;
+                    presenter.view("viewall_pagn", page_no);
+                }
+            }
+        });
 //        fab.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(), R.drawable.ic_add_white_18dp));
 //        fab.setOnClickListener(new View.OnClickListener() {
 //            @Override
@@ -123,14 +151,14 @@ public class MyOrders extends BaseActivity implements MyOrdersView,CustomersView
     @Override
     public void onResume() {
         super.onResume();
-      //  showDialog();
+        //  showDialog();
         //presenter.view("viewall");
-       // presenter.view("view_with_status");
+        // presenter.view("view_with_status");
 
 
     }
 
-    public void onPause(){
+    public void onPause() {
         super.onPause();
     }
 
@@ -138,9 +166,9 @@ public class MyOrders extends BaseActivity implements MyOrdersView,CustomersView
     void filter(String text) {
         ArrayList<MyOrdersDetail> temp = new ArrayList();
         for (MyOrdersDetail d : cartList) {
-            if ((d.getOrderQr().toLowerCase().contains(text.toLowerCase()))||
+            if ((d.getOrderQr().toLowerCase().contains(text.toLowerCase())) ||
                     (d.getStatusText().toLowerCase().contains(text.toLowerCase()))
-                    ) {
+            ) {
                 temp.add(d);
             }
         }
@@ -169,20 +197,17 @@ public class MyOrders extends BaseActivity implements MyOrdersView,CustomersView
 
     @Override
     public void onLoad(MyOrdersResponse response) {
-        Log.i("ReCheckPrevioudORders",response.getMessage());
+        Log.i("ReCheckPrevioudORders", response.getMessage());
         if (response.getStatus().equals(AppConstants.SUCCESS)) {
             hideDialog();
 
 
-            if (response.getMessage().toLowerCase().contains("successfully"))
-            {
-                Intent intent=new Intent(this, OrderFabrics.class);
-                intent.putExtra("id",response.getLast_id());
-                intent.putExtra("discount",discount);
+            if (response.getMessage().toLowerCase().contains("successfully")) {
+                Intent intent = new Intent(this, OrderFabrics.class);
+                intent.putExtra("id", response.getLast_id());
+                intent.putExtra("discount", discount);
                 startActivity(intent);
-            }
-            else
-            {
+            } else {
                 cartList.clear();
                 cartList = response.getDetail();
                 mAdapter = new MyOrdersAdapter(this, cartList);
@@ -195,8 +220,7 @@ public class MyOrders extends BaseActivity implements MyOrdersView,CustomersView
             }
 
 
-        }else
-        {
+        } else {
             hideDialog();
             showError(response.getMessage().toString());
         }
@@ -231,12 +255,11 @@ public class MyOrders extends BaseActivity implements MyOrdersView,CustomersView
     @Override
     public void showError(String message) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
-       // Log.i("orderErr",message);
+        // Log.i("orderErr",message);
     }
 
 
-    public void customer()
-    {
+    public void customer() {
         LayoutInflater li = LayoutInflater.from(this);
         View promptsView = li.inflate(R.layout.alert_customer, null);
 
@@ -250,8 +273,8 @@ public class MyOrders extends BaseActivity implements MyOrdersView,CustomersView
                 startActivity(new Intent(MyOrders.this, AddCustomers.class));
             }
         });
-        customerAdapter=new ArrayAdapter(this,android.R.layout.simple_dropdown_item_1line, customerList);
-        autoname=name.getText().toString();
+        customerAdapter = new ArrayAdapter(this, android.R.layout.simple_dropdown_item_1line, customerList);
+        autoname = name.getText().toString();
         name.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -281,15 +304,15 @@ public class MyOrders extends BaseActivity implements MyOrdersView,CustomersView
                 .setCancelable(false)
                 .setPositiveButton("OK",
                         new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog,int id) {
-                                presenter.add("take_order",customer_id,"","",admin_id,randomAlphaNumeric(10),"0","0","0","", "",groupId,"","","",discount,"","","","","","","");
+                            public void onClick(DialogInterface dialog, int id) {
+                                presenter.add("take_order", customer_id, "", "", admin_id, randomAlphaNumeric(10), "0", "0", "0", "", "", groupId, "", "", "", discount, "", "", "", "", "", "", "");
 
 
                             }
                         })
                 .setNegativeButton("Cancel",
                         new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog,int id) {
+                            public void onClick(DialogInterface dialog, int id) {
                                 dialog.cancel();
                             }
                         });
@@ -300,17 +323,17 @@ public class MyOrders extends BaseActivity implements MyOrdersView,CustomersView
         // show it
         alertDialog.show();
 
-        customersPresenter.viewAll("view_all",admin_id);
+        customersPresenter.viewAll("view_all", admin_id);
 
     }
 
 
     public int check(String id) {
-        int j=0;
+        int j = 0;
         for (int i = 0; i < customersDetails.size(); i++) {
             try {
                 if (customersDetails.get(i).getCustomerName().equals(id))
-                    j=i;
+                    j = i;
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -320,25 +343,24 @@ public class MyOrders extends BaseActivity implements MyOrdersView,CustomersView
 
     }
 
-    private String getStoreID(String value){
-        String id="";
+    private String getStoreID(String value) {
+        String id = "";
         try {
 
-            int pos=check(value);
+            int pos = check(value);
 
-            customer_id=customersDetails.get(pos).getId();
-            groupId=customersDetails.get(pos).getCustomerGroup();
-            groupname=customersDetails.get(pos).getCustomerGroupName();
-            discount=customersDetails.get(pos).getDiscountPer();
+            customer_id = customersDetails.get(pos).getId();
+            groupId = customersDetails.get(pos).getCustomerGroup();
+            groupname = customersDetails.get(pos).getCustomerGroupName();
+            discount = customersDetails.get(pos).getDiscountPer();
 
-            Log.e("customer_id",customer_id);
-            Log.e("defaultId",groupId);
-            Log.e("groupname",groupname);
-            Log.e("discount",discount);
+            Log.e("customer_id", customer_id);
+            Log.e("defaultId", groupId);
+            Log.e("groupname", groupname);
+            Log.e("discount", discount);
 
 
             name.setText(value);
-
 
 
         } catch (Exception e) {
@@ -352,7 +374,7 @@ public class MyOrders extends BaseActivity implements MyOrdersView,CustomersView
     public static String randomAlphaNumeric(int count) {
         StringBuilder builder = new StringBuilder();
         while (count-- != 0) {
-            int character = (int)(Math.random()*ALPHA_NUMERIC_STRING.length());
+            int character = (int) (Math.random() * ALPHA_NUMERIC_STRING.length());
             builder.append(ALPHA_NUMERIC_STRING.charAt(character));
         }
         return builder.toString();

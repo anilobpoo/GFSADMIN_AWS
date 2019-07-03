@@ -38,6 +38,7 @@ public class MyOrdersPresenterImpl implements MyOrdersPresenter, MyOrdersInterac
 
     @Override
     public void view(String methodname,int page_no) {
+        view.showDialog();
         MyOrdersRequest request =new MyOrdersRequest(methodname,page_no);
         interacter.viewList(request,this);
     }
@@ -49,6 +50,8 @@ public class MyOrdersPresenterImpl implements MyOrdersPresenter, MyOrdersInterac
                     String credit_time, String delivery_type, String lattitude, String longitude) {
         MyOrdersRequest request =new MyOrdersRequest(methodname,customer_id,discount_type,canceled_by,order_by,order_no,advance,leftover,order_total,coupon_per,coupon_discount_price,group_id,pg_assign_time,pg_delivery_time,delivery_by,discount,pickup_time,Dellivery_address,pay_mode,credit_time,delivery_type,lattitude,longitude);
         interacter.viewList(request,this);
+        view.showDialog();
+
 
     }
 
@@ -56,6 +59,8 @@ public class MyOrdersPresenterImpl implements MyOrdersPresenter, MyOrdersInterac
     public void update(String methodname, String advance, String leftover, String order_total, String coupon_per, String coupon_discount_price, String Dellivery_address, String pay_mode, String credit_time, String delivery_type, String lattitude, String longitude, String id,String complete_status) {
         MyOrdersRequest request =new MyOrdersRequest(methodname,advance,leftover,order_total,coupon_per,coupon_discount_price,Dellivery_address,pay_mode,credit_time,delivery_type,lattitude,longitude,id,complete_status);
         interacter.viewList(request,this);
+        view.showDialog();
+
     }
 
 
@@ -64,6 +69,8 @@ public class MyOrdersPresenterImpl implements MyOrdersPresenter, MyOrdersInterac
     public void delete(String methodname, String id, String status) {
         MyOrdersRequest request =new MyOrdersRequest(methodname,id,status);
         interacter.viewList(request,this);
+        view.showDialog();
+
     }
 
     @Override
@@ -76,6 +83,7 @@ public class MyOrdersPresenterImpl implements MyOrdersPresenter, MyOrdersInterac
     @Override
     public void onPassAllSOorderdateFilter(String method, String from, String to, String page_no) {
         interacter.allOrderSoDateFilterCall(method,from,to,page_no,this);
+        view.showDialog();
 
     }
 
@@ -89,6 +97,7 @@ public class MyOrdersPresenterImpl implements MyOrdersPresenter, MyOrdersInterac
     @Override
     public void onPassAllOrderselectedStatus(String method, String status) {
         interacter.allOrderSoSelectedStatusI(method,status,this);
+        view.showDialog();
 
     }
 
