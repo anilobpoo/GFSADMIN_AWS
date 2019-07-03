@@ -34,7 +34,7 @@ public class CustomersPresenterImpl implements CustomersPresenter, CustomersInte
 
     @Override
     public void viewAll(String methodname,String userid) {
-
+       view.showDialog();
 
         CustomersRequest request =new CustomersRequest(methodname,userid);
         interacter.viewList(request,this);

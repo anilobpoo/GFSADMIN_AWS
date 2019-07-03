@@ -366,7 +366,7 @@ public class RequestedOrder extends BaseActivity implements PoView, UserView, Ve
             case R.id.so_date_filter:
                 Intent in = new Intent(RequestedOrder.this, POAdd.class);
                 in.putExtra("mediateVIA", "PO_class");
-                in.putExtra("getItemList", "addItemList");
+               // in.putExtra("getItemList", "addItemList");
                 startActivity(in);
                 break;
         }

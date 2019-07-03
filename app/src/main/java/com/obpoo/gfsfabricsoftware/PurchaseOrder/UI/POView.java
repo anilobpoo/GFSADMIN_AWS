@@ -1,10 +1,13 @@
 package com.obpoo.gfsfabricsoftware.PurchaseOrder.UI;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.TextView;
 
 import com.obpoo.gfsfabricsoftware.PurchaseOrder.Adapter.poViewDetailsAdapter;
@@ -47,6 +50,8 @@ public class POView extends BaseActivity {
     TextView mail_mco;
     @BindView(R.id.order_mco)
     TextView order_mco;
+    String modify_tag;
+    boolean menu_state;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +64,15 @@ public class POView extends BaseActivity {
         enableActionBar(true);
         podataList = getIntent().getParcelableExtra("POdata");
         viewIndex = getIntent().getIntExtra("POdataIndex", 0);
+        modify_tag=getIntent().getStringExtra("ModifyTag");
+
+        if(modify_tag.equals("3")){
+            menu_state=true;
+            invalidateOptionsMenu();
+        }
+        else{
+            menu_state=false;
+        }
 
         Log.i("checkPOItem", podataList.getItems().size() + "");
 
@@ -101,5 +115,33 @@ public class POView extends BaseActivity {
 
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
 
+        getMenuInflater().inflate(R.menu.modifymenu,menu);
+        if(menu_state){
+            menu.getItem(0).setVisible(true);
+        }
+        else{
+            menu.getItem(0).setVisible(false);
+        }
+        return super.onCreateOptionsMenu(menu);
+    }
+
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.action_modify:
+                Intent in = new Intent(POView.this, POAdd.class);
+                in.putExtra("mediateVIA", "Modify_status");
+                in.putExtra("POdata",podataList);
+                // in.putExtra("getItemList", "addItemList");
+                startActivity(in);
+                break;
+
+
+        }
+        return super.onOptionsItemSelected(item);
+    }
 }

@@ -43,6 +43,7 @@ public class TrackPODet extends BaseActivity {
         ArrayList<TrackPODetItems> trackPODetItems = trackPODetDataArrayList.get(0).getItems();
         if(trackPODetItems.size()>0) {
             cus_name_track_po_det.setText(trackPODetItems.get(0).getCustomerName());
+            Log.i("cus_name_track_po_det", trackPODetItems.get(0).getCustomerName());
 
             // Log.i("trackPODetDataArrayList",trackPODetDataArrayList.size()+""+trackPODetDataArrayList.get(0).getItems().size()+"");
 

@@ -53,4 +53,5 @@ public class AppConstants {
     public static final int passcustomerforfabric=2026;
     public static final String selectedCusforPOaddinFab="SELECTEDCUSFORPOADDINFAB";
     public static final int PoDetailfilter=2027;
+    public static final String passCusfromItem="PASSCUSFROMITEM";
 }

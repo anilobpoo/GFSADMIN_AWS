@@ -79,4 +79,10 @@ public interface PoInteractor {
         void onFilterPoError(String message);
     }
     void callFilter(String method,ViewPOFilter response);
+
+    interface  ModifyPOI{
+        void onModifyPOSuccess(AddPoPojo response);
+        void onModifyError(String message);
+    }
+    void callRetroModifyPO(String method,String id,String po_no,String factory_id,String staff_id,String cc_email,String created_by,String updated_by,String notes,ArrayList<poItem> items,ModifyPOI response);
 }
