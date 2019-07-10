@@ -206,7 +206,12 @@ public class PO_Order extends BaseActivity implements PoView {
     public void searchCancelClick() {
         search_view.setVisibility(View.VISIBLE);
         search.setVisibility(View.GONE);
-        search_et.clearFocus();
+        search_et.getText().clear();
+        adapter = new ConfirmPOAdapter(PO_Order.this, data, "poorder");
+        recycler_view.setAdapter(adapter);
+        adapter.notifyDataSetChanged();
+        InputMethodManager imm = (InputMethodManager)getSystemService(PO_Order.this.INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(search_et.getWindowToken(), 0);
     }
 
     @OnClick(R.id.search_view)

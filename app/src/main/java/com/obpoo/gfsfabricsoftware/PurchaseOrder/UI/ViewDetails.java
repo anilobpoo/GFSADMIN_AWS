@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.obpoo.gfsfabricsoftware.PurchaseOrder.Adapter.ViewDetailsItemAdapter;
@@ -48,6 +49,10 @@ public class ViewDetails extends BaseActivity implements PoView {
     TextView cc_email;
     @BindView(R.id.recycler_view)
     RecyclerView recycler_view;
+    @BindView(R.id.progress_bar)
+    ProgressBar progress_bar;
+    @BindView(R.id.tranparent_bg)
+    ImageView tranparent_bg;
 
     @BindView(R.id.confirm)
     TextView confirm;
@@ -70,7 +75,7 @@ public class ViewDetails extends BaseActivity implements PoView {
     ArrayList<poItem> items;
 
 
-    String factory, date, deliver_date, status, id, staf, cc_mail,prev_notes_get;
+    String factory, date, deliver_date, status, id, staf, cc_mail, prev_notes_get;
     String tag = "";
 
     @Override
@@ -102,7 +107,7 @@ public class ViewDetails extends BaseActivity implements PoView {
         deliver_date = intent.getStringExtra("deliver_date");
         staf = intent.getStringExtra("staf");
         cc_mail = intent.getStringExtra("cc_mail");
-        prev_notes_get=intent.getStringExtra("PREVNOTES");
+        prev_notes_get = intent.getStringExtra("PREVNOTES");
 
         adapter = new ViewDetailsItemAdapter(this, items);
         recycler_view.setAdapter(adapter);
@@ -136,9 +141,9 @@ public class ViewDetails extends BaseActivity implements PoView {
         intent.putExtra("cc_mail", cc_mail);
         startActivity(intent);*/
 
-        Intent in = new Intent(ViewDetails.this,ModificationNotes.class);
-        in.putExtra("PREVNOTES",prev_notes_get);
-        in.putExtra("ORDERID",id);
+        Intent in = new Intent(ViewDetails.this, ModificationNotes.class);
+        in.putExtra("PREVNOTES", prev_notes_get);
+        in.putExtra("ORDERID", id);
         startActivity(in);
 
 
@@ -194,19 +199,22 @@ public class ViewDetails extends BaseActivity implements PoView {
 
     @Override
     public void showDialog() {
-
+        progress_bar.setVisibility(View.VISIBLE);
+        tranparent_bg.setVisibility(View.VISIBLE);
     }
 
     @Override
     public void hideDialog() {
-
+        progress_bar.setVisibility(View.GONE);
+        tranparent_bg.setVisibility(View.GONE);
     }
 
     @Override
     public void showError(String message) {
 
     }
-    public void callAlert(){
+
+    public void callAlert() {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setMessage("PO Order Confirmed").setCancelable(false).setPositiveButton("OK", new DialogInterface.OnClickListener() {

@@ -80,7 +80,8 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".salesorder.ui.AllSO"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="stateHidden" />
         <activity
             android:name=".salesorder.ui.SOMenu"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -92,7 +93,8 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".PurchaseOrder.UI.PO_Order"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="stateHidden" />
         <activity
             android:name=".PurchaseOrder.UI.ModificationPO"
             android:theme="@style/AppTheme.NoActionBar"

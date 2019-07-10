@@ -189,11 +189,11 @@ public class AllSO extends BaseActivity implements MyOrdersView {
     private void callDateSoAllOrderFilter() {
 
         LayoutInflater layoutInflater = (LayoutInflater) AllSO.this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View customView = layoutInflater.inflate(R.layout.filterdate_bill_invoice, null);
-        fromdate_bi = (TextView) customView.findViewById(R.id.fromdate_bi);
-        todate_bi = (TextView) customView.findViewById(R.id.todate_bi);
-        cancel_bi = (TextView) customView.findViewById(R.id.cancel_bi);
-        add_bi = (TextView) customView.findViewById(R.id.add_bi);
+        View customView = layoutInflater.inflate(R.layout.dprompts, null);
+        fromdate_bi = (TextView) customView.findViewById(R.id.from);
+        todate_bi = (TextView) customView.findViewById(R.id.to);
+        cancel_bi = (TextView) customView.findViewById(R.id.cancel);
+        add_bi = (TextView) customView.findViewById(R.id.add);
 
         popupWindow = new PopupWindow(customView, Toolbar.LayoutParams.WRAP_CONTENT, Toolbar.LayoutParams.WRAP_CONTENT);
         popupWindow.showAtLocation(rel_so_allorder, Gravity.CENTER,0,0);

@@ -32,10 +32,10 @@ public class ModificationNotes extends BaseActivity implements PoView {
     EditText add_notes_CPO;
     @BindView(R.id.pre_add_notes)
     TextView pre_add_notes;
-    @BindView(R.id.save_mn)
-    Button save_mn;
-    @BindView(R.id.cancel_mn)
-    Button cancel_mn;
+    @BindView(R.id.cancel)
+    TextView save_mn;
+    @BindView(R.id.save)
+    TextView cancel_mn;
     @BindView(R.id.progress_mn)
     ProgressBar progress_mn;
 
@@ -59,7 +59,7 @@ public class ModificationNotes extends BaseActivity implements PoView {
 
 
     }
-    @OnClick(R.id.save_mn)
+    @OnClick(R.id.save)
     public void onSaveMN(View view){
         presenter.onPassModifyNotes("add_notes_mod",add_notes_CPO.getText().toString(),orderID);
 
@@ -125,7 +125,7 @@ public class ModificationNotes extends BaseActivity implements PoView {
     public void showError(String message) {
 
     }
-    @OnClick(R.id.cancel_mn)
+    @OnClick(R.id.cancel)
     public void onCancelMN(View view){
         finish();
     }

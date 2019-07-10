@@ -16,7 +16,7 @@ import java.util.ArrayList;
 
 public class PoPresenterImpl implements PoPresenter, PoInteractor.ViewPoResponse, PoInteractor.AddPOResponse,
         PoInteractor.ViewConfirmPOResponse, PoInteractor.TrackPOI, PoInteractor.TrackPODetI,
-        PoInteractor.ModifyNotesI, PoInteractor.ViewPOFilter,PoInteractor.ModifyPOI {
+        PoInteractor.ModifyNotesI, PoInteractor.ViewPOFilter, PoInteractor.ModifyPOI {
     PoView poView;
     PoInteractorImpl interactor;
 
@@ -26,59 +26,53 @@ public class PoPresenterImpl implements PoPresenter, PoInteractor.ViewPoResponse
     }
 
     @Override
-    public void OnViewPO(String method,String page_no) {
-        if(poView!=null){
-        poView.showDialog();
-        interactor.callRetroViewPO(method,page_no,this);
+    public void OnViewPO(String method, String page_no) {
+        if (poView != null) {
+            poView.showDialog();
+            interactor.callRetroViewPO(method, page_no, this);
         }
     }
 
     @Override
     public void OnAddPO(String method, String factory_id, String staff_id, String cc_email, String brand_name,
-                        String created_by, String updated_by,  ArrayList<poItem> items,String notes) {
-        if(poView!=null){
-            if(cc_email.length()==0){
+                        String created_by, String updated_by, ArrayList<poItem> items, String notes) {
+        if (poView != null) {
+            if (cc_email.length() == 0) {
                 poView.onValidationfail(1);
-            }
-
-            else {
+            } else {
 
                 poView.showDialog();
-                interactor.callRetroAddPO(method, factory_id, staff_id, cc_email, created_by, updated_by, items, this,notes);
-            } }
-    }
-
-    @Override
-    public void OnConfirmPO(String method, String id, String status,String tag) {
-
-            interactor.callConfirmPO(method,id,status,tag,this);
-
-
-
-        if(poView!=null){
-            poView.showDialog();
+                interactor.callRetroAddPO(method, factory_id, staff_id, cc_email, created_by, updated_by, items, this, notes);
+            }
         }
     }
 
     @Override
+    public void OnConfirmPO(String method, String id, String status, String tag) {
+        poView.showDialog();
+        interactor.callConfirmPO(method, id, status, tag, this);
+
+    }
+
+    @Override
     public void viewPOOrder(String method, String from_date, String to_date, String page_no) {
-        if(poView!=null){
+        if (poView != null) {
             poView.showDialog();
-            interactor.callPoOrder(method,from_date,to_date,page_no,this);
+            interactor.callPoOrder(method, from_date, to_date, page_no, this);
         }
     }
 
     @Override
     public void viewPOPendingOrder(String method) {
-        if(poView!=null){
+        if (poView != null) {
             poView.showDialog();
-            interactor.callPoPendingOrder(method,this);
+            interactor.callPoPendingOrder(method, this);
         }
     }
 
     @Override
     public void onViewSuccess(com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.ViewPOModel.poPOJO response) {
-        if(poView!=null){
+        if (poView != null) {
 
             poView.hideDialog();
             poView.onShowViewPO(response);
@@ -88,7 +82,7 @@ public class PoPresenterImpl implements PoPresenter, PoInteractor.ViewPoResponse
 
     @Override
     public void onConfirmPOSuccess(ConfirmPOResponse response) {
-        if(poView!=null) {
+        if (poView != null) {
             poView.hideDialog();
             poView.onConfirmPO(response);
         }
@@ -107,7 +101,7 @@ public class PoPresenterImpl implements PoPresenter, PoInteractor.ViewPoResponse
 
     @Override
     public void onAddPoSuccess(AddPoPojo response) {
-        if(poView!=null){
+        if (poView != null) {
             poView.hideDialog();
             poView.onShowAddPO(response);
         }
@@ -146,52 +140,55 @@ public class PoPresenterImpl implements PoPresenter, PoInteractor.ViewPoResponse
     @Override
     public void onTrackPO(String user_id, String method) {
         poView.showDialog();
-        interactor.callRetroTrackPO(user_id,method,this);
+        interactor.callRetroTrackPO(user_id, method, this);
 
     }
 
     @Override
     public void onTrackPODet(String cid, String method) {
         poView.showDialog();
-        interactor.callRetroTrackPODet(cid,method,this);
+        interactor.callRetroTrackPODet(cid, method, this);
 
     }
 
     @Override
     public void onPassModifyNotes(String method, String notes, String id) {
         poView.showDialog();
-        interactor.callModifyNotes(method,notes,id,this);
+        interactor.callModifyNotes(method, notes, id, this);
 
     }
 
     @Override
     public void onVIewFilter(String method) {
         poView.showDialog();
-        interactor.callFilter(method,this);
+        interactor.callFilter(method, this);
     }
 
     @Override
     public void onVIewSelectFilter(String method, String status, String page_no) {
         poView.showDialog();
-        interactor.callSelectFilter(method,status,page_no,this);
+        interactor.callSelectFilter(method, status, page_no, this);
     }
 
     @Override
     public void onSearchPo(String method, String po_no, String page_no) {
         poView.showDialog();
-        interactor.callSearchPo(method,po_no,page_no,this);
+        interactor.callSearchPo(method, po_no, page_no, this);
     }
 
     @Override
     public void onModifyPO(String method, String id, String po_no, String factory_id,
                            String staff_id, String cc_email, String created_by, String updated_by,
                            String notes, ArrayList<poItem> items) {
-        interactor.callRetroModifyPO(method,id,po_no,factory_id,staff_id,cc_email,created_by,updated_by,notes,items,this);
+        poView.showDialog();
+        interactor.callRetroModifyPO(method, id, po_no, factory_id, staff_id, cc_email, created_by, updated_by, notes, items, this);
 
     }
 
     @Override
     public void onModifyNotesSuccess(ModifyNotes response) {
+        poView.hideDialog();
+
         poView.onModifyNotes(response);
 
     }
@@ -214,6 +211,7 @@ public class PoPresenterImpl implements PoPresenter, PoInteractor.ViewPoResponse
 
     @Override
     public void onModifyPOSuccess(AddPoPojo response) {
+        poView.hideDialog();
         poView.onShowAddPO(response);
 
     }

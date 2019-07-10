@@ -5,8 +5,13 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.SearchView;
 
@@ -28,6 +33,7 @@ import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class ConfirmPO extends BaseActivity implements PoView {
     @BindView(R.id.recyclerview)
@@ -36,11 +42,16 @@ public class ConfirmPO extends BaseActivity implements PoView {
     ImageView tranparent_bg;
     @BindView(R.id.progressbar)
     ProgressBar progressbar;
+    @BindView(R.id.search_view)
+    LinearLayout search_view;
     @BindView(R.id.search)
-    SearchView search;
+    LinearLayout search;
+    @BindView(R.id.search_et)
+    EditText search_et;
 
     ConfirmPOAdapter adapter;
     PoPresenterImpl presenter;
+    ArrayList<poDatum> data = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +67,47 @@ public class ConfirmPO extends BaseActivity implements PoView {
         final LinearLayoutManager linearLayoutManager = new LinearLayoutManager(ConfirmPO.this);
         recyclerView.setLayoutManager(linearLayoutManager);
 
+        search_et.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                if (data != null) {
+                    filter(editable.toString());
+                }
+
+            }
+        });
+
+    }
+    @OnClick(R.id.search_cancel)
+    public void searchCancelClick() {
+        search_view.setVisibility(View.VISIBLE);
+        search.setVisibility(View.GONE);
+        search_et.getText().clear();
+        adapter = new ConfirmPOAdapter(ConfirmPO.this, data);
+        recyclerView.setAdapter(adapter);
+        adapter.notifyDataSetChanged();
+        InputMethodManager imm = (InputMethodManager)getSystemService(ConfirmPO.this.INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(search_et.getWindowToken(), 0);
+    }
+
+    @OnClick(R.id.search_view)
+    public void searchViewClick() {
+        search_view.setVisibility(View.GONE);
+        search.setVisibility(View.VISIBLE);
+        search_et.requestFocus();
+        search_et.setFocusableInTouchMode(true);
+        InputMethodManager imm = (InputMethodManager) getSystemService(ConfirmPO.this.INPUT_METHOD_SERVICE);
+        imm.showSoftInput(search_et, InputMethodManager.SHOW_FORCED);
     }
 
     @Override
@@ -68,11 +120,9 @@ public class ConfirmPO extends BaseActivity implements PoView {
 
     @Override
     public void onShowViewPO(poPOJO response) {
-        ArrayList<poDatum> data = new ArrayList<>();
         data = response.getData();
         adapter = new ConfirmPOAdapter(ConfirmPO.this, data);
         final LinearLayoutManager linearLayoutManager = new LinearLayoutManager(ConfirmPO.this);
-
         recyclerView.setAdapter(adapter);
         adapter.notifyDataSetChanged();
     }
@@ -126,6 +176,16 @@ public class ConfirmPO extends BaseActivity implements PoView {
 
     @Override
     public void showError(String message) {
+    }
+
+    void filter(String text) {
+        ArrayList<poDatum> temp = new ArrayList();
+        for (poDatum d : data) {
+            if (d.getStatusText().toLowerCase().contains(text.toLowerCase()) || d.getFactory().toLowerCase().contains(text.toLowerCase())) {
+                temp.add(d);
+            }
+        }
+        adapter.updateList(temp);
 
     }
 }
