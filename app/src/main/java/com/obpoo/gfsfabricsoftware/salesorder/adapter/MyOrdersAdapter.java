@@ -178,7 +178,7 @@ public class MyOrdersAdapter extends RecyclerView.Adapter<MyOrdersAdapter.MyView
                Intent in = new Intent(activity, SOorderDetails.class);
                in.putExtra(AppConstants.orderSoDetails,item);
                activity.startActivity(in);
-            }
+               activity.finish();            }
         });
 
     }

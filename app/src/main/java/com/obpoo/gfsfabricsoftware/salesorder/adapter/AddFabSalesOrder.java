@@ -134,6 +134,7 @@ public class AddFabSalesOrder extends RecyclerView.Adapter<AddFabSalesOrder.View
                 in.putExtra(AppConstants.selctedindexofabric,i);
 
                 ((Activity) context).startActivityForResult(in,AppConstants.passcustomerforfabric);
+                context.finish();
 
             }
         });

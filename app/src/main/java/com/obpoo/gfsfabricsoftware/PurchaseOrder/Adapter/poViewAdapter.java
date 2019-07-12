@@ -1,5 +1,6 @@
 package com.obpoo.gfsfabricsoftware.PurchaseOrder.Adapter;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
@@ -38,7 +39,7 @@ import butterknife.ButterKnife;
 
 public class poViewAdapter extends RecyclerView.Adapter<poViewAdapter.VViewHolder> implements PoView {
 
-    Context context;
+    Activity context;
     ArrayList<poDatum> poListData;
     PoPresenterImpl presenter;
 
@@ -48,7 +49,7 @@ public class poViewAdapter extends RecyclerView.Adapter<poViewAdapter.VViewHolde
     }
 
 
-    public poViewAdapter(Context context, ArrayList<poDatum> poListData) {
+    public poViewAdapter(Activity context, ArrayList<poDatum> poListData) {
         this.context = context;
         this.poListData = poListData;
         presenter = new PoPresenterImpl(this);
@@ -101,6 +102,8 @@ public class poViewAdapter extends RecyclerView.Adapter<poViewAdapter.VViewHolde
                 in.putExtra("POdataIndex",i);
                 in.putExtra("ModifyTag",index.getStatus());
                 context.startActivity(in);
+                context.finish();
+
             }
         });
 

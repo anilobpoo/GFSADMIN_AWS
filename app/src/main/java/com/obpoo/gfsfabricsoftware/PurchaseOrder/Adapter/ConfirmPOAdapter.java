@@ -82,6 +82,7 @@ public class ConfirmPOAdapter extends RecyclerView.Adapter<ConfirmPOAdapter.View
                     in.putParcelableArrayListExtra("item", items);
 
                     context.startActivity(in);
+                    context.finish();
                 }
             });
 

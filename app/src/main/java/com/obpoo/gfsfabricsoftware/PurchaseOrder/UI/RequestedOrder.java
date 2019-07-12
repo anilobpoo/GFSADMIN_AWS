@@ -7,8 +7,6 @@ import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -17,7 +15,6 @@ import android.widget.AbsListView;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
-
 import com.obpoo.gfsfabricsoftware.Article.DataModel.FabricType.fabricTypePOJO;
 import com.obpoo.gfsfabricsoftware.Article.DataModel.deleteArticle.deletearticelPOJO;
 import com.obpoo.gfsfabricsoftware.Article.DataModel.stockModel.StockDataResponse;
@@ -93,7 +90,7 @@ public class RequestedOrder extends BaseActivity implements PoView, UserView, Ve
                 setStatusTag =1;
                 ArrayList<poDatum> selectData = data.getParcelableArrayListExtra(AppConstants.slected_status_cm);
                 get_cm_statusId =data.getStringExtra("CMSTATUSID");
-                adapter = new poViewAdapter(getApplicationContext(), selectData);
+                adapter = new poViewAdapter(RequestedOrder.this, selectData);
                 final LinearLayoutManager lm1 = new LinearLayoutManager(RequestedOrder.this);
 
                 rv_po.setLayoutManager(lm1);
@@ -150,7 +147,7 @@ public class RequestedOrder extends BaseActivity implements PoView, UserView, Ve
         // presenter for user......
         presenter_user = new UserPresenterImpl(this);
 
-        adapter = new poViewAdapter(getApplicationContext(), pOdataList);
+        adapter = new poViewAdapter(RequestedOrder.this, pOdataList);
 
         lm  = new LinearLayoutManager(RequestedOrder.this);
 
