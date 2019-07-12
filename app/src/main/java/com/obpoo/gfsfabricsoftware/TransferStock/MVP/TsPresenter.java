@@ -19,5 +19,6 @@ public interface TsPresenter {
     void onPassWare_ware(String warehouse_to,String id,String method);
     void onTransferParameters(String method);
     void onTransferStockOutPara(String method,ArrayList<String> ids);
+    void onViewStockDoc(String method);
 
 }

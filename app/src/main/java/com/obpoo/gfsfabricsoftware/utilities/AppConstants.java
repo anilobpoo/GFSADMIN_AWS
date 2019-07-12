@@ -18,6 +18,7 @@ public class AppConstants {
     public static final String tran_cust="Transfer To Customer";
     public static final String tran_ware="Transfer To WareHouse";
     public static final String ware_ware="Warehouse to WareHouse";
+    public static final String warehouse_warehouse="Warehouse1 to WareHouse1";
     public static final String ViewStockWZS="ViewStockWZS";
     public static final String AddReserveFabricCheck="AddReserveFabricCheck";
     public static final String billReport ="Bill/Invoice Report";
@@ -54,4 +55,6 @@ public class AppConstants {
     public static final String selectedCusforPOaddinFab="SELECTEDCUSFORPOADDINFAB";
     public static final int PoDetailfilter=2027;
     public static final String passCusfromItem="PASSCUSFROMITEM";
+    public static final int StockDoc=2028;
+
 }

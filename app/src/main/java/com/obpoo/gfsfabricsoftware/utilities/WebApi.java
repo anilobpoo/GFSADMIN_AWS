@@ -109,6 +109,8 @@ import com.obpoo.gfsfabricsoftware.TransferStock.DataModel.FabricPendingOID.Fabr
 import com.obpoo.gfsfabricsoftware.TransferStock.DataModel.PasswareWareReq;
 import com.obpoo.gfsfabricsoftware.TransferStock.DataModel.PendingOrderRequest;
 import com.obpoo.gfsfabricsoftware.TransferStock.DataModel.PendingOrderRes;
+import com.obpoo.gfsfabricsoftware.TransferStock.DataModel.StockDocRequest;
+import com.obpoo.gfsfabricsoftware.TransferStock.DataModel.StockDocumentResponse;
 import com.obpoo.gfsfabricsoftware.TransferStock.DataModel.TransferRequest;
 import com.obpoo.gfsfabricsoftware.TransferStock.DataModel.TransferResponse;
 import com.obpoo.gfsfabricsoftware.TransferStock.DataModel.TransferStock.TransferStockOutRequest;
@@ -418,6 +420,9 @@ public interface WebApi {
 
     @POST("transfer_stock_document.php")
     Call<TransferResponse> tranStockOutFabcAPI(@Body TransferStockOutRequest request);
+
+    @POST("transfer_stock_document.php")
+    Call<StockDocumentResponse> stockDoc(@Body StockDocRequest request);
 
     @POST("associate_fabric.php")
     Call<ATresponse> atAPI(@Body com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.ViewPOModel.ViewRequest request);

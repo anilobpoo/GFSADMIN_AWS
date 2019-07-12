@@ -1,6 +1,7 @@
 package com.obpoo.gfsfabricsoftware.TransferStock.MVP;
 
 import com.obpoo.gfsfabricsoftware.TransferStock.DataModel.FabricPendingOID.FabricPendingOIDRes;
+import com.obpoo.gfsfabricsoftware.TransferStock.DataModel.StockDocumentResponse;
 import com.obpoo.gfsfabricsoftware.TransferStock.DataModel.TransferResponse;
 import com.obpoo.gfsfabricsoftware.TransferStock.DataModel.TransferStock.Ts_Response;
 import com.obpoo.gfsfabricsoftware.TransferStock.DataModel.TransferWareWareRes;
@@ -65,4 +66,10 @@ public interface TsInteractor {
         void onTransferStockOutError(String message);
     }
     void callRetroTransferStockOut(String method,ArrayList<String> ids,TransferStockOut response);
+
+    interface StockDocResp{
+        void onStockDocSuccess(StockDocumentResponse response);
+        void onStockDocError(String message);
+    }
+    void callStockDoc(String method, StockDocResp response);
 }

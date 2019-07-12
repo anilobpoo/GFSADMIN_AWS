@@ -1,0 +1,1 @@
+package com.obpoo.gfsfabricsoftware.TransferStock.DataModel;public class StockDocRequest {    String method;    public StockDocRequest(String method) {        this.method = method;    }}

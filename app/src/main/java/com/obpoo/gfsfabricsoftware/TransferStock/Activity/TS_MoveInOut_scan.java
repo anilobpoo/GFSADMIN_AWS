@@ -18,6 +18,7 @@ import com.obpoo.gfsfabricsoftware.R;
 import com.obpoo.gfsfabricsoftware.TransferStock.Adapter.TransferScanAdp;
 import com.obpoo.gfsfabricsoftware.TransferStock.DataModel.FabricPendingOID.FabricPendingOIDRes;
 import com.obpoo.gfsfabricsoftware.TransferStock.DataModel.PendingOrderRes;
+import com.obpoo.gfsfabricsoftware.TransferStock.DataModel.StockDocumentResponse;
 import com.obpoo.gfsfabricsoftware.TransferStock.DataModel.TransferResponse;
 import com.obpoo.gfsfabricsoftware.TransferStock.DataModel.TransferStock.Ts_Response;
 import com.obpoo.gfsfabricsoftware.TransferStock.DataModel.TransferStock.Ts_data;
@@ -204,6 +205,11 @@ public class TS_MoveInOut_scan extends BaseActivity implements StockInView,TsVie
     public void onTransferStockOut(TransferResponse response) {
         Log.i("TransferResponse",response.getMessage());
         // place notify change over here
+
+    }
+
+    @Override
+    public void onStockDocView(StockDocumentResponse response) {
 
     }
 }

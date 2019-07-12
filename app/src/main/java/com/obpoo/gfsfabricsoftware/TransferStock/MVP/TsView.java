@@ -2,6 +2,7 @@ package com.obpoo.gfsfabricsoftware.TransferStock.MVP;
 
 import com.obpoo.gfsfabricsoftware.TransferStock.DataModel.FabricPendingOID.FabricPendingOIDRes;
 import com.obpoo.gfsfabricsoftware.TransferStock.DataModel.PendingOrderRes;
+import com.obpoo.gfsfabricsoftware.TransferStock.DataModel.StockDocumentResponse;
 import com.obpoo.gfsfabricsoftware.TransferStock.DataModel.TransferResponse;
 import com.obpoo.gfsfabricsoftware.TransferStock.DataModel.TransferStock.Ts_Response;
 import com.obpoo.gfsfabricsoftware.TransferStock.DataModel.TransferWareWareRes;
@@ -18,5 +19,6 @@ public interface  TsView {
     void onPassWare(TransferResponse response);
     void onTransfer(Ts_Response response);
     void onTransferStockOut(TransferResponse response);
+    void onStockDocView(StockDocumentResponse response);
 
 }

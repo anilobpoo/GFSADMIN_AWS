@@ -52,6 +52,8 @@ public class ApiClient {
                 .Builder()
                 .addInterceptor(interceptor)
                 .connectTimeout(3000, TimeUnit.MILLISECONDS)
+                .readTimeout(3000, TimeUnit.MILLISECONDS)
+
                 .build();
 
         return new Retrofit

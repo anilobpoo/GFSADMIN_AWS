@@ -6,6 +6,8 @@ import com.obpoo.gfsfabricsoftware.TransferStock.DataModel.FabricPendingOID.Fabr
 import com.obpoo.gfsfabricsoftware.TransferStock.DataModel.FabricPendingOID.FabricPendingOIDRes;
 import com.obpoo.gfsfabricsoftware.TransferStock.DataModel.PasswareWareReq;
 import com.obpoo.gfsfabricsoftware.TransferStock.DataModel.PendingOrderRequest;
+import com.obpoo.gfsfabricsoftware.TransferStock.DataModel.StockDocRequest;
+import com.obpoo.gfsfabricsoftware.TransferStock.DataModel.StockDocumentResponse;
 import com.obpoo.gfsfabricsoftware.TransferStock.DataModel.TransferRequest;
 import com.obpoo.gfsfabricsoftware.TransferStock.DataModel.TransferResponse;
 import com.obpoo.gfsfabricsoftware.TransferStock.DataModel.TransferStock.TransferStockOutRequest;
@@ -29,7 +31,7 @@ import retrofit2.Retrofit;
  * Created by PHD on 2/7/2019.
  */
 
-public class TsInteractorImpl implements  TsInteractor {
+public class TsInteractorImpl implements TsInteractor {
     @Override
     public void callRetroPOid(String method, final PendingOrderRes PendingOrderRes) {
 
@@ -42,71 +44,71 @@ public class TsInteractorImpl implements  TsInteractor {
             public void onResponse(Call<com.obpoo.gfsfabricsoftware.TransferStock.DataModel.PendingOrderRes> call, Response<com.obpoo.gfsfabricsoftware.TransferStock.DataModel.PendingOrderRes> response) {
                 if (response.isSuccessful()) {
                     PendingOrderRes.onGetPendingOrderSuccess(response.body());
-                    Log.i("response","Success");
+                    Log.i("response", "Success");
                 } else {
                     PendingOrderRes.onGetPendingOrderError("Please Try Again.");
-                    Log.i("response","try again");
+                    Log.i("response", "try again");
                 }
             }
 
             @Override
             public void onFailure(Call<com.obpoo.gfsfabricsoftware.TransferStock.DataModel.PendingOrderRes> call, Throwable t) {
                 PendingOrderRes.onGetPendingOrderError(t.getMessage());
-                Log.i("response",t.getMessage());
+                Log.i("response", t.getMessage());
             }
         });
 
     }
 
     @Override
-    public void callRetroFabPending(String method,String id, final  FabPendingOid FabPendingOid) {
+    public void callRetroFabPending(String method, String id, final FabPendingOid FabPendingOid) {
         Retrofit retrofit = ApiClient.getRetrofit();
         WebApi apis = retrofit.create(WebApi.class);
-        FabricPendingOIDReq request = new FabricPendingOIDReq(method,id);
+        FabricPendingOIDReq request = new FabricPendingOIDReq(method, id);
         Call<FabricPendingOIDRes> call = apis.fabPOIapi(request);
         call.enqueue(new Callback<FabricPendingOIDRes>() {
             @Override
             public void onResponse(Call<FabricPendingOIDRes> call, Response<FabricPendingOIDRes> response) {
                 if (response.isSuccessful()) {
                     FabPendingOid.onGetFabPendingOidSuccess(response.body());
-                    Log.i("response","Success");
+                    Log.i("response", "Success");
                 } else {
                     FabPendingOid.onGetFabPendingOidError("Please Try Again.");
-                    Log.i("response","try again");
+                    Log.i("response", "try again");
                 }
             }
 
             @Override
             public void onFailure(Call<FabricPendingOIDRes> call, Throwable t) {
                 FabPendingOid.onGetFabPendingOidError(t.getMessage());
-                Log.i("response",t.getMessage());
+                Log.i("response", t.getMessage());
             }
         });
 
     }
 
     @Override
-    public void callRetroTransferItems(ArrayList<String> all_id, ArrayList<String> cqty, String method, String customer_id, String group_id, String discount, String Dellivery_address, String credit_time, String vat_enabled, String pay_mode, String delivery_type, String order_type, String order_total, String order_by, String vat_amount, String payble_amount,  ArrayList<HashMap<String, String>> items,final  TransferItems transferItems) {
+    public void callRetroTransferItems(ArrayList<String> all_id, ArrayList<String> cqty, String method, String customer_id, String group_id, String discount, String Dellivery_address, String credit_time, String vat_enabled, String pay_mode, String delivery_type, String order_type, String order_total, String order_by, String vat_amount, String payble_amount, ArrayList<HashMap<String, String>> items, final TransferItems transferItems) {
         Retrofit retrofit = ApiClient.getRetrofit();
         WebApi apis = retrofit.create(WebApi.class);
-        TransferRequest request = new TransferRequest(all_id,cqty,method,customer_id,group_id,discount,Dellivery_address,credit_time,vat_enabled,pay_mode,delivery_type,order_type,order_total,order_by,vat_amount,payble_amount,items);
+        TransferRequest request = new TransferRequest(all_id, cqty, method, customer_id, group_id, discount, Dellivery_address, credit_time, vat_enabled, pay_mode, delivery_type, order_type, order_total, order_by, vat_amount, payble_amount, items);
         Call<TransferResponse> call = apis.tranFabApi(request);
         call.enqueue(new Callback<TransferResponse>() {
             @Override
             public void onResponse(Call<TransferResponse> call, Response<TransferResponse> response) {
                 if (response.isSuccessful()) {
                     transferItems.onGetTIsuccess(response.body());
-                    Log.i("response","Success");
+                    Log.i("response", "Success");
                 } else {
                     transferItems.onGetTIerror("Please Try Again.");
-                    Log.i("response","try again");
+                    Log.i("response", "try again");
                 }
             }
 
             @Override
             public void onFailure(Call<TransferResponse> call, Throwable t) {
                 transferItems.onGetTIerror(t.getMessage());
-                Log.i("response",t.getMessage());
+                Log.i("response", t.getMessage());
             }
         });
     }
@@ -115,7 +117,7 @@ public class TsInteractorImpl implements  TsInteractor {
     public void callRetroTransferWarehouse(ArrayList<String> all_id, String warehouse, String method, final TranferWarehouse tranferWarehouse) {
         Retrofit retrofit = ApiClient.getRetrofit();
         WebApi apis = retrofit.create(WebApi.class);
-        TransferWareRequest request = new TransferWareRequest(all_id,warehouse,method);
+        TransferWareRequest request = new TransferWareRequest(all_id, warehouse, method);
         Call<TransferResponse> call = apis.tranFabWareApi(request);
         call.enqueue(new Callback<TransferResponse>() {
             @Override
@@ -132,7 +134,7 @@ public class TsInteractorImpl implements  TsInteractor {
             @Override
             public void onFailure(Call<TransferResponse> call, Throwable t) {
                 tranferWarehouse.onGetTWerror(t.getMessage());
-                Log.i("response",t.getMessage());
+                Log.i("response", t.getMessage());
             }
         });
     }
@@ -142,7 +144,7 @@ public class TsInteractorImpl implements  TsInteractor {
 
         Retrofit retrofit = ApiClient.getRetrofit();
         WebApi apis = retrofit.create(WebApi.class);
-        TransferWareWareReq request = new TransferWareWareReq(method,id);
+        TransferWareWareReq request = new TransferWareWareReq(method, id);
         Call<TransferWareWareRes> call = apis.tranFabWareWare(request);
         call.enqueue(new Callback<TransferWareWareRes>() {
             @Override
@@ -159,7 +161,7 @@ public class TsInteractorImpl implements  TsInteractor {
             @Override
             public void onFailure(Call<TransferWareWareRes> call, Throwable t) {
                 transferWareWare.onGetWWError(t.getMessage());
-                Log.i("response",t.getMessage());
+                Log.i("response", t.getMessage());
             }
         });
 
@@ -170,7 +172,7 @@ public class TsInteractorImpl implements  TsInteractor {
     public void callRetroPassWare(String warehouse_to, String id, String method, final PassWareWare passWareWare) {
         Retrofit retrofit = ApiClient.getRetrofit();
         WebApi apis = retrofit.create(WebApi.class);
-        PasswareWareReq request = new PasswareWareReq(warehouse_to,id,method);
+        PasswareWareReq request = new PasswareWareReq(warehouse_to, id, method);
         Call<TransferResponse> call = apis.passWareWare(request);
         call.enqueue(new Callback<TransferResponse>() {
             @Override
@@ -187,14 +189,14 @@ public class TsInteractorImpl implements  TsInteractor {
             @Override
             public void onFailure(Call<TransferResponse> call, Throwable t) {
                 passWareWare.onPassWareErroe(t.getMessage());
-                Log.i("response",t.getMessage());
+                Log.i("response", t.getMessage());
             }
         });
 
     }
 
     @Override
-    public void callRetroTransferFabrics(String method, final  TransferFabrics transferFabrics) {
+    public void callRetroTransferFabrics(String method, final TransferFabrics transferFabrics) {
         Retrofit retrofit = ApiClient.getRetrofit2();
         WebApi apis = retrofit.create(WebApi.class);
         TransferStockRequest request = new TransferStockRequest(method);
@@ -214,16 +216,16 @@ public class TsInteractorImpl implements  TsInteractor {
             @Override
             public void onFailure(Call<Ts_Response> call, Throwable t) {
                 transferFabrics.onTransferError(t.getMessage());
-               // Log.i("response",t.getMessage());
+                // Log.i("response",t.getMessage());
             }
         });
     }
 
     @Override
-    public void callRetroTransferStockOut(String method, ArrayList<String> ids, final  TransferStockOut transferStockOut) {
+    public void callRetroTransferStockOut(String method, ArrayList<String> ids, final TransferStockOut transferStockOut) {
         Retrofit retrofit = ApiClient.getRetrofit2();
         WebApi apis = retrofit.create(WebApi.class);
-        TransferStockOutRequest request = new TransferStockOutRequest(method,ids);
+        TransferStockOutRequest request = new TransferStockOutRequest(method, ids);
         Call<TransferResponse> call = apis.tranStockOutFabcAPI(request);
         call.enqueue(new Callback<TransferResponse>() {
             @Override
@@ -240,7 +242,33 @@ public class TsInteractorImpl implements  TsInteractor {
             @Override
             public void onFailure(Call<TransferResponse> call, Throwable t) {
                 transferStockOut.onTransferStockOutError(t.getMessage());
-                Log.i("response",t.getMessage());
+                Log.i("response", t.getMessage());
+            }
+        });
+    }
+
+    @Override
+    public void callStockDoc(String method, final StockDocResp stockDocResp) {
+        Retrofit retrofit = ApiClient.getRetrofit2();
+        WebApi apis = retrofit.create(WebApi.class);
+        StockDocRequest request = new StockDocRequest(method);
+        Call<StockDocumentResponse> call = apis.stockDoc(request);
+        call.enqueue(new Callback<StockDocumentResponse>() {
+            @Override
+            public void onResponse(Call<StockDocumentResponse> call, Response<StockDocumentResponse> response) {
+                if (response.isSuccessful()) {
+                    stockDocResp.onStockDocSuccess(response.body());
+
+                } else {
+                    stockDocResp.onStockDocError("Please Try Again.");
+
+                }
+            }
+
+            @Override
+            public void onFailure(Call<StockDocumentResponse> call, Throwable t) {
+                stockDocResp.onStockDocError(t.getMessage());
+                Log.i("response", t.getMessage());
             }
         });
     }

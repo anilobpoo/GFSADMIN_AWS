@@ -10,6 +10,7 @@ import com.obpoo.gfsfabricsoftware.R;
 import com.obpoo.gfsfabricsoftware.TransferStock.Adapter.TransferStockAdp;
 import com.obpoo.gfsfabricsoftware.TransferStock.DataModel.FabricPendingOID.FabricPendingOIDRes;
 import com.obpoo.gfsfabricsoftware.TransferStock.DataModel.PendingOrderRes;
+import com.obpoo.gfsfabricsoftware.TransferStock.DataModel.StockDocumentResponse;
 import com.obpoo.gfsfabricsoftware.TransferStock.DataModel.TransferResponse;
 import com.obpoo.gfsfabricsoftware.TransferStock.DataModel.TransferStock.Ts_Response;
 import com.obpoo.gfsfabricsoftware.TransferStock.DataModel.TransferStock.Ts_data;
@@ -48,7 +49,7 @@ public class TransferStockMoveINOUT extends BaseActivity implements TsView {
         presenter =new TsPresenterImpl(this);
 
         if(getSelctedMenu.equals(AppConstants.tran_stock)){
-        presenter.onTransferParameters("stock_documents1");
+        presenter.onTransferParameters("stock_documents");
         }
         if(getSelctedMenu.equals(AppConstants.tran_stockIn)){
             presenter.onTransferParameters("transfered_stock_documents");
@@ -95,6 +96,11 @@ public class TransferStockMoveINOUT extends BaseActivity implements TsView {
 
     @Override
     public void onTransferStockOut(TransferResponse response) {
+
+    }
+
+    @Override
+    public void onStockDocView(StockDocumentResponse response) {
 
     }
 }

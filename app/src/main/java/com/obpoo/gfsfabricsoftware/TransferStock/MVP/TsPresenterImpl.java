@@ -2,6 +2,7 @@ package com.obpoo.gfsfabricsoftware.TransferStock.MVP;
 
 import com.obpoo.gfsfabricsoftware.TransferStock.DataModel.FabricPendingOID.FabricPendingOIDRes;
 import com.obpoo.gfsfabricsoftware.TransferStock.DataModel.PendingOrderRes;
+import com.obpoo.gfsfabricsoftware.TransferStock.DataModel.StockDocumentResponse;
 import com.obpoo.gfsfabricsoftware.TransferStock.DataModel.TransferResponse;
 import com.obpoo.gfsfabricsoftware.TransferStock.DataModel.TransferStock.Ts_Response;
 import com.obpoo.gfsfabricsoftware.TransferStock.DataModel.TransferWareWareRes;
@@ -15,7 +16,7 @@ import java.util.HashMap;
 
 public class TsPresenterImpl implements TsPresenter,TsInteractor.PendingOrderRes,TsInteractor.FabPendingOid,
         TsInteractor.TransferItems, TsInteractor.TranferWarehouse, TsInteractor.TransferWareWare,
-        TsInteractor.PassWareWare,TsInteractor.TransferFabrics,TsInteractor.TransferStockOut {
+        TsInteractor.PassWareWare,TsInteractor.TransferFabrics,TsInteractor.TransferStockOut,TsInteractor.StockDocResp {
     TsView tsView;
     TsInteractorImpl interactor;
 
@@ -70,6 +71,11 @@ public class TsPresenterImpl implements TsPresenter,TsInteractor.PendingOrderRes
     public void onTransferStockOutPara(String method, ArrayList<String> ids) {
         interactor.callRetroTransferStockOut(method,ids,this);
 
+    }
+
+    @Override
+    public void onViewStockDoc(String method) {
+        interactor.callStockDoc(method,this);
     }
 
 
@@ -158,6 +164,16 @@ public class TsPresenterImpl implements TsPresenter,TsInteractor.PendingOrderRes
 
     @Override
     public void onTransferStockOutError(String message) {
+
+    }
+
+    @Override
+    public void onStockDocSuccess(StockDocumentResponse response) {
+        tsView.onStockDocView(response);
+    }
+
+    @Override
+    public void onStockDocError(String message) {
 
     }
 }
