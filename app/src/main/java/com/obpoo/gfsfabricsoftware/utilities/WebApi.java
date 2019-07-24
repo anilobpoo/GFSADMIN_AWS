@@ -113,6 +113,8 @@ import com.obpoo.gfsfabricsoftware.TransferStock.DataModel.StockDocRequest;
 import com.obpoo.gfsfabricsoftware.TransferStock.DataModel.StockDocumentResponse;
 import com.obpoo.gfsfabricsoftware.TransferStock.DataModel.TransferRequest;
 import com.obpoo.gfsfabricsoftware.TransferStock.DataModel.TransferResponse;
+import com.obpoo.gfsfabricsoftware.TransferStock.DataModel.TransferStock.DocumentData;
+import com.obpoo.gfsfabricsoftware.TransferStock.DataModel.TransferStock.DocumentDataRequest;
 import com.obpoo.gfsfabricsoftware.TransferStock.DataModel.TransferStock.TransferStockOutRequest;
 import com.obpoo.gfsfabricsoftware.TransferStock.DataModel.TransferStock.TransferStockRequest;
 import com.obpoo.gfsfabricsoftware.TransferStock.DataModel.TransferStock.Ts_Response;
@@ -415,7 +417,7 @@ public interface WebApi {
     @POST("current_date_fabrics.php")
     Call<SoldFabricsResponse> soldFabricAPI(@Body Bill_Invoice_Report_request request);
 
-    @POST("transfer_stock_document.php")
+    @POST("transfer_stock_document_pravash.php")
     Call<Ts_Response> tranFabcAPI(@Body TransferStockRequest request);
 
     @POST("transfer_stock_document.php")
@@ -423,6 +425,9 @@ public interface WebApi {
 
     @POST("transfer_stock_document.php")
     Call<StockDocumentResponse> stockDoc(@Body StockDocRequest request);
+
+  @POST("transfer_stock_document_pravash.php")
+    Call<DocumentData> selectDoc(@Body DocumentDataRequest request);
 
     @POST("associate_fabric.php")
     Call<ATresponse> atAPI(@Body com.obpoo.gfsfabricsoftware.PurchaseOrder.DataModel.ViewPOModel.ViewRequest request);

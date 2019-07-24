@@ -2,6 +2,7 @@ package com.obpoo.gfsfabricsoftware.utilities;
 
 import java.util.concurrent.TimeUnit;
 
+import okhttp3.ConnectionPool;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
@@ -51,9 +52,10 @@ public class ApiClient {
         OkHttpClient client = new OkHttpClient
                 .Builder()
                 .addInterceptor(interceptor)
-                .connectTimeout(3000, TimeUnit.MILLISECONDS)
-                .readTimeout(3000, TimeUnit.MILLISECONDS)
-
+                .connectTimeout(3, TimeUnit.MINUTES)
+                .retryOnConnectionFailure(true)
+                .readTimeout(3, TimeUnit.MINUTES)
+                .connectionPool(new ConnectionPool(0, 1, TimeUnit.MINUTES))
                 .build();
 
         return new Retrofit

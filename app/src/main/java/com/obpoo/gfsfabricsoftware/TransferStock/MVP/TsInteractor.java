@@ -3,6 +3,7 @@ package com.obpoo.gfsfabricsoftware.TransferStock.MVP;
 import com.obpoo.gfsfabricsoftware.TransferStock.DataModel.FabricPendingOID.FabricPendingOIDRes;
 import com.obpoo.gfsfabricsoftware.TransferStock.DataModel.StockDocumentResponse;
 import com.obpoo.gfsfabricsoftware.TransferStock.DataModel.TransferResponse;
+import com.obpoo.gfsfabricsoftware.TransferStock.DataModel.TransferStock.DocumentData;
 import com.obpoo.gfsfabricsoftware.TransferStock.DataModel.TransferStock.Ts_Response;
 import com.obpoo.gfsfabricsoftware.TransferStock.DataModel.TransferWareWareRes;
 
@@ -59,7 +60,7 @@ public interface TsInteractor {
         void onTransferSuccess(Ts_Response response);
         void onTransferError(String message);
     }
-    void callRetroTransferFabrics(String method,TransferFabrics response);
+    void callRetroTransferFabrics(String method,String from_date, String to_date, String page_no, String document,TransferFabrics response);
 
     interface TransferStockOut{
         void onTransferStockoutSuccess(TransferResponse response);
@@ -72,4 +73,11 @@ public interface TsInteractor {
         void onStockDocError(String message);
     }
     void callStockDoc(String method, StockDocResp response);
+
+    interface SelectDocData{
+        void onSelectDocSuccess(DocumentData response);
+        void onSelectDocError(String message);
+    }
+    void callSelectDoc(String method,String id, SelectDocData response);
+
 }

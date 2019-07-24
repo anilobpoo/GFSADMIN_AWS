@@ -70,7 +70,10 @@
                         android:layout_weight="0.9"
                         android:background="@null"
                         android:paddingLeft="@dimen/padd_10"
-                        android:paddingRight="@dimen/padd_10" />
+                        android:paddingRight="@dimen/padd_10"
+                        android:imeOptions="actionSearch"
+                        android:inputType="text"
+                        android:maxLines="1"/>
 
                     <ImageView
                         android:id="@+id/search_cancel"

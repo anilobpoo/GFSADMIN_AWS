@@ -109,12 +109,12 @@ public class TransferStockIn extends BaseActivity implements ShelfBarcodeView,St
         ButterKnife.bind(this);
         enableActionBar(true);
 
-        ts_fabricArrayList=ts_dataArrayList.get(index_ts_fabric).getFabrics();
+//        ts_fabricArrayList=ts_dataArrayList.get(index_ts_fabric).getFabrics();
         shelfBarcodePresenter=new ShelfBarcodePresenterImpl(this);
         stockInPresenter=new StockInPresenterImpl(this);
 
 
-        ArrayAdapter<Ts_fabric> ware_adapter = new ArrayAdapter<Ts_fabric>(this,R.layout.spinner_text,ts_fabricArrayList);
+        ArrayAdapter<Ts_data> ware_adapter = new ArrayAdapter<Ts_data>(this, R.layout.spinner_text, ts_dataArrayList);
         ware_adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         ware_spin.setAdapter(ware_adapter);
 
@@ -157,11 +157,11 @@ public class TransferStockIn extends BaseActivity implements ShelfBarcodeView,St
 
     void filter(String text) {
 
-        ArrayList<Ts_fabric> temp = new ArrayList();
+        ArrayList<Ts_data> temp = new ArrayList();
         temp.clear();
 
-            for (Ts_fabric d : ts_fabricArrayList) {
-                if (d.getToWarehouse()!=null && d.getToWarehouse().toLowerCase().contains(text.toLowerCase())) {
+            for (Ts_data d : ts_dataArrayList) {
+                if (d.getDocument()!=null && d.getWhName().toLowerCase().contains(text.toLowerCase())) {
                     temp.add(d);
                 }
             }
@@ -183,7 +183,7 @@ public class TransferStockIn extends BaseActivity implements ShelfBarcodeView,St
             cardView10.setVisibility(View.GONE);
         }
 
-        adapter= new TransferScanAdp(temp,TransferStockIn.this);
+//        adapter= new TransferScanAdp(temp,TransferStockIn.this);
         LinearLayoutManager lm = new LinearLayoutManager(this);
         rv_ts_fab_in.setLayoutManager(lm);
         rv_ts_fab_in.setAdapter(adapter);
@@ -350,11 +350,11 @@ public class TransferStockIn extends BaseActivity implements ShelfBarcodeView,St
     @OnItemSelected(R.id.ware_spin)
     public void onWareSelected(int position){
         Toast.makeText(getApplicationContext(),ts_fabricArrayList.get(position).getToWarehouse(),Toast.LENGTH_SHORT).show();
-        ArrayList<Ts_fabric> temp = new ArrayList();
+        ArrayList<Ts_data> temp = new ArrayList();
         temp.clear();
 
-        for (Ts_fabric d : ts_fabricArrayList) {
-            if (d.getToWarehouse().toLowerCase().contains(ts_fabricArrayList.get(position).getToWarehouse())) {
+        for (Ts_data d : ts_dataArrayList) {
+            if (d.getDocument().toLowerCase().contains(ts_dataArrayList.get(position).getDocument())) {
                     temp.add(d);
             }
         }
@@ -372,7 +372,7 @@ public class TransferStockIn extends BaseActivity implements ShelfBarcodeView,St
             cardView10.setVisibility(View.GONE);
         }
 
-        adapter= new TransferScanAdp(temp,TransferStockIn.this);
+//        adapter= new TransferScanAdp(temp,TransferStockIn.this);
         LinearLayoutManager lm = new LinearLayoutManager(this);
         rv_ts_fab_in.setLayoutManager(lm);
         rv_ts_fab_in.setAdapter(adapter);

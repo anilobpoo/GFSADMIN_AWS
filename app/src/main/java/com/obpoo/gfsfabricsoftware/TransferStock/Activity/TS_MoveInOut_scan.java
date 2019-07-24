@@ -2,6 +2,7 @@ package com.obpoo.gfsfabricsoftware.TransferStock.Activity;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -12,7 +13,9 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AbsListView;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.obpoo.gfsfabricsoftware.R;
 import com.obpoo.gfsfabricsoftware.TransferStock.Adapter.TransferScanAdp;
@@ -20,9 +23,9 @@ import com.obpoo.gfsfabricsoftware.TransferStock.DataModel.FabricPendingOID.Fabr
 import com.obpoo.gfsfabricsoftware.TransferStock.DataModel.PendingOrderRes;
 import com.obpoo.gfsfabricsoftware.TransferStock.DataModel.StockDocumentResponse;
 import com.obpoo.gfsfabricsoftware.TransferStock.DataModel.TransferResponse;
+import com.obpoo.gfsfabricsoftware.TransferStock.DataModel.TransferStock.DocDataDetails;
+import com.obpoo.gfsfabricsoftware.TransferStock.DataModel.TransferStock.DocumentData;
 import com.obpoo.gfsfabricsoftware.TransferStock.DataModel.TransferStock.Ts_Response;
-import com.obpoo.gfsfabricsoftware.TransferStock.DataModel.TransferStock.Ts_data;
-import com.obpoo.gfsfabricsoftware.TransferStock.DataModel.TransferStock.Ts_fabric;
 import com.obpoo.gfsfabricsoftware.TransferStock.DataModel.TransferWareWareRes;
 import com.obpoo.gfsfabricsoftware.TransferStock.MVP.TsPresenterImpl;
 import com.obpoo.gfsfabricsoftware.TransferStock.MVP.TsView;
@@ -39,42 +42,43 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class TS_MoveInOut_scan extends BaseActivity implements StockInView,TsView{
-    ArrayList<Ts_data> ts_dataArrayList;
-    int index_ts_fabric;
-    ArrayList<Ts_fabric> ts_fabricArrayList = new ArrayList<>();
+public class TS_MoveInOut_scan extends BaseActivity implements StockInView, TsView {
     @BindView(R.id.rv_ts_fab)
     RecyclerView rv_ts_fab;
     int fabricScanCode = 6;
     TransferScanAdp adapter;
     @BindView(R.id.submit_moveout)
     Button submit_moveout;
-    StockInPresenterImpl stockInPresenter;
-    ArrayList<String> uniqueArray=new ArrayList<>();
-    TsPresenterImpl presenter;
+    @BindView(R.id.note_tv)
+    TextView note_tv;
+    @BindView(R.id.toolbar)
+    Toolbar toolbar;
 
+    StockInPresenterImpl stockInPresenter;
+    ArrayList<String> uniqueArray = new ArrayList<>();
+    TsPresenterImpl presenter;
+    ArrayList<DocDataDetails> docDataDetails;
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        if(requestCode == fabricScanCode && resultCode ==RESULT_OK){
-            String getScannedUniqueCode =data.getStringExtra("id");
-           for(Ts_fabric tsf : ts_fabricArrayList){
-               if(tsf.getUniqueCode() != null && tsf.getUniqueCode().contains(getScannedUniqueCode)){
+        if (requestCode == fabricScanCode && resultCode == RESULT_OK) {
+            String getScannedUniqueCode = data.getStringExtra("id");
+            for (DocDataDetails tsf : docDataDetails) {
+                if (tsf.getUniqueCode() != null && tsf.getUniqueCode().contains(getScannedUniqueCode)) {
 
-                   tsf.setCheckScan(true);
-                   uniqueArray.add(tsf.getId());
-                   break;
-               }
-               if(!tsf.getUniqueCode().contains(getScannedUniqueCode)){
-                   callAlertDialog(getScannedUniqueCode);
-                   break;
-               }
-           }
-           adapter.notifyDataSetChanged();
-            if(uniqueArray.size()>0){
-                submit_moveout.setVisibility(View.VISIBLE);
+                    tsf.setCheckScan(true);
+                    uniqueArray.add(tsf.getId());
+                    break;
+                }
+                if (!tsf.getUniqueCode().contains(getScannedUniqueCode)) {
+                    callAlertDialog(getScannedUniqueCode);
+                    break;
+                }
             }
-            else{
+            adapter.notifyDataSetChanged();
+            if (uniqueArray.size() > 0) {
+                submit_moveout.setVisibility(View.VISIBLE);
+            } else {
                 submit_moveout.setVisibility(View.GONE);
             }
         }
@@ -82,11 +86,11 @@ public class TS_MoveInOut_scan extends BaseActivity implements StockInView,TsVie
 
     private void callAlertDialog(String getScannedUniqueCode) {
         final android.app.AlertDialog.Builder alertBuilder = new android.app.AlertDialog.Builder(TS_MoveInOut_scan.this);
-        alertBuilder.setMessage(Html.fromHtml("The scanned unique Id"+getScannedUniqueCode+" is not available in the current selected document "));
+        alertBuilder.setMessage(Html.fromHtml("The scanned unique Id" + getScannedUniqueCode + " is not available in the current selected document "));
         alertBuilder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-               dialog.dismiss();
+                dialog.dismiss();
 
             }
         });
@@ -99,50 +103,62 @@ public class TS_MoveInOut_scan extends BaseActivity implements StockInView,TsVie
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ts__move_in_out_scan);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        ts_dataArrayList=(ArrayList<Ts_data>)getIntent().getSerializableExtra("tsFabricArray");
-        Log.i("ts_dataArrayListSize",ts_dataArrayList.size()+"");
-        index_ts_fabric = getIntent().getIntExtra("index_ts_fabric",0);
-        toolbar.setTitle(ts_dataArrayList.get(index_ts_fabric).getDocument());
-        setSupportActionBar(toolbar);
         ButterKnife.bind(this);
+        note_tv.setText(getIntent().getStringExtra("note"));
+        toolbar.setTitle(getIntent().getStringExtra("doc"));
+        docDataDetails = getIntent().getParcelableArrayListExtra("documentdata");
+        setSupportActionBar(toolbar);
         enableActionBar(true);
+        rv_ts_fab.setFocusable(false);
+        adapter = new TransferScanAdp(docDataDetails, TS_MoveInOut_scan.this, new TransferScanAdp.ListItemClickListener() {
+            @Override
+            public void onItemClick(View view, String id,String status) {
+                if (status.equals("add")){
+                    uniqueArray.add(id);
+                }
+                if (status.equals("remove")){
+                    uniqueArray.remove(id);
+                }
+                if (uniqueArray.isEmpty()){
+                    submit_moveout.setVisibility(View.GONE);
 
-        ts_fabricArrayList=ts_dataArrayList.get(index_ts_fabric).getFabrics();
-         adapter = new TransferScanAdp(ts_fabricArrayList,TS_MoveInOut_scan.this);
-        LinearLayoutManager lm = new LinearLayoutManager(this);
+                }
+                else {
+                    submit_moveout.setVisibility(View.VISIBLE);
+                }
+            }
+        });
+        final LinearLayoutManager lm = new LinearLayoutManager(this);
         rv_ts_fab.setLayoutManager(lm);
         rv_ts_fab.setAdapter(adapter);
         adapter.notifyDataSetChanged();
 
-        stockInPresenter=new StockInPresenterImpl(this);
+        stockInPresenter = new StockInPresenterImpl(this);
 
         presenter = new TsPresenterImpl(this);
-
-
 
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.scan,menu);
+        getMenuInflater().inflate(R.menu.scan, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if(item.getItemId() == R.id.action_scan){
+        if (item.getItemId() == R.id.action_scan) {
 
-            startActivityForResult(new Intent(TS_MoveInOut_scan.this,Scanning.class),fabricScanCode);
+            startActivityForResult(new Intent(TS_MoveInOut_scan.this, Scanning.class), fabricScanCode);
         }
         return super.onOptionsItemSelected(item);
     }
 
     @OnClick(R.id.submit_moveout)
-    public void onSubmitScan(){
-       String  userid = PreferenceConnector.readString(this, getString(R.string.admin_id), "");
+    public void onSubmitScan() {
+        String userid = PreferenceConnector.readString(this, getString(R.string.admin_id), "");
         //stockInPresenter.move(userid,"remove_packets",uniqueArray);
-        presenter.onTransferStockOutPara("transfer_stock",uniqueArray);
+        presenter.onTransferStockOutPara("transfer_stock", uniqueArray);
     }
 
     @Override
@@ -167,7 +183,7 @@ public class TS_MoveInOut_scan extends BaseActivity implements StockInView,TsVie
 
     @Override
     public void onLoad(StockInResponse response) {
-        Log.i("StockInResponse",response.getMessage());
+        Log.i("StockInResponse", response.getMessage());
 
     }
 
@@ -203,7 +219,7 @@ public class TS_MoveInOut_scan extends BaseActivity implements StockInView,TsVie
 
     @Override
     public void onTransferStockOut(TransferResponse response) {
-        Log.i("TransferResponse",response.getMessage());
+        Log.i("TransferResponse", response.getMessage());
         // place notify change over here
 
     }
@@ -212,4 +228,11 @@ public class TS_MoveInOut_scan extends BaseActivity implements StockInView,TsVie
     public void onStockDocView(StockDocumentResponse response) {
 
     }
+
+    @Override
+    public void onSelectDocView(DocumentData response) {
+
+
+    }
+
 }

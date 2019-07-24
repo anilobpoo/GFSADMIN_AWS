@@ -23,6 +23,7 @@ import com.obpoo.gfsfabricsoftware.TransferStock.DataModel.PendingOrderDetails;
 import com.obpoo.gfsfabricsoftware.TransferStock.DataModel.PendingOrderRes;
 import com.obpoo.gfsfabricsoftware.TransferStock.DataModel.StockDocumentResponse;
 import com.obpoo.gfsfabricsoftware.TransferStock.DataModel.TransferResponse;
+import com.obpoo.gfsfabricsoftware.TransferStock.DataModel.TransferStock.DocumentData;
 import com.obpoo.gfsfabricsoftware.TransferStock.DataModel.TransferStock.Ts_Response;
 import com.obpoo.gfsfabricsoftware.TransferStock.DataModel.TransferWareWareDet;
 import com.obpoo.gfsfabricsoftware.TransferStock.DataModel.TransferWareWareRes;
@@ -288,6 +289,11 @@ public class Ts_Mainactivity extends BaseActivity implements TsView, CustomersVi
 
     @Override
     public void onStockDocView(StockDocumentResponse response) {
+
+    }
+
+    @Override
+    public void onSelectDocView(DocumentData response) {
 
     }
 

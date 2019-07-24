@@ -1,23 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<android.support.v7.widget.CardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    app:cardBackgroundColor="@color/white"
-    android:layout_margin="5dp"
-    android:background="@drawable/winv">
+    android:layout_margin="@dimen/padd_10"
+    app:cardCornerRadius="4dp"
+    app:cardElevation="4dp"
+    app:cardBackgroundColor="@color/white">
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_margin="10dp"
         app:layout_constraintBottom_toTopOf="@+id/from_tsf"
         app:layout_constraintTop_toTopOf="@+id/from_tsf"
+        android:paddingBottom="@dimen/padd_10"
         tools:layout_editor_absoluteY="25dp">
-
 
         <TextView
             android:id="@+id/fab_tsf"
@@ -34,24 +33,26 @@
             android:id="@+id/scan_check"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="16dp"
             android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
             android:backgroundTint="@color/colorAccent"
+            android:clickable="false"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <View
+        <ImageView
             android:id="@+id/linearLayout4"
             android:layout_width="0dp"
             android:layout_height="2dp"
-            android:layout_marginBottom="9dp"
             android:layout_marginTop="16dp"
-            android:orientation="horizontal"
+            android:layout_marginBottom="9dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:src="@drawable/dashed_line"
             app:layout_constraintBottom_toTopOf="@+id/from_tsf"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/scan_check"
-            android:background="@drawable/dashed_line"></View>
+            app:layout_constraintTop_toBottomOf="@+id/scan_check"/>
 
         <TextView
             android:id="@+id/from_tsf"
@@ -59,8 +60,10 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="67dp"
+            android:layout_marginEnd="8dp"
             android:text="TextView"
             android:textColor="@color/orange_500"
+            app:layout_constraintEnd_toEndOf="@+id/linearLayout4"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -68,12 +71,11 @@
             android:id="@+id/zone_tsf"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="1dp"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="1dp"
             android:text="TextView"
             android:textColor="@color/brown_500"
-            app:layout_constraintBottom_toTopOf="@+id/linearLayout6"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/from_tsf" />
 
@@ -81,50 +83,51 @@
             android:id="@+id/shelf_tsf"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
             android:layout_marginEnd="17dp"
-            android:layout_marginTop="28dp"
             android:text="TextView"
             android:textColor="@color/brown_500"
-            app:layout_constraintBottom_toTopOf="@+id/linearLayout6"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/linearLayout4" />
+            app:layout_constraintTop_toTopOf="@+id/zone_tsf"/>
 
-        <View
-            android:id="@+id/linearLayout6"
-            android:layout_width="0dp"
-            android:layout_height="2dp"
-            android:layout_marginBottom="29dp"
-            android:layout_marginTop="27dp"
-            android:orientation="horizontal"
-            app:layout_constraintBottom_toBottomOf="@+id/to_tsf"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/zone_tsf"
-            android:background="@drawable/dashed_line"></View>
 
         <TextView
-            android:id="@+id/to_tsf"
+            android:id="@+id/remain_mtr_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="8dp"
             android:text="TextView"
-            android:textColor="@color/green_500"
+            android:textColor="@color/pink_700"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/zone_tsf" />
+        <TextView
+            android:id="@+id/remain_yard_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="17dp"
+            android:text="TextView"
+            android:textColor="@color/pink_700"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/remain_mtr_tv" />
 
         <TextView
             android:id="@+id/unique_tsf"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
             android:layout_marginStart="1dp"
             android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
             android:text="TextView"
             android:textColor="@color/black"
             app:layout_constraintBottom_toTopOf="@+id/linearLayout4"
             app:layout_constraintStart_toStartOf="@+id/fab_tsf"
             app:layout_constraintTop_toBottomOf="@+id/fab_tsf" />
+        <android.support.constraint.Guideline
+            android:id="@+id/duid"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintGuide_percent=".5"
+            android:orientation="vertical" />
     </android.support.constraint.ConstraintLayout>
 </android.support.v7.widget.CardView>

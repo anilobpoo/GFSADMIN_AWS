@@ -10,6 +10,8 @@ import com.obpoo.gfsfabricsoftware.TransferStock.DataModel.StockDocRequest;
 import com.obpoo.gfsfabricsoftware.TransferStock.DataModel.StockDocumentResponse;
 import com.obpoo.gfsfabricsoftware.TransferStock.DataModel.TransferRequest;
 import com.obpoo.gfsfabricsoftware.TransferStock.DataModel.TransferResponse;
+import com.obpoo.gfsfabricsoftware.TransferStock.DataModel.TransferStock.DocumentData;
+import com.obpoo.gfsfabricsoftware.TransferStock.DataModel.TransferStock.DocumentDataRequest;
 import com.obpoo.gfsfabricsoftware.TransferStock.DataModel.TransferStock.TransferStockOutRequest;
 import com.obpoo.gfsfabricsoftware.TransferStock.DataModel.TransferStock.TransferStockRequest;
 import com.obpoo.gfsfabricsoftware.TransferStock.DataModel.TransferStock.Ts_Response;
@@ -196,10 +198,10 @@ public class TsInteractorImpl implements TsInteractor {
     }
 
     @Override
-    public void callRetroTransferFabrics(String method, final TransferFabrics transferFabrics) {
+    public void callRetroTransferFabrics(String method, String from_date, String to_date, String page_no, String document, final TransferFabrics transferFabrics) {
         Retrofit retrofit = ApiClient.getRetrofit2();
         WebApi apis = retrofit.create(WebApi.class);
-        TransferStockRequest request = new TransferStockRequest(method);
+        TransferStockRequest request = new TransferStockRequest(method,from_date,to_date,page_no,document);
         Call<Ts_Response> call = apis.tranFabcAPI(request);
         call.enqueue(new Callback<Ts_Response>() {
             @Override
@@ -220,6 +222,7 @@ public class TsInteractorImpl implements TsInteractor {
             }
         });
     }
+
 
     @Override
     public void callRetroTransferStockOut(String method, ArrayList<String> ids, final TransferStockOut transferStockOut) {
@@ -268,6 +271,32 @@ public class TsInteractorImpl implements TsInteractor {
             @Override
             public void onFailure(Call<StockDocumentResponse> call, Throwable t) {
                 stockDocResp.onStockDocError(t.getMessage());
+                Log.i("response", t.getMessage());
+            }
+        });
+    }
+
+    @Override
+    public void callSelectDoc(String method, String id, final SelectDocData responseDD) {
+        Retrofit retrofit = ApiClient.getRetrofit2();
+        WebApi apis = retrofit.create(WebApi.class);
+        DocumentDataRequest request = new DocumentDataRequest(method,id);
+        Call<DocumentData> call = apis.selectDoc(request);
+        call.enqueue(new Callback<DocumentData>() {
+            @Override
+            public void onResponse(Call<DocumentData> call, Response<DocumentData> response) {
+                if (response.isSuccessful()) {
+                    responseDD.onSelectDocSuccess(response.body());
+
+                } else {
+                    responseDD.onSelectDocError("Please Try Again.");
+
+                }
+            }
+
+            @Override
+            public void onFailure(Call<DocumentData> call, Throwable t) {
+                responseDD.onSelectDocError(t.getMessage());
                 Log.i("response", t.getMessage());
             }
         });

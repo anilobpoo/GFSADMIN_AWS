@@ -1,0 +1,1 @@
+package com.obpoo.gfsfabricsoftware.TransferStock.DataModel.TransferStock;public class DocumentDataRequest {   private String method,id;    public DocumentDataRequest(String method, String id) {        this.method = method;        this.id = id;    }}

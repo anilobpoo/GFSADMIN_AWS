@@ -18,6 +18,7 @@ import com.obpoo.gfsfabricsoftware.TransferStock.DataModel.PendingOrderRes;
 import com.obpoo.gfsfabricsoftware.TransferStock.DataModel.StockDocData;
 import com.obpoo.gfsfabricsoftware.TransferStock.DataModel.StockDocumentResponse;
 import com.obpoo.gfsfabricsoftware.TransferStock.DataModel.TransferResponse;
+import com.obpoo.gfsfabricsoftware.TransferStock.DataModel.TransferStock.DocumentData;
 import com.obpoo.gfsfabricsoftware.TransferStock.DataModel.TransferStock.Ts_Response;
 import com.obpoo.gfsfabricsoftware.TransferStock.DataModel.TransferWareWareRes;
 import com.obpoo.gfsfabricsoftware.TransferStock.MVP.TsPresenterImpl;
@@ -144,6 +145,26 @@ public class TsMenuAdp extends RecyclerView.Adapter<TsMenuAdp.ViewHolder> implem
             in.putParcelableArrayListExtra("data", data);
             context.startActivity(in);
         }
+    }
+
+    @Override
+    public void onSelectDocView(DocumentData response) {
+
+    }
+
+    @Override
+    public void showDialog() {
+
+    }
+
+    @Override
+    public void hideDialog() {
+
+    }
+
+    @Override
+    public void showError(String message) {
+
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {
